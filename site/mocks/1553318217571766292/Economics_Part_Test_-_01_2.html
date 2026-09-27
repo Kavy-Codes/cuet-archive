@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/CrackcuetUG" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Economics Part Test - 01", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "ECONOMICS_0", "question": "The government of India decided to produce 1,000 million quintals of wheat this year. The decision regarding quantity of production is a part of which central problem of the economy? \u003cbr>", "options": [{"text": "What to produce \u003cbr>", "is_correct": true}, {"text": "How to produce \u003cbr>", "is_correct": false}, {"text": "For whom to produce \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "The decision regarding what quantity of wheat to produce is part of the central economic problem \"What to produce\" which involves selection of goods and services to be produced and their quantities. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "TU of the commodity when 1st unit of commodity is consumed is __________. \u003cbr>", "options": [{"text": "TU &lt; MU \u003cbr>", "is_correct": false}, {"text": "TU = MU \u003cbr>", "is_correct": true}, {"text": "TU &gt; MU \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "When the first unit is consumed, Total Utility (TU) is equal to Marginal Utility (MU) because MU is the addition to TU from the last unit consumed. Hence, for the first unit, TU = MU. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II: \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": true}, {"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443781image2.png", "so_img": "https://ts-cdn.adda247.com/1752222443780image9.png"}, {"subject": "ECONOMICS_0", "question": "Scarcity refers to limitation of ______ in relation to _____ for a commodity. \u003cbr>", "options": [{"text": "Demand, Sale \u003cbr>", "is_correct": false}, {"text": "Demand, Supply \u003cbr>", "is_correct": false}, {"text": "Supply, Demand \u003cbr>", "is_correct": true}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "Scarcity refers to the limitation of supply in relation to demand. It means resources are limited compared to wants. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In case of Giffen’s paradox, the slope of demand curve is: \u003cbr>", "options": [{"text": "Negative \u003cbr>", "is_correct": false}, {"text": "Positive \u003cbr>", "is_correct": true}, {"text": "Parallel to X-axis \u003cbr>", "is_correct": false}, {"text": "Parallel to Y-axis \u003cbr>", "is_correct": false}], "solution": "Giffen goods defy the law of demand. As price increases, demand also increases. Hence, the demand curve slopes upward - positive slope. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Identify the impact of unemployment on PPC (Production Possibility Curve). \u003cbr>", "options": [{"text": "Leftward Shift in PPC \u003cbr>", "is_correct": false}, {"text": "Rightward Shift in PPC \u003cbr>", "is_correct": false}, {"text": "Movement along the same PPC \u003cbr>", "is_correct": false}, {"text": "Economy will operate inside the PPC \u003cbr>", "is_correct": true}], "solution": "Unemployment implies underutilization of resources. The economy does not produce on the PPC curve but inside it, representing inefficiency. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List - I with List - II: \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(II), (B)-(III), (C)-(I), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(II), (C)-(I), (D)-(IV) \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A)-(I): Indifference curve shows combinations giving same satisfaction. \u003cbr>(B)-(II): PPC shows potential output of an economy. \u003cbr>(C)-(III): Budget line shows what a consumer can afford. \u003cbr>(D)-(IV): Demand curve reflects price-demand relationship. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443782image3.png"}, {"subject": "ECONOMICS_0", "question": "A good that is considered to be inferior to a consumer, may be observed as normal good to another consumer. This is due to \u003cbr>", "options": [{"text": "Quality of the consumer \u003cbr>", "is_correct": false}, {"text": "Producer of the good \u003cbr>", "is_correct": false}, {"text": "Quantity of the consumer \u003cbr>", "is_correct": false}, {"text": "Income of the consumer \u003cbr>", "is_correct": true}], "solution": "Whether a good is normal or inferior depends on the income of the consumer. For a lower-income person, the good may be normal; for a higher-income person, it may be inferior. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If ratio between the change in price &amp; change in quantity demanded is 0.25. The consumer demands 100 units at an initial price of Rs 10 per unit. Calculate the price elasticity of demand. \u003cbr>", "options": [{"text": "(-) 0.025 \u003cbr>", "is_correct": true}, {"text": "(-) 0.040 \u003cbr>", "is_correct": false}, {"text": "(-) 0.40 \u003cbr>", "is_correct": false}, {"text": "(-) 0.25 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1752222443780image10.png"}, {"subject": "ECONOMICS_0", "question": "Increase in demand refers to: \u003cbr>", "options": [{"text": "Larger quantity demanded due to fall in own price of commodity \u003cbr>", "is_correct": false}, {"text": "Larger quantity demanded due to fall in price of substitute goods \u003cbr>", "is_correct": false}, {"text": "Larger quantity demanded due to rise in price of substitute goods \u003cbr>", "is_correct": true}, {"text": "Larger quantity demanded due to rise in own price of commodity \u003cbr>", "is_correct": false}], "solution": "Increase in demand means that more quantity is demanded at the same price due to factors other than own price-like rise in the price of substitute goods, making the given good more attractive. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Savita consumes 2 goods X and Y. If marginal utility of X is 30 utils and that of Y is 45 utils. Prices of both goods X and Y are ₹3 and ₹5 respectively. Savita will consume _________. \u003cbr>", "options": [{"text": "More of good X \u003cbr>", "is_correct": true}, {"text": "More of good Y \u003cbr>", "is_correct": false}, {"text": "More of both good X and good Y \u003cbr>", "is_correct": false}, {"text": "More of either good X or good Y \u003cbr>", "is_correct": false}], "solution": "Consumer equilibrium is reached when: \u003cbr>MUx/Px = MUy/Py \u003cbr>MUx/Px = 30/3 = 10 \u003cbr>MUy/Py = 45/5 = 9 \u003cbr>Since MUx/Px &gt; MUy/Py, Savita should consume more of good X to increase total utility. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following inequality represents the consumer’s budget constraint? \u003cbr>", "options": [{"text": "p₁x₁ + p₂x₂ = M \u003cbr>", "is_correct": false}, {"text": "p₁x₁ + p₂x₂ &lt; M \u003cbr>", "is_correct": false}, {"text": "p₁x₁ + p₂x₂ ≤ M \u003cbr>", "is_correct": true}, {"text": "p₁x₁ + p₂x₂ &gt; M \u003cbr>", "is_correct": false}], "solution": "The budget constraint reflects that a consumer cannot spend more than their income (M). Thus, the total expenditure on goods must be less than or equal to M: p₁x₁ + p₂x₂ ≤ M \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "For a given demand function Y = 50 - 2P, the quantity demanded at P = Rs. 20 is: \u003cbr>", "options": [{"text": "5 units \u003cbr>", "is_correct": false}, {"text": "10 units \u003cbr>", "is_correct": true}, {"text": "0 units \u003cbr>", "is_correct": false}, {"text": "50 units \u003cbr>", "is_correct": false}], "solution": "Y = 50 - 2P \u003cbr>Put P = 20 ⇒ Y = 50 - 2×20 = 50 - 40 = 10 units \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Peter is looking for a job. He has been offered two jobs, one in a restaurant at a salary of ₹40,000 per month and another in a private bank at a salary of ₹50,000. If he chooses to work at the private bank, what would be his opportunity cost? \u003cbr>", "options": [{"text": "₹40,000 \u003cbr>", "is_correct": true}, {"text": "₹50,000 \u003cbr>", "is_correct": false}, {"text": "₹10,000 \u003cbr>", "is_correct": false}, {"text": "₹90,000 \u003cbr>", "is_correct": false}], "solution": "Opportunity cost is the value of the next best alternative foregone. If Peter chooses the bank job, he forgoes the restaurant job paying ₹40,000. So, his opportunity cost is ₹40,000. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The following is the schedule representing the marginal utilities obtained by a consumer from consuming good X and the marginal utility of a rupee is 2. State the number of units being consumed by him at a price of ₹6 to obtain his equilibrium. \u003cbr> \u003cbr>", "options": [{"text": "4 Units \u003cbr>", "is_correct": false}, {"text": "3 Units \u003cbr>", "is_correct": true}, {"text": "2 Units \u003cbr>", "is_correct": false}, {"text": "5 Units \u003cbr>", "is_correct": false}], "solution": "The equilibrium condition is: \u003cbr> =Price × MU of money \u003cbr> =₹6 × 2 = 12 utils \u003cbr>From the table, the 4th unit gives = 10 (less than 12), and 3rd gives 12. So, consumer stops at 3rd unit, but equilibrium is when last consumed unit's utility equals 12. \u003cbr>So, = 12 at 3 units → Equilibrium is at 3 units. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443781image4.png", "so_img": ["https://ts-cdn.adda247.com/1752222443781image11.png", "https://ts-cdn.adda247.com/1752222443781image11.png", "https://ts-cdn.adda247.com/1752222443781image11.png", "https://ts-cdn.adda247.com/1752222443781image11.png"]}, {"subject": "ECONOMICS_0", "question": "In an Economy, problem of choice arises. Arrange the following in order: \u003cbr>(A) Leads to scarcity of resources \u003cbr>(B) Demands are unlimited \u003cbr>(C) Problem of choice arises \u003cbr>(D) Our resources are limited \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(D), (B), (A), (C) \u003cbr>", "is_correct": true}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(C), (D), (B), (A) \u003cbr>", "is_correct": false}], "solution": "The correct sequence is: \u003cbr>(D) Our resources are limited \u003cbr>(B) Demands are unlimited → This mismatch (scarcity) \u003cbr>(A) Leads to scarcity of resources \u003cbr>(C) Problem of choice arises \u003cbr>Thus, option (a) is correct. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The points on PPC shows one among the following, choose the correct option: \u003cbr>", "options": [{"text": "lesser utilisation of resources \u003cbr>", "is_correct": false}, {"text": "fuller utilisation of resources \u003cbr>", "is_correct": true}, {"text": "growth of resources \u003cbr>", "is_correct": false}, {"text": "constant resources \u003cbr>", "is_correct": false}], "solution": "Any point on the Production Possibility Curve (PPC) shows fuller and efficient utilisation of available resources. Points inside show underutilization; outside are unattainable with current resources. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Identify the correct properties of Indifference Curve (IC): \u003cbr>(A) IC slopes downward because in order to increase the consumption of one good, we must increase the consumption of the other good \u003cbr>(B) IC is concave to the origin. \u003cbr>(C) IC is convex to the origin because of law of Diminishing Marginal Rate of Substitution \u003cbr>(D) IC is convex to the origin because of law of Diminishing Marginal Utility \u003cbr>(E) IC slopes downward because in order to increase the consumption of one good, we must decrease the consumption of the other good \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A) &amp; (C) Only \u003cbr>", "is_correct": false}, {"text": "(D) &amp; (E) Only \u003cbr>", "is_correct": false}, {"text": "(C) &amp; (E) Only \u003cbr>", "is_correct": true}, {"text": "(B) &amp; (D) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(C) is correct: IC is convex to origin due to Diminishing MRS. \u003cbr>(E) is correct: To maintain the same utility, increase in one good requires decrease in the other, so IC slopes downward. \u003cbr>(A), (B), and (D) are incorrect. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which among the following is not the central problem of an economy: \u003cbr>", "options": [{"text": "For whom to Produce? \u003cbr>", "is_correct": false}, {"text": "Scarcity of Resources? \u003cbr>", "is_correct": true}, {"text": "How to Produce the good? \u003cbr>", "is_correct": false}, {"text": "What to Produce? \u003cbr>", "is_correct": false}], "solution": "Scarcity of resources is the cause of central problems, not a central problem itself. The central problems are: \u003cbr>What to produce \u003cbr>How to produce \u003cbr>For whom to produce \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List - I with List - II. \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "A-I, B-II, C-III, D-IV \u003cbr>", "is_correct": false}, {"text": "A-IV, B-III, C-II, D-I \u003cbr>", "is_correct": true}, {"text": "A-III, B-IV, C-II, D-I \u003cbr>", "is_correct": false}, {"text": "A-I, B-III, C-IV, D-II \u003cbr>", "is_correct": false}], "solution": "\u003cbr>A → IV: When income increases and demand increases, the good is a Normal Good. \u003cbr>B → III: When income increases and demand decreases, the good is an Inferior Good. \u003cbr>C → II: If demand increases when price of related good increases, it's a Substitute Good. \u003cbr>D → I: Goods consumed together (e.g., pen and ink) are Complementary Goods. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443780image5.png"}, {"subject": "ECONOMICS_0", "question": "Study of an industry is an example of: \u003cbr>", "options": [{"text": "Micro Economics \u003cbr>", "is_correct": true}, {"text": "Macro Economics \u003cbr>", "is_correct": false}, {"text": "Welfare Economics \u003cbr>", "is_correct": false}, {"text": "Environment Economics \u003cbr>", "is_correct": false}], "solution": "Microeconomics studies individual economic units such as a consumer, firm, or industry. Since an industry is a part of the individual sector, it falls under microeconomics. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following is true? \u003cbr>", "options": [{"text": "PPC is parallel to X-axis \u003cbr>", "is_correct": false}, {"text": "PPC is downward sloping curve \u003cbr>", "is_correct": true}, {"text": "PPC is upward sloping curve \u003cbr>", "is_correct": false}, {"text": "PPC is sometimes downward sloping curve \u003cbr>", "is_correct": false}], "solution": "The Production Possibility Curve (PPC) is downward sloping because to produce more of one good, we must sacrifice some units of the other good, due to scarce resources. This shows opportunity cost. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Mark the Correct option: \u003cbr>", "options": [{"text": "In Normative economics analysis, we study how the different mechanism functions. \u003cbr>", "is_correct": false}, {"text": "In positive economic analysis we try to understand different mechanisms are desirable or not. \u003cbr>", "is_correct": false}, {"text": "Proper understanding of normative economics is possible without the understanding of positive economics. \u003cbr>", "is_correct": false}, {"text": "Positive economics and normative economics are related to each other. \u003cbr>", "is_correct": true}], "solution": "Positive economics deals with facts and cause-effect relationships (\"what is\"). \u003cbr>Normative economics deals with value judgments and opinions (\"what ought to be\"). \u003cbr>Though different, both are interrelated, as normative judgments often rely on positive analysis to be logically supported. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Identify false statement about indifference curves (IC) from the following: \u003cbr>", "options": [{"text": "Two ICs can intersect each other \u003cbr>", "is_correct": true}, {"text": "Higher IC gives higher level of satisfaction \u003cbr>", "is_correct": false}, {"text": "IC slopes downwards from left to right \u003cbr>", "is_correct": false}, {"text": "All points on an IC give equal level of satisfaction to a consumer \u003cbr>", "is_correct": false}], "solution": "Indifference curves cannot intersect each other because it violates the assumption that each IC represents a distinct level of satisfaction. If they intersect, it implies the same bundle gives two different satisfaction levels, which is logically incorrect. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the other name of the central problem in an economy 'How to produce'? \u003cbr>", "options": [{"text": "Problem of Allocation of Resources \u003cbr>", "is_correct": false}, {"text": "Problem of distribution \u003cbr>", "is_correct": false}, {"text": "Problem of choice of techniques \u003cbr>", "is_correct": true}, {"text": "Problem of quantities \u003cbr>", "is_correct": false}], "solution": "The question \"How to produce\" refers to which technique (labor-intensive or capital-intensive) should be used for production. Therefore, it is also called the problem of choice of techniques. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which among the following is not true about production possibility curve: \u003cbr>", "options": [{"text": "PPC is upward sloping \u003cbr>", "is_correct": true}, {"text": "PPC is concave to its origin \u003cbr>", "is_correct": false}, {"text": "PPC may be convex to its origin \u003cbr>", "is_correct": false}, {"text": "PPC may be straight line downward sloping \u003cbr>", "is_correct": false}], "solution": "PPC is never upward sloping. It is downward sloping due to the concept of opportunity cost. \u003cbr>It is usually concave to the origin (increasing opportunity cost), \u003cbr>May be straight (constant opportunity cost), \u003cbr>But never upward sloping. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the following to represent the order of events in consumer's behaviour due to change in the price of commodity. \u003cbr>(A) The quantity demanded of the commodity will increase to 10 units \u003cbr>(B) A consumer demands 2 units of a commodity priced at ₹20 \u003cbr>(C) There is a fall in the price of the commodity to ₹10 \u003cbr>(D) The price elasticity of demand will be above 1 \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(B), (C), (A), (D) \u003cbr>", "is_correct": true}, {"text": "(C), (A), (D), (B) \u003cbr>", "is_correct": false}, {"text": "(D), (C), (B), (A) \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(B) Initially, the consumer demands 2 units at ₹20 \u003cbr>(C) Price falls to ₹10 \u003cbr>(A) Demand increases to 10 units \u003cbr>(D) This large change in demand implies elasticity &gt; 1 \u003cbr>Hence, the correct sequence is (B), (C), (A), (D) \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "When percentage change in quantity demanded is less than the percentage change in price, i.e., if the good is price inelastic, the expenditure on the good would ______________? \u003cbr>Identify the correct option from the following: \u003cbr>", "options": [{"text": "Change in opposite direction as the price change \u003cbr>", "is_correct": false}, {"text": "Change in same direction as the price change \u003cbr>", "is_correct": true}, {"text": "Change in reverse direction to income \u003cbr>", "is_correct": false}, {"text": "Remain unchanged \u003cbr>", "is_correct": false}], "solution": "For price inelastic goods, the percentage fall in quantity demanded is smaller than the percentage rise in price. So, total expenditure increases with a rise in price, and decreases with a fall in price. \u003cbr>Hence, expenditure changes in the same direction as price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following is not an assumption of the production possibility frontier? \u003cbr>", "options": [{"text": "Resources are fixed \u003cbr>", "is_correct": false}, {"text": "Stock of technological knowledge keeps increasing \u003cbr>", "is_correct": true}, {"text": "Resources are fully and efficiently employed \u003cbr>", "is_correct": false}, {"text": "Stock of technological knowledge is given \u003cbr>", "is_correct": false}], "solution": "The assumptions of PPC include: \u003cbr>Resources are fixed \u003cbr>Resources are fully and efficiently utilized \u003cbr>Technology or stock of knowledge is given and constant \u003cbr>Option (b) contradicts the third assumption. Hence, it is not an assumption of PPC. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "An explanation for a downward sloping demand curve rests on the notion of: \u003cbr>", "options": [{"text": "Ordinal Utility Analysis \u003cbr>", "is_correct": false}, {"text": "Diminishing Average Utility \u003cbr>", "is_correct": false}, {"text": "Diminishing Marginal Utility \u003cbr>", "is_correct": true}, {"text": "Diminishing Aggregate Utility \u003cbr>", "is_correct": false}], "solution": "The law of diminishing marginal utility states that as a consumer consumes more units of a good, the additional utility from each successive unit decreases. This leads to a willingness to pay less for additional units, explaining the downward-sloping demand curve. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following statements correctly describes the nature of indifference curve? \u003cbr>(A) Indifference curve slopes downwards from left to right \u003cbr>(B) A lower indifference curve represents lower cost to consumer \u003cbr>(C) A higher indifference curve gives higher level of satisfaction \u003cbr>(D) Two indifference curves never intersect each other \u003cbr>(E) Indifference curves are always parallel to each other \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (D) Only \u003cbr>", "is_correct": false}, {"text": "(B), (C), (E) Only \u003cbr>", "is_correct": false}, {"text": "(A), (C), (D) Only \u003cbr>", "is_correct": true}, {"text": "(C), (D), (E) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) is correct: IC slopes downward because to get more of one good, one must give up some of the other. \u003cbr>(C) is correct: A higher IC represents higher satisfaction. \u003cbr>(D) is correct: Two ICs cannot intersect because it violates the assumption of consistent preferences. \u003cbr>(B) is incorrect: ICs don’t represent cost, they represent satisfaction. \u003cbr>(E) is incorrect: ICs are not always parallel; they can differ in curvature depending on preferences. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II: \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I) \u003cbr>", "is_correct": true}, {"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(III), (C)-(IV), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(I), (C)-(II), (D)-(III) \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A)-(III): Scarcity arises due to unlimited human wants. \u003cbr>(B)-(IV): Opportunity cost is the next best alternative foregone. \u003cbr>(C)-(II): PPF shows possible combinations of two goods that can be produced. \u003cbr>(D)-(I): Normative economics involves value judgments and suggestions. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443780image6.png"}, {"subject": "ECONOMICS_0", "question": "Every economy faces the problem of allocating of resources for the production and distribution of _____________. \u003cbr>A. Goods \u003cbr>B. Technology \u003cbr>C. Services \u003cbr>D. Resources \u003cbr>E. Machinery \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "B and D only \u003cbr>", "is_correct": false}, {"text": "A and C only \u003cbr>", "is_correct": true}, {"text": "C and D only \u003cbr>", "is_correct": false}, {"text": "B and E only \u003cbr>", "is_correct": false}], "solution": "Every economy must decide what goods and services to produce and how to distribute them, due to limited resources. \u003cbr>So, correct answer is: Goods (A) and Services (C) → Option (b) \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II: \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(IV), (C)-(I), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II) \u003cbr>", "is_correct": true}], "solution": "\u003cbr>(A)-(III): Marginal utility = additional satisfaction from 1 more unit. \u003cbr>(B)-(I): MRS = ∆y/∆x, showing rate of substitution. \u003cbr>(C)-(IV): Budget line slope = -Px/Py, ratio of prices. \u003cbr>(D)-(II): Monotonic preferences imply more is better, e.g., (3, 4) preferred over (2, 4). \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443780image7.png"}, {"subject": "ECONOMICS_0", "question": "The problem of 'what to produce' in an economy is related with: \u003cbr>", "options": [{"text": "The quantities of the many possible goods and services that an economy will produce \u003cbr>", "is_correct": true}, {"text": "The technology to be used for the production of the goods and services in an economy \u003cbr>", "is_correct": false}, {"text": "The distribution of the goods and services produced in an economy \u003cbr>", "is_correct": false}, {"text": "The research and development of efficient technology for the production of goods and services in an economy \u003cbr>", "is_correct": false}], "solution": "The central problem of \"what to produce\" refers to deciding the types and quantities of goods and services to be produced using the available limited resources. This decision involves choosing among various alternatives based on demand, availability, and societal needs. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Utility of a commodity is its want-satisfying capacity. The utility can be expressed in terms of numbers. This analysis is known as: \u003cbr>", "options": [{"text": "Ordinal Utility Analysis \u003cbr>", "is_correct": false}, {"text": "Additional Utility Analysis \u003cbr>", "is_correct": false}, {"text": "Cardinal Utility Analysis \u003cbr>", "is_correct": true}, {"text": "Detailed Utility Analysis \u003cbr>", "is_correct": false}], "solution": "Cardinal Utility Analysis assumes that utility can be measured in numeric terms (like utils). For example, a consumer may derive 10 utils from one good and 20 from another, implying a quantitative comparison. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Consider the following Statement \u003cbr>(A) Production possibility curve is concave to its origin. \u003cbr>(B) Centrally planned economy is free from use of money. \u003cbr>(C) Positive economics explain actual economic events. \u003cbr>(D) Price mechanism is found in market economy. \u003cbr>(E) India is a capitalist economy. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "A, B and E only \u003cbr>", "is_correct": false}, {"text": "A, C and D only \u003cbr>", "is_correct": true}, {"text": "A, C and E only \u003cbr>", "is_correct": false}, {"text": "A, B, C and E only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) Correct: PPC is concave due to increasing opportunity cost. \u003cbr>(B) Incorrect: A centrally planned economy may still use money; it's not free from it. \u003cbr>(C) Correct: Positive economics deals with facts and cause-effect relationships. \u003cbr>(D) Correct: Price mechanism (market forces of demand and supply) works in a market economy. \u003cbr>(E) Incorrect: India is a mixed economy, not purely capitalist. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The more responsive the demand for a good to its price, the higher is the price-elasticity of demand for that good. When: \u003cbr>A. Elasticity of demand is greater than one \u003cbr>B. Demand curve is steeper for elastic goods \u003cbr>C. Necessity goods are highly elastic \u003cbr>D. Elasticity of demand is less than one \u003cbr>E. Luxury goods are highly elastic \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "B and C only \u003cbr>", "is_correct": false}, {"text": "C and D only \u003cbr>", "is_correct": false}, {"text": "A and C only \u003cbr>", "is_correct": false}, {"text": "A and E only \u003cbr>", "is_correct": true}], "solution": "\u003cbr>A is correct: When elasticity &gt; 1, demand is highly responsive to price → this is elastic demand. \u003cbr>E is correct: Luxury goods tend to have high elasticity because consumers can delay or avoid buying them if prices rise. \u003cbr>B is incorrect: For elastic goods, the demand curve is flatter, not steeper. \u003cbr>C is incorrect: Necessity goods are usually inelastic, not highly elastic. \u003cbr>D is incorrect: Elasticity less than one means demand is inelastic, i.e., not highly responsive to price. \u003cbr>Hence, the correct answer is (d) A and E only. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the correct order of price elasticity of demand moving upwards on a straight-line negatively sloped demand curve? \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (D), (C), (E) \u003cbr>", "is_correct": false}, {"text": "(A), (D), (B), (C), (E) \u003cbr>", "is_correct": false}, {"text": "(E), (C), (D), (B), (A) \u003cbr>", "is_correct": true}, {"text": "(A), (C), (B), (D), (E) \u003cbr>", "is_correct": false}], "solution": "On a straight-line downward-sloping demand curve, elasticity varies along the curve: \u003cbr>At the upper portion, where price is high and quantity is low → elasticity is infinite (E) \u003cbr>As we move downward, elasticity &gt; 1 (C) \u003cbr>At the midpoint, elasticity = 1 (D) \u003cbr>Further down, elasticity &lt; 1 (B) \u003cbr>At the bottom, where price is 0, elasticity = 0 (A) \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1752222443780image8.png"}, {"subject": "ECONOMICS_0", "question": "Identify the equation of a linear demand curve, where a is the vertical intercept, b is the slope of the demand curve, and p is the price of the product. \u003cbr>", "options": [{"text": "d(p) = a - bp \u003cbr>", "is_correct": true}, {"text": "d(p) = a + bp \u003cbr>", "is_correct": false}, {"text": "d(p) = -a - bp \u003cbr>", "is_correct": false}, {"text": "d(p) = -a + bp \u003cbr>", "is_correct": false}], "solution": "The general form of a linear demand function is:d(p) = a - bp \u003cbr>a is the intercept (quantity demanded when price = 0) \u003cbr>b is the slope, showing how much quantity falls with a unit rise in price \u003cbr>As price (p) increases, demand decreases, hence the negative sign \u003cbr>So, the correct equation is d(p) = a - bp \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "A Giffen good is identified by which of the following features? \u003cbr>", "options": [{"text": "It obeys the law of demand strictly \u003cbr>", "is_correct": false}, {"text": "Its demand increases with fall in income \u003cbr>", "is_correct": false}, {"text": "Its demand rises with rise in price due to a strong income effect \u003cbr>", "is_correct": true}, {"text": "Its demand decreases due to a strong substitution effect \u003cbr>", "is_correct": false}], "solution": "Giffen goods are those where the income effect dominates the substitution effect. As price rises, the consumer buys more of the good due to the negative income effect, leading to a positive relationship between price and demand, violating the law of demand. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "When does the substitution effect dominate the income effect in consumer behavior? \u003cbr>", "options": [{"text": "When income increases and demand falls \u003cbr>", "is_correct": false}, {"text": "When price rises and demand rises \u003cbr>", "is_correct": false}, {"text": "When demand remains unchanged despite price changes \u003cbr>", "is_correct": false}, {"text": "When demand decreases as price increases, even for inferior goods \u003cbr>", "is_correct": true}], "solution": "When the substitution effect is stronger than the income effect, consumers reduce consumption as the price rises. This maintains the inverse relationship between price and quantity demanded, even in the case of inferior goods. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following best describes the income effect in the context of Giffen goods? \u003cbr>", "options": [{"text": "The increase in demand for a good due to its lower price \u003cbr>", "is_correct": false}, {"text": "The reduction in demand due to substitution by cheaper goods \u003cbr>", "is_correct": false}, {"text": "The decrease in consumption of a good due to rise in real income \u003cbr>", "is_correct": true}, {"text": "The tendency to shift towards higher-priced goods \u003cbr>", "is_correct": false}], "solution": "In the case of Giffen goods, when income rises (real purchasing power increases), consumers reduce consumption of the good, as it is an inferior good. This reflects a negative income effect. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If the substitution effect is stronger than the income effect for a good, the demand curve will be: \u003cbr>", "options": [{"text": "Horizontal \u003cbr>", "is_correct": false}, {"text": "Upward sloping \u003cbr>", "is_correct": false}, {"text": "Vertical \u003cbr>", "is_correct": false}, {"text": "Downward sloping \u003cbr>", "is_correct": true}], "solution": "A downward sloping demand curve reflects that as price increases, quantity demanded decreases. This occurs when the substitution effect dominates, maintaining the law of demand. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In which case will the demand for a good rise when its price increases? \u003cbr>", "options": [{"text": "The income effect dominates the substitution effect \u003cbr>", "is_correct": true}, {"text": "The substitution effect dominates the income effect \u003cbr>", "is_correct": false}, {"text": "The good is a normal good \u003cbr>", "is_correct": false}, {"text": "The price elasticity is zero \u003cbr>", "is_correct": false}], "solution": "When the income effect dominates and is positive in nature, especially for Giffen goods, the consumer buys more even at higher prices, causing an upward-sloping demand curve. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "A rational consumer is the one who has: \u003cbr>", "options": [{"text": "Many sets of bundles \u003cbr>", "is_correct": false}, {"text": "Monotonic preference \u003cbr>", "is_correct": true}, {"text": "With high budget \u003cbr>", "is_correct": false}, {"text": "Not ready to substitute one good for the other \u003cbr>", "is_correct": false}], "solution": "A rational consumer always chooses more preferred bundles. Monotonic preference means more of a good is always preferred to less, keeping in line with rational behavior. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The indifference curve is: \u003cbr>", "options": [{"text": "Positive \u003cbr>", "is_correct": false}, {"text": "Upward \u003cbr>", "is_correct": false}, {"text": "Concave \u003cbr>", "is_correct": false}, {"text": "Convex \u003cbr>", "is_correct": true}], "solution": "Indifference curves are convex to the origin due to the law of diminishing marginal rate of substitution (MRS), which means a consumer is willing to give up less of one good to gain additional units of another. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If the budget line is tangent to an indifference curve at a point, absolute value of the MRS and the Budget line are _______ at that point. \u003cbr>", "options": [{"text": "More \u003cbr>", "is_correct": false}, {"text": "High \u003cbr>", "is_correct": false}, {"text": "Less \u003cbr>", "is_correct": false}, {"text": "Same \u003cbr>", "is_correct": true}], "solution": "At consumer equilibrium, the budget line is tangent to the indifference curve, implying that the Marginal Rate of Substitution (MRS) = Price Ratio, i.e., their slopes are the same. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "All the points on Indifference curve represent: \u003cbr>", "options": [{"text": "The same price \u003cbr>", "is_correct": false}, {"text": "Bundles which are considered indifferent by the consumer \u003cbr>", "is_correct": true}, {"text": "Straight line \u003cbr>", "is_correct": false}, {"text": "Bundles which are considered same by the consumer \u003cbr>", "is_correct": false}], "solution": "Every point on an indifference curve represents a combination of two goods that provides the same level of satisfaction to the consumer, hence the consumer is indifferent among them. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which is an example of substitute good? \u003cbr>", "options": [{"text": "Pen and ink \u003cbr>", "is_correct": false}, {"text": "Car and petrol \u003cbr>", "is_correct": false}, {"text": "Tea and Coffee \u003cbr>", "is_correct": true}, {"text": "Shoes and socks \u003cbr>", "is_correct": false}], "solution": "Tea and coffee are substitutes-a rise in the price of one leads to an increase in the demand for the other. \u003cbr>"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

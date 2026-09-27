@@ -75,7 +75,7 @@ module.exports = {
   FORUM_ID: '1553291830198538340',
   FORUM_NAME: '📚︱resources',
   GUILD_NAME: 'CUET 2027',
-  EXCLUDE_THREAD_IDS: ['1553773839647899798'],
+  EXCLUDE_THREAD_IDS: ['1553773839647899798', '1553298404686430240'],
   DATA_FILE: path.join(ROOT, 'data', 'resources.json'),
   SITE_DIR: path.join(ROOT, 'site'),
   ASSETS_SRC: path.join(ROOT, 'src', 'assets'),

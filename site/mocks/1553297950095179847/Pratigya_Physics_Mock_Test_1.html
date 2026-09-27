@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/Crackcuetug" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Pratigya Physics Mock Test  1", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "PHYSICS_0", "question": "Magnetis lost their magnetic property, when. \u003cbr>(A)Beaten by hammer \u003cbr>(B)Dipped in water \u003cbr>(C)Brought near a piece of iron \u003cbr>(D)Strongly heated. \u003cbr>", "options": [{"text": "a and b", "is_correct": false}, {"text": "b and c \u003cbr>", "is_correct": false}, {"text": "a and c", "is_correct": false}, {"text": "a and d. \u003cbr>", "is_correct": true}], "solution": "Magnetic property is lost when we beat by hammer or strongly heat a magnet. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The ratio of average electric energy density and total average energy density of electromagnetic wave is \u003cbr>", "options": [{"text": "2", "is_correct": false}, {"text": "3 \u003cbr>", "is_correct": false}, {"text": "1/2", "is_correct": true}, {"text": "1 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029751image55.png"}, {"subject": "PHYSICS_0", "question": "Time constant of charging of capacitor shown in adjoining figure is. \u003cbr> \u003cbr>", "options": [{"text": "2 RC", "is_correct": false}, {"text": "Zero \u003cbr>", "is_correct": true}, {"text": "RC/2", "is_correct": false}, {"text": "Infinite. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>There is no resistor in series with capacitor, τ=RC=0. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029723image1.png"}, {"subject": "PHYSICS_0", "question": "In the following circuit of PN junction diodes are ideal then i is. \u003cbr> \u003cbr>", "options": [{"text": "E/R", "is_correct": true}, {"text": "E/2R \u003cbr>", "is_correct": false}, {"text": "2E/3R", "is_correct": false}, {"text": "Zero. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029752image2.png", "https://ts-cdn.adda247.com/1776943029823image3.png"], "so_img": "https://ts-cdn.adda247.com/1776943029754image56.png"}, {"subject": "PHYSICS_0", "question": "In the following four situations charged particles are at equal distance from the origin. Arrange them in the order of magnitude of the net electric potential at origin greatest first. \u003cbr> \u003cbr>", "options": [{"text": "(i)&gt;(ii)&gt;(iii)&gt;(iv) \u003cbr>", "is_correct": false}, {"text": "(ii)&gt;(i)&gt;(iii)=(iv) \u003cbr>", "is_correct": false}, {"text": "(i)&gt;(iii)=(iv)&gt;(ii) \u003cbr>", "is_correct": true}, {"text": "(iv)&gt;(iii)&gt;(ii)&gt;(i) \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029840image4.png", "so_img": "https://ts-cdn.adda247.com/1776943029755image57.png"}, {"subject": "PHYSICS_0", "question": "To get displacement current of 1 A what is a rate of potential difference between 2 μF capacitor plates. \u003cbr>", "options": [{"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776943029923image5.png", "https://ts-cdn.adda247.com/1776943029558image6.png", "https://ts-cdn.adda247.com/1776943029558image7.png", "https://ts-cdn.adda247.com/1776943029558image8.png"], "so_img": "https://ts-cdn.adda247.com/1776943029755image58.png"}, {"subject": "PHYSICS_0", "question": "Three long straight wires A, B and C are carrying current as shown in the figure. Then the resultant force on B is directed. \u003cbr> \u003cbr>", "options": [{"text": "Towards A \u003cbr>", "is_correct": false}, {"text": "Towards C \u003cbr>", "is_correct": true}, {"text": "Perpendicular to the plane of paper and outward \u003cbr>", "is_correct": false}, {"text": "Perpendicular to the plane of paper and inward. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>Parallel wires having current in same direction attract each other. \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029558image9.png", "so_img": "https://ts-cdn.adda247.com/1776943029757image59.png"}, {"subject": "PHYSICS_0", "question": "When a beam of white light passes through a prism it splits up into different colours, violet is bent most because: \u003cbr>", "options": [{"text": "μ of glass for violet rays is smaller than for other rays \u003cbr>", "is_correct": false}, {"text": "μ of glass for violet rays is greater than for other rays \u003cbr>", "is_correct": true}, {"text": "μ is same for all colours but violet rays have smaller wavelength \u003cbr>", "is_correct": false}, {"text": "μ is same for all colours but violet rays have longer wavelength. \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Wavelength of violet is less hence refractive index will be more, so it will bend more. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029762image60.png"}, {"subject": "PHYSICS_0", "question": "The potential differences across the resistance, capacitance and inductance are 80 V, 40 V and 100 V respectively in an L-C-R circuit. The power factor of this circuit is. \u003cbr>", "options": [{"text": "0.8", "is_correct": true}, {"text": "1.0 \u003cbr>", "is_correct": false}, {"text": "0.4", "is_correct": false}, {"text": "0.5 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029763image61.png"}, {"subject": "PHYSICS_0", "question": "A beam of light of wavelength 600 nm from a distant source fall on a single slit 1 mm wide and the resulting diffraction pattern is observed on a screen 2 m away. The distance between the first dark fringes on either side of the central bright fringe is. \u003cbr>", "options": [{"text": "1.2 mm", "is_correct": false}, {"text": "1.2 cm \u003cbr>", "is_correct": false}, {"text": "2.4 cm", "is_correct": false}, {"text": "2.4 mm \u003cbr>", "is_correct": true}], "solution": "Distance between the first dark on either side of central maxima = width of central maxima \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029766image62.png"}, {"subject": "PHYSICS_0", "question": "An astronomical telescope has focal lengths 100 cm and 10 cm of objective and eyepiece lens respectively when final image is formed at least distance of distinct vision, magnification power of telescope will be. \u003cbr>", "options": [{"text": "-10", "is_correct": false}, {"text": "-11 \u003cbr>", "is_correct": false}, {"text": "-14", "is_correct": true}, {"text": "-15 \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029823image63.png"}, {"subject": "PHYSICS_0", "question": "What is the respective number of α and β particles emitted in the following radioactive decay \u003cbr>", "options": [{"text": "6 and 8", "is_correct": false}, {"text": "8 and 8 \u003cbr>", "is_correct": false}, {"text": "6 and 6", "is_correct": false}, {"text": "8 and 6. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029559image10.png", "so_img": "https://ts-cdn.adda247.com/1776943029823image64.png"}, {"subject": "PHYSICS_0", "question": "Suppose a region of space has a uniform electric field, directed towards the right, as shown below. Which statement is true? \u003cbr> \u003cbr>", "options": [{"text": "The potential at all three locations is the same. \u003cbr>", "is_correct": false}, {"text": "The potential at points A and B are equal, the potential at point C is higher than the potential at point A. \u003cbr>", "is_correct": false}, {"text": "The potential at points A and B are equal, and the potential at point C is lower than the potential at point A. \u003cbr>", "is_correct": true}, {"text": "The potential at point A and C is same, the potential at point B is lesser than A and C. \u003cbr>", "is_correct": false}], "solution": "Potential decreases in the direction of electric field, Hence \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029559image11.png", "so_img": "https://ts-cdn.adda247.com/1776943029823image65.png"}, {"subject": "PHYSICS_0", "question": "A fish rising vertically up towards the surface of water with speed 3 ms⁻¹ and a bird diving vertically downwards with speed 9 ms⁻¹. The velocity of bird with respect to fish is \u003cbr> \u003cbr>", "options": [{"text": "15 ms⁻¹", "is_correct": true}, {"text": "12 ms⁻¹ \u003cbr>", "is_correct": false}, {"text": "5.25 ms⁻¹", "is_correct": false}, {"text": "3.4 ms⁻¹ \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029560image12.png", "https://ts-cdn.adda247.com/1776943029560image13.png"], "so_img": "https://ts-cdn.adda247.com/1776943029824image66.png"}, {"subject": "PHYSICS_0", "question": "Which color of the light the longest wavelength? \u003cbr>", "options": [{"text": "Violet", "is_correct": false}, {"text": "Red \u003cbr>", "is_correct": true}, {"text": "Blur", "is_correct": false}, {"text": "Green. \u003cbr>", "is_correct": false}], "solution": "Red light of the visible spectrum is having a maximum wavelength of about 700 nm. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "A lens has a power of 8 D, when placed in air. When it is immersed in water (μ=4/3), the change in power is (refractive index of lens material is 1.5) \u003cbr>", "options": [{"text": "7.5 D", "is_correct": false}, {"text": "5.0 D \u003cbr>", "is_correct": false}, {"text": "6 D", "is_correct": true}, {"text": "2.67 D. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029824image67.png"}, {"subject": "PHYSICS_0", "question": "Figure shows a small loop carrying a current I. The curved portion is an arc of a circle of radius R and the straight portion is a chord to the same circle subtending an angle θ. The magnetic induction at center O is. \u003cbr> \u003cbr>", "options": [{"text": "Zero \u003cbr>", "is_correct": false}, {"text": "Always inward irrespective of the value of θ \u003cbr>", "is_correct": false}, {"text": "Inward as long as θ is less than π \u003cbr>", "is_correct": true}, {"text": "Always outward irrespective of the value of θ. \u003cbr>", "is_correct": false}], "solution": "Due to current shown in figure, the magnetic field within loop is outwards. So field at O should be inward because magnetic field lines form closed loop. \u003cbr>But if θ &gt; π, then point O will lie within loop and for a point within loop magnetic field is outward. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029560image14.png"}, {"subject": "PHYSICS_0", "question": "A parallel plate capacitor having capacitance 0.5 μF is taken. Plates are given charges as shown in the figure, when key is open the energy stored in capacitor is U₁ and when key is closed the energy stored become U₂. Find U₁/U₂? \u003cbr> \u003cbr>", "options": [{"text": "1 :1", "is_correct": true}, {"text": "1 :2 \u003cbr>", "is_correct": false}, {"text": "2 :1", "is_correct": false}, {"text": "1 :3 \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029562image15.png", "so_img": "https://ts-cdn.adda247.com/1776943029825image68.png"}, {"subject": "PHYSICS_0", "question": "How much electric flux will come out through a surface of area vector kept in an electrostatic field \u003cbr>", "options": [{"text": "20 units", "is_correct": false}, {"text": "40 units \u003cbr>", "is_correct": true}, {"text": "30 units", "is_correct": false}, {"text": "90 units. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029567image16.png", "https://ts-cdn.adda247.com/1776943029562image17.png"], "so_img": "https://ts-cdn.adda247.com/1776943029825image69.png"}, {"subject": "PHYSICS_0", "question": "\u003cbr> \u003cbr>", "options": [{"text": "K₀", "is_correct": false}, {"text": "3 K₀ \u003cbr>", "is_correct": false}, {"text": "5 K₀", "is_correct": true}, {"text": "6 K₀ \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029562image18.png", "so_img": "https://ts-cdn.adda247.com/1776943029826image70.png"}, {"subject": "PHYSICS_0", "question": "The electric field at a distance 3 R/2 from the centre of a charged conducting spherical shell of radius R is E. The electric field at a distance R/2 from the centre of the sphere is. \u003cbr>", "options": [{"text": "Zero", "is_correct": true}, {"text": "E \u003cbr>", "is_correct": false}, {"text": "E/2", "is_correct": false}, {"text": "E/3. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>The radius of spherical shell is R. Because inside the conducting charged sphere, electric field is zero. So, the electric field at a distance R/2 from the centre of the sphere will be zero. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The study of hydrogen atom spectrum has mainly five series. Choose the correct sequence of these series in increasing order of their shortest wavelength. \u003cbr>A. Lyman Series \u003cbr>B. Pfund Series \u003cbr>C. Paschen Series \u003cbr>D. Bracket Series \u003cbr>E. Balmer Series \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "B, A, D, C, E", "is_correct": false}, {"text": "B, C, D, E, A \u003cbr>", "is_correct": false}, {"text": "A, E, C, D, B", "is_correct": true}, {"text": "A, C, E, B, D. \u003cbr>", "is_correct": false}], "solution": "Spectral series in hydrogen atoms corresponds to \u003cbr>A. Lyman Series- Ultraviolet \u003cbr>E. Balmer Series- Visible \u003cbr>C. Paschen Series - Near Infra-red \u003cbr>D. Bracket Series - Mid Infra-red \u003cbr>B. Pfund Series- Far infra-red \u003cbr>This is the correct sequence of increasing order of their wavelength. \u003cbr>Hence sequence should be: A, E, C, D, B \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The path difference between two interfering waves at a point on the screen is λ/8. The ratio of intensity at this point and that at the central fringe will be. \u003cbr>", "options": [{"text": "0.853", "is_correct": true}, {"text": "8.53 \u003cbr>", "is_correct": false}, {"text": "85.3", "is_correct": false}, {"text": "853. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029826image71.png"}, {"subject": "PHYSICS_0", "question": "The electric field part of an electromagnetic wave in vacuum is. \u003cbr> \u003cbr>The wavelength of this part of electromagnetic wave is. \u003cbr>", "options": [{"text": "1.5 m", "is_correct": false}, {"text": "2 m \u003cbr>", "is_correct": false}, {"text": "2.5 m", "is_correct": false}, {"text": "3.5 m. \u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029570image19.png", "so_img": "https://ts-cdn.adda247.com/1776943029830image72.png"}, {"subject": "PHYSICS_0", "question": "Two coherent sources with an intensity ratio of 1:3 produce an interference pattern. What will be the fringe visibility? \u003cbr>", "options": [{"text": "1", "is_correct": false}, {"text": "0.86 \u003cbr>", "is_correct": true}, {"text": "0.40", "is_correct": false}, {"text": "0.67 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029833image73.png"}, {"subject": "PHYSICS_0", "question": "For the forward biasing of a p-n junction the correct statement is \u003cbr>", "options": [{"text": "Holes and electrons stop moving \u003cbr>", "is_correct": false}, {"text": "Electrons and holes move away from the junction \u003cbr>", "is_correct": false}, {"text": "Electrons and holes move towards the junction \u003cbr>", "is_correct": true}, {"text": "Width of depletion region increases. \u003cbr>", "is_correct": false}], "solution": "In forward biasing both the electrons and the holes move across the junction, allowing current to flow through the circuit connected to the junction. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Two plane mirrors A and B are parallel to each other and spaced 26 cm apart. An object is place in between them at 9 cm from A. Out of the following at which point an image is not formed in mirror A (Distance measured from mirror A). \u003cbr>", "options": [{"text": "43 cm", "is_correct": false}, {"text": "61 cm \u003cbr>", "is_correct": false}, {"text": "69 cm", "is_correct": true}, {"text": "95 cm. \u003cbr>", "is_correct": false}], "solution": "The situation is shown in figure \u003cbr> \u003cbr>Images formed by mirror A are at distances 9,43, 61, 95 \u003cbr>Similarly, Images formed by mirror B are at distances 17, 35, 69, 87. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029838image74.png"}, {"subject": "PHYSICS_0", "question": "When a charge of 3 μC is moved from point A to point B, the electric field performs 60 μJ of work. Determine the potential difference between the two points and identify which point is at the higher potential.? \u003cbr>", "options": [{"text": "25 V,B \u003cbr>", "is_correct": false}, {"text": "25 V,A \u003cbr>", "is_correct": false}, {"text": "20 V,A \u003cbr>", "is_correct": true}, {"text": "Both are at same potential. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029840image75.png"}, {"subject": "PHYSICS_0", "question": "What will be the number of fission reactions of per second for the production of 1 kW power, If energy released per fission is 200 MeV, \u003cbr>", "options": [{"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029567image20.png", "opt_img": ["https://ts-cdn.adda247.com/1776943029567image21.png", "https://ts-cdn.adda247.com/1776943029567image22.png", "https://ts-cdn.adda247.com/1776943029569image23.png", "https://ts-cdn.adda247.com/1776943029570image24.png"], "so_img": "https://ts-cdn.adda247.com/1776943029842image76.png"}, {"subject": "PHYSICS_0", "question": "A coil of inductive reactance 31 Ω has a resistance of 8 Ω. It is placed in series with a condenser of capacitive reactance 25 Ω. The combination is connected to an a.c. source of 110 volt. The power factor of the circuit is. \u003cbr>", "options": [{"text": "0.56", "is_correct": false}, {"text": "0.64 \u003cbr>", "is_correct": false}, {"text": "0.80", "is_correct": true}, {"text": "0.33. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029845image77.png"}, {"subject": "PHYSICS_0", "question": "Assertion (A): In an AC circuit, the power dissipated in a purely inductive or purely capacitive component is always zero. \u003cbr>Reason (R): In a purely inductive or purely capacitive circuit, the voltage and current are 90 degrees out of phase, resulting in no net power consumption. \u003cbr>", "options": [{"text": "If both Assertion and Reason are True and the Reason is a correct explanation of the Assertion. \u003cbr>", "is_correct": true}, {"text": "If both Assertion and Reason are True but Reason is not a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If Assertion is True but Reason is False. \u003cbr>", "is_correct": false}, {"text": "If both Assertion and Reason are false. \u003cbr>", "is_correct": false}], "solution": "Assertion (A): In an AC circuit, the power dissipated in a purely inductive or purely capacitive component is always zero. This is true because in a purely inductive component, the voltage and current are 90 degrees out of phase, and in a purely capacitive component, they are also 90 degrees out of phase. This phase difference results in the power factor being zero, meaning no real power is dissipated. \u003cbr>Reasoning (R): In a purely inductive or purely capacitive circuit, the voltage and current are 90 degrees out of phase, resulting in no net power consumption. This is the correct explanation of Assertion (A) because it clarifies why power dissipation is zero in such circuits due to the phase difference between voltage and current. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Assertion: Electromagnetic waves can propagate through a vacuum. \u003cbr>Reason: Electromagnetic waves consist of oscillating electric and magnetic fields and do not require a medium for their propagation. \u003cbr>", "options": [{"text": "If both Assertion and Reason are True and the Reason is a correct explanation of the Assertion. \u003cbr>", "is_correct": true}, {"text": "If both Assertion and Reason are True but Reason is not a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If Assertion is True but Reason is False. \u003cbr>", "is_correct": false}, {"text": "If both Assertion and Reason are false. \u003cbr>", "is_correct": false}], "solution": "Electromagnetic waves, like light and radio waves, propagate through vacuum because they are composed of self-sustaining oscillating electric and magnetic fields. Unlike other types of waves, they do not depend on a material medium for transmission. This characteristic enables them to travel through empty space, making electromagnetic waves distinct in their ability to propagate independently of particles or matter. Therefore, the explanation affirms the correctness of the assertion that electromagnetic waves can travel through a vacuum. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "A 100-watt bulb working on 200 volt and a 200 watt bulb working on 100 volt have. \u003cbr>", "options": [{"text": "Resistances in the ratio of 4 :1. \u003cbr>", "is_correct": false}, {"text": "Maximum current ratings in the ratio of 1 :4. \u003cbr>", "is_correct": true}, {"text": "Resistances in the ratio of 2 :1. \u003cbr>", "is_correct": false}, {"text": "Maximum current rating in the ratio of 1 :2. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029848image78.png"}, {"subject": "PHYSICS_0", "question": "\u003cbr> \u003cbr>", "options": [{"text": "15 Nm²/C", "is_correct": true}, {"text": "15√3 Nm²/C \u003cbr>", "is_correct": false}, {"text": "5 Nm²/C", "is_correct": false}, {"text": "10 Nm²/C \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029570image25.png", "so_img": "https://ts-cdn.adda247.com/1776943029853image79.png"}, {"subject": "PHYSICS_0", "question": "The potential function of an electrostatic field is given by V=2x². Determine the electric field strength at the point (2 m,0, 3 m) in . \u003cbr>", "options": [{"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029625image26.png", "opt_img": ["https://ts-cdn.adda247.com/1776943029624image27.png", "https://ts-cdn.adda247.com/1776943029625image28.png", "https://ts-cdn.adda247.com/1776943029625image29.png", "https://ts-cdn.adda247.com/1776943029626image30.png"], "so_img": "https://ts-cdn.adda247.com/1776943029923image80.png"}, {"subject": "PHYSICS_0", "question": "How much current will flow when a set of six cells, each providing 2 volts of electromotive force (emf) and having an internal resistance of 1 ohms, is being charged with a DC mains supply of 220 volts through an external resistor of 10 ohms? \u003cbr>", "options": [{"text": "22 A", "is_correct": false}, {"text": "20 A \u003cbr>", "is_correct": false}, {"text": "16 A", "is_correct": false}, {"text": "13 A \u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029923image81.png"}, {"subject": "PHYSICS_0", "question": "The electric resistance of a certain wire of iron is R. If its length and radius both are doubled, then. \u003cbr>", "options": [{"text": "The resistance will be halved and the specific resistance will remain unchanged. \u003cbr>", "is_correct": true}, {"text": "The resistance will be halved and the specific resistance will be doubled. \u003cbr>", "is_correct": false}, {"text": "The resistance and the specific resistance, will both remain unchanged. \u003cbr>", "is_correct": false}, {"text": "The resistance will be doubled and the specific resistance will be halved. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029923image82.png"}, {"subject": "PHYSICS_0", "question": "Assertion: In a metallic conductor, current is due to the drift of free electrons in a definite direction. \u003cbr>Reason: A current carrying conductor is negatively charged. \u003cbr>", "options": [{"text": "If both Assertion and Reason are True and the Reason is a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If both Assertion and Reason are True but Reason is not a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If Assertion is True but Reason is False. \u003cbr>", "is_correct": true}, {"text": "If both Assertion and Reason are false. \u003cbr>", "is_correct": false}], "solution": "Electric current is due to drift of electrons in metallic conductors. In a conductor, electrons drift from lower to higher potential. \u003cbr>Electrons that constitute current are negatively charged. A wire carrying current is not charged. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Match the following columns. \u003cbr> \u003cbr>", "options": [{"text": "(i - c), (ii -a), (iii -b) \u003cbr>", "is_correct": true}, {"text": "(i - a), (ii -b), (iii -c) \u003cbr>", "is_correct": false}, {"text": "(i - c), (ii -b), (iii -a) \u003cbr>", "is_correct": false}, {"text": "(i - b), (ii -c), (iii -b) \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>Diamagnetic Material- Magnetic moment is nearly zero. \u003cbr>Paramagnetic material- Magnetic moment is low but not zero. \u003cbr>Ferromagnetic Material- Magnetic moment is very high \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029627image31.png"}, {"subject": "PHYSICS_0", "question": "When a rod of magnetic material of size 10 cm×0.5 cm×0.2 cm is located in magnetising field of 0.5×10⁴ A/m then a magnetic moment of 5 A-m² is induced in it, the magnetic induction in rod will be. \u003cbr>", "options": [{"text": "3.14 Wb/m²", "is_correct": false}, {"text": "6.28 Wb/m² \u003cbr>", "is_correct": true}, {"text": "12.56 Wb/m²", "is_correct": false}, {"text": "4.28 Wb/m² \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029923image83.png"}, {"subject": "PHYSICS_0", "question": "A coil of 4 mH and a capacitor of 10 μF are connected in series with an a.c. source along with 5 Ω resistance. If inductive reactance is equal to capacitive reactance, then the angular frequency (in rad/s) of source is. \u003cbr>", "options": [{"text": "5×10³", "is_correct": true}, {"text": "5×10⁴ \u003cbr>", "is_correct": false}, {"text": "500", "is_correct": false}, {"text": "50 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029923image84.png"}, {"subject": "PHYSICS_0", "question": "On a cylindrical rod two coils are wound one above the other, What is the coefficient of mutual induction if the inductance of each coil is 0.1 H? \u003cbr>", "options": [{"text": "0.5", "is_correct": false}, {"text": "0.4 \u003cbr>", "is_correct": false}, {"text": "0.1", "is_correct": true}, {"text": "0.05 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029923image85.png"}, {"subject": "PHYSICS_0", "question": "The output voltage of an ideal transformer, connected to a 240 V a.c. mains is 24 V. When this transformer is used to light a bulb with rating 24 V,24 W calculate the current in the primary coil of the circuit. \u003cbr>", "options": [{"text": "0.2 A", "is_correct": false}, {"text": "10 A \u003cbr>", "is_correct": false}, {"text": "0.01 A", "is_correct": false}, {"text": "0.1 A \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776943029924image86.png"}, {"subject": "PHYSICS_0", "question": "\u003cb>Assertion:\u003c/b> When a conducting rod moves in uniform transverse magnetic field with uniform speed which is perpendicular to its length, then potential difference may develop across its ends. \u003cbr>\u003cb>Reason:\u003c/b> In any conductor, free electrons and free positive ions are available. \u003cbr>", "options": [{"text": "If both Assertion and Reason are True and the Reason is a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If both Assertion and Reason are True but Reason is not a correct explanation of the Assertion. \u003cbr>", "is_correct": false}, {"text": "If Assertion is True but Reason is False. \u003cbr>", "is_correct": true}, {"text": "If both Assertion and Reason are false. \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>When a conductor moves in a uniform magnetic field perpendicular to its length, free electrons within the conductor experience a force along the length of the rod due to the magnetic field. This force causes electrons to accumulate at one end of the rod, creating a potential difference across its length-resulting in one end becoming negative and the other positive. This phenomenon confirms the assertion that a potential difference develops across the rod when it moves through the magnetic field. As there is only free electrons available, the reason is false. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Twenty-seven charged water droplets, each of radius m and having a charge of C, coalesce to form a single drop. Calculate the potential of the bigger drop. \u003cbr>", "options": [{"text": "81 volts", "is_correct": true}, {"text": "9 volts \u003cbr>", "is_correct": false}, {"text": "27 volts", "is_correct": false}, {"text": "18 volts \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029626image32.png", "https://ts-cdn.adda247.com/1776943029626image33.png"], "so_img": "https://ts-cdn.adda247.com/1776943029925image87.png"}, {"subject": "PHYSICS_0", "question": "Two metal spheres, one of radius R and the other of radius 2 R respectively have the same surface charge density σ. They are brought in contact and separated. What will be the new surface charge densities on them? \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776943029627image34.png", "https://ts-cdn.adda247.com/1776943029628image35.png", "https://ts-cdn.adda247.com/1776943029628image36.png", "https://ts-cdn.adda247.com/1776943029627image37.png"], "so_img": "https://ts-cdn.adda247.com/1776943029926image88.png"}, {"subject": "PHYSICS_0", "question": "Two sources of equal emf are connected to an external resistance R in series. The internal resistances of the two sources are . If the potential difference across the source having internal resistance is zero, then. \u003cbr>", "options": [{"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029627image38.png", "https://ts-cdn.adda247.com/1776943029641image39.png"], "opt_img": ["https://ts-cdn.adda247.com/1776943029643image40.png", "https://ts-cdn.adda247.com/1776943029644image41.png", "https://ts-cdn.adda247.com/1776943029651image42.png", "https://ts-cdn.adda247.com/1776943029723image43.png"], "so_img": "https://ts-cdn.adda247.com/1776943029927image89.png"}, {"subject": "PHYSICS_0", "question": "Which of the following is a vector quantity? \u003cbr>", "options": [{"text": "Magnetic permeability \u003cbr>", "is_correct": false}, {"text": "Effective length of magnet \u003cbr>", "is_correct": false}, {"text": "Magnetic pole strength \u003cbr>", "is_correct": false}, {"text": "Magnetic moment. \u003cbr>", "is_correct": true}], "solution": "\u003cb> \u003c/b>Magnetic moment is a vector quantity. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The momentum of an electron revolving in orbit is given by (Symbols have their usual meanings). \u003cbr>", "options": [{"text": "", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776943029723image44.png", "opt_img": ["https://ts-cdn.adda247.com/1776943029723image45.png", "https://ts-cdn.adda247.com/1776943029723image46.png", "https://ts-cdn.adda247.com/1776943029724image47.png", "https://ts-cdn.adda247.com/1776943029739image48.png"], "so_img": "https://ts-cdn.adda247.com/1776943029934image90.png"}, {"subject": "PHYSICS_0", "question": "A parallel-plate capacitor area A, separation d and capacitance C is filled with four dielectric materials having dielectric constants as shown in the figure. If a single dielectric material is to be used to have the same capacitance C in this capacitor, then its dielectric constant k is given by. \u003cbr> \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776943029741image49.png", "https://ts-cdn.adda247.com/1776943029744image50.png"], "opt_img": ["https://ts-cdn.adda247.com/1776943029745image51.png", "https://ts-cdn.adda247.com/1776943029749image52.png", "https://ts-cdn.adda247.com/1776943029750image53.png", "https://ts-cdn.adda247.com/1776943029751image54.png"], "so_img": "https://ts-cdn.adda247.com/1776943029939image91.png"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

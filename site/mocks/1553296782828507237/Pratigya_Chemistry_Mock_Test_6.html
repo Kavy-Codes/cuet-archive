@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/CrackcuetUG" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Pratigya Chemistry Mock Test 6", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Two aqueous solutions are prepared, one containing 0.1 M potassium nitrate (KNO₃)and the other containing 0.1 M acetic acid (CH₃ COOH). Considering their nature of dissociation, compare their osmotic pressures at the same temperature. \u003cbr>", "options": [{"text": "Osmotic pressure of KNO₃ solution is greater than that of CH₃ COOH \u003cbr>", "is_correct": true}, {"text": "Osmotic pressure of CH₃ COOHsolution is greater than that of KNO₃ \u003cbr>", "is_correct": false}, {"text": "Both have equal osmotic pressure \u003cbr>", "is_correct": false}, {"text": "Cannot be compared \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b> \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776859456109image6.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Two solutions are said to be isotonic if they exert the same osmotic pressure at a given temperature. Which of the following pairs of solutions will exhibit isotonic behavior? \u003cbr>", "options": [{"text": "0.1 M NaCl and 0.1 M Na₂SO₄ \u003cbr>", "is_correct": false}, {"text": "0.1 M urea and 0.1 M NaCl \u003cbr>", "is_correct": false}, {"text": "0.1 M urea and 0.2 M MgCl₂ \u003cbr>", "is_correct": false}, {"text": "0.1 M Ca(NO₃)₂ and 0.1 M Na₂SO₄ \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776859456109image7.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When a saturated aqueous solution of KCl is heated, what happens to the nature of the solution? \u003cbr>", "options": [{"text": "It becomes unsaturated \u003cbr>", "is_correct": true}, {"text": "It becomes supersaturated \u003cbr>", "is_correct": false}, {"text": "It remains saturated \u003cbr>", "is_correct": false}, {"text": "It reaches equilibrium condition \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When copper sulphate (CuSO₄) is added to an aqueous solution of ammonia, which of the following statements regarding colligative properties is correct? \u003cbr>", "options": [{"text": "Freezing point decreases \u003cbr>", "is_correct": false}, {"text": "Freezing point increases \u003cbr>", "is_correct": false}, {"text": "Boiling point increases \u003cbr>", "is_correct": false}, {"text": "Both freezing point decreases and boiling point increases \u003cbr>", "is_correct": true}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>What quantity of electricity is required to deposit 108 g of silver from a silver nitrate solution? \u003cbr>", "options": [{"text": "1 ampere \u003cbr>", "is_correct": false}, {"text": "1 coulomb \u003cbr>", "is_correct": false}, {"text": "2 ampere \u003cbr>", "is_correct": false}, {"text": "1 faraday \u003cbr>", "is_correct": true}], "solution": "108 g Ag = 1 mole \u003cbr>1 mole Ag requires 1 mole electrons \u003cbr>= 1 faraday \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following metals is unable to liberate hydrogen gas when placed in dilute acid? \u003cbr>", "options": [{"text": "Mg \u003cbr>", "is_correct": false}, {"text": "Zn \u003cbr>", "is_correct": false}, {"text": "Pb \u003cbr>", "is_correct": false}, {"text": "Pt \u003cbr>", "is_correct": true}], "solution": "Platinum is a noble metal and does not react with dilute acids to produce hydrogen. \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>The main purpose of a hydrogen-oxygen fuel cell is to: \u003cbr>", "options": [{"text": "Generate heat energy \u003cbr>", "is_correct": false}, {"text": "Produce high purity water \u003cbr>", "is_correct": false}, {"text": "Create electrical potential difference \u003cbr>", "is_correct": true}, {"text": "Remove adsorbed oxygen from electrode surface \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>In which type of electrochemical cell is the chemical energy released from the direct combustion of a fuel converted directly into electrical energy? \u003cbr>", "options": [{"text": "Lead storage battery \u003cbr>", "is_correct": false}, {"text": "Concentration cell \u003cbr>", "is_correct": false}, {"text": "Fuel cell \u003cbr>", "is_correct": true}, {"text": "Leclanche cell \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Corrosion of metals is essentially: \u003cbr>", "options": [{"text": "A purely chemical reaction without electron transfer \u003cbr>", "is_correct": false}, {"text": "An electrochemical phenomenon \u003cbr>", "is_correct": true}, {"text": "Combination of two light metals \u003cbr>", "is_correct": false}, {"text": "A neutral physical process \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When the same quantity of electricity is passed through different electrolytes, the masses of substances deposited are proportional to: \u003cbr>", "options": [{"text": "Their densities \u003cbr>", "is_correct": false}, {"text": "Their molar masses \u003cbr>", "is_correct": false}, {"text": "Their equivalent masses \u003cbr>", "is_correct": true}, {"text": "Their atomic numbers \u003cbr>", "is_correct": false}], "solution": "\u003cb> \u003c/b>m∝\"Equivalent weight\" \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Match Column I with Column II. \u003cbr> \u003cbr>", "options": [{"text": "A-(r), B-(q), C-(s), D-(p) \u003cbr>", "is_correct": false}, {"text": "A-(r), B-(p), C-(q), D-(s) \u003cbr>", "is_correct": false}, {"text": "A-(r), B-(q), C-(p), D-(s) \u003cbr>", "is_correct": true}, {"text": "A-(q), B-(r), C-(p), D-(s) \u003cbr>", "is_correct": false}], "solution": "", "qs_img": "https://ts-cdn.adda247.com/1776859456109image1.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>At a particular concentration, the half-life of a reaction is 100 minutes. When the concentration of the reactant is doubled, the half-life decreases to 25 minutes. What is the order of the reaction? \u003cbr>", "options": [{"text": "Zero order \u003cbr>", "is_correct": false}, {"text": "First order \u003cbr>", "is_correct": false}, {"text": "Second order \u003cbr>", "is_correct": false}, {"text": "Third order \u003cbr>", "is_correct": true}], "solution": "For third order reaction: \u003cbr>t₁/₂ ∝ 1 / a₀² \u003cbr>Doubling concentration reduces half-life by factor 4. \u003cbr>100 / 4 = 25 \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>The rate of a reaction increases by 2.5 times when temperature is increased from 300 K to 310 K. If the rate constant at 300 K is K, what will be the value of rate constant at 310 K? \u003cbr>", "options": [{"text": "2K \u003cbr>", "is_correct": false}, {"text": "3K \u003cbr>", "is_correct": false}, {"text": "K \u003cbr>", "is_correct": false}, {"text": "2.5K \u003cbr>", "is_correct": true}], "solution": "Rate constant increases in same ratio as rate → 2.5K. \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>A first-order reaction reaches 75% completion in 60 minutes. Determine the half-life of the reaction. \u003cbr>", "options": [{"text": "30 minutes \u003cbr>", "is_correct": true}, {"text": "45 minutes \u003cbr>", "is_correct": false}, {"text": "20 minutes \u003cbr>", "is_correct": false}, {"text": "15 minutes \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776859456109image2.png", "so_img": "https://ts-cdn.adda247.com/1776859456109image8.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When the temperature of a reaction is raised from 290 K to 300 K, the rate constant doubles. What is the correct reason for this increase? \u003cbr>", "options": [{"text": "The threshold energy decreases \u003cbr>", "is_correct": false}, {"text": "The activation energy decreases \u003cbr>", "is_correct": false}, {"text": "The number of effective collisions increases \u003cbr>", "is_correct": true}, {"text": "The collision frequency decreases \u003cbr>", "is_correct": false}], "solution": "Temperature ↑ ⇒ effective collisions ↑ \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>What are the units of the rate constant for a zero-order reaction? \u003cbr>", "options": [{"text": "s⁻¹ \u003cbr>", "is_correct": false}, {"text": "mol L⁻¹ s⁻¹ \u003cbr>", "is_correct": true}, {"text": "L mol⁻¹ s⁻¹ \u003cbr>", "is_correct": false}, {"text": "L² mol⁻² s⁻¹ \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which one of the following complexes is \u003cb>paramagnetic\u003c/b> and exhibits \u003cb>octahedral geometry\u003c/b>? \u003cbr>(Atomic numbers: Fe = 26, Co = 27, Ni = 28) \u003cbr>", "options": [{"text": "[Fe(CN)₆]⁴⁻ \u003cbr>", "is_correct": false}, {"text": "[Co(NH₃)₆]³⁺ \u003cbr>", "is_correct": false}, {"text": "[NiCl₄]²⁻ \u003cbr>", "is_correct": false}, {"text": "[Fe(H₂O)₆]³⁺ \u003cbr>", "is_correct": true}], "solution": "In the complex [Fe(H₂O)₆]³⁺, Fe³⁺ has a d⁵ electronic configuration. Since H₂O is a weak field ligand, it does not cause pairing of electrons. As a result, all five electrons remain unpaired, making the complex paramagnetic. \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>What is the main reason for \u003cb>lanthanoid contraction\u003c/b>? \u003cbr>", "options": [{"text": "Negligible screening effect of f-electrons \u003cbr>", "is_correct": false}, {"text": "Increase in nuclear charge along with poor shielding by 4f electrons \u003cbr>", "is_correct": true}, {"text": "Decrease in nuclear charge across the series \u003cbr>", "is_correct": false}, {"text": "Increase in atomic mass across the series \u003cbr>", "is_correct": false}], "solution": "\u003cb> Increasing nuclear charge and poor shielding by 4f electrons\u003c/b> \u003cbr>Lanthanoid contraction ⇒ poor shielding by 4f electrons \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Match the following ions with their corresponding \u003cb>spin-only magnetic moments (in BM)\u003c/b>: \u003cbr>(Atomic numbers: Cr = 24, Mn = 25, Fe = 26, Ni = 28) \u003cbr> \u003cbr>", "options": [{"text": "(i-b), (ii-c), (iii-d), (iv-a) \u003cbr>", "is_correct": true}, {"text": "(i-b), (ii-a), (iii-d), (iv-c) \u003cbr>", "is_correct": false}, {"text": "(i-c), (ii-b), (iii-a), (iv-d) \u003cbr>", "is_correct": false}, {"text": "(i-a), (ii-d), (iii-c), (iv-b) \u003cbr>", "is_correct": false}], "solution": "Mn²⁺ (d⁵) → 5 unpaired → 5.92 → (b) \u003cbr>Cr³⁺ (d³) → 3 unpaired → 3.87 → (c) \u003cbr>Fe²⁺ (d⁶) → 4 unpaired → 4.90 → (d) \u003cbr>Ni²⁺ (d⁸) → 2 unpaired → 2.83 → (a) \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776859456110image3.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which lanthanoid element commonly exhibits a \u003cb>+4 oxidation state\u003c/b> due to attaining a stable noble gas or f⁰ configuration? \u003cbr>", "options": [{"text": "Eu (Europium) \u003cbr>", "is_correct": false}, {"text": "Ce (Cerium) \u003cbr>", "is_correct": true}, {"text": "Tb (Terbium) \u003cbr>", "is_correct": false}, {"text": "Lu (Lutetium) \u003cbr>", "is_correct": false}], "solution": "Eu²⁺ → half-filled (4f⁷) stable → forms Eu³⁺/Eu²⁺ \u003cbr>Stable +4 shown by Ce (4f⁰ stable) \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following compounds undergoes the \u003cb>fastest SN₂ reaction\u003c/b> when treated with aqueous NaOH? \u003cbr>", "options": [{"text": "CH₃CH₂CH₂CH₂Cl \u003cbr>", "is_correct": true}, {"text": "(CH₃)₃CCl \u003cbr>", "is_correct": false}, {"text": "(CH₃)₂CHCl \u003cbr>", "is_correct": false}, {"text": "CH₃CH₂CHClCH₃ \u003cbr>", "is_correct": false}], "solution": "SN₂ Reaction (Fastest) \u003cbr>SN₂ fastest in least steric hindrance (1° alkyl halide) \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following compounds is \u003cb>chiral\u003c/b> (i.e., optically active)? \u003cbr>", "options": [{"text": "2-Chlorobutane \u003cbr>", "is_correct": true}, {"text": "1-Chlorobutane \u003cbr>", "is_correct": false}, {"text": "2-Chloropropane \u003cbr>", "is_correct": false}, {"text": "2-Chloro-2-methylpropane \u003cbr>", "is_correct": false}], "solution": "Optical Activity (Chiral) \u003cbr>Chiral = carbon attached to 4 different groups \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Why does \u003cb>chlorobenzene\u003c/b> show lower reactivity than \u003cb>methyl chloride\u003c/b> in nucleophilic substitution reactions? \u003cbr>", "options": [{"text": "Due to resonance stabilization \u003cbr>", "is_correct": false}, {"text": "Because the carbon bonded to Cl is sp² hybridized \u003cbr>", "is_correct": false}, {"text": "Due to partial double bond character of the C-Cl bond \u003cbr>", "is_correct": false}, {"text": "All of the above \u003cbr>", "is_correct": true}], "solution": "Reactivity of Chlorobenzene \u003cbr>Due to resonance + sp² + partial double bond \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Match the following reactions with their \u003cb>major products\u003c/b>: \u003cbr> \u003cbr>", "options": [{"text": "(i-b), (ii-c), (iii-d), (iv-a) \u003cbr>", "is_correct": true}, {"text": "(i-c), (ii-b), (iii-d), (iv-a) \u003cbr>", "is_correct": false}, {"text": "(i-b), (ii-a), (iii-d), (iv-c) \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "Named Reactions (Matching) \u003cbr>Finkelstein → Alkyl iodide \u003cbr>Swarts → Alkyl fluoride \u003cbr>Wurtz → Higher alkane \u003cbr>Balz-Schiemann → Fluorobenzene \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776859456110image4.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>An unknown alcohol (X) gives \u003cb>instant turbidity\u003c/b> with Lucas reagent (conc. HCl + anhydrous ZnCl₂) at room temperature. Identify the alcohol. \u003cbr>", "options": [{"text": "n-Butyl alcohol \u003cbr>", "is_correct": false}, {"text": "Isobutyl alcohol \u003cbr>", "is_correct": false}, {"text": "tert-Butyl alcohol \u003cbr>", "is_correct": true}, {"text": "sec-Butyl alcohol \u003cbr>", "is_correct": false}], "solution": "Lucas Test \u003cbr>Immediate turbidity ⇒ tertiary alcohol \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Arrange the following compounds in \u003cb>increasing order of acidic strength\u003c/b>: \u003cbr>(i) Phenol \u003cbr>(ii) p-Nitrophenol \u003cbr>(iii) p-Cresol \u003cbr>(iv) Ethanol \u003cbr>", "options": [{"text": "(iv) &lt; (iii) &lt; (i) &lt; (ii) \u003cbr>", "is_correct": false}, {"text": "(iv) &lt; (i) &lt; (iii) &lt; (ii) \u003cbr>", "is_correct": true}, {"text": "(i) &lt; (ii) &lt; (iii) &lt; (iv) \u003cbr>", "is_correct": false}, {"text": "(i) &lt; (iii) &lt; (ii) &lt; (iv) \u003cbr>", "is_correct": false}], "solution": "Acidity Order of Phenols \u003cbr>Electron-withdrawing ↑ acidity, alkyl ↓ acidity \u003cbr>Order: Ethanol &lt; p-Cresol &lt; Phenol &lt; p-Nitrophenol \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which combination of reactants is most suitable for preparing \u003cb>tert-butyl ethyl ether\u003c/b> via Williamson ether synthesis? \u003cbr>", "options": [{"text": "Sodium tert-butoxide + Ethyl bromide \u003cbr>", "is_correct": true}, {"text": "Sodium ethoxide + tert-Butyl bromide \u003cbr>", "is_correct": false}, {"text": "tert-Butyl alcohol + Ethyl alcohol \u003cbr>", "is_correct": false}, {"text": "Sodium ethoxide + tert-Butyl alcohol \u003cbr>", "is_correct": false}], "solution": "Williamson Ether Synthesis \u003cbr>Best: Primary alkyl halide + bulky alkoxide \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When phenol reacts with \u003cb>chloroform (CHCl₃)\u003c/b> in the presence of aqueous NaOH followed by acidification, which product is obtained? \u003cbr>", "options": [{"text": "Benzoic acid \u003cbr>", "is_correct": false}, {"text": "Salicylaldehyde \u003cbr>", "is_correct": true}, {"text": "Salicylic acid \u003cbr>", "is_correct": false}, {"text": "Benzene \u003cbr>", "is_correct": false}], "solution": "Reimer-Tiemann Reaction \u003cbr>Phenol + CHCl₃/NaOH → Salicylaldehyde \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following compounds shows the \u003cb>highest reactivity\u003c/b> towards nucleophilic addition reactions (such as addition of HCN)? \u003cbr>", "options": [{"text": "CH₃CHO (Acetaldehyde) \u003cbr>", "is_correct": false}, {"text": "CH₃COCH₃ (Acetone) \u003cbr>", "is_correct": false}, {"text": "HCHO (Formaldehyde) \u003cbr>", "is_correct": true}, {"text": "C₆H₅CHO (Benzaldehyde) \u003cbr>", "is_correct": false}], "solution": "Reactivity order: Formaldehyde &gt; Aldehyde &gt; Ketone &gt; Aromatic aldehyde \u003cbr>(less steric hindrance + no +I groups) \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>An organic compound ‘X’ having molecular formula \u003cb>C₃H₆O\u003c/b> gives a \u003cb>positive iodoform test\u003c/b> but does \u003cb>not react with Tollens’ reagent\u003c/b>. Identify the compound. \u003cbr>", "options": [{"text": "\u003cb> \u003c/b>Propanal \u003cbr>", "is_correct": false}, {"text": "Propan-2-ol \u003cbr>", "is_correct": false}, {"text": "Propanone \u003cbr>", "is_correct": true}, {"text": "Ethoxyethane \u003cbr>", "is_correct": false}], "solution": "Chemical Test Identification \u003cbr>Iodoform test ⇒ methyl ketone (-COCH₃) \u003cbr>No Tollens’ ⇒ not an aldehyde\u003cb> \u003c/b> \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following aldehydes undergoes the \u003cb>Cannizzaro reaction\u003c/b> when treated with concentrated NaOH? \u003cbr>", "options": [{"text": "CH₃CHO \u003cbr>", "is_correct": false}, {"text": "CH₃CH₂CHO \u003cbr>", "is_correct": false}, {"text": "2,2-Dimethylpropanal \u003cbr>", "is_correct": true}, {"text": "C₆H₅CH₂CHO (Phenylacetaldehyde) \u003cbr>", "is_correct": false}], "solution": "Cannizzaro Reaction \u003cbr>Condition: Aldehyde without α-H \u003cbr>CH₃CHO → has α-H \u003cbr>CH₃CH₂CHO → has α-H \u003cbr>2,2-Dimethylpropanal → no α-H \u003cbr>Phenylacetaldehyde → has α-H \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>What is the name of the reaction in which an aldehyde or ketone is reduced to a \u003cb>hydrocarbon\u003c/b> using \u003cb>zinc amalgam (Zn/Hg) and concentrated HCl\u003c/b>? \u003cbr>", "options": [{"text": "Wolff-Kishner reduction \u003cbr>", "is_correct": false}, {"text": "Clemmensen reduction \u003cbr>", "is_correct": true}, {"text": "Rosenmund reduction \u003cbr>", "is_correct": false}, {"text": "Stephen’s reduction \u003cbr>", "is_correct": false}], "solution": "Reduction Reaction \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Match the common name with its IUPAC/Structural description: \u003cbr> \u003cbr>", "options": [{"text": "(i-A), (ii-B), (iii-C), (iv-D) \u003cbr>", "is_correct": true}, {"text": "(i-B), (ii-A), (iii-D), (iv-C) \u003cbr>", "is_correct": false}, {"text": "(i-A), (ii-C), (iii-B), (iv-D) \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "Zn(Hg) + conc. HCl ⇒ reduction of carbonyl to hydrocarbon \u003cbr>Phthalic acid → Benzene-1,2-dicarboxylic acid (A) \u003cbr>Adipic acid → Hexane-1,6-dioic acid (B) \u003cbr>Acetophenone → Phenyl ethanone (C) \u003cbr>Formaldehyde → Methanal (D) \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776859456110image5.png"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which linkage holds the amino acids together in a protein chain? \u003cbr>", "options": [{"text": "Glycosidic linkage \u003cbr>", "is_correct": false}, {"text": "Peptide linkage \u003cbr>", "is_correct": true}, {"text": "Phosphodiester linkage \u003cbr>", "is_correct": false}, {"text": "Hydrogen bonding \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Arrange the following amines in the correct order of \u003cb>increasing basic strength in aqueous solution\u003c/b>: \u003cbr>(i) NH₃ \u003cbr>(ii) C₂H₅NH₂ \u003cbr>(iii) (CH₃)₂NH \u003cbr>(iv) (CH₃)₃N \u003cbr>", "options": [{"text": "(i) &lt; (iv) &lt; (ii) &lt; (iii) \u003cbr>", "is_correct": true}, {"text": "(i) &lt; (ii) &lt; (iii) &lt; (iv) \u003cbr>", "is_correct": false}, {"text": "(iv) &lt; (iii) &lt; (ii) &lt; (i) \u003cbr>", "is_correct": false}, {"text": "(ii) &lt; (iii) &lt; (iv) &lt; (i) \u003cbr>", "is_correct": false}], "solution": "(Secondary &gt; Primary &gt; Tertiary &gt; NH₃ in aqueous) \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When benzene diazonium chloride reacts with phenol in a weakly basic medium to form an orange dye, what is this reaction called? \u003cbr>", "options": [{"text": "Sandmeyer reaction \u003cbr>", "is_correct": false}, {"text": "Gattermann reaction \u003cbr>", "is_correct": false}, {"text": "Coupling reaction \u003cbr>", "is_correct": true}, {"text": "Carbylamine reaction \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following is a \u003cb>non-reducing sugar\u003c/b>? \u003cbr>", "options": [{"text": "Glucose \u003cbr>", "is_correct": false}, {"text": "Fructose \u003cbr>", "is_correct": false}, {"text": "Lactose \u003cbr>", "is_correct": false}, {"text": "Sucrose \u003cbr>", "is_correct": true}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>An amide on treatment with \u003cb>Br₂ and KOH\u003c/b> gives a \u003cb>primary amine with one carbon less\u003c/b>. Which amide will produce \u003cb>isopropylamine\u003c/b>? \u003cbr>", "options": [{"text": "Butanamide \u003cbr>", "is_correct": false}, {"text": "Propanamide \u003cbr>", "is_correct": false}, {"text": "2-Methylpropanamide \u003cbr>", "is_correct": true}, {"text": "Pentanamide \u003cbr>", "is_correct": false}], "solution": "(Hofmann → one carbon less → gives isopropylamine) \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>When a \u003cb>primary amine\u003c/b> reacts with Hinsberg’s reagent (C₆H₅SO₂Cl), the product formed is: \u003cbr>", "options": [{"text": "Insoluble in KOH \u003cbr>", "is_correct": false}, {"text": "Soluble in KOH \u003cbr>", "is_correct": true}, {"text": "Insoluble in HCl \u003cbr>", "is_correct": false}, {"text": "A neutral liquid \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "\u003cb> \u003c/b>Which of the following nitrogenous bases is \u003cb>absent in DNA\u003c/b>? \u003cbr>", "options": [{"text": "Adenine \u003cbr>", "is_correct": false}, {"text": "Guanine \u003cbr>", "is_correct": false}, {"text": "Uracil \u003cbr>", "is_correct": true}, {"text": "Cytosine \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "CHEMISTRY_0", "question": "Which of the following compounds shows the \u003cb>highest acidity\u003c/b>? \u003cbr>", "options": [{"text": "Phenol \u003cbr>", "is_correct": false}, {"text": "o-Nitrophenol \u003cbr>", "is_correct": false}, {"text": "p-Nitrophenol \u003cbr>", "is_correct": true}, {"text": "m-Nitrophenol \u003cbr>", "is_correct": false}], "solution": "Most acidic phenol \u003cbr>-NO₂ (strong EWG) at ortho/para ↑ acidity \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "In the \u003cb>Cumene process\u003c/b> for the preparation of phenol, which of the following is obtained as a \u003cb>by-product\u003c/b>? \u003cbr>", "options": [{"text": "Ethanol \u003cbr>", "is_correct": false}, {"text": "Acetaldehyde \u003cbr>", "is_correct": false}, {"text": "Acetone \u003cbr>", "is_correct": true}, {"text": "Benzene \u003cbr>", "is_correct": false}], "solution": "Cumene process by-product \u003cbr>Phenol + Acetone formed \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "When phenol reacts with \u003cb>bromine water\u003c/b>, which compound is formed as a \u003cb>white precipitate\u003c/b>? \u003cbr>", "options": [{"text": "2-Bromophenol \u003cbr>", "is_correct": false}, {"text": "4-Bromophenol \u003cbr>", "is_correct": false}, {"text": "2,4,6-Tribromophenol \u003cbr>", "is_correct": true}, {"text": "2,4-Dibromophenol \u003cbr>", "is_correct": false}], "solution": "Phenol + Bromine water \u003cbr>Gives white ppt of 2,4,6-tribromophenol \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "The reaction of phenol with \u003cb>chloroform (CHCl₃) and NaOH\u003c/b>, followed by acidification, is known as: \u003cbr>", "options": [{"text": "Kolbe’s reaction \u003cbr>", "is_correct": false}, {"text": "Reimer-Tiemann reaction \u003cbr>", "is_correct": true}, {"text": "Rosenmund reduction \u003cbr>", "is_correct": false}, {"text": "Williamson synthesis \u003cbr>", "is_correct": false}], "solution": "Phenol + CHCl₃/NaOH \u003cbr>Reimer-Tiemann reaction \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "Phenol is \u003cb>less acidic than\u003c/b> which of the following compounds? \u003cbr>", "options": [{"text": "Ethanol \u003cbr>", "is_correct": false}, {"text": "o-Cresol \u003cbr>", "is_correct": false}, {"text": "p-Methoxyphenol \u003cbr>", "is_correct": false}, {"text": "o-Nitrophenol \u003cbr>", "is_correct": true}], "solution": "Phenol is less acidic than \u003cbr>Strong EWG increases acidity \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "According to Werner’s theory, what does the \u003cb>secondary valency\u003c/b> of a metal ion correspond to? \u003cbr>", "options": [{"text": "Oxidation state \u003cbr>", "is_correct": false}, {"text": "Coordination number \u003cbr>", "is_correct": true}, {"text": "Magnetic moment \u003cbr>", "is_correct": false}, {"text": "Ionization energy \u003cbr>", "is_correct": false}], "solution": "Secondary valency = coordination number \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "Which of the following acts as a \u003cb>strong field ligand\u003c/b> according to the spectrochemical series? \u003cbr>", "options": [{"text": "Cl⁻ \u003cbr>", "is_correct": false}, {"text": "H₂O \u003cbr>", "is_correct": false}, {"text": "CO \u003cbr>", "is_correct": true}, {"text": "OH⁻ \u003cbr>", "is_correct": false}], "solution": "Strong field ligand → CO \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "What is the approximate \u003cb>spin-only magnetic moment\u003c/b> of the complex [Fe(H₂O)₆]³⁺? \u003cbr>(Atomic number of Fe = 26) \u003cbr>", "options": [{"text": "1.73 BM \u003cbr>", "is_correct": false}, {"text": "3.87 BM \u003cbr>", "is_correct": false}, {"text": "4.90 BM \u003cbr>", "is_correct": false}, {"text": "5.92 BM \u003cbr>", "is_correct": true}], "solution": "[Fe(H₂O)₆]³⁺ → Fe³⁺ = d⁵ (high spin) → 5 unpaired \u003cbr>μ = √(5×7) ≈ 5.92 BM \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "The geometry and hybridization of the complex [Ni(CN)₄]²⁻ are: \u003cbr>", "options": [{"text": "Tetrahedral, sp³ \u003cbr>", "is_correct": false}, {"text": "Square planar, dsp² \u003cbr>", "is_correct": true}, {"text": "Octahedral, d²sp³ \u003cbr>", "is_correct": false}, {"text": "Square planar, sp³ \u003cbr>", "is_correct": false}], "solution": "[Ni(CN)₄]²⁻ → strong field → square planar, dsp² \u003cbr>"}, {"subject": "CHEMISTRY_0", "question": "In an octahedral crystal field, how do the \u003cb>eₙ orbitals compare in energy\u003c/b> to the t₂g orbitals? \u003cbr>", "options": [{"text": "Lower in energy than t₂g \u003cbr>", "is_correct": false}, {"text": "Higher in energy than t₂g \u003cbr>", "is_correct": true}, {"text": "Equal in energy to t₂g \u003cbr>", "is_correct": false}, {"text": "None of the above \u003cbr>", "is_correct": false}], "solution": "In octahedral field: eₙ orbitals higher than t₂g \u003cbr>"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

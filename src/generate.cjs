@@ -3,6 +3,28 @@ const path = require('path');
 const cfg = require('./config.cjs');
 
 const SITE_NAME = 'The CUET Archive';
+const REWRITES_FILE = path.join(cfg.ROOT, 'data', 'rewrites.json');
+const MOCK_DIR = path.join(cfg.SITE_DIR, 'mocks');
+
+function normWs(s) {
+  return String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+}
+
+function loadRewrites() {
+  let raw = {};
+  try {
+    raw = JSON.parse(fs.readFileSync(REWRITES_FILE, 'utf8'));
+  } catch {
+    raw = {};
+  }
+  const texts = new Map();
+  for (const [k, v] of Object.entries(raw.texts || {})) texts.set(normWs(k).toLowerCase(), v);
+  const sections = new Map(Object.entries(raw.sections || {}));
+  const links = new Map();
+  for (const [k, v] of Object.entries(raw.links || {})) links.set(normUrl(k), v);
+  const usedTexts = new Set();
+  return { texts, sections, links, usedTexts };
+}
 
 function esc(s) {
   return String(s == null ? '' : s)
@@ -53,7 +75,7 @@ function normUrl(u) {
     TRACKING.forEach((p) => url.searchParams.delete(p));
     let out = url.toString();
     if (out.includes('?') && [...url.searchParams].length === 0) out = out.split('?')[0];
-    return out.replace(/\/$/, '');
+    return out.replace(/\/$/, '').replace(/^https:\/\/www\./, 'https://');
   } catch {
     return u;
   }
@@ -93,7 +115,7 @@ function linkDesc(block) {
   return '';
 }
 
-function buildModel(topic) {
+function buildModel(topic, rw) {
   const used = new Set();
   const sections = [];
   let current = { id: 'overview', title: 'Overview', items: [], isOverview: true };
@@ -114,15 +136,31 @@ function buildModel(topic) {
     current = sec;
   };
 
+  const textRewrite = (raw) => {
+    const key = normWs(raw).toLowerCase();
+    if (!rw || !rw.texts.has(key)) return undefined;
+    rw.usedTexts.add(key);
+    return rw.texts.get(key);
+  };
+
   const namePlain = topic.name.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
   for (const msg of topic.messages) {
+    const secTitle = rw && rw.sections.get(String(msg.id));
+    if (secTitle) startSection(secTitle);
     for (const b of msg.blocks) {
       if (b.type === 'heading') {
         const t = (b.text || '').trim();
         if (!t) continue;
         const tPlain = t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
         if (tPlain === namePlain) continue;
+        const rwText = textRewrite(t);
+        if (rwText !== undefined) {
+          if (rwText === '') continue;
+          if (rwText.length <= 60) startSection(rwText);
+          else current.items.push({ type: 'note', text: rwText });
+          continue;
+        }
         if (t.length <= 60) startSection(t);
         else current.items.push({ type: 'note', text: t });
       } else if (b.type === 'flow') {
@@ -130,28 +168,56 @@ function buildModel(topic) {
         if (!raw) continue;
         const rawPlain = raw.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
         if (rawPlain === namePlain) continue;
+        const rwText = textRewrite(raw);
+        if (rwText !== undefined) {
+          if (rwText !== '') current.items.push({ type: 'para', html: md(rwText) });
+          continue;
+        }
         current.items.push({ type: 'para', html: flowHtml(b.items) });
       } else if (b.type === 'link') {
         const key = normUrl(b.url);
         if (seenUrls.has(key)) continue;
         seenUrls.add(key);
+        let title = linkTitle(b);
+        let desc = linkDesc(b);
+        const rwCtx = textRewrite(b.context || '');
+        if (rwCtx !== undefined) {
+          if (rwCtx === '') desc = '';
+          else {
+            title = rwCtx;
+            desc = '';
+          }
+        }
+        const rwTitle = textRewrite(title);
+        if (rwTitle !== undefined) title = rwTitle === '' ? title : rwTitle;
+        const rwLink = rw && rw.links.get(key);
+        if (rwLink) {
+          if (rwLink.title != null) title = rwLink.title;
+          if (rwLink.desc != null) desc = rwLink.desc;
+        }
         current.items.push({
           type: 'link',
           url: b.url,
           domain: b.domain || '',
-          title: linkTitle(b),
-          desc: linkDesc(b),
+          title,
+          desc,
         });
       } else if (b.type === 'attachment') {
         const key = normUrl(b.url);
         if (seenUrls.has(key)) continue;
         seenUrls.add(key);
+        const isHtml = (b.contentType || '').includes('html');
+        const safeFile = String(b.filename || '').replace(/[\\/:*?"<>|]/g, '_');
+        const localPath = isHtml && b.attId ? 'mocks/' + b.attId + '/' + safeFile : '';
+        const localAbs = localPath ? path.join(MOCK_DIR, b.attId, safeFile) : '';
         current.items.push({
           type: 'file',
           url: b.url,
           filename: b.filename,
           size: b.size,
           messageUrl: msg.messageUrl || '',
+          contentType: b.contentType || '',
+          localPath: localPath && fs.existsSync(localAbs) ? localPath : '',
         });
       }
     }
@@ -170,29 +236,57 @@ function buildModel(topic) {
   return { sections: filled, count };
 }
 
-function cardHtml(item) {
+function fileKind(item) {
+  const ext = (item.filename || '').split('.').pop().toLowerCase();
+  const kinds = { html: 'HTML', htm: 'HTML', pdf: 'PDF', doc: 'DOC', docx: 'DOCX', ppt: 'PPT', pptx: 'PPTX', zip: 'ZIP', mp4: 'MP4', png: 'PNG', jpg: 'JPG', jpeg: 'JPG' };
+  if (kinds[ext]) return kinds[ext];
+  const ct = (item.contentType || '').split(';')[0].trim();
+  if (ct === 'text/html') return 'HTML';
+  if (ct === 'application/pdf') return 'PDF';
+  return ext ? ext.toUpperCase() : 'FILE';
+}
+
+function fileMeta(item) {
+  const bits = [fileKind(item)];
+  if (item.size) bits.push(fmtSize(item.size));
+  return bits.join(' · ');
+}
+
+function cardHtml(item, rel) {
   if (item.type === 'file') {
+    const local = item.localPath ? rel + item.localPath : '';
+    const actions = [];
+    if (local) {
+      actions.push(
+        '<a class="btn primary" href="' + esc(local) + '" target="_blank" rel="noopener">Attempt mock ↗</a>'
+      );
+    } else {
+      actions.push(
+        '<a class="btn primary" href="' + esc(item.url) + '" target="_blank" rel="noopener">Open file ↗</a>'
+      );
+    }
+    if (item.messageUrl) {
+      actions.push(
+        '<a class="btn" href="' + esc(item.messageUrl) + '" target="_blank" rel="noopener">Open in Discord ↗</a>'
+      );
+    }
+    actions.push(
+      '<button class="btn" data-copy="' + esc(local || item.url) + '">Copy link</button>'
+    );
     return (
       '<div class="card file-card">' +
       '<div class="card-head">' +
-      '<span class="favicon">📄</span>' +
+      '<span class="favicon">' + (local ? '🧪' : '📄') + '</span>' +
       '<div><a class="card-title" href="' +
-      esc(item.url) +
+      esc(local || item.url) +
       '" target="_blank" rel="noopener">' +
       esc(item.filename) +
-      '</a><span class="card-domain">Discord file' +
-      (item.size ? ' · <span class="file-size">' + fmtSize(item.size) + '</span>' : '') +
+      '</a><span class="card-domain">' +
+      esc(fileMeta(item)) +
+      (local ? ' · opens in your browser' : ' · on Discord') +
       '</span></div></div>' +
       '<div class="card-actions">' +
-      '<a class="btn primary" href="' +
-      esc(item.url) +
-      '" target="_blank" rel="noopener">Open file</a>' +
-      (item.messageUrl
-        ? '<a class="btn" href="' + esc(item.messageUrl) + '" target="_blank" rel="noopener">Open in Discord ↗</a>'
-        : '') +
-      '<button class="btn" data-copy="' +
-      esc(item.url) +
-      '">Copy link</button>' +
+      actions.join('') +
       '</div></div>'
     );
   }
@@ -228,7 +322,7 @@ function cardHtml(item) {
 function layout(opts) {
   const rel = opts.rel || '';
   const title = opts.title;
-  const desc = opts.desc || 'Free CUET resources mirrored from Discord.';
+  const desc = opts.desc || 'Free CUET resources — books, mocks, notes and more — mirrored from the CUET 2027 Discord.';
   return `<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
@@ -256,9 +350,9 @@ ${opts.content}
 </main>
 <footer>
   <div class="wrap footer-inner">
-    <div>Mirrored from the <strong>CUET 2027</strong> Discord · <span id="synced-time" data-iso="${esc(opts.syncedAt || '')}"></span></div>
+    <div>Free resources from the <strong>CUET 2027</strong> Discord · Last synced <span id="synced-time" data-iso="${esc(opts.syncedAt || '')}"></span></div>
     <div class="foot-links">
-      <a href="${esc(opts.forumUrl || '#')}" target="_blank" rel="noopener">Source forum</a>
+      <a href="${esc(opts.forumUrl || '#')}" target="_blank" rel="noopener">Original forum on Discord</a>
       <a href="${rel}index.html">Home</a>
     </div>
   </div>
@@ -269,7 +363,7 @@ ${opts.content}
 </html>`;
 }
 
-function renderSections(model) {
+function renderSections(model, rel) {
   return model.sections
     .map((sec) => {
       const paras = sec.items
@@ -281,7 +375,7 @@ function renderSections(model) {
         .map((i) => '<div class="note">' + md(i.text) + '</div>')
         .join('');
       const cards = sec.items.filter((i) => i.type === 'link' || i.type === 'file');
-      const cardsHtml = cards.length ? '<div class="cards">' + cards.map(cardHtml).join('') + '</div>' : '';
+      const cardsHtml = cards.length ? '<div class="cards">' + cards.map((c) => cardHtml(c, rel)).join('') + '</div>' : '';
       const heading = sec.isOverview ? '' : '<h2 id="' + sec.id + '">' + md(sec.title) + '</h2>';
       return (
         '<section class="section">' +
@@ -299,7 +393,7 @@ function renderToc(model) {
   const secs = model.sections.filter((s) => !s.isOverview);
   if (secs.length < 4) return '';
   return (
-    '<details class="toc"><summary>Jump to section (' + secs.length + ')</summary><div class="toc-links">' +
+    '<details class="toc"><summary>On this page (' + secs.length + ')</summary><div class="toc-links">' +
     secs.map((s) => '<a href="#' + s.id + '">' + esc(s.title) + '</a>').join('') +
     '</div></details>'
   );
@@ -336,9 +430,9 @@ function homePage(data, models) {
   const content = `
 <section class="hero">
   <h1>The <span class="hl">CUET</span> Archive</h1>
-  <p>Every free resource from the CUET 2027 Discord — books, mocks, PDFs, websites and videos — in one place, easy to search, no clutter.</p>
+  <p>Every free resource shared in the CUET 2027 Discord — books, mock tests, PDFs, websites and video lectures — gathered in one clean, searchable place.</p>
   <div class="hero-search">
-    <input class="search-input" type="search" placeholder="Search for books, mocks, websites…" autocomplete="off" aria-label="Search resources">
+    <input class="search-input" type="search" placeholder="Search books, mocks, notes, websites…" autocomplete="off" aria-label="Search resources">
     <div class="results" hidden></div>
   </div>
   <div class="stats">
@@ -349,14 +443,14 @@ function homePage(data, models) {
 </section>
 <div class="section-title">
   <h2>Browse by topic</h2>
-  <span class="hint">Tap a card to open its page</span>
+  <span class="hint">Select a topic to see everything inside</span>
 </div>
 <div class="grid">${cards}</div>`;
 
   return layout({
     rel: '',
     title: SITE_NAME + ' — Free CUET resources, mirrored from Discord',
-    desc: 'A searchable archive of every free resource shared in the CUET 2027 Discord: books, mock tests, PDFs, websites and videos.',
+    desc: 'A searchable archive of every free resource shared in the CUET 2027 Discord: books, mock tests, PDFs, websites and video lectures.',
     content,
     syncedAt: data.generatedAt,
     forumUrl: data.source.forumUrl,
@@ -401,19 +495,19 @@ function topicPage(data, topic, model, pos) {
   <div class="topic-meta">
     <span><strong>${model.count}</strong> resource${model.count === 1 ? '' : 's'}</span>
     ${tags}
-    <a class="discord-link" href="${esc(topic.url)}" target="_blank" rel="noopener">View in Discord ↗</a>
+    <a class="discord-link" href="${esc(topic.url)}" target="_blank" rel="noopener">View original thread ↗</a>
   </div>
 </header>
 <div class="chips-row">${chips}</div>
 ${renderToc(model)}
-${renderSections(model)}
+${renderSections(model, '../')}
 ${pager}
 <a class="back-home" href="../index.html">← Back to all topics</a>`;
 
   return layout({
     rel: '../',
     title: topic.name + ' — ' + SITE_NAME,
-    desc: 'Free ' + topic.name + ' resources for CUET, mirrored from the CUET 2027 Discord.',
+    desc: 'Free ' + topic.name + ' study resources for CUET — mirrored from the CUET 2027 Discord.',
     content,
     syncedAt: data.generatedAt,
     forumUrl: data.source.forumUrl,
@@ -439,7 +533,8 @@ function buildSearchIndex(data, models) {
           t: item.title || item.filename || item.domain,
           d: item.desc || '',
           u: item.url,
-          dm: item.type === 'file' ? 'discord attachment' : item.domain,
+          lu: item.localPath || '',
+          dm: item.type === 'file' ? fileKind(item) + ' file' : item.domain,
           tp: t.name,
           ts: t.slug,
         });
@@ -458,11 +553,18 @@ function generate() {
     throw new Error('data/resources.json not found — run extraction first');
   }
   const data = JSON.parse(fs.readFileSync(cfg.DATA_FILE, 'utf8'));
+  const rw = loadRewrites();
 
   data.topics.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
 
   const models = new Map();
-  for (const t of data.topics) models.set(t.id, buildModel(t));
+  for (const t of data.topics) models.set(t.id, buildModel(t, rw));
+
+  const missed = [...rw.texts.keys()].filter((k) => !rw.usedTexts.has(k));
+  if (missed.length) {
+    console.log('  rewrite texts not matched (' + missed.length + '):');
+    missed.forEach((k) => console.log('    - ' + JSON.stringify(k)));
+  }
 
   const site = cfg.SITE_DIR;
   fs.mkdirSync(path.join(site, 'topics'), { recursive: true });

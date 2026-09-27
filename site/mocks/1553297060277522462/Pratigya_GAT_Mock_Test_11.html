@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/Crackcuetug" target="_blank" rel="noopener noreferrer" title="Open Telegram">@Crackcuetug</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Pratigya GAT Mock Test 11", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "What does the word 'Veda' mean in Sanskrit? \u003cbr>", "options": [{"text": "To pray \u003cbr>", "is_correct": false}, {"text": "To know \u003cbr>", "is_correct": true}, {"text": "To learn \u003cbr>", "is_correct": false}, {"text": "To teach \u003cbr>", "is_correct": false}], "solution": "The word ‘Veda’ in Sanskrit means ‘to know’ or ‘knowledge’. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which scheme’s watershed development guidelines were recently updated to include Springshed Development? \u003cbr>", "options": [{"text": "PM-KISAN \u003cbr>", "is_correct": false}, {"text": "PMKSY \u003cbr>", "is_correct": true}, {"text": "MGNREGA \u003cbr>", "is_correct": false}, {"text": "Atal Bhujal Yojana \u003cbr>", "is_correct": false}], "solution": "The Pradhan Mantri Krishi Sinchayee Yojana (PMKSY) was launched to improve water conservation and efficient irrigation. Its watershed development component was updated to include Springshed Management to revive and sustain groundwater recharge sources in hilly and mountainous regions. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Who was the runner-up in the Tata Steel Masters Chess Tournament 2025? \u003cbr>", "options": [{"text": "Magnus Carlsen \u003cbr>", "is_correct": false}, {"text": "Arjun Erigaisi \u003cbr>", "is_correct": false}, {"text": "Vincent Keymer \u003cbr>", "is_correct": false}, {"text": "Dommaraju Gukesh \u003cbr>", "is_correct": true}], "solution": "Dommaraju Gukesh finished as the runner-up after losing to Praggnanandhaa in the tiebreaker. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which of the following is NOT a function of NITI Aayog? \u003cbr>1.Providing technical and strategic advice to governments. \u003cbr>2.Formulating Five-Year Plans for economic development. \u003cbr>3.Promoting cooperative federalism among Indian states. \u003cbr>", "options": [{"text": "1 and 2 only \u003cbr>", "is_correct": false}, {"text": "2 only \u003cbr>", "is_correct": true}, {"text": "2 and 3 only \u003cbr>", "is_correct": false}, {"text": "1, 2, and 3 \u003cbr>", "is_correct": false}], "solution": "Statement 2 is incorrect because NITI Aayog does not formulate Five-Year Plans (which was a function of the former Planning Commission). It focuses on long-term policy strategies instead. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In which city is the head office of the Insurance Regulatory and Development Authority of India (IRDAI) situated? \u003cbr>", "options": [{"text": "Kolkata \u003cbr>", "is_correct": false}, {"text": "New Delhi \u003cbr>", "is_correct": false}, {"text": "Mumbai \u003cbr>", "is_correct": false}, {"text": "Hyderabad \u003cbr>", "is_correct": true}], "solution": "The head office of the Insurance Regulatory and Development Authority of India (IRDAI) is situated in Hyderabad. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Who destroyed the original Nalanda University in 1193 CE? \u003cbr>", "options": [{"text": "Genghis Khan \u003cbr>", "is_correct": false}, {"text": "Timur \u003cbr>", "is_correct": false}, {"text": "Bakhtiyar Khilji \u003cbr>", "is_correct": true}, {"text": "Alauddin Khilji \u003cbr>", "is_correct": false}], "solution": "The original Nalanda University was destroyed in 1193 CE by Bakhtiyar Khilji. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Under which Article does the President have the power to make rules for the convenient transaction of business of the Union Government? \u003cbr>", "options": [{"text": "Article 77 \u003cbr>", "is_correct": true}, {"text": "Article 75 \u003cbr>", "is_correct": false}, {"text": "Article 352 \u003cbr>", "is_correct": false}, {"text": "Article 78 \u003cbr>", "is_correct": false}], "solution": "Under Article 77, the President has the power to make rules for the convenient transaction of business of the Union Government. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which articles of the Indian Constitution provide for the establishment of tribunals? \u003cbr>", "options": [{"text": "Article 124 and 125 \u003cbr>", "is_correct": false}, {"text": "Article 226 and 227 \u003cbr>", "is_correct": false}, {"text": "Article 323A and 323B \u003cbr>", "is_correct": true}, {"text": "Article 356 and 357 \u003cbr>", "is_correct": false}], "solution": "Articles 323A and 323B, inserted through the 42nd Amendment in 1976, provide for the establishment of tribunals. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "When was the Micro Units Development and Refinance Agency (MUDRA) Bank launched? \u003cbr>", "options": [{"text": "1st January 2015 \u003cbr>", "is_correct": false}, {"text": "8th April 2015 \u003cbr>", "is_correct": true}, {"text": "15th August 2014 \u003cbr>", "is_correct": false}, {"text": "26th January 2016 \u003cbr>", "is_correct": false}], "solution": "MUDRA Bank was launched on 8th April 2015 to provide financial support to small businesses. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which of these activities helps in reducing carbon footprint? \u003cbr>", "options": [{"text": "Using single-use plastic bags \u003cbr>", "is_correct": false}, {"text": "Driving personal vehicles frequently \u003cbr>", "is_correct": false}, {"text": "Using public transport and renewable energy \u003cbr>", "is_correct": true}, {"text": "Burning fossil fuels \u003cbr>", "is_correct": false}], "solution": "Using public transport and renewable energy sources reduces carbon emissions, helping lower the carbon footprint. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "When, for the first time, did the Election Commission of India become a multi-member body? \u003cbr>", "options": [{"text": "1995 \u003cbr>", "is_correct": false}, {"text": "1985 \u003cbr>", "is_correct": false}, {"text": "1989 \u003cbr>", "is_correct": true}, {"text": "1994 \u003cbr>", "is_correct": false}], "solution": "The Election Commission of India (ECI) became a multi-member body for the first time in 1989. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which Indian-origin Nobel Laureate has contributed to child rights and the fight against child labor? \u003cbr>", "options": [{"text": "Abhijit Banerjee \u003cbr>", "is_correct": false}, {"text": "Kailash Satyarthi \u003cbr>", "is_correct": true}, {"text": "Amartya Sen \u003cbr>", "is_correct": false}, {"text": "CV Raman \u003cbr>", "is_correct": false}], "solution": "Kailash Satyarthi won the Nobel Peace Prize in 2014 for his lifelong work to end child labor and exploitation. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which is the oldest Dravidian language of South India that has been designated as a classical language? \u003cbr>", "options": [{"text": "Kannada \u003cbr>", "is_correct": false}, {"text": "Telugu \u003cbr>", "is_correct": false}, {"text": "Malayalam \u003cbr>", "is_correct": false}, {"text": "Tamil \u003cbr>", "is_correct": true}], "solution": "Tamil is the oldest Dravidian language and was declared a classical language by the Government of India in 2004. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Consider the following statements regarding the nature of DPSPs: \u003cbr>1.DPSPs are justiciable, meaning they can be enforced by courts. \u003cbr>2.The concept of DPSPs was borrowed from the Irish Constitution. \u003cbr>3.The Government of India Act, 1935 had similar provisions called the ‘Instrument of Instructions.’ \u003cbr>4.DPSPs are considered advisory and act as guidelines for governance. \u003cbr>Which of the above statements are correct? \u003cbr>", "options": [{"text": "1, 2, and 4 only \u003cbr>", "is_correct": false}, {"text": "2, 3, and 4 only \u003cbr>", "is_correct": true}, {"text": "1 and 3 only \u003cbr>", "is_correct": false}, {"text": "2 and 4 only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Statement 1 is incorrect: DPSPs are non-justiciable, meaning they cannot be enforced in a court of law. \u003cbr>Statement 2 is correct: The Irish Constitution served as the inspiration for DPSPs in India. \u003cbr>Statement 3 is correct: DPSPs are similar to the ‘Instrument of Instructions’ in the Government of India Act, 1935. \u003cbr>Statement 4 is correct: DPSPs are advisory provisions and act as guiding principles for governance. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which of the following contributes the most to air pollution? \u003cbr>", "options": [{"text": "Hydroelectric plants \u003cbr>", "is_correct": false}, {"text": "Thermal power plants \u003cbr>", "is_correct": true}, {"text": "Wind farms \u003cbr>", "is_correct": false}, {"text": "Organic farming \u003cbr>", "is_correct": false}], "solution": "Thermal power plants burn fossil fuels, releasing large amounts of carbon dioxide and other pollutants into the air. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The UN General Assembly meets annually in: \u003cbr>", "options": [{"text": "London \u003cbr>", "is_correct": false}, {"text": "Washington D.C. \u003cbr>", "is_correct": false}, {"text": "New York \u003cbr>", "is_correct": true}, {"text": "Paris \u003cbr>", "is_correct": false}], "solution": "The UN General Assembly meets annually in New York City, where the UN Headquarters is located. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which part of the human body produces insulin? \u003cbr>", "options": [{"text": "Liver \u003cbr>", "is_correct": false}, {"text": "Pancreas \u003cbr>", "is_correct": true}, {"text": "Kidney \u003cbr>", "is_correct": false}, {"text": "Stomach \u003cbr>", "is_correct": false}], "solution": "The pancreas produces insulin, which helps regulate blood sugar levels. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In the given question, find out the correct relationship for last two words as first two bears. \u003cbr>Drama : Stage :: Tennis : ? \u003cbr>", "options": [{"text": "Tournament \u003cbr>", "is_correct": false}, {"text": "Net \u003cbr>", "is_correct": false}, {"text": "Court \u003cbr>", "is_correct": true}, {"text": "Racket \u003cbr>", "is_correct": false}], "solution": "\u003cbr>A drama is performed on a stage. Similarly, tennis is played in court. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "What will come in place of question mark (?) in the following series? \u003cbr>TG, HU, VI, JW, ? \u003cbr>", "options": [{"text": "KY \u003cbr>", "is_correct": false}, {"text": "KX \u003cbr>", "is_correct": false}, {"text": "YK \u003cbr>", "is_correct": false}, {"text": "XK \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494625image8.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Choose the correct alternatives. \u003cbr>_bc_ _bb_aabc \u003cbr>", "options": [{"text": "acac \u003cbr>", "is_correct": true}, {"text": "abab \u003cbr>", "is_correct": false}, {"text": "babc \u003cbr>", "is_correct": false}, {"text": "aacc \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494625image9.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find out the wrong term in this series. \u003cbr>89, 78, 86, 80, 85, 82, 83 \u003cbr>", "options": [{"text": "83 \u003cbr>", "is_correct": false}, {"text": "82 \u003cbr>", "is_correct": false}, {"text": "86 \u003cbr>", "is_correct": true}, {"text": "78 \u003cbr>", "is_correct": false}], "solution": "\u003cbr>The sequence is -11, + 9, -7, + 5, - 3, + 1 \u003cbr>So, 86 is wrong and should be replaced by (78 + 9) \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "How many pairs of letters are there in the word 'DISASTER', each of which has as many letters between them in the word as in the English alphabet? \u003cbr>", "options": [{"text": "None \u003cbr>", "is_correct": false}, {"text": "One \u003cbr>", "is_correct": false}, {"text": "Two \u003cbr>", "is_correct": false}, {"text": "Three \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>So, only three pairs in the given word. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494626image10.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In a certain code 'TRIPPLE' is written as 'SQHOOKD'. How is 'DISPOSE' written in that code? \u003cbr>", "options": [{"text": "CHRONRD \u003cbr>", "is_correct": true}, {"text": "DSOESPI \u003cbr>", "is_correct": false}, {"text": "ESJTPTF \u003cbr>", "is_correct": false}, {"text": "ESOPSID \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Each letter in the word is moved one step backward to obtain the corresponding letter of the code like \u003cbr>Given, \u003cbr> \u003cbr>Then, \u003cbr> \u003cbr>", "so_img": ["https://ts-cdn.adda247.com/1775725494626image11.png", "https://ts-cdn.adda247.com/1775725494628image12.png"]}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In a certain language, 'bring the white board' is written as 'ka na di pa' and 'white and black board' is written as 'na di sa ra'. How is 'the' written in that code? \u003cbr>", "options": [{"text": "ka \u003cbr>", "is_correct": false}, {"text": "pa \u003cbr>", "is_correct": false}, {"text": "ka or pa \u003cbr>", "is_correct": true}, {"text": "Data inadequate \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494629image13.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If ‘×’ means '-', '+' means '÷', '-' means '+' and ‘÷’ means ‘×’, then what is the value of 136 + 4 ÷ 5 - 68 × 75 = ? \u003cbr>", "options": [{"text": "165 \u003cbr>", "is_correct": false}, {"text": "146 \u003cbr>", "is_correct": false}, {"text": "173 \u003cbr>", "is_correct": false}, {"text": "163 \u003cbr>", "is_correct": true}], "solution": "\u003cbr>After decoding, we get \u003cbr>= 136 ÷ 4 × 5 + 68 - 75 = 34 × 5 + 68 - 75 \u003cbr>= 170 + 68 - 75 = 238 - 75 = 163 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Meeta correctly remembers that her father's birthday is after 8th July but before 12th July. Her brother correctly remembers that their father's birthday is after 10th July but before 15th July. On which day of July was definitely their father's birthday? \u003cbr>", "options": [{"text": "10th \u003cbr>", "is_correct": false}, {"text": "11th \u003cbr>", "is_correct": true}, {"text": "10th or 11th \u003cbr>", "is_correct": false}, {"text": "Cannot be determined \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494629image14.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "On 8th Dec, 2007 Saturday falls. What day of the week was it on 8th Dec, 2006? \u003cbr>", "options": [{"text": "Sunday \u003cbr>", "is_correct": false}, {"text": "Thursday \u003cbr>", "is_correct": false}, {"text": "Tuesday \u003cbr>", "is_correct": false}, {"text": "Friday \u003cbr>", "is_correct": true}], "solution": "\u003cbr>The year 2006 is an ordinary year. So, it has 1 odd day. \u003cbr>So, the day on 8th Dec, 2007 will be 1 day beyond the day on 8th Dec, 2006. \u003cbr>But, 8th Dec, 2007 is Saturday. \u003cbr> 8th Dec, 2006 is Friday. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494629image15.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "How many 6s are there in the following number series, each of which is immediately preceded by 1 or 5 and immediately followed by 3 or 9? \u003cbr>2 6 3 7 5 6 4 2 9 6 1 3 4 1 6 3 9 1 5 6 9 2 3 1 6 5 4 3 2 1 9 6 7 1 6 3 \u003cbr>", "options": [{"text": "None \u003cbr>", "is_correct": false}, {"text": "One \u003cbr>", "is_correct": false}, {"text": "Two \u003cbr>", "is_correct": false}, {"text": "Three \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494631image16.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find the missing character in the given question: \u003cbr> \u003cbr>", "options": [{"text": "5 \u003cbr>", "is_correct": false}, {"text": "9 \u003cbr>", "is_correct": true}, {"text": "11 \u003cbr>", "is_correct": false}, {"text": "13 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494704image1.png", "so_img": "https://ts-cdn.adda247.com/1775725494631image17.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Rajan is sixth from the left end and Vinay is tenth from the right end in a row of boys. If there are eight boys between Rajan and Vinay, how many boys are there in the row? \u003cbr>", "options": [{"text": "23 \u003cbr>", "is_correct": false}, {"text": "24 \u003cbr>", "is_correct": true}, {"text": "25 \u003cbr>", "is_correct": false}, {"text": "26 \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Clearly, number of boys in the row = (6 + 10 + 8) = 24. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In the given question, you are given a combination of alphabets and/or numbers followed by four alternatives (A), (B), (C) and (D). Choose the alternative which most closely resembles the water-image of the given combination. \u003cbr> \u003cbr>", "options": [{"text": "a \u003cbr>", "is_correct": false}, {"text": "b \u003cbr>", "is_correct": false}, {"text": "c \u003cbr>", "is_correct": false}, {"text": "d \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494717image2.png", "so_img": "https://ts-cdn.adda247.com/1775725494632image18.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cb> \u003c/b>In each of the following problems, a square transparent sheet with a pattern is given. Figure out from amongst the four alternatives as to how the patter would appear when the transparent sheet is folded at the dotted line. \u003cbr> \u003cbr>", "options": [{"text": "A \u003cbr>", "is_correct": false}, {"text": "B \u003cbr>", "is_correct": false}, {"text": "C \u003cbr>", "is_correct": true}, {"text": "D \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494718image3.png", "so_img": "https://ts-cdn.adda247.com/1775725494632image19.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The sheet of paper shown in the figure X given on the left hand side, in each problem, is folded to form a box. Choose from amongst the alternatives (A), (B), (C) and (D), the boxes that are similar to the box that will be formed. \u003cbr> \u003cbr>", "options": [{"text": "B and C only \u003cbr>", "is_correct": false}, {"text": "A, C and D only \u003cbr>", "is_correct": true}, {"text": "B and D only \u003cbr>", "is_correct": false}, {"text": "A and D only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>So, when the sheet in fig. (X) is folded to form a cube, then the face bearing a dot lies opposite to one of the shaded faces. Therefore, the cube shown in fig. (B) which has both the shaded faces adjacent to the face bearing the dot, cannot be formed. Hence, the cubes shown in figures (A), (B) and (D) can be formed. \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494727image4.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cb> Statements: \u003c/b> \u003cbr>Some ants are parrots. \u003cbr>All the parrots are apples. \u003cbr>\u003cb>Conclusions:\u003c/b> \u003cbr>I. All the apples are parrots. \u003cbr>II. Some ants are apples. \u003cbr>", "options": [{"text": "Only I conclusion follows \u003cbr>", "is_correct": false}, {"text": "Only II conclusion follows \u003cbr>", "is_correct": true}, {"text": "Either I or II follows \u003cbr>", "is_correct": false}, {"text": "Neither (I) nor (II) follows \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494680image20.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In the given figure, ∠AOC=120°. Find ∠CBE. where O is the centre: \u003cbr> \u003cbr>", "options": [{"text": "60° \u003cbr>", "is_correct": false}, {"text": "100° \u003cbr>", "is_correct": false}, {"text": "120° \u003cbr>", "is_correct": true}, {"text": "150° \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494624image5.png", "so_img": "https://ts-cdn.adda247.com/1775725494681image21.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If the cost price is 25% of selling price. Then what is the profit percent. \u003cbr>", "options": [{"text": "150% \u003cbr>", "is_correct": false}, {"text": "200% \u003cbr>", "is_correct": false}, {"text": "300% \u003cbr>", "is_correct": true}, {"text": "350% \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494681image22.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If r = 5%, n=5 years. What is the simple interest charged on a loan of Rs 1000 \u003cbr>", "options": [{"text": "Rs 250 \u003cbr>", "is_correct": true}, {"text": "Rs 300 \u003cbr>", "is_correct": false}, {"text": "Rs 150 \u003cbr>", "is_correct": false}, {"text": "Rs 100 \u003cbr>", "is_correct": false}], "solution": "\u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494681image23.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "A shopkeeper sold two articles for Rs. 6979 each. On one he gained 11% and on the other he lost 11%. What is the overall percentage gain or loss? \u003cbr>", "options": [{"text": "1.25% gain \u003cbr>", "is_correct": false}, {"text": "1.21% gain \u003cbr>", "is_correct": false}, {"text": "1.21% loss \u003cbr>", "is_correct": true}, {"text": "1.25% loss \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494682image24.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train? \u003cbr>", "options": [{"text": "120 metres \u003cbr>", "is_correct": false}, {"text": "180 metres \u003cbr>", "is_correct": false}, {"text": "324 metres \u003cbr>", "is_correct": false}, {"text": "150 metres \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494682image25.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Average of 3rd and 4th number in 5 consecutive numbers is 10. What is the sum of these 5 numbers? \u003cbr>", "options": [{"text": "47.5 \u003cbr>", "is_correct": true}, {"text": "50 \u003cbr>", "is_correct": false}, {"text": "10.25 \u003cbr>", "is_correct": false}, {"text": "23.5 \u003cbr>", "is_correct": false}], "solution": "Since average of 3rd and 4th number is 10, then 3rd number is 9.5 and 4\u003csup>th\u003c/sup> term is 10.5. \u003cbr>Therefore all 5 numbers would be 7.5, 8.5, 9.5, 10.5 and 11.5. \u003cbr>Sum = 47.5 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Rohan can alone finish a work in 12 days and Hari can alone in 16 days. They both work for 3 days and then Rohan left. After that only Hari works and finishes the work. The total work will be completed in: \u003cbr>", "options": [{"text": "15 days \u003cbr>", "is_correct": false}, {"text": "12 days \u003cbr>", "is_correct": true}, {"text": "10 days \u003cbr>", "is_correct": false}, {"text": "13 days \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494683image26.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cbr>", "options": [{"text": "25 \u003cbr>", "is_correct": false}, {"text": "1/25 \u003cbr>", "is_correct": true}, {"text": "5 \u003cbr>", "is_correct": false}, {"text": "169 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494625image6.png", "so_img": "https://ts-cdn.adda247.com/1775725494683image27.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The average of 7 numbers was given as 53 . Later it was found that one number was misread as 16 instead of 58 . What is the correct average of the given 7 numbers? \u003cbr>", "options": [{"text": "59 \u003cbr>", "is_correct": true}, {"text": "57 \u003cbr>", "is_correct": false}, {"text": "55 \u003cbr>", "is_correct": false}, {"text": "56 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494683image28.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If the sum of two numbers is 54 and the LCM and HCF of these numbers are 84 and 6, respectively, then the sum of the reciprocal of the numbers is \u003cbr>", "options": [{"text": "3/28 \u003cbr>", "is_correct": true}, {"text": "28/3 \u003cbr>", "is_correct": false}, {"text": "1/9 \u003cbr>", "is_correct": false}, {"text": "3/26 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494684image29.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Two integers are selected at random from the first 11 natural numbers. If the sum of the integers is even, then the probability that both the numbers are odd is: \u003cbr>", "options": [{"text": "2/5 \u003cbr>", "is_correct": false}, {"text": "3/5 \u003cbr>", "is_correct": true}, {"text": "4/5 \u003cbr>", "is_correct": false}, {"text": "1/5 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494685image30.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The difference between two supplementary angles is 20°. If the smaller of these angles is p, then the value of 3p-50° is \u003cbr>", "options": [{"text": "190° \u003cbr>", "is_correct": true}, {"text": "180° \u003cbr>", "is_correct": false}, {"text": "170° \u003cbr>", "is_correct": false}, {"text": "130° \u003cbr>", "is_correct": false}], "solution": "Let larger angle = x and smaller angle (p)= x-20° \u003cbr>The sum of two supplementary angles = 180° \u003cbr>x + x - 20° = 180° \u003cbr>2x = 200° \u003cbr>x = 100° \u003cbr>3p - 50° = 3 × 80° - 50°= 190° \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If A: B = 3: 7 and B: C = 8: 5, then (A + B): (B + C): (C + A) is: \u003cbr>", "options": [{"text": "80:93:58 \u003cbr>", "is_correct": false}, {"text": "80:91:59 \u003cbr>", "is_correct": true}, {"text": "81:90:57 \u003cbr>", "is_correct": false}, {"text": "59:90:80 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494703image31.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If twice the son’s age is added to the father's age the sum is 34 years. If 1.5 times the father's age is added to the son’s age the sum is 45 years. What is the father's age (in years)? \u003cbr>", "options": [{"text": "24 \u003cbr>", "is_correct": false}, {"text": "26 \u003cbr>", "is_correct": false}, {"text": "28 \u003cbr>", "is_correct": true}, {"text": "32 \u003cbr>", "is_correct": false}], "solution": "Given: \u003cbr>Sum of twice the son’s age and father’s age = 34years \u003cbr>Sum of 1.5 times the father’s age and son ‘s age = 45years \u003cbr>Let the son’s age be x and father’s age be y \u003cbr>Then \u003cbr>2x + y = 34 …… (i) \u003cbr>x + 1.5y = 45 ……. (ii) \u003cbr>Solving eq. (i) and (ii) we get \u003cbr>x = 3years and y = 28years \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cbr>", "options": [{"text": "2 \u003cbr>", "is_correct": true}, {"text": "1 \u003cbr>", "is_correct": false}, {"text": "106 \u003cbr>", "is_correct": false}, {"text": "180 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1775725494625image7.png", "so_img": "https://ts-cdn.adda247.com/1775725494703image32.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The median of the observations 15,78,24,18,67,76,42,58,32 is \u003cbr>", "options": [{"text": "42 \u003cbr>", "is_correct": true}, {"text": "58 \u003cbr>", "is_correct": false}, {"text": "76 \u003cbr>", "is_correct": false}, {"text": "24 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1775725494704image33.png"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/CrackcuetUG" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Economics Part Test - 04", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "ECONOMICS_0", "question": "If, at a given price, market supply is greater than market demand, what is said to exist in the market? \u003cbr>", "options": [{"text": "Excess demand", "is_correct": false}, {"text": "Equilibrium \u003cbr>", "is_correct": false}, {"text": "Excess supply", "is_correct": true}, {"text": "Price ceiling \u003cbr>", "is_correct": false}], "solution": "When market supply exceeds demand at a certain price, the result is excess supply. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In the labor market, who are generally the suppliers of labor? \u003cbr>", "options": [{"text": "Firms", "is_correct": false}, {"text": "Government \u003cbr>", "is_correct": false}, {"text": "Foreign entities", "is_correct": false}, {"text": "Households \u003cbr>", "is_correct": true}], "solution": "Households supply labor, while firms demand it. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "For a perfectly competitive firm, what is Marginal Revenue Product of Labour (MRPL) equal to? \u003cbr>", "options": [{"text": "Marginal Cost (MC) \u003cbr>", "is_correct": false}, {"text": "Value of Marginal Product of Labour (VMPL) \u003cbr>", "is_correct": true}, {"text": "Average Revenue (AR) \u003cbr>", "is_correct": false}, {"text": "Total Revenue (TR) \u003cbr>", "is_correct": false}], "solution": "Since a perfectly competitive firm's marginal revenue is equal to the price of the commodity, marginal revenue product of labour (MRPL) is equal to the value of marginal product of labour (VMPL), which is Price × MPL. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Based on the law of diminishing marginal product, what is the typical slope of a firm's demand curve for labor? \u003cbr>", "options": [{"text": "Upward sloping", "is_correct": false}, {"text": "Horizontal \u003cbr>", "is_correct": false}, {"text": "Vertical", "is_correct": false}, {"text": "Downward sloping \u003cbr>", "is_correct": true}], "solution": "Given the assumption of the law of diminishing marginal product, the firm always producing at w = VMPL implies that the demand curve for labor is downward sloping. As wage increases, less labor is demanded due to diminishing marginal productivity. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List I with List II (Simultaneous Shifts) \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}], "solution": "Simultaneous shifts have mixed effects. \u003cbr>When both demand and supply increase, quantity increases, but price depends on the relative magnitude. \u003cbr>When both fall, quantity decreases, but price is again indeterminate. \u003cbr>Demand rises &amp; supply falls → strong pressure on price to rise, but quantity may vary. \u003cbr>Demand falls &amp; supply rises → price drops, quantity is uncertain. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1755508860620image1.png"}, {"subject": "ECONOMICS_0", "question": "When there is excess supply in a market, what tends to happen to the market price? \u003cbr>", "options": [{"text": "It tends to increase. \u003cbr>", "is_correct": false}, {"text": "It tends to decrease. \u003cbr>", "is_correct": true}, {"text": "It remains constant. \u003cbr>", "is_correct": false}, {"text": "It causes new firms to enter the market. \u003cbr>", "is_correct": false}], "solution": "Excess supply causes downward pressure on prices, reducing supply and increasing demand toward equilibrium. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the typical slope of the market supply curve of labor? \u003cbr>", "options": [{"text": "Backward bending", "is_correct": false}, {"text": "Downward sloping \u003cbr>", "is_correct": false}, {"text": "Upward sloping", "is_correct": true}, {"text": "Vertical \u003cbr>", "is_correct": false}], "solution": "The market supply curve of labor, obtained by aggregating individuals’ supply at different wages, will be upward sloping because though at higher wages some individuals may be willing to work less, many more individuals will be attracted to supply more labor. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the following steps in reaching market equilibrium from excess demand. \u003cbr>(A) Price increases \u003cbr>(B) Quantity supplied increases \u003cbr>(C) Quantity demanded decreases \u003cbr>(D) Excess demand is eliminated \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (C), (B), (D)", "is_correct": true}, {"text": "(C), (B), (A), (D) \u003cbr>", "is_correct": false}, {"text": "(D), (A), (B), (C)", "is_correct": false}, {"text": "(B), (C), (A), (D) \u003cbr>", "is_correct": false}], "solution": "When there is excess demand, price rises (A), leading to a fall in quantity demanded (C) and a rise in quantity supplied (B), which eventually eliminates the excess demand (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List I with List II (Labour Market Roles) \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": true}], "solution": "\u003cbr>(A)-(IV): Firms hire labour to produce → they demand labour \u003cbr>(B)-(III): Households offer labour → they supply it \u003cbr>(C)-(II): A firm hires up to where wage = VMPL → this determines optimal hiring \u003cbr>(D)-(I): As per the law of diminishing marginal product, each additional worker adds less output → this leads to a downward sloping labour demand curve \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1755508860621image2.png"}, {"subject": "ECONOMICS_0", "question": "Sequence the changes due to a rightward shift in the demand curve. \u003cbr>(A) Excess demand occurs \u003cbr>(B) Demand increases \u003cbr>(C) Price increases \u003cbr>(D) New equilibrium is established \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C), (D)", "is_correct": false}, {"text": "(C), (B), (A), (D) \u003cbr>", "is_correct": false}, {"text": "(B), (A), (C), (D)", "is_correct": true}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}], "solution": "An increase in demand (B) leads to excess demand (A), causing prices to rise (C), and new equilibrium is reached (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Consider the concept of market equilibrium: \u003cbr>(A) In equilibrium, the aggregate quantity that all firms wish to sell equals the quantity that all the consumers in the market wish to buy. \u003cbr>(B) Equilibrium is defined as a situation where the plans of all consumers and firms in the market match and the market clears. \u003cbr>(C) The price at which equilibrium is reached is called equilibrium price. \u003cbr>(D) Equilibrium in a perfectly competitive market can be alternatively defined as zero excess demand-zero excess supply situation. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C), Only", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(A), (C), (D) Only", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": true}], "solution": "\u003cbr>(A) This statement is correct. In equilibrium, market supply equals market demand, meaning the aggregate quantity firms wish to sell matches the quantity consumers wish to buy. \u003cbr>(B) This statement is correct. Equilibrium is a state where the plans of all market participants (consumers and firms) are consistent, and the market successfully clears. \u003cbr>(C) This statement is correct. The specific price at which market demand equals market supply is termed the equilibrium price. \u003cbr>(D) This statement is correct. When market supply equals market demand, there is neither an excess of demand nor an excess of supply. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "With free entry and exit, what does the equilibrium price always equal? \u003cbr>", "options": [{"text": "Maximum average cost (max AC) \u003cbr>", "is_correct": false}, {"text": "Minimum average cost (min AC) \u003cbr>", "is_correct": true}, {"text": "Marginal cost (MC) \u003cbr>", "is_correct": false}, {"text": "Total cost (TC) \u003cbr>", "is_correct": false}], "solution": "In equilibrium under free entry/exit, price equals minimum average cost because any deviation would trigger firm entry or exit. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is a government-imposed upper limit on the price of a good or service called? \u003cbr>", "options": [{"text": "Price floor", "is_correct": false}, {"text": "Price support \u003cbr>", "is_correct": false}, {"text": "Price ceiling", "is_correct": true}, {"text": "Equilibrium price \u003cbr>", "is_correct": false}], "solution": "The government-imposed upper limit on the price of a good or service is called a price ceiling. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Concerning a single firm's demand for labour in a perfectly competitive market: \u003cbr>(A) A profit-maximizing firm will continue to employ labour up to the point where the extra cost incurred for the last unit of labour equals the additional benefit earned from that unit. \u003cbr>(B) The extra cost of hiring one more unit of labour is defined as its Marginal Product of Labour (MPL). \u003cbr>(C) The additional benefit a firm earns from one more unit of labour is called the Marginal Revenue Product of Labour (MRPL). \u003cbr>(D) For a perfectly competitive firm, where marginal revenue equals the commodity's price, the MRPL is equal to the Value of Marginal Product of Labour (VMPL). \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C) Only", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(A), (C), (D) Only", "is_correct": true}, {"text": "(B), (D) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) This statement is correct. Profit-maximization implies equating marginal cost and marginal benefit. \u003cbr>(B) This statement is incorrect. The extra cost is the wage rate, not MPL. MPL measures output, not cost. \u003cbr>(C) This statement is correct. MRPL = additional revenue from employing one more unit of labour. \u003cbr>(D) This statement is correct. In perfect competition, MR = Price, so MRPL = P × MPL = VMPL. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "A price floor is fixed at ₹50, while equilibrium price is ₹40. What is likely to happen? \u003cbr>", "options": [{"text": "Excess demand", "is_correct": false}, {"text": "Black market \u003cbr>", "is_correct": false}, {"text": "Excess supply", "is_correct": true}, {"text": "Price stability \u003cbr>", "is_correct": false}], "solution": "Price above equilibrium → excess supply \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If equilibrium price = ₹20, what is the total revenue at equilibrium (Q = 180)? \u003cbr>", "options": [{"text": "₹3200", "is_correct": false}, {"text": "₹3600 \u003cbr>", "is_correct": true}, {"text": "₹4000", "is_correct": false}, {"text": "₹4200 \u003cbr>", "is_correct": false}], "solution": "TR = P × Q = 20 × 180 = ₹3600 \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List I with List II (Effects under Free Entry/Exit) \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}], "solution": "Firms earning supernormal profit → new firms enter; losses → firms exit; normal profit → stability; entry-exit ensures P = min AC. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1755508860622image3.png"}, {"subject": "ECONOMICS_0", "question": "When the market demand curve shifts leftward with the supply curve remaining unchanged (fixed number of firms), what happens to the equilibrium quantity and price? \u003cbr>", "options": [{"text": "Both increase. \u003cbr>", "is_correct": false}, {"text": "Quantity increases, price decreases. \u003cbr>", "is_correct": false}, {"text": "Both decrease. \u003cbr>", "is_correct": true}, {"text": "Quantity decreases, price increases. \u003cbr>", "is_correct": false}], "solution": "A leftward shift in demand means less quantity demanded at any price. This creates excess supply at the old price, leading to a fall in price. The new equilibrium results in both a lower equilibrium quantity and a lower equilibrium price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "For the wheat market example (qD = 200 - p, qS = 120 + p), what is the equilibrium price? \u003cbr>", "options": [{"text": "Rs 80 per kg", "is_correct": false}, {"text": "Rs 120 per kg \u003cbr>", "is_correct": false}, {"text": "Rs 40 per kg", "is_correct": true}, {"text": "Rs 160 per kg \u003cbr>", "is_correct": false}], "solution": "Equating demand and supply: 200 - p = 120 + p ⟹ 2p = 80 ⟹ p = 40. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "An equilibrium in a market is defined as a situation where: \u003cbr>", "options": [{"text": "The plans of all consumers and firms in the market match and the market clears. \u003cbr>", "is_correct": true}, {"text": "Market demand is greater than market supply. \u003cbr>", "is_correct": false}, {"text": "Firms are earning supernormal profits. \u003cbr>", "is_correct": false}, {"text": "Only consumers' objectives are maximized. \u003cbr>", "is_correct": false}], "solution": "An equilibrium is defined as a situation where the plans of all consumers and firms in the market match and the market clears. In equilibrium, the quantity supplied equals the quantity demanded. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the key implication of allowing free entry and exit of firms in a perfectly competitive market concerning firm profits in equilibrium? \u003cbr>", "options": [{"text": "Each firm earns supernormal profit. \u003cbr>", "is_correct": false}, {"text": "Each firm incurs a loss. \u003cbr>", "is_correct": false}, {"text": "Each firm earns normal profit. \u003cbr>", "is_correct": true}, {"text": "Profit levels fluctuate indefinitely. \u003cbr>", "is_correct": false}], "solution": "Free entry and exit drive the market to an equilibrium where price equals minimum average cost, ensuring only normal profit for all firms. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Concerning the market supply curve of labour: \u003cbr>(A) The market supply curve of labour is derived by aggregating the labour supply of individual households at different wage rates. \u003cbr>(B) Even though individual labour supply curves can be backward-bending, the overall market supply curve of labour is generally upward sloping. \u003cbr>(C) At higher wages, typically fewer individuals are attracted to supply more labour, which explains the shape of the market supply curve. \u003cbr>(D) The equilibrium wage rate is determined at the point where the labour that households wish to supply is equal to the labour that firms wish to hire. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C) Only", "is_correct": false}, {"text": "(A), (B), (D) Only \u003cbr>", "is_correct": true}, {"text": "(C), (D) Only", "is_correct": false}, {"text": "(B), (D) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) This statement is correct. The market supply curve sums up the quantities supplied by all individuals at each wage level. \u003cbr>(B) This statement is correct. While some individuals may work less at very high wages, the overall effect of higher wages is to attract more people into the workforce, leading to an upward-sloping market supply curve. \u003cbr>(C) This statement is incorrect. At higher wages, many more individuals will be attracted to supply more labour, contributing to the upward slope of the market supply curve. \u003cbr>(D) This statement is correct. This is the definition of equilibrium in the labour market, similar to goods markets. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In a perfectly competitive market, what is the alternative definition of an equilibrium state? \u003cbr>", "options": [{"text": "A state where there is positive excess demand. \u003cbr>", "is_correct": false}, {"text": "A state where there is positive excess supply. \u003cbr>", "is_correct": false}, {"text": "A state where there is a zero excess demand-zero excess supply situation. \u003cbr>", "is_correct": true}, {"text": "A state where market supply is greater than market demand. \u003cbr>", "is_correct": false}], "solution": "If at a price, market supply is greater than market demand, there is an excess supply. If market demand exceeds market supply, there is excess demand. Therefore, equilibrium in a perfectly competitive market can be defined alternatively as zero excess demand-zero excess supply situation. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If the number of consumers in the market for a commodity increases, what happens to the market demand curve? \u003cbr>", "options": [{"text": "Shifts leftward. \u003cbr>", "is_correct": false}, {"text": "Shifts rightward. \u003cbr>", "is_correct": true}, {"text": "Becomes horizontal. \u003cbr>", "is_correct": false}, {"text": "No effect on demand curve. \u003cbr>", "is_correct": false}], "solution": "As the number of consumers increases, other factors remaining unchanged, at each price, more of the commodity will be demanded. Thus, the demand curve will shift rightwards. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Sequence the outcomes of a leftward shift in the supply curve. \u003cbr>(A) Supply decreases \u003cbr>(B) Price increases \u003cbr>(C) New equilibrium is attained \u003cbr>(D) Excess demand arises \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (C), (B), (D)", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": true}, {"text": "(B), (A), (C), (D)", "is_correct": false}, {"text": "(A), (D), (B), (C) \u003cbr>", "is_correct": false}], "solution": "A leftward shift (A) causes excess demand (D), which leads to higher price (B), and eventually equilibrium (C). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Regarding excess demand and excess supply in a market: \u003cbr>(A) If at a price, market supply is greater than market demand, it is said that excess demand exists. \u003cbr>(B) If market demand exceeds market supply at a price, it is said that excess demand exists in the market at that price. \u003cbr>(C) Whenever market supply is not equal to market demand, there will be a tendency for the price to change. \u003cbr>(D) Equilibrium in a perfectly competitive market can be defined as zero excess demand-zero excess supply. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C) Only", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(B), (C), (D) Only", "is_correct": true}, {"text": "(A), (D) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) This statement is incorrect. If market supply is greater than market demand, it is called excess supply, not excess demand. \u003cbr>(B) This statement is correct. When market demand surpasses market supply, it indicates a situation of excess demand. \u003cbr>(C) This statement is correct. Any imbalance between market supply and market demand will create pressure for the price to adjust until equilibrium is restored. \u003cbr>(D) This statement is correct. Equilibrium signifies a state where there is no shortage (excess demand) or surplus (excess supply) in the market. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is a government-imposed lower limit on the price that may be charged for a particular good or service called? \u003cbr>", "options": [{"text": "Price ceiling", "is_correct": false}, {"text": "Price control \u003cbr>", "is_correct": false}, {"text": "Price floor", "is_correct": true}, {"text": "Subsidy \u003cbr>", "is_correct": false}], "solution": "The government-imposed lower limit on the price that may be charged for a particular good or service is called a price floor. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Suppose p = 20 and each firm supplies q_f = 10 + p. What is output per firm? \u003cbr>", "options": [{"text": "25", "is_correct": false}, {"text": "30 \u003cbr>", "is_correct": true}, {"text": "35", "is_correct": false}, {"text": "40 \u003cbr>", "is_correct": false}], "solution": "q_f = 10 + 20 = 30 \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List I with List II (Government Intervention) \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": true}, {"text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}], "solution": "Price ceiling sets a maximum limit → excess demand; price floor sets minimum → excess supply. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1755508860622image4.png"}, {"subject": "ECONOMICS_0", "question": "Put the events in order when price floor is introduced. \u003cbr>(A) Price is fixed above equilibrium \u003cbr>(B) Excess supply occurs \u003cbr>(C) Government purchases surplus \u003cbr>(D) Producers are supported \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C), (D)", "is_correct": true}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}, {"text": "(B), (A), (D), (C)", "is_correct": false}, {"text": "(D), (C), (B), (A) \u003cbr>", "is_correct": false}], "solution": "Price floor (A) leads to excess supply (B), government intervenes (C), supporting producers (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If the supply curve shifts rightward and the demand curve shifts leftward simultaneously, what is the unambiguous effect on equilibrium price? \u003cbr>", "options": [{"text": "Increases. \u003cbr>", "is_correct": false}, {"text": "Decreases. \u003cbr>", "is_correct": true}, {"text": "May increase, decrease, or remain unchanged. \u003cbr>", "is_correct": false}, {"text": "Remains unchanged. \u003cbr>", "is_correct": false}], "solution": "Rightward supply shift and leftward demand shift both put downward pressure on price, causing it to fall. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Regarding an individual's labour supply decision: \u003cbr>(A) An individual's supply decision for labour is essentially a choice involving a trade-off between income and leisure. \u003cbr>(B) An increase in the wage rate tends to make leisure more costly, which can lead the individual to desire less leisure and work longer hours. \u003cbr>(C) An increase in the wage rate causes a decrease in the individual's purchasing power, leading them to desire less leisure activities. \u003cbr>(D) The individual labour supply curve can exhibit a backward-bending shape at higher wage rates. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B) Only", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(A), (B), (D) Only", "is_correct": true}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) This statement is correct. Individuals weigh the benefits of earning income through work against the enjoyment of leisure time. \u003cbr>(B) This statement is correct. This is known as the substitution effect, where the higher wage makes leisure (the opportunity cost of not working) more expensive. \u003cbr>(C) This statement is incorrect. An increase in wage rate increases the individual's purchasing power, which may lead them to want to spend more on leisure activities (income effect). \u003cbr>(D) This statement is correct. At very high wage rates, the income effect (desire for more leisure due to increased purchasing power) can outweigh the substitution effect, causing labour supply to decrease as wages rise further. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the outcomes of a rightward shift in supply. \u003cbr>(A) Quantity demanded rises \u003cbr>(B) Excess supply \u003cbr>(C) Price falls \u003cbr>(D) New equilibrium \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (C), (B), (D)", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(C), (A), (B), (D)", "is_correct": false}, {"text": "(B), (C), (A), (D) \u003cbr>", "is_correct": true}], "solution": "Supply shifts right (B), causing price to fall (C), increasing demand (A), and equilibrium is restored (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List I with List II related to price changes and outcomes. \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(I), (C)-(II), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II) \u003cbr>", "is_correct": true}], "solution": "Price below equilibrium causes excess demand; above causes excess supply; equal leads to equilibrium; disequilibrium causes price changes. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1755508860620image5.png"}, {"subject": "ECONOMICS_0", "question": "Entry of firms continues until: \u003cbr>", "options": [{"text": "Losses become zero \u003cbr>", "is_correct": false}, {"text": "Supernormal profit starts \u003cbr>", "is_correct": false}, {"text": "Normal profit is achieved \u003cbr>", "is_correct": true}, {"text": "Demand drops \u003cbr>", "is_correct": false}], "solution": "In perfect competition with free entry/exit, firms enter until supernormal profits are competed away, and only normal profits remain, i.e., price = minimum AC. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "An industry for which the supply curve and demand curve never intersect each other in positive axes is known as; \u003cbr>", "options": [{"text": "Equilibrium industry", "is_correct": false}, {"text": "Viable industry \u003cbr>", "is_correct": false}, {"text": "Non-Viable industry", "is_correct": true}, {"text": "All of the above \u003cbr>", "is_correct": false}], "solution": "An industry for which the supply curve and demand curve never intersect each other in the positive axes (meaning, at any positive price and quantity) is known as a non-viable industry. \u003cbr>In such a scenario, there is no price at which the quantity consumers are willing to buy equals the quantity producers are willing to sell. This often happens when the cost of production is too high for any feasible demand, or if there's simply no demand at a price that would cover production costs. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Market equilibrium shifts if: \u003cbr>", "options": [{"text": "Technology and preferences remain fixed \u003cbr>", "is_correct": false}, {"text": "Tastes, income, or input costs change \u003cbr>", "is_correct": true}, {"text": "Only price changes \u003cbr>", "is_correct": false}, {"text": "Output is constant \u003cbr>", "is_correct": false}], "solution": "Market equilibrium changes when underlying factors like tastes, income, technology, or input prices change - not just price alone. These cause shifts in demand and/or supply curves. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Who introduced the concept of the ‘Invisible Hand’ in market theory? \u003cbr>", "options": [{"text": "John Maynard Keynes \u003cbr>", "is_correct": false}, {"text": "Alfred Marshall \u003cbr>", "is_correct": false}, {"text": "Adam Smith \u003cbr>", "is_correct": true}, {"text": "Milton Friedman \u003cbr>", "is_correct": false}], "solution": "Adam Smith (1723-1790) introduced the idea of the 'Invisible Hand'. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The 'Invisible Hand' helps the market move toward: \u003cbr>", "options": [{"text": "Disequilibrium", "is_correct": false}, {"text": "Profit maximization \u003cbr>", "is_correct": false}, {"text": "Government control", "is_correct": false}, {"text": "Equilibrium \u003cbr>", "is_correct": true}], "solution": "It guides price changes to bring demand and supply into balance. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "How equilibrium price and quantity are determined in a market with free entry and exit: \u003cbr>(A) The equilibrium price is primarily determined by the intersection of the market demand and market supply curves in this scenario. \u003cbr>(B) The equilibrium price will always be equal to the minimum average cost of the firms. \u003cbr>(C) In equilibrium, the quantity supplied will be determined by the market demand at the price equal to the minimum average cost. \u003cbr>(D) If the prevailing market price is greater than the minimum average cost, existing firms will begin to exit the market. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B) Only", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(B), (C) Only", "is_correct": true}, {"text": "(A), (C), (D) Only \u003cbr>", "is_correct": false}], "solution": "\u003cbr>(A) This statement is incorrect. The equilibrium price is set at minimum AC due to the long-run conditions of free entry and exit. \u003cbr>(B) This statement is correct. Free entry and exit ensures firms operate at minimum average cost. \u003cbr>(C) This statement is correct. Once price is fixed at minimum AC, the traded quantity depends on consumer demand. \u003cbr>(D) This statement is incorrect. If the price is above minimum AC, firms are making supernormal profit, which attracts new firms, not exit. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In the given model, when price is above ₹40, what happens? \u003cbr>", "options": [{"text": "Excess demand arises \u003cbr>", "is_correct": false}, {"text": "Market reaches equilibrium \u003cbr>", "is_correct": false}, {"text": "Demand increases \u003cbr>", "is_correct": false}, {"text": "Excess supply arises \u003cbr>", "is_correct": true}], "solution": "\u003cbr>", "so_img": "https://ts-cdn.adda247.com/1755508860620image7.png"}, {"subject": "ECONOMICS_0", "question": "What is the equilibrium quantity at price ₹40? \u003cbr>", "options": [{"text": "140 kg", "is_correct": false}, {"text": "150 kg \u003cbr>", "is_correct": false}, {"text": "160 kg", "is_correct": true}, {"text": "180 kg \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1755508860620image8.png"}, {"subject": "ECONOMICS_0", "question": "At price ₹25, what is the value of excess demand? \u003cbr>", "options": [{"text": "20 kg", "is_correct": false}, {"text": "25 kg \u003cbr>", "is_correct": false}, {"text": "30 kg", "is_correct": true}, {"text": "40 kg \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1755508860620image9.png"}, {"subject": "ECONOMICS_0", "question": "At price ₹45, what is the value of excess supply? \u003cbr>", "options": [{"text": "10 kg", "is_correct": false}, {"text": "15 kg \u003cbr>", "is_correct": true}, {"text": "20 kg", "is_correct": false}, {"text": "25 kg \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1755508860620image10.png"}, {"subject": "ECONOMICS_0", "question": "What happens at p = 200 in demand curve? \u003cbr>", "options": [{"text": "q = 0", "is_correct": true}, {"text": "q = 10 \u003cbr>", "is_correct": false}, {"text": "q = 50", "is_correct": false}, {"text": "q = 200 \u003cbr>", "is_correct": false}], "solution": "Demand is 0 for any price greater than 200. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the primary objective of setting a price floor in a market? \u003cbr>", "options": [{"text": "To maximize consumer surplus \u003cbr>", "is_correct": false}, {"text": "To allow prices to fall freely according to demand \u003cbr>", "is_correct": false}, {"text": "To prevent prices from falling below a socially undesirable level \u003cbr>", "is_correct": true}, {"text": "To ensure prices are equal to marginal cost \u003cbr>", "is_correct": false}], "solution": "A price floor is imposed to avoid prices falling below a level considered socially or economically undesirable, especially for producers or workers. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is a likely consequence of imposing a price floor above equilibrium in the case of labour markets? \u003cbr>", "options": [{"text": "Labour surplus or unemployment \u003cbr>", "is_correct": true}, {"text": "Wage deflation \u003cbr>", "is_correct": false}, {"text": "Labour shortage \u003cbr>", "is_correct": false}, {"text": "Equilibrium in labour supply and demand \u003cbr>", "is_correct": false}], "solution": "If minimum wage (price floor) is above equilibrium, the quantity of labour supplied exceeds quantity demanded, causing unemployment. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following best explains why governments implement agricultural price support programmes? \u003cbr>", "options": [{"text": "To decrease agricultural production \u003cbr>", "is_correct": false}, {"text": "To reduce the income of farmers \u003cbr>", "is_correct": false}, {"text": "To increase consumer welfare \u003cbr>", "is_correct": false}, {"text": "To stabilize farmer income by preventing price crashes \u003cbr>", "is_correct": true}], "solution": "The aim is to protect farmers' income by ensuring prices do not fall below sustainable levels. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If a government sets a price floor for wheat above its equilibrium price, what market effect is expected? \u003cbr>", "options": [{"text": "Excess demand for wheat \u003cbr>", "is_correct": false}, {"text": "Shortage of wheat \u003cbr>", "is_correct": false}, {"text": "Surplus of wheat \u003cbr>", "is_correct": true}, {"text": "No effect on wheat market \u003cbr>", "is_correct": false}], "solution": "A price floor above equilibrium causes quantity supplied &gt; quantity demanded, leading to surplus. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "When a price floor leads to surplus in the market, what might the government do to maintain the floor? \u003cbr>", "options": [{"text": "Encourage imports \u003cbr>", "is_correct": false}, {"text": "Increase taxes on producers \u003cbr>", "is_correct": false}, {"text": "Reduce production incentives \u003cbr>", "is_correct": false}, {"text": "Buy the surplus stock \u003cbr>", "is_correct": true}], "solution": "Governments often purchase the surplus to maintain price levels and stabilize the market. \u003cbr>"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

@@ -69,7 +69,9 @@
   }
 
   function entryUrl(entry) {
-    return entry.k === 'topic' ? BASE + 'topics/' + entry.ts + '.html' : entry.u;
+    if (entry.k === 'topic') return BASE + 'topics/' + entry.ts + '.html';
+    if (entry.lu) return BASE + entry.lu;
+    return entry.u;
   }
 
   function renderResults(box, items, q) {
@@ -79,7 +81,7 @@
       return;
     }
     if (!items.length) {
-      box.innerHTML = '<div class="empty">No matches for “' + escapeHtml(q) + '”</div>';
+      box.innerHTML = '<div class="empty">Nothing found for “' + escapeHtml(q) + '”</div>';
       box.hidden = false;
       return;
     }
@@ -90,7 +92,7 @@
             ? '<span class="r-kind">Topic</span> · ' + e.n + ' resources'
             : '<span class="r-kind">' + escapeHtml(e.dm || 'link') + '</span> · ' + escapeHtml(e.tp);
         const href = entryUrl(e);
-        const external = e.k !== 'topic';
+        const external = e.k !== 'topic' && !e.lu;
         return (
           '<a class="result" href="' +
           escapeHtml(href) +
@@ -181,7 +183,10 @@
       const btn = ev.target.closest('[data-copy]');
       if (!btn) return;
       ev.preventDefault();
-      const url = btn.getAttribute('data-copy');
+      let url = btn.getAttribute('data-copy');
+      if (url && !/^[a-z]+:/i.test(url)) {
+        try { url = new URL(url, location.href).href; } catch (e) {}
+      }
       const done = () => {
         const old = btn.textContent;
         btn.textContent = 'Copied ✓';
@@ -232,11 +237,38 @@
     });
   }
 
+  function initReveal() {
+    const targets = $$('.hero > *, .section-title, .grid > *, .section, .pager, .topic-head, .toc');
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    targets.forEach((el) => el.classList.add('reveal'));
+    if (reduced || !('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+    );
+    targets.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 55 + 'ms';
+      io.observe(el);
+    });
+    setTimeout(() => targets.forEach((el) => el.classList.add('in')), 2500);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initCopy();
     initFavicons();
     initSyncedTime();
+    initReveal();
     $$('.search-input').forEach(bindSearch);
   });
 })();

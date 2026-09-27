@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/CrackcuetUG" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Economics Part Test - 03", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "ECONOMICS_0", "question": "If the market price of a box of candles is Rs 10, what is the total revenue for a firm that sells 3 boxes? \u003cbr>", "options": [{"text": "Rs 10 \u003cbr>", "is_correct": false}, {"text": "Rs 20 \u003cbr>", "is_correct": false}, {"text": "Rs 30 \u003cbr>", "is_correct": true}, {"text": "Rs 40 \u003cbr>", "is_correct": false}], "solution": "Using the formula TR = p × q, where p = Rs 10 and q = 3, TR = 10 × 3 = Rs 30. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Which of the following is NOT a defining feature of a perfectly competitive market? \u003cbr>", "options": [{"text": "The market consists of a large number of buyers and sellers. \u003cbr>", "is_correct": false}, {"text": "Each firm produces and sells a homogenous product. \u003cbr>", "is_correct": false}, {"text": "Information is perfect. \u003cbr>", "is_correct": false}, {"text": "Entry into the market as well as exit from the market are restricted for firms. \u003cbr>", "is_correct": true}], "solution": "The source lists \"Free entry and exit mean that it is easy for firms to enter the market, as well as to leave it\" as a defining feature. Therefore, restricted entry and exit are not characteristics of perfect competition. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the shape of the Total Revenue (TR) curve for a price-taking firm? \u003cbr>", "options": [{"text": "A downward-sloping curve. \u003cbr>", "is_correct": false}, {"text": "A horizontal straight line. \u003cbr>", "is_correct": false}, {"text": "An upward rising straight line. \u003cbr>", "is_correct": true}, {"text": "A U-shaped curve. \u003cbr>", "is_correct": false}], "solution": "The equation ‘TR = p × q’ is that of a straight line because p is constant. This means that the TR curve is an upward rising straight line. In Prefect Competition firm is price-taking firm where AR= MR or price is fixed straight line. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the first condition that must hold for a firm's profits to be maximum at a positive output level (q0)? \u003cbr>", "options": [{"text": "Marginal Revenue (MR) must be greater than Marginal Cost (MC). \u003cbr>", "is_correct": false}, {"text": "Marginal Revenue (MR) must be less than Marginal Cost (MC). \u003cbr>", "is_correct": false}, {"text": "Marginal Revenue (MR) must equal Marginal Cost (MC). \u003cbr>", "is_correct": true}, {"text": "Average Revenue (AR) must equal Average Cost (AC). \u003cbr>", "is_correct": false}], "solution": "The first condition for profit maximization is that price must equal marginal cost (P = MC) for a perfectly competitive firm. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "How is a firm’s 'supply' defined? \u003cbr>", "options": [{"text": "The quantity of goods demanded by consumers at a given price. \u003cbr>", "is_correct": false}, {"text": "The quantity that it chooses to sell at a given price, given technology, and given the prices of factors of production. \u003cbr>", "is_correct": true}, {"text": "The total revenue minus total cost. \u003cbr>", "is_correct": false}, {"text": "The total number of units a firm can produce at maximum capacity. \u003cbr>", "is_correct": false}], "solution": "Supply is defined as the quantity that a firm chooses to sell at a given price, with given technology and factor prices. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "How do changes in input prices affect a firm’s supply curve? \u003cbr>(A) An increase in the price of an input (e.g., wage rate) raises the cost of production. \u003cbr>(B) An increase in input prices is usually accompanied by an increase in the firm’s marginal cost at any level of output. \u003cbr>(C) An increase in input prices leads to a rightward shift of the supply curve. \u003cbr>(D) A decrease in input prices is expected to shift the supply curve of a firm to the right. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B) Only \u003cbr>", "is_correct": false}, {"text": "(A), (B), (C) Only \u003cbr>", "is_correct": false}, {"text": "(A), (B), (D) Only \u003cbr>", "is_correct": true}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}], "solution": "Input cost rise → higher MC → leftward supply shift. Input cost fall → rightward shift. Statement (C) is incorrect. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II regarding revenue concepts \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}], "solution": "TR = p × q (I); AR = TR/q (II); MR = ∆TR/∆q (III); In perfect competition, p = AR = MR (IV). \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1753180005301image1.png"}, {"subject": "ECONOMICS_0", "question": "If, in the long run, the market price is lower than the Average Cost (AC) at a positive output level, what will a profit-maximizing firm do? \u003cbr>", "options": [{"text": "Continue to produce that positive output level to cover fixed costs. \u003cbr>", "is_correct": false}, {"text": "Increase its output to achieve economies of scale. \u003cbr>", "is_correct": false}, {"text": "Produce zero output and exit from the market. \u003cbr>", "is_correct": true}, {"text": "Reduce its variable costs. \u003cbr>", "is_correct": false}], "solution": "In the long run, if the market price is below the AC, the firm incurs a loss and will choose to shut down production, earning zero profit instead. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II on firm behavior in different market conditions \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(I), (C)-(II), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(IV), (C)-(III), (D)-(I) \u003cbr>", "is_correct": false}], "solution": "Profit: TR &gt; TC (I); Shut down: p &lt; AVC (II); Break-even: TR = TC or p = AC (III); Loss: p &lt; AC (IV). \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1753180005301image2.png"}, {"subject": "ECONOMICS_0", "question": "How is Average Revenue (AR) defined for a firm? \u003cbr>", "options": [{"text": "Total Revenue divided by Marginal Revenue. \u003cbr>", "is_correct": false}, {"text": "Total Cost per unit of output. \u003cbr>", "is_correct": false}, {"text": "Total Revenue per unit of output. \u003cbr>", "is_correct": true}, {"text": "Market Price minus Marginal Cost. \u003cbr>", "is_correct": false}], "solution": "The source defines Average Revenue (AR) as total revenue per unit of output. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "For a price-taking firm, what is the relationship between average revenue (AR) and market price (p)? \u003cbr>", "options": [{"text": "AR is always greater than p. \u003cbr>", "is_correct": false}, {"text": "AR is always less than p. \u003cbr>", "is_correct": false}, {"text": "AR equals p. \u003cbr>", "is_correct": true}, {"text": "AR is unrelated to p. \u003cbr>", "is_correct": false}], "solution": "For a price-taking firm, average revenue equals the market price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the second condition that must hold for a firm's profits to be maximum at a positive output level (q0)? \u003cbr>", "options": [{"text": "Marginal Cost (MC) must be decreasing at q0. \u003cbr>", "is_correct": false}, {"text": "Marginal Cost (MC) must be non-decreasing at q0. \u003cbr>", "is_correct": true}, {"text": "Average Cost (AC) must be minimum at q0. \u003cbr>", "is_correct": false}, {"text": "Total Revenue (TR) must be at its peak at q0. \u003cbr>", "is_correct": false}], "solution": "The second condition listed for profit maximization is that marginal cost must be non-decreasing at q0. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is a supply schedule? \u003cbr>", "options": [{"text": "A graph showing the relationship between price and quantity supplied. \u003cbr>", "is_correct": false}, {"text": "A table describing the quantities sold by a firm at various prices, with technology and factor prices unchanged. \u003cbr>", "is_correct": true}, {"text": "A firm's total production capacity over time. \u003cbr>", "is_correct": false}, {"text": "A list of all inputs used in production. \u003cbr>", "is_correct": false}], "solution": "A supply schedule is a table that shows the quantities supplied by a firm at different prices, assuming constant technology and input prices. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Regarding a firm's profit maximization problem, consider the following statements: \u003cbr>(A) A firm's profit (π) is defined as the sum of its total revenue (TR) and its total cost of production (TC). \u003cbr>(B) The firm seeks to minimize its profit to ensure market stability. \u003cbr>(C) For profits to be maximum, as long as marginal revenue is greater than marginal cost, profits will continue to increase. \u003cbr>(D) When marginal revenue is less than marginal cost, profits will fall. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A) and (B) Only \u003cbr>", "is_correct": false}, {"text": "(C) Only \u003cbr>", "is_correct": false}, {"text": "(C) and (D) Only \u003cbr>", "is_correct": true}, {"text": "All of the above \u003cbr>", "is_correct": false}], "solution": "Statement (A) is incorrect. A firm's profit (π) is defined as the difference between its total revenue (TR) and its total cost of production (TC) (π = TR - TC). Statement (B) is incorrect. A firm wishes to maximise its profit. Statement (C) is correct. As long as marginal revenue is greater than marginal cost, profits are increasing. Statement (D) is correct. As long as marginal revenue is less than marginal cost, profits will fall. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Based on the provided example where total revenue from 2 boxes is Rs 20 and from 3 boxes is Rs 30, arrange the steps to calculate Marginal Revenue (MR). \u003cbr>(A) Identify the change in quantity (3 - 2 = 1). \u003cbr>(B) Marginal Revenue = (Change in total revenue) / (Change in quantity). \u003cbr>(C) Identify the change in total revenue (30 - 20 = 10). \u003cbr>(D) Calculate MR = 10 / 1 = 10. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": true}, {"text": "(A), (D), (B), (C) \u003cbr>", "is_correct": false}, {"text": "(B), (D), (C), (A) \u003cbr>", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}], "solution": "Start with change in quantity, then calculate change in TR. Use formula and compute MR = 10. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match List-I with List-II regarding elasticity of supply \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II) \u003cbr>", "is_correct": true}], "solution": "Elasticity = 1 when curve goes through origin (I); price-axis cut → e &gt; 1 (II); quantity-axis cut → e &lt; 1 (III); vertical line → e = 0 (IV). \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1753180005301image3.png"}, {"subject": "ECONOMICS_0", "question": "Regarding the market supply curve, which of the following statements are correct? \u003cbr>(A) The market supply curve shows the output levels that firms in the market produce in aggregate corresponding to different market prices. \u003cbr>(B) The market supply at a given price is the summation of the supplies of individual firms at that price. \u003cbr>(C) The market supply curve is obtained by taking a vertical summation of the supply curves of individual firms. \u003cbr>(D) As the number of firms in the market decreases, the market supply curve shifts to the right. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A) and (C) Only \u003cbr>", "is_correct": false}, {"text": "(B) and (D) Only \u003cbr>", "is_correct": false}, {"text": "(A) and (B) Only \u003cbr>", "is_correct": true}, {"text": "(A), (C), and (D) Only \u003cbr>", "is_correct": false}], "solution": "Statement (A) is correct. The market supply curve shows the output levels (plotted on the x-axis) that firms in the market produce in aggregate corresponding to different values of the market price. Statement (B) is correct. The market supply at price p is the summation of the supplies of individual firms at that price. Statement (C) is incorrect. The market supply curve is obtained by taking a horizontal summation of the supply curves of the individual firms. Statement (D) is incorrect. If the number of firms in the market decreases, the market supply curve shifts to the left (not right). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the long run shut down point of a firm? \u003cbr>", "options": [{"text": "The minimum of the Short Run Average Cost (SAC) curve. \u003cbr>", "is_correct": false}, {"text": "The point where marginal revenue equals zero. \u003cbr>", "is_correct": false}, {"text": "The minimum of the Long Run Average Cost (LRAC) curve. \u003cbr>", "is_correct": true}, {"text": "The point where total revenue covers variable costs only. \u003cbr>", "is_correct": false}], "solution": "The long run shut down point is where the LRAC curve is at its minimum. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Profit that a firm earns over and above the normal profit is called: \u003cbr>", "options": [{"text": "Accounting profit. \u003cbr>", "is_correct": false}, {"text": "Economic profit. \u003cbr>", "is_correct": false}, {"text": "Super-normal profit. \u003cbr>", "is_correct": true}, {"text": "Zero profit. \u003cbr>", "is_correct": false}], "solution": "Any profit earned over and above normal profit is termed super-normal profit. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the \"break-even point\" of a firm? \u003cbr>", "options": [{"text": "The point on the supply curve at which a firm earns only normal profit. \u003cbr>", "is_correct": true}, {"text": "The point where the firm incurs maximum losses. \u003cbr>", "is_correct": false}, {"text": "The point where the firm's total revenue is zero. \u003cbr>", "is_correct": false}, {"text": "The point where the marginal cost curve intersects the marginal revenue curve. \u003cbr>", "is_correct": false}], "solution": "The break-even point is where the firm earns just enough to cover all costs, i.e., earns normal profit. It corresponds to the minimum of the AC curve where the supply curve intersects it. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "How does technological progress affect a firm’s supply curve? \u003cbr>", "options": [{"text": "It shifts the supply curve to the left (upward). \u003cbr>", "is_correct": false}, {"text": "It shifts the supply curve to the right (downward). \u003cbr>", "is_correct": true}, {"text": "It causes movement along the supply curve. \u003cbr>", "is_correct": false}, {"text": "It makes the supply curve steeper. \u003cbr>", "is_correct": false}], "solution": "Technological progress lowers marginal cost, thereby shifting the supply curve to the right. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Regarding price-taking behaviour in a perfectly competitive market, which of the following statements are accurate? \u003cbr>(A) A price-taking firm believes that if it sets a price above the market price, it can still sell some quantity of the good. \u003cbr>(B) A price-taking firm can sell as many units of the good as it wants to sell if the set price is less than or equal to the market price. \u003cbr>(C) A price-taking buyer believes that if she asks for a price below the market price, no firm will be willing to sell to her. \u003cbr>(D) Price-taking is a reasonable assumption when the market has few firms and buyers have imperfect information. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A) and (D) Only \u003cbr>", "is_correct": false}, {"text": "(B) and (C) Only \u003cbr>", "is_correct": true}, {"text": "(A), (B), and (C) Only \u003cbr>", "is_correct": false}, {"text": "All of the above \u003cbr>", "is_correct": false}], "solution": "Statement (A) is incorrect. A price-taking firm believes that if it sets a price above the market price, it will be unable to sell any quantity of the good. Statement (B) is correct. A price-taking firm believes it can sell as many units as it wants if the set price is less than or equal to the market price. Statement (C) is correct. A price-taking buyer believes that if she asks for a price below the market price, no firm will be willing to sell to her. Statement (D) is incorrect. Price-taking is often thought to be a reasonable assumption when the market has many firms and buyers have perfect information about the price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the logical flow of a firm's decision-making process in the long run when the market price falls below its average cost (AC). \u003cbr>(A) The firm incurs a loss at that output level. \u003cbr>(B) Market price (p) is lower than the (long run) AC at the positive output level. \u003cbr>(C) The firm chooses to exit production, resulting in zero profit. \u003cbr>(D) Total revenue is less than total cost. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(B), (D), (A), (C) \u003cbr>", "is_correct": true}, {"text": "(A), (B), (D), (C) \u003cbr>", "is_correct": false}, {"text": "(D), (B), (A), (C) \u003cbr>", "is_correct": false}, {"text": "(C), (A), (B), (D) \u003cbr>", "is_correct": false}], "solution": "If p &lt; AC, then TR &lt; TC → leads to loss → firm exits for zero loss/profit in long run. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the following events in the correct sequence to explain the effect of a unit tax on a firm’s long run output decision: \u003cbr>(A) The firm’s long run supply curve shifts leftward. \u003cbr>(B) The government levies a fixed tax per unit of output. \u003cbr>(C) The firm’s LRMC and LRAC curves shift upwards by the amount of the tax. \u003cbr>(D) The firm reduces the quantity of output supplied at each market price. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(B), (C), (A), (D) \u003cbr>", "is_correct": true}, {"text": "(C), (B), (A), (D) \u003cbr>", "is_correct": false}, {"text": "(B), (A), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}], "solution": "The sequence starts with the imposition of a unit tax by the government (B). This leads to an increase in the firm’s LRAC and LRMC curves by the amount of the tax (C). As a result, the firm’s long run supply curve shifts to the left (A), and the firm now supplies fewer units at every market price (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "How does the imposition of a unit tax affect a firm’s long run supply curve? \u003cbr>", "options": [{"text": "It shifts the supply curve to the right. \u003cbr>", "is_correct": false}, {"text": "It shifts the supply curve to the left. \u003cbr>", "is_correct": true}, {"text": "It causes a downward movement along the curve. \u003cbr>", "is_correct": false}, {"text": "It makes the supply curve perfectly elastic. \u003cbr>", "is_correct": false}], "solution": "A unit tax increases costs and shifts the long run supply curve to the left. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is \"normal profit\" in economics? \u003cbr>", "options": [{"text": "The profit a firm earns above its normal expectations. \u003cbr>", "is_correct": false}, {"text": "The minimum level of profit that is needed to keep a firm in the existing business. \u003cbr>", "is_correct": true}, {"text": "The profit earned by firms that are not profit maximizers. \u003cbr>", "is_correct": false}, {"text": "The profit earned when total revenue equals total cost. \u003cbr>", "is_correct": false}], "solution": "Normal profit is the minimum profit required to keep the firm in business and is included in total cost. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "A candle manufacturer sells candles in a perfectly competitive market at a market price of Rs 10 per box. Arrange the total revenue calculations for increasing quantities sold. \u003cbr>(A) Selling 2 boxes of candles results in TR = Rs 20. \u003cbr>(B) Selling 0 boxes of candles results in TR = 0. \u003cbr>(C) Selling 1 box of candles results in TR = Rs 10. \u003cbr>(D) Selling 3 boxes of candles results in TR = Rs 30. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(B), (C), (A), (D) \u003cbr>", "is_correct": true}, {"text": "(C), (A), (D), (B) \u003cbr>", "is_correct": false}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(D), (C), (B), (A) \u003cbr>", "is_correct": false}], "solution": "At 0 boxes, TR = 0. Then, for 1, 2, and 3 boxes, TR = Rs 10, 20, and 30 respectively. TR increases linearly with output at constant price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the third condition for a firm to continue to produce in the short run? \u003cbr>", "options": [{"text": "Price (p) must be greater than the Average Total Cost (ATC). \u003cbr>", "is_correct": false}, {"text": "Price (p) must be greater than or equal to the Average Variable Cost (AVC). \u003cbr>", "is_correct": true}, {"text": "Price (p) must be less than the Marginal Cost (MC). \u003cbr>", "is_correct": false}, {"text": "Price (p) must be equal to the Average Fixed Cost (AFC). \u003cbr>", "is_correct": false}], "solution": "In the short run, for the firm to continue production, the price must be greater than or equal to the average variable cost (p ≥ AVC). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "For profits to be maximum at a positive level of output in a competitive market, which of the following conditions must hold? \u003cbr>(A) The price, p, must equal Marginal Cost (MC). \u003cbr>(B) Marginal cost must be non-increasing at the profit-maximising output. \u003cbr>(C) If marginal revenue is less than marginal cost, profits should continue to increase. \u003cbr>(D) For a perfectly competitive firm, the profit-maximizing output is where P = MC, since MR = P. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A) and (B) Only \u003cbr>", "is_correct": false}, {"text": "(A) and (D) Only \u003cbr>", "is_correct": true}, {"text": "(B) and (C) Only \u003cbr>", "is_correct": false}, {"text": "(A), (C), and (D) Only \u003cbr>", "is_correct": false}], "solution": "Statement (A) is correct. For profits to be maximum, the price (p) must equal MC. This is derived from the condition MR = MC, and in perfect competition, MR = P. Statement (B) is incorrect. Marginal cost must be non-decreasing at the profit-maximising output. If the MC curve is downward sloping at the point where P=MC, it cannot be profit-maximising. Statement (C) is incorrect. If marginal revenue is less than marginal cost, profits will fall, not increase. Statement (D) is correct. For the perfectly competitive firm, it has been established that MR = P. So the firm’s profit maximizing output becomes the level of output at which P=MC. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Arrange the following events in order to explain how an increase in input prices impacts a firm’s supply curve: \u003cbr>(A) Cost of production rises. \u003cbr>(B) The firm’s average and marginal cost increase. \u003cbr>(C) Marginal cost curve shifts leftward or upward. \u003cbr>(D) The firm’s supply curve shifts to the left. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": true}, {"text": "(B), (A), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}, {"text": "(C), (A), (B), (D) \u003cbr>", "is_correct": false}], "solution": "An increase in input prices causes cost of production to rise (A), which raises both average and marginal cost (B). This shifts the marginal cost curve leftward or upward (C), leading to a leftward shift in the firm’s supply curve (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "If the number of firms in a market increases, what happens to the market supply curve? \u003cbr>", "options": [{"text": "It shifts to the left. \u003cbr>", "is_correct": false}, {"text": "It shifts to the right. \u003cbr>", "is_correct": true}, {"text": "It becomes steeper. \u003cbr>", "is_correct": false}, {"text": "It remains unchanged. \u003cbr>", "is_correct": false}], "solution": "An increase in the number of firms increases total market supply, shifting the supply curve to the right. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr> \u003cbr>", "options": [{"text": "2 \u003cbr>", "is_correct": false}, {"text": "5 \u003cbr>", "is_correct": false}, {"text": "7 \u003cbr>", "is_correct": true}, {"text": "12 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1753180005301image4.png", "so_img": "https://ts-cdn.adda247.com/1753180005301image7.png"}, {"subject": "ECONOMICS_0", "question": "If the price of a cricket ball increases from Rs 10 to Rs 30, and the quantity supplied increases from 200 to 1,000 cricket balls, what is the percentage change in quantity supplied? \u003cbr>", "options": [{"text": "200% \u003cbr>", "is_correct": false}, {"text": "400% \u003cbr>", "is_correct": true}, {"text": "500% \u003cbr>", "is_correct": false}, {"text": "800% \u003cbr>", "is_correct": false}], "solution": "Percentage change in quantity supplied = ((1000 - 200)/200) × 100 = (800/200) × 100 = 400%. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What are the key defining features of a perfectly competitive market? \u003cbr>(A) A large number of buyers and sellers. \u003cbr>(B) Each firm produces and sells a homogeneous product. \u003cbr>(C) Free entry into and exit from the market for firms. \u003cbr>(D) Imperfect information among market participants. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (B) Only \u003cbr>", "is_correct": false}, {"text": "(C), (D) Only \u003cbr>", "is_correct": false}, {"text": "(A), (B), (C) Only \u003cbr>", "is_correct": true}, {"text": "(A), (B), (C), (D) \u003cbr>", "is_correct": false}], "solution": "Perfect competition includes many buyers/sellers, homogeneous products, and free entry/exit. Information is perfect, so (D) is incorrect. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the demand curve facing a firm in a perfectly competitive market? \u003cbr>", "options": [{"text": "Downward-sloping. \u003cbr>", "is_correct": false}, {"text": "Upward-sloping. \u003cbr>", "is_correct": false}, {"text": "Perfectly elastic. \u003cbr>", "is_correct": true}, {"text": "Perfectly inelastic. \u003cbr>", "is_correct": false}], "solution": "The price line also depicts the demand curve facing a firm. The demand curve is perfectly elastic. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What is the primary assumption about firm behavior under perfect competition? \u003cbr>", "options": [{"text": "A firm aims to maximize its market share. \u003cbr>", "is_correct": false}, {"text": "A firm aims to minimize its total costs. \u003cbr>", "is_correct": false}, {"text": "A firm is a ruthless profit maximiser. \u003cbr>", "is_correct": true}, {"text": "A firm aims to maximize its sales revenue. \u003cbr>", "is_correct": false}], "solution": "The source explicitly states that \"a firm, we maintain, is a ruthless profit maximiser. So, the amount that a firm produces and sells in the market is that which maximises its profit.\" \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Why does the Total Revenue (TR) curve of a firm in perfect competition pass through the origin? \u003cbr>", "options": [{"text": "Because total cost is zero at zero output. \u003cbr>", "is_correct": false}, {"text": "Because when the output is zero, the total revenue of the firm is also zero. \u003cbr>", "is_correct": true}, {"text": "Because the market price is constant. \u003cbr>", "is_correct": false}, {"text": "Because profit is maximized at the origin. \u003cbr>", "is_correct": false}], "solution": "When the output is zero, the total revenue of the firm is also zero. Therefore, the TR curve passes through point O. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Why does marginal revenue (MR) equal the market price (p) for a price-taking firm? \u003cbr>", "options": [{"text": "Because firms can influence the market price. \u003cbr>", "is_correct": false}, {"text": "Because additional units sold reduce the average price. \u003cbr>", "is_correct": false}, {"text": "Because when a firm increases its output by one unit, this extra unit is sold at the market price. \u003cbr>", "is_correct": true}, {"text": "Because total revenue is constant. \u003cbr>", "is_correct": false}], "solution": "When a firm increases its output by one unit, this extra unit is sold at the market price. Hence, the marginal revenue equals the market price. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "Match the items in List I with relevant items in List II. \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": true}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}], "solution": "A perfectly elastic demand curve is shown as a horizontal line (I). In perfect competition, price = marginal revenue (II). The TR curve is upward sloping from origin (III), and price line = average revenue (IV). \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1753180005301image5.png"}, {"subject": "ECONOMICS_0", "question": "Sequence the effects of technological progress on a firm’s output level at a given market price: \u003cbr>(A) Technological progress occurs. \u003cbr>(B) Firm uses fewer inputs to produce the same output. \u003cbr>(C) Firm supplies more units of output. \u003cbr>(D) Supply curve shifts rightward. \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A), (C), (D), (B) \u003cbr>", "is_correct": false}, {"text": "(B), (A), (C), (D) \u003cbr>", "is_correct": false}, {"text": "(A), (C), (B), (D) \u003cbr>", "is_correct": false}, {"text": "(A), (B), (D), (C) \u003cbr>", "is_correct": true}], "solution": "Technological progress (A) enables more efficient production (B), lowers marginal cost and shifts the supply curve to the right (C), resulting in more output at any market price (D). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "What does rectangle OEBq₁ represent in Figure? \u003cbr>", "options": [{"text": "Total fixed cost \u003cbr>", "is_correct": false}, {"text": "Total revenue \u003cbr>", "is_correct": false}, {"text": "Total variable cost \u003cbr>", "is_correct": true}, {"text": "Total profit \u003cbr>", "is_correct": false}], "solution": "Area under AVC × output = Total Variable Cost (TVC), shown by rectangle OEBq₁. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "When will a firm choose to produce zero output in the short run? \u003cbr>", "options": [{"text": "When price equals AVC \u003cbr>", "is_correct": false}, {"text": "When price is greater than AVC \u003cbr>", "is_correct": false}, {"text": "When price is less than AVC \u003cbr>", "is_correct": true}, {"text": "When price equals AC \u003cbr>", "is_correct": false}], "solution": "A firm shuts down production in the short run when price is less than AVC, as it cannot even cover its variable costs. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "The area of rectangle pEBA represents: \u003cbr>", "options": [{"text": "Normal profit \u003cbr>", "is_correct": false}, {"text": "Supernormal profit \u003cbr>", "is_correct": false}, {"text": "Loss in excess of fixed cost \u003cbr>", "is_correct": true}, {"text": "Revenue from output \u003cbr>", "is_correct": false}], "solution": "Rectangle pEBA represents loss beyond fixed cost, since TR &lt; TVC and TFC is also to be subtracted. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "In Figure, what does rectangle OpAq₁ represent? \u003cbr>", "options": [{"text": "Total revenue \u003cbr>", "is_correct": true}, {"text": "Total cost \u003cbr>", "is_correct": false}, {"text": "Total variable cost \u003cbr>", "is_correct": false}, {"text": "Total profit \u003cbr>", "is_correct": false}], "solution": "Rectangle OpAq₁ = Price × Quantity, which equals Total Revenue (TR). \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "At output = 60 units, market price is ₹9, AVC = ₹7, TFC = ₹120. What is the Total Revenue? \u003cbr>", "options": [{"text": "₹420 \u003cbr>", "is_correct": false}, {"text": "₹480 \u003cbr>", "is_correct": false}, {"text": "₹540 \u003cbr>", "is_correct": false}, {"text": "₹600 \u003cbr>", "is_correct": true}], "solution": "TR = Price × Output = ₹9 × 60 = ₹540 \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr>\u003cb>Read the given passage and answer following question:\u003c/b> \u003cbr>In economics, the opportunity cost refers to the value of the next best alternative that is foregone when a decision is made. It highlights the benefits you miss out on when choosing one option over another. \u003cbr>For example, suppose you have ₹1,000. You decide to invest this amount in your family business. But you had other choices: you could have kept the money at home (which earns zero return) or deposited it in a bank. Bank 1 offers 10% interest, and Bank 2 offers 5% interest. Among all alternatives, the highest return you could have earned without investing in your family business is 10% from Bank 1. \u003cbr>Hence, the opportunity cost of investing in your business is the ₹100 (10% of ₹1,000) that you forego by not choosing Bank 1. Opportunity cost helps us evaluate decisions wisely by considering the cost of lost alternatives. \u003cbr> If a person invests ₹1,000 in their own business instead of earning 10% interest in the bank, the opportunity cost is: \u003cbr>", "options": [{"text": "₹1,000 \u003cbr>", "is_correct": false}, {"text": "₹10 \u003cbr>", "is_correct": false}, {"text": "₹100 \u003cbr>", "is_correct": true}, {"text": "₹0 \u003cbr>", "is_correct": false}], "solution": "10% of ₹1,000 = ₹100. That’s the income forgone, hence the opportunity cost. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr>\u003cb>Read the given passage and answer following question:\u003c/b> \u003cbr>In economics, the opportunity cost refers to the value of the next best alternative that is foregone when a decision is made. It highlights the benefits you miss out on when choosing one option over another. \u003cbr>For example, suppose you have ₹1,000. You decide to invest this amount in your family business. But you had other choices: you could have kept the money at home (which earns zero return) or deposited it in a bank. Bank 1 offers 10% interest, and Bank 2 offers 5% interest. Among all alternatives, the highest return you could have earned without investing in your family business is 10% from Bank 1. \u003cbr>Hence, the opportunity cost of investing in your business is the ₹100 (10% of ₹1,000) that you forego by not choosing Bank 1. Opportunity cost helps us evaluate decisions wisely by considering the cost of lost alternatives. \u003cbr> Which of the following statements is true? \u003cbr>", "options": [{"text": "Opportunity cost is always monetary \u003cbr>", "is_correct": false}, {"text": "It includes only fixed costs \u003cbr>", "is_correct": false}, {"text": "It is the gain from all foregone options \u003cbr>", "is_correct": false}, {"text": "It is the gain from the next best alternative foregone \u003cbr>", "is_correct": true}], "solution": "Opportunity cost is only the next best alternative, not all alternatives. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr>\u003cb>Read the given passage and answer following question:\u003c/b> \u003cbr>In economics, the opportunity cost refers to the value of the next best alternative that is foregone when a decision is made. It highlights the benefits you miss out on when choosing one option over another. \u003cbr>For example, suppose you have ₹1,000. You decide to invest this amount in your family business. But you had other choices: you could have kept the money at home (which earns zero return) or deposited it in a bank. Bank 1 offers 10% interest, and Bank 2 offers 5% interest. Among all alternatives, the highest return you could have earned without investing in your family business is 10% from Bank 1. \u003cbr>Hence, the opportunity cost of investing in your business is the ₹100 (10% of ₹1,000) that you forego by not choosing Bank 1. Opportunity cost helps us evaluate decisions wisely by considering the cost of lost alternatives. \u003cbr> A farmer uses his land to grow wheat instead of rice. The rice could earn ₹50,000, but wheat earns ₹70,000. What is the opportunity cost? \u003cbr>", "options": [{"text": "₹50,000 \u003cbr>", "is_correct": true}, {"text": "₹70,000 \u003cbr>", "is_correct": false}, {"text": "₹20,000 \u003cbr>", "is_correct": false}, {"text": "₹0 \u003cbr>", "is_correct": false}], "solution": "The foregone income from rice = ₹50,000 → opportunity cost. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr>\u003cb>Read the given passage and answer following question:\u003c/b> \u003cbr>In economics, the opportunity cost refers to the value of the next best alternative that is foregone when a decision is made. It highlights the benefits you miss out on when choosing one option over another. \u003cbr>For example, suppose you have ₹1,000. You decide to invest this amount in your family business. But you had other choices: you could have kept the money at home (which earns zero return) or deposited it in a bank. Bank 1 offers 10% interest, and Bank 2 offers 5% interest. Among all alternatives, the highest return you could have earned without investing in your family business is 10% from Bank 1. \u003cbr>Hence, the opportunity cost of investing in your business is the ₹100 (10% of ₹1,000) that you forego by not choosing Bank 1. Opportunity cost helps us evaluate decisions wisely by considering the cost of lost alternatives. \u003cbr> Opportunity cost is important in which of the following decisions? \u003cbr>", "options": [{"text": "Personal budgeting \u003cbr>", "is_correct": false}, {"text": "Business investment \u003cbr>", "is_correct": false}, {"text": "Government policy making \u003cbr>", "is_correct": false}, {"text": "All of the above \u003cbr>", "is_correct": true}], "solution": "Opportunity cost is a universal concept in all decision-making. \u003cbr>"}, {"subject": "ECONOMICS_0", "question": "\u003cbr>\u003cb>Read the given passage and answer following question:\u003c/b> \u003cbr>In economics, the opportunity cost refers to the value of the next best alternative that is foregone when a decision is made. It highlights the benefits you miss out on when choosing one option over another. \u003cbr>For example, suppose you have ₹1,000. You decide to invest this amount in your family business. But you had other choices: you could have kept the money at home (which earns zero return) or deposited it in a bank. Bank 1 offers 10% interest, and Bank 2 offers 5% interest. Among all alternatives, the highest return you could have earned without investing in your family business is 10% from Bank 1. \u003cbr>Hence, the opportunity cost of investing in your business is the ₹100 (10% of ₹1,000) that you forego by not choosing Bank 1. Opportunity cost helps us evaluate decisions wisely by considering the cost of lost alternatives. \u003cbr> A student decides to study for an exam instead of working part-time where they could earn ₹200. The opportunity cost of studying is: \u003cbr>", "options": [{"text": "₹200 \u003cbr>", "is_correct": true}, {"text": "₹0 \u003cbr>", "is_correct": false}, {"text": "₹100 \u003cbr>", "is_correct": false}, {"text": "Can’t be calculated \u003cbr>", "is_correct": false}], "solution": "The income forgone by not working = ₹200 → opportunity cost. \u003cbr>"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

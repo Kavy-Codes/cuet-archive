@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T15:10:46.136Z",
+  "generatedAt": "2026-09-27T15:36:54.324Z",
   "source": {
     "guildId": "1540430445483917342",
     "guildName": "CUET 2027",
@@ -9,9 +9,9 @@
     "forumUrl": "https://discord.com/channels/1540430445483917342/1553291830198538340"
   },
   "stats": {
-    "topics": 18,
-    "messages": 112,
-    "messagesSeen": 140,
+    "topics": 17,
+    "messages": 111,
+    "messagesSeen": 139,
     "links": 141
   },
   "topics": [
@@ -34,72 +34,92 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553296990497021982",
               "filename": "GAT_MOCK_-1.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990497021982/GAT_MOCK_-1.html?ex=6aba0d8d&is=6ab8bc0d&hm=624f6ddb35d4588f5dbb46c255668b9972e44049fd17f5fc59a223f9830127e1&",
               "size": 113589,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296990807269376",
               "filename": "GAT_MOCK_-2.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990807269376/GAT_MOCK_-2.html?ex=6aba0d8d&is=6ab8bc0d&hm=9c1589a6437a26324501d3864dc41ae7d80a3499dfedcd7421aaa2d99c0daf7b&",
               "size": 139020,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296991100862464",
               "filename": "GAT_MOCK_-3.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991100862464/GAT_MOCK_-3.html?ex=6aba0d8d&is=6ab8bc0d&hm=05be81d3f48b844abf8095b59a7392a849746c0da8d9127ba0d11e4b92a6e8cf&",
               "size": 142208,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296991432347658",
               "filename": "GAT_MOCK_-4.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991432347658/GAT_MOCK_-4.html?ex=6aba0d8d&is=6ab8bc0d&hm=e098a4c316669f0eb6bc380ff48880751870589b5c71ead0886837e2832f1a09&",
               "size": 133910,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296991683874836",
               "filename": "GAT_MOCK_-5.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991683874836/GAT_MOCK_-5.html?ex=6aba0d8d&is=6ab8bc0d&hm=339804bba5447cd0e755f9b05553e0aa25689cd65e27a12bd27506d996f47eed&",
               "size": 197237,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296991939731527",
               "filename": "GAT_MOCK_-6.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991939731527/GAT_MOCK_-6.html?ex=6aba0d8d&is=6ab8bc0d&hm=5ca6feabaa08014101e86cef068ce5584e0c757c296523a51db9216403a35fdb&",
               "size": 241432,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296992187187220",
               "filename": "GAT_MOCK_-7.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992187187220/GAT_MOCK_-7.html?ex=6aba0d8d&is=6ab8bc0d&hm=e5194031968d5cfba21ade45ff7ff269180d5d8c6207acb27b418ff89190521a&",
               "size": 136421,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296992489312306",
               "filename": "GAT_MOCK_-8.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992489312306/GAT_MOCK_-8.html?ex=6aba0d8d&is=6ab8bc0d&hm=8e1f76dd06d81b8a79cb910c63855681ef301d54a95cbbf41f4574663379e055&",
               "size": 135830,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296992757743697",
               "filename": "GAT_MOCK_-9.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992757743697/GAT_MOCK_-9.html?ex=6aba0d8d&is=6ab8bc0d&hm=259873e12a202c7e122fab1fe3d09c48878b5301d9ba5913a7de59d2e5dcacdf&",
               "size": 126144,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296993009410058",
               "filename": "GAT_MOCK_-10.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296993009410058/GAT_MOCK_-10.html?ex=6aba0d8d&is=6ab8bc0d&hm=c0b163c60f37f15cdf93b471a787ab023d2116048aa1c6e039ca68a422de69b6&",
               "size": 135659,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -114,72 +134,92 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553297058159665152",
               "filename": "Pratigya_GAT_Mock_Test_1.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058159665152/Pratigya_GAT_Mock_Test_1.html?ex=6aba0d9d&is=6ab8bc1d&hm=4b56a380531ff1fd669c1e5389522ec9cda04bf02d0229cfa0c0aef0bbe760b5&",
               "size": 75252,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297058419708044",
               "filename": "Pratigya_GAT_Mock_Test_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058419708044/Pratigya_GAT_Mock_Test_2.html?ex=6aba0d9d&is=6ab8bc1d&hm=c91ff6c7ab9b6c3f6732fc5b4dc6767de733a9689654755a2b8fe5b4d433097e&",
               "size": 74977,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297058713305098",
               "filename": "Pratigya_GAT_Mock_Test_3.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058713305098/Pratigya_GAT_Mock_Test_3.html?ex=6aba0d9d&is=6ab8bc1d&hm=424dd8a0c32d15ea8144e9eb217717b4baec1dc239790061aefd1eeb53a32ff3&",
               "size": 75177,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297058926960691",
               "filename": "Pratigya_GAT_Mock_Test_4.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058926960691/Pratigya_GAT_Mock_Test_4.html?ex=6aba0d9d&is=6ab8bc1d&hm=fe436114315fe1161cd4d7adfc5e476b1ff7ca7315e6f3513ee5f4fd90a5309a&",
               "size": 76002,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297059166298202",
               "filename": "Pratigya_GAT_Mock_Test_5.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059166298202/Pratigya_GAT_Mock_Test_5.html?ex=6aba0d9d&is=6ab8bc1d&hm=bd2fd109c8d1319f365218df0824bd61fdaef12e721cd4a6419e35911ed10faa&",
               "size": 74448,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297059434729513",
               "filename": "Pratigya_GAT_Mock_Test_6.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059434729513/Pratigya_GAT_Mock_Test_6.html?ex=6aba0d9d&is=6ab8bc1d&hm=071c8505329827961d944070c1c8f40dc4cba1e8f0db5a35ca3de18fdca5e825&",
               "size": 77269,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297059698966599",
               "filename": "Pratigya_GAT_Mock_Test_7.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059698966599/Pratigya_GAT_Mock_Test_7.html?ex=6aba0d9d&is=6ab8bc1d&hm=3719c4c906b4a557e48fa67624d0b88e2691f5bfd1798253bb26b19e55e575aa&",
               "size": 74905,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297059971334165",
               "filename": "Pratigya_GAT_Mock_Test_8.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059971334165/Pratigya_GAT_Mock_Test_8.html?ex=6aba0d9d&is=6ab8bc1d&hm=2ec107418ad6c55f099e9e9368769d1160a682a53bebdeee4303e5612a896f57&",
               "size": 73765,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297060277522462",
               "filename": "Pratigya_GAT_Mock_Test_11.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060277522462/Pratigya_GAT_Mock_Test_11.html?ex=6aba0d9e&is=6ab8bc1e&hm=3a75866c1ac839fb33051b76638c83e36f0c2a5ee67e4bb0b410ce8e2aa3ac8a&",
               "size": 73904,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297060546224148",
               "filename": "Pratigya_GAT_Mock_Test_9.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060546224148/Pratigya_GAT_Mock_Test_9.html?ex=6aba0d9e&is=6ab8bc1e&hm=7e43c346237414febc9d0ae13406495507063ec79538b94c4b1276d6cbcea0a4&",
               "size": 75935,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -194,37 +234,47 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553297192330985552",
               "filename": "Pratigya_GAT_Mock_Test_12.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192330985552/Pratigya_GAT_Mock_Test_12.html?ex=6aba0dbd&is=6ab8bc3d&hm=717fa6daeb0c49ce6e54c672b43316efb7a3ac6314bd0baff7f6473506a79cfd&",
               "size": 76001,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297192649891871",
               "filename": "Pratigya_GAT_Mock_Test_15.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192649891871/Pratigya_GAT_Mock_Test_15.html?ex=6aba0dbd&is=6ab8bc3d&hm=c9526233d2821ff33de829d938188d827f83b1be5c8657104283abb4b1ea259d&",
               "size": 72322,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297192947814450",
               "filename": "Pratigya_GAT_Mock_Test_14.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192947814450/Pratigya_GAT_Mock_Test_14.html?ex=6aba0dbd&is=6ab8bc3d&hm=fb503d27b004cbec333143b83ead484a53f9aaa5c070e0431ea1faa323e16aa1&",
               "size": 76035,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297193279033404",
               "filename": "Pratigya_GAT_Mock_Test_13.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193279033404/Pratigya_GAT_Mock_Test_13.html?ex=6aba0dbd&is=6ab8bc3d&hm=e3169112bf20209d0572d9599b5dce08417a00b9c8ef04782f1743b4a500372a&",
               "size": 73060,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297193660579840",
               "filename": "Pratigya_GAT_Mock_Test_10.html",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193660579840/Pratigya_GAT_Mock_Test_10.html?ex=6aba0dbd&is=6ab8bc3d&hm=a430f3c34f0b7824e997ef969bc26500a39ca5577a3b0d7a465d8bd42e77db92&",
               "size": 74189,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -239,16 +289,20 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553319402097737759",
               "filename": "Reasoning_Part_01_80037362_1.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402097737759/Reasoning_Part_01_80037362_1.pdf?ex=6aba226c&is=6ab8d0ec&hm=55f7c372384849993ed3b4f493046f4ee0f3df0602ac7c866096bc7b6f97ca62&",
               "size": 4779650,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553319402454130708",
               "filename": "Reasoning_Part_02_80688768.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402454130708/Reasoning_Part_02_80688768.pdf?ex=6aba226c&is=6ab8d0ec&hm=f9ffafd2ff2333558cd7a0996181760239d8a97a14b70c1a42f9b8cb38ecf323&",
               "size": 6850741,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -263,9 +317,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553681955764043866",
               "filename": "CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553681955764043866/CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf?ex=6aba2294&is=6ab8d114&hm=b0fa58cda94d9199561e6e38c26d21cd1faec61ea01251ca6186d63cf9f29262&",
               "size": 1256457,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -552,37 +608,47 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553296671402893332",
               "filename": "Pratigya_Chemistry_Mock_Test_1.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671402893332/Pratigya_Chemistry_Mock_Test_1.html?ex=6aba0d41&is=6ab8bbc1&hm=4fecb9257261f354d28cea9b7e1f666a16e04b80dbfec39f22dbf9b409ed25b9&",
               "size": 73354,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296671696359495",
               "filename": "Pratigya_Chemistry_Mock_Test_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671696359495/Pratigya_Chemistry_Mock_Test_2.html?ex=6aba0d41&is=6ab8bbc1&hm=83c556423db19ebde1401e374ead6f038a8224d7c2e1c2a94df2e0539b509af2&",
               "size": 74314,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296671960604683",
               "filename": "Pratigya_Chemistry_Mock_Test_3.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671960604683/Pratigya_Chemistry_Mock_Test_3.html?ex=6aba0d41&is=6ab8bbc1&hm=5ffe0f00eb771ac209d70da0eb83981ff5154ae6a90782fc8e51368bee8b44ba&",
               "size": 73470,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296672266780702",
               "filename": "Pratigya_Chemistry_Mock_Test_4.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672266780702/Pratigya_Chemistry_Mock_Test_4.html?ex=6aba0d41&is=6ab8bbc1&hm=6840fe4afd18b1c7b5765ed1695a1175faa2449346f169d4cf948f5d95d1fc13&",
               "size": 72216,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296672648331274",
               "filename": "Pratigya_Chemistry_Mock_Test_5.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672648331274/Pratigya_Chemistry_Mock_Test_5.html?ex=6aba0d41&is=6ab8bbc1&hm=920c6a2222a70c6cb55f3857ec15d4bd5ff4869d700755f4a104e0b40e1ab4db&",
               "size": 72317,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -597,72 +663,92 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553296782828507237",
               "filename": "Pratigya_Chemistry_Mock_Test_6.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296782828507237/Pratigya_Chemistry_Mock_Test_6.html?ex=6aba0d5b&is=6ab8bbdb&hm=9b82ca5fa1908b22716c8fce6c9802e109c6361d280416c9da696eeaf08bbd01&",
               "size": 73429,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296783575097354",
               "filename": "Pratigya_Chemistry_Mock_Test_7.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783575097354/Pratigya_Chemistry_Mock_Test_7.html?ex=6aba0d5c&is=6ab8bbdc&hm=63d58767a8b5d5da54cf1b908e02358fc22a26364ddc9d687a8fcba346234246&",
               "size": 77037,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296783885598781",
               "filename": "Pratigya_Chemistry_Mock_Test_8.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783885598781/Pratigya_Chemistry_Mock_Test_8.html?ex=6aba0d5c&is=6ab8bbdc&hm=b424bdfa9008226833c1631ebbf83911c5aeed46b458460ac3c9cb0d35201164&",
               "size": 77470,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296784632189018",
               "filename": "Pratigya_Chemistry_Mock_Test_9.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784632189018/Pratigya_Chemistry_Mock_Test_9.html?ex=6aba0d5c&is=6ab8bbdc&hm=b0b52c8720c9ec1c5b11406ae41650fb507f49b1dcda53e3938af99fd745e79c&",
               "size": 77198,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296784917274674",
               "filename": "Pratigya_Chemistry_Mock_Test_10.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784917274674/Pratigya_Chemistry_Mock_Test_10.html?ex=6aba0d5c&is=6ab8bbdc&hm=7c3df6c5162fc978de9886ef81bfb5024ab56be012756b4dfe0c0f74f7b8c00c&",
               "size": 77509,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296785361993799",
               "filename": "Pratigya_Chemistry_Mock_Test_11.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785361993799/Pratigya_Chemistry_Mock_Test_11.html?ex=6aba0d5c&is=6ab8bbdc&hm=7629b547bbff5f81c3fdd8c5fa8afdff8455c2f29aa40af8104ee31660ae834e&",
               "size": 77289,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296785785626676",
               "filename": "Pratigya_Chemistry_Mock_Test_12.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785785626676/Pratigya_Chemistry_Mock_Test_12.html?ex=6aba0d5c&is=6ab8bbdc&hm=157d9d99b336ce8c60745a1d8eee846d15dda063edee502f6c76189aedddf7a7&",
               "size": 81867,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296786095870083",
               "filename": "Pratigya_Chemistry_Mock_Test_13.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786095870083/Pratigya_Chemistry_Mock_Test_13.html?ex=6aba0d5c&is=6ab8bbdc&hm=de337f8455bcaab6097570c473313fcd59ef337bd8fa34102829c637c725518e&",
               "size": 77413,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296786418958346",
               "filename": "Pratigya_Chemistry_Mock_Test_14.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786418958346/Pratigya_Chemistry_Mock_Test_14.html?ex=6aba0d5c&is=6ab8bbdc&hm=bc6248cf716e2219b675b85ce22b80e341523ef0e71f138d5837e016690b29e7&",
               "size": 76552,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553296786788065330",
               "filename": "Pratigya_Chemistry_Mock_Test_15.html",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786788065330/Pratigya_Chemistry_Mock_Test_15.html?ex=6aba0d5c&is=6ab8bbdc&hm=630444adbb4217dfb91cd511a81b0cc44f81642ddc869115a6a59721ee89ec1a&",
               "size": 77519,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -709,9 +795,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553633240328175656",
               "filename": "SSM-CHEMISTRY-_XII.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553633240328175656/SSM-CHEMISTRY-_XII.pdf?ex=6ab9f535&is=6ab8a3b5&hm=063fe0ac16cb37dcc327b9f1a21faca76b8c77172346bba0858a3e2d965b5bd2&",
               "size": 12927031,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -876,72 +964,92 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553297950095179847",
               "filename": "Pratigya_Physics_Mock_Test_1.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950095179847/Pratigya_Physics_Mock_Test_1.html?ex=6aba0e72&is=6ab8bcf2&hm=d7e2b8401d1488a144cbda4adc746922db98384279d7d78ce04116ca965f3de0&",
               "size": 79870,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297950476730409",
               "filename": "Pratigya_Physics_Mock_Test_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950476730409/Pratigya_Physics_Mock_Test_2.html?ex=6aba0e72&is=6ab8bcf2&hm=3476dce18facdb0258eecfc3a41fa1a1c0e0bea3e61d399f40d6a67c2b80c731&",
               "size": 77106,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297950845698079",
               "filename": "Pratigya_Physics_Mock_Test_3.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950845698079/Pratigya_Physics_Mock_Test_3.html?ex=6aba0e72&is=6ab8bcf2&hm=42a4003f5062a2647822b97735b2babc04e0d67282d717b2c3c6af364dacd49d&",
               "size": 79526,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297951172984832",
               "filename": "Pratigya_Physics_Mock_Test_4.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951172984832/Pratigya_Physics_Mock_Test_4.html?ex=6aba0e72&is=6ab8bcf2&hm=fc1ceb60fae3bac3c879686da3cf09b29cc29d602b23cde3d7884e4ea75a21bd&",
               "size": 77869,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297951462264864",
               "filename": "Pratigya_Physics_Mock_Test_5.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951462264864/Pratigya_Physics_Mock_Test_5.html?ex=6aba0e72&is=6ab8bcf2&hm=5afb1f456a41aa750b31d23460d472383f365f129f999d6e692ca944fbe998c7&",
               "size": 78501,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297951777103883",
               "filename": "Pratigya_Physics_Mock_Test_6.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951777103883/Pratigya_Physics_Mock_Test_6.html?ex=6aba0e72&is=6ab8bcf2&hm=ab100e7556dbf2304fe4453cf701eb95f0f9e6fbbd967a140a24e7cb89c87a14&",
               "size": 81785,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297952137678919",
               "filename": "Pratigya_Physics_Mock_Test_7.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952137678919/Pratigya_Physics_Mock_Test_7.html?ex=6aba0e72&is=6ab8bcf2&hm=79950453fa3b5e8e55ab9aeded48bb168f4684e5ff8b70ad91a0efb1e96d45d1&",
               "size": 80888,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297952410177566",
               "filename": "Pratigya_Physics_Mock_Test_8.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952410177566/Pratigya_Physics_Mock_Test_8.html?ex=6aba0e72&is=6ab8bcf2&hm=f37762c4ef0aff38e4bf242fad36e3f6e63ffdf44598d708014b8f6e61260d30&",
               "size": 76480,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297952699719730",
               "filename": "Pratigya_Physics_Mock_Test_13.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952699719730/Pratigya_Physics_Mock_Test_13.html?ex=6aba0e72&is=6ab8bcf2&hm=6e5ab00159a57f81307d05fbe3433524a8d6783c67aa3369f16ae4d3dda99e60&",
               "size": 78211,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553297952955441212",
               "filename": "Pratigya_Physics_Mock_Test_9.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952955441212/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e72&is=6ab8bcf2&hm=aac36ee50741d187e15a40ee646353cdb52ffd3de3a70e8d1070f98363f90029&",
               "size": 76935,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -956,44 +1064,56 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553298052603969648",
               "filename": "Pratigya_Physics_Mock_Test_15.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052603969648/Pratigya_Physics_Mock_Test_15.html?ex=6aba0e8a&is=6ab8bd0a&hm=81f0ca9907bf24dd8534c1ed5f6ed523e97cadb264ecd2eac3345c400e6a8f1c&",
               "size": 79693,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553298052876345394",
               "filename": "Pratigya_Physics_Mock_Test_14.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052876345394/Pratigya_Physics_Mock_Test_14.html?ex=6aba0e8a&is=6ab8bd0a&hm=c37ddef097e56343a7fcf8a5cf7c632b90db6c8d078edf814cedc97f8c5e2183&",
               "size": 78790,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553298053123932220",
               "filename": "Pratigya_Physics_Mock_Test_10.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053123932220/Pratigya_Physics_Mock_Test_10.html?ex=6aba0e8a&is=6ab8bd0a&hm=18ce61f71615c64d234fda9ed8544018c18965b7b9efc081458b904e7d70a7a8&",
               "size": 79376,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553298053534978068",
               "filename": "Pratigya_Physics_Mock_Test_12.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053534978068/Pratigya_Physics_Mock_Test_12.html?ex=6aba0e8a&is=6ab8bd0a&hm=f7ed109da180c99f352460ccf90a0d8b78068984e5dfd37f82f05fa9cabbb410&",
               "size": 78238,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553298053820059719",
               "filename": "Pratigya_Physics_Mock_Test_11.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053820059719/Pratigya_Physics_Mock_Test_11.html?ex=6aba0e8a&is=6ab8bd0a&hm=ced5522d97fcd5954bec854e6f6d546d86f89581352e87a888ea4343e5a75f8a&",
               "size": 80303,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553298054277234698",
               "filename": "Pratigya_Physics_Mock_Test_9.html",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298054277234698/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e8b&is=6ab8bd0b&hm=60ea6f24b7d7635fead9a1160a482be71e90e5f1e9a92fdf1fd6f12ba09834ff&",
               "size": 76935,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -1023,9 +1143,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553633346981072936",
               "filename": "PHYSICS_XII_SSM_2025-26.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553633346981072936/PHYSICS_XII_SSM_2025-26.pdf?ex=6ab9f54f&is=6ab8a3cf&hm=857712ae9a7d126ec205e64a2725011828b034fc4d13cbc4487a151556d451cb&",
               "size": 9170844,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1209,37 +1331,47 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553318217571766292",
               "filename": "Economics_Part_Test_-_01_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217571766292/Economics_Part_Test_-_01_2.html?ex=6aba2152&is=6ab8cfd2&hm=1ed630f233728a3a7e39b832bb965394d65422d339445fe7204238733226f227&",
               "size": 83629,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553318217970221097",
               "filename": "Economics_Part_Test_-_02_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217970221097/Economics_Part_Test_-_02_2.html?ex=6aba2152&is=6ab8cfd2&hm=87b85205f40283b52bc4426c7e74382c56e339ceb8fa9e76ab1a606cf5dbfa74&",
               "size": 78783,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553318218293186631",
               "filename": "Economics_Part_Test_-_03_2.html",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218293186631/Economics_Part_Test_-_03_2.html?ex=6aba2152&is=6ab8cfd2&hm=2d00566408f883d7ce7f601451ca5429c03452baa54815427305e573372ec54d&",
               "size": 86743,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553318218712481873",
               "filename": "Economics_Part_Test_-_04.html",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218712481873/Economics_Part_Test_-_04.html?ex=6aba2152&is=6ab8cfd2&hm=ec70dbd1c16e0885755a68b8c9e01e18ec1187e813ac92584c657deb7c16a562&",
               "size": 81308,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553318219161280532",
               "filename": "Economics_Part_Test_-_05.html",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318219161280532/Economics_Part_Test_-_05.html?ex=6aba2152&is=6ab8cfd2&hm=1865c32790b1a5132963ee95a0bddb9ba5b4860e3895227c4fc3b3e9cd42e627&",
               "size": 81429,
+              "contentType": "text/html; charset=utf-8",
               "context": ""
             }
           ],
@@ -1254,23 +1386,29 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553607986503622667",
               "filename": "Eco_Revised_SSM_Cl.XII.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9ddb0&is=6ab88c30&hm=3a8b13d6584219e12ffea7c9a20e3a600e2cc5e793aa39b9acc8f59c3f4b71d8&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6aba8670&is=6ab934f0&hm=9a4891ab4bd491f5932b44787e7fcf20f60e6c9249b6779af832335c5c288cc2&",
               "size": 4942610,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553607987195805736",
               "filename": "Subhash_Deys_Economics_XII_NOTES.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6ab9ddb0&is=6ab88c30&hm=130ae6edc63bd258adaeba42bfe13ba232971fa09d407234ecaac650751d8368&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6aba8670&is=6ab934f0&hm=d04e8f4747cd467ac56bb70473701c1c1975cac85361e40abf7951d2caafcf73&",
               "size": 864671,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553607988013432873",
               "filename": "MindMap-IED.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6ab9ddb0&is=6ab88c30&hm=8ff790af77afb1f225e62fdb3dce09a0b5bfa0dcf9746a0480d5d2752ab233fa&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6aba8670&is=6ab934f0&hm=ca16181b148b2a07015af76e179e5fd946c8bfe6dedfcd7f2dd4e589efc34984&",
               "size": 5729491,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1328,9 +1466,11 @@
             },
             {
               "type": "attachment",
+              "attId": "1553608095010263120",
               "filename": "Economics_30_Sets_2025-26_Sample_Paper.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6ab9ddca&is=6ab88c4a&hm=a635111bf3f3f9caa46c3e1d8ffa540a4731920b8f67618512aa9881bc6dbc1e&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6aba868a&is=6ab9350a&hm=3cd663e0c9e75e45b4842e21e94d1033c884778bb073d3e5d3ad21374e4b8fea&",
               "size": 4446928,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1345,23 +1485,29 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553608143643090944",
               "filename": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6ab9ddd6&is=6ab88c56&hm=5ac4eb22c90a217da353640c079ee9d00455e463d7661a5b53a134aeb7bc6fb0&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6aba8696&is=6ab93516&hm=005e7c33b172e29638255d5a74da447273307f25c6c8b791ea3fbd68d4892384&",
               "size": 27846445,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553608146193481768",
               "filename": "Economics_Revision_Notes.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6ab9ddd6&is=6ab88c56&hm=cfc493ae97f20344c2e7b76e0ec8f1897e7d47c149014bc494d6c8952ce513d2&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6aba8696&is=6ab93516&hm=03621e63d974abdb94797b0c19de8ec27819ec9c796609355f6254dda8b89abf&",
               "size": 7892790,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553608146537422968",
               "filename": "XamIdea_Economics_Class_12.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6ab9ddd6&is=6ab88c56&hm=38725e0c96575f85f584a0a84b6bf87a0f9c739acb83d5e954e3abd99890b99a&",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6aba8696&is=6ab93516&hm=ad7bab1c545b89f9a8eb9c956201d78f4c45822283eef6ccff657348963786a3&",
               "size": 30419924,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1391,9 +1537,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553633088003645532",
               "filename": "Eco_Revised_SSM_Cl.XII.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553633088003645532/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9f511&is=6ab8a391&hm=bf673c54a22e6c7f3e21696493b6e32e82ec0086b72549351329463d1654f9ef&",
               "size": 4942610,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1442,7 +1590,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9ddb0&is=6ab88c30&hm=3a8b13d6584219e12ffea7c9a20e3a600e2cc5e793aa39b9acc8f59c3f4b71d8&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6aba8670&is=6ab934f0&hm=9a4891ab4bd491f5932b44787e7fcf20f60e6c9249b6779af832335c5c288cc2&",
           "domain": "cdn.discordapp.com",
           "title": "Eco_Revised_SSM_Cl.XII.pdf",
           "topic": "Economics",
@@ -1450,7 +1598,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6ab9ddb0&is=6ab88c30&hm=130ae6edc63bd258adaeba42bfe13ba232971fa09d407234ecaac650751d8368&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6aba8670&is=6ab934f0&hm=d04e8f4747cd467ac56bb70473701c1c1975cac85361e40abf7951d2caafcf73&",
           "domain": "cdn.discordapp.com",
           "title": "Subhash_Deys_Economics_XII_NOTES.pdf",
           "topic": "Economics",
@@ -1458,7 +1606,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6ab9ddb0&is=6ab88c30&hm=8ff790af77afb1f225e62fdb3dce09a0b5bfa0dcf9746a0480d5d2752ab233fa&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6aba8670&is=6ab934f0&hm=ca16181b148b2a07015af76e179e5fd946c8bfe6dedfcd7f2dd4e589efc34984&",
           "domain": "cdn.discordapp.com",
           "title": "MindMap-IED.pdf",
           "topic": "Economics",
@@ -1474,7 +1622,7 @@
           "source": "message"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6ab9ddca&is=6ab88c4a&hm=a635111bf3f3f9caa46c3e1d8ffa540a4731920b8f67618512aa9881bc6dbc1e&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6aba868a&is=6ab9350a&hm=3cd663e0c9e75e45b4842e21e94d1033c884778bb073d3e5d3ad21374e4b8fea&",
           "domain": "cdn.discordapp.com",
           "title": "Economics_30_Sets_2025-26_Sample_Paper.pdf",
           "topic": "Economics",
@@ -1482,7 +1630,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6ab9ddd6&is=6ab88c56&hm=5ac4eb22c90a217da353640c079ee9d00455e463d7661a5b53a134aeb7bc6fb0&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6aba8696&is=6ab93516&hm=005e7c33b172e29638255d5a74da447273307f25c6c8b791ea3fbd68d4892384&",
           "domain": "cdn.discordapp.com",
           "title": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
           "topic": "Economics",
@@ -1490,7 +1638,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6ab9ddd6&is=6ab88c56&hm=cfc493ae97f20344c2e7b76e0ec8f1897e7d47c149014bc494d6c8952ce513d2&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6aba8696&is=6ab93516&hm=03621e63d974abdb94797b0c19de8ec27819ec9c796609355f6254dda8b89abf&",
           "domain": "cdn.discordapp.com",
           "title": "Economics_Revision_Notes.pdf",
           "topic": "Economics",
@@ -1498,7 +1646,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6ab9ddd6&is=6ab88c56&hm=38725e0c96575f85f584a0a84b6bf87a0f9c739acb83d5e954e3abd99890b99a&",
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6aba8696&is=6ab93516&hm=ad7bab1c545b89f9a8eb9c956201d78f4c45822283eef6ccff657348963786a3&",
           "domain": "cdn.discordapp.com",
           "title": "XamIdea_Economics_Class_12.pdf",
           "topic": "Economics",
@@ -1940,16 +2088,20 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553293815140458587",
               "filename": "Vocabular_asked_11_to_15th_may.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293815140458587/Vocabular_asked_11_to_15th_may.pdf?ex=6aba0a98&is=6ab8b918&hm=669805ca7fd48df3739c2dd58811b1a6f3489608dd6cb1c0ae8c9cb44471f1d2&",
               "size": 51590,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553293816050487376",
               "filename": "vocab_18_to_22_and_english_paper_trend_analysis.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293816050487376/vocab_18_to_22_and_english_paper_trend_analysis.pdf?ex=6aba0a98&is=6ab8b918&hm=7d160f9e6ec4f7dae03a1b86cebe636c2505bfb87b4eed102ec7d12342097ba0&",
               "size": 105237,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -1964,16 +2116,20 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553295162942169109",
               "filename": "Vocab_A_to_Z_compressed.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295162942169109/Vocab_A_to_Z_compressed.pdf?ex=6aba0bd9&is=6ab8ba59&hm=a9e6324b5f3e580458695d1418b0778e70ce492473ed8d8458e3987d77b8a5df&",
               "size": 7614929,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553295163273515058",
               "filename": "Word_Power.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295163273515058/Word_Power.pdf?ex=6aba0bd9&is=6ab8ba59&hm=dd775b11137c91fe1b1ae5698cc9cef8fb5057c6d38aa34ca8774655a955961c&",
               "size": 20946600,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -2011,23 +2167,29 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553299876576624640",
               "filename": "Grammar_2.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299876576624640/Grammar_2.pdf?ex=6aba103d&is=6ab8bebd&hm=1e6d567bc5da29a403c3cce9ad28915f119e1153f4a9538f310949b53aa581af&",
               "size": 1093435,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553299877234999367",
               "filename": "ReadingComprehension_2.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877234999367/ReadingComprehension_2.pdf?ex=6aba103d&is=6ab8bebd&hm=4caf05e5cceee2011eb47b0790f849adf64db5b174219f251c09dcac59fe6489&",
               "size": 767307,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553299877939908628",
               "filename": "VerbalLogic_2.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877939908628/VerbalLogic_2.pdf?ex=6aba103d&is=6ab8bebd&hm=3be9521c9ef1e6c21d4137f50240f532d6ffc7d08f039a30f67c81e058101fba&",
               "size": 512236,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -2042,9 +2204,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553611114703626331",
               "filename": "All_rounder_for_English.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6ab9e09a&is=6ab88f1a&hm=2aeaa5089439e93044de9b27a85dea64373fb926d1e3d7770af13029324248ac&",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6aba895a&is=6ab937da&hm=90e908b733f637ae7354357ea33af8b603fcf92928dea41a9f0b6580be6a0d5c&",
               "size": 4726393,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -2078,9 +2242,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553756829123874887",
               "filename": "CUET_Vocab_BEST.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553756829123874887/CUET_Vocab_BEST.pdf?ex=6aba684f&is=6ab916cf&hm=8dfa0d26cca9689733c09cd438e16f7d24ec7dde378f1d5e75ef26e8b31c0aad&",
               "size": 752679,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -2182,7 +2348,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6ab9e09a&is=6ab88f1a&hm=2aeaa5089439e93044de9b27a85dea64373fb926d1e3d7770af13029324248ac&",
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6aba895a&is=6ab937da&hm=90e908b733f637ae7354357ea33af8b603fcf92928dea41a9f0b6580be6a0d5c&",
           "domain": "cdn.discordapp.com",
           "title": "All_rounder_for_English.pdf",
           "topic": "English",
@@ -2538,382 +2704,12 @@
       ]
     },
     {
-      "id": "1553318470957924352",
-      "name": "Business Studies",
-      "emoji": "🤝",
-      "slug": "business-studies",
-      "messageCount": 4,
-      "totalMessages": 4,
-      "tags": [],
-      "url": "https://discord.com/channels/1540430445483917342/1553318470957924352",
-      "messages": [
-        {
-          "id": "1553318470957924352",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T08:13:02.738000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318470957924352",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "Business Studies material here"
-                }
-              ]
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553318548573523978",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T08:13:21.243000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318548573523978",
-          "blocks": [
-            {
-              "type": "attachment",
-              "filename": "BUSINESS_STUDIES_MOCK_-1.html",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
-              "size": 164089,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "BUSINESS_STUDIES_MOCK_-2.html",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
-              "size": 157467,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "BUSINESS_STUDIES_MOCK_-3.html",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
-              "size": 153594,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "BUSINESS_STUDIES_MOCK_-4.html",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
-              "size": 155419,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "BUSINESS_STUDIES_MOCK_-5.html",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
-              "size": 160955,
-              "context": ""
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553631881558233200",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-27T04:58:25.648000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631881558233200",
-          "blocks": [
-            {
-              "type": "heading",
-              "level": 2,
-              "text": "Official Material for Business Studies by Kendriya Vidyalaya! :"
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553631957831647302",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-27T04:58:43.833000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631957831647302",
-          "blocks": [
-            {
-              "type": "attachment",
-              "filename": "XII_B.ST_Study_Material_2025-26_1.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
-              "size": 18098097,
-              "context": ""
-            }
-          ],
-          "tags": []
-        }
-      ],
-      "links": [
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
-          "domain": "cdn.discordapp.com",
-          "title": "BUSINESS_STUDIES_MOCK_-1.html",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
-          "domain": "cdn.discordapp.com",
-          "title": "BUSINESS_STUDIES_MOCK_-2.html",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
-          "domain": "cdn.discordapp.com",
-          "title": "BUSINESS_STUDIES_MOCK_-3.html",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
-          "domain": "cdn.discordapp.com",
-          "title": "BUSINESS_STUDIES_MOCK_-4.html",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
-          "domain": "cdn.discordapp.com",
-          "title": "BUSINESS_STUDIES_MOCK_-5.html",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
-          "domain": "cdn.discordapp.com",
-          "title": "XII_B.ST_Study_Material_2025-26_1.pdf",
-          "topic": "Business Studies",
-          "slug": "business-studies",
-          "source": "attachment"
-        }
-      ]
-    },
-    {
-      "id": "1553331839173922867",
-      "name": "Psychology",
-      "emoji": "🧠",
-      "slug": "psychology",
-      "messageCount": 7,
-      "totalMessages": 8,
-      "tags": [
-        "psychology"
-      ],
-      "url": "https://discord.com/channels/1540430445483917342/1553331839173922867",
-      "messages": [
-        {
-          "id": "1553331839173922867",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T09:06:09.969000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331839173922867",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "Psychology content here."
-                }
-              ]
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553331877492817920",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T09:06:19.105000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331877492817920",
-          "blocks": [
-            {
-              "type": "link",
-              "url": "https://kavy-codes.github.io/psych-rev/",
-              "domain": "kavy-codes.github.io",
-              "context": ""
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553331925823791165",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T09:06:30.628000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331925823791165",
-          "blocks": [],
-          "tags": [
-            "psychology"
-          ]
-        },
-        {
-          "id": "1553332021173030974",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T09:06:53.361000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553332021173030974",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "Hope this helps, Made by me"
-                }
-              ]
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553607542800916490",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-27T03:21:42.836000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607542800916490",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "MCQs:"
-                }
-              ]
-            },
-            {
-              "type": "link",
-              "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
-              "domain": "drive.google.com",
-              "context": "MCQs:"
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553607555924627480",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-27T03:21:45.965000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607555924627480",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "Mindmaps:"
-                }
-              ]
-            },
-            {
-              "type": "link",
-              "url": "https://share.google/JslkBusIFkHdDczWI",
-              "domain": "share.google",
-              "context": "Mindmaps:",
-              "embedTitle": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
-              "embedDesc": "TO GET E-CONTENT FOR PSYCHOLOGY ( XI - XII ) JOIN WHATS APP GROUP CLICK HERE WITH THE LINK , YOU CAN DOWNLOAD THE MIND MAPS FOR CLASS XII ..."
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553607641568247840",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-27T03:22:06.384000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607641568247840",
-          "blocks": [
-            {
-              "type": "attachment",
-              "filename": "Revision_Notes_Psychology.._1.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6ab9dd5d&is=6ab88bdd&hm=8431dabfd4667efe0f73fbc7d03a1c7d9729b8a01b282cdb6e078c5cf2036887&",
-              "size": 9956642,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6ab9dd5e&is=6ab88bde&hm=103ec2f5591b1d599428d9cb77875489b851256cd3dff7de3a95385620997615&",
-              "size": 6674911,
-              "context": ""
-            },
-            {
-              "type": "attachment",
-              "filename": "12th_Psychology_Material.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6ab9dd5e&is=6ab88bde&hm=cd6fb9968d969a629f67688e830ce27c0fd9656b66af4c984ad5cf6850c19708&",
-              "size": 4116554,
-              "context": ""
-            }
-          ],
-          "tags": []
-        }
-      ],
-      "links": [
-        {
-          "url": "https://kavy-codes.github.io/psych-rev/",
-          "domain": "kavy-codes.github.io",
-          "title": "kavy-codes.github.io",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "message"
-        },
-        {
-          "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
-          "domain": "drive.google.com",
-          "title": "MCQs:",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "message"
-        },
-        {
-          "url": "https://share.google/JslkBusIFkHdDczWI",
-          "domain": "share.google",
-          "title": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "message"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6ab9dd5d&is=6ab88bdd&hm=8431dabfd4667efe0f73fbc7d03a1c7d9729b8a01b282cdb6e078c5cf2036887&",
-          "domain": "cdn.discordapp.com",
-          "title": "Revision_Notes_Psychology.._1.pdf",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6ab9dd5e&is=6ab88bde&hm=103ec2f5591b1d599428d9cb77875489b851256cd3dff7de3a95385620997615&",
-          "domain": "cdn.discordapp.com",
-          "title": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "attachment"
-        },
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6ab9dd5e&is=6ab88bde&hm=cd6fb9968d969a629f67688e830ce27c0fd9656b66af4c984ad5cf6850c19708&",
-          "domain": "cdn.discordapp.com",
-          "title": "12th_Psychology_Material.pdf",
-          "topic": "Psychology",
-          "slug": "psychology",
-          "source": "attachment"
-        }
-      ]
-    },
-    {
       "id": "1553312643715174421",
       "name": "Miscellaneous",
       "emoji": "🌟",
       "slug": "miscellaneous",
-      "messageCount": 11,
-      "totalMessages": 13,
+      "messageCount": 12,
+      "totalMessages": 15,
       "tags": [],
       "url": "https://discord.com/channels/1540430445483917342/1553312643715174421",
       "messages": [
@@ -3134,6 +2930,23 @@
             }
           ],
           "tags": []
+        },
+        {
+          "id": "1553790692852244601",
+          "author": "sonysabgarud",
+          "isOP": false,
+          "timestamp": "2026-09-27T15:29:29.211000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553790692852244601",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://t.me/+_9lS2ea_xUhlYWRl",
+              "domain": "t.me",
+              "context": "",
+              "embedTitle": "I 💖 PIRACY"
+            }
+          ],
+          "tags": []
         }
       ],
       "links": [
@@ -3176,6 +2989,402 @@
           "topic": "Miscellaneous",
           "slug": "miscellaneous",
           "source": "message"
+        },
+        {
+          "url": "https://t.me/+_9lS2ea_xUhlYWRl",
+          "domain": "t.me",
+          "title": "I 💖 PIRACY",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553318470957924352",
+      "name": "Business Studies",
+      "emoji": "🤝",
+      "slug": "business-studies",
+      "messageCount": 4,
+      "totalMessages": 4,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553318470957924352",
+      "messages": [
+        {
+          "id": "1553318470957924352",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:13:02.738000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318470957924352",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Business Studies material here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553318548573523978",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:13:21.243000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318548573523978",
+          "blocks": [
+            {
+              "type": "attachment",
+              "attId": "1553318547185344582",
+              "filename": "BUSINESS_STUDIES_MOCK_-1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
+              "size": 164089,
+              "contentType": "text/html; charset=utf-8",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553318547462164500",
+              "filename": "BUSINESS_STUDIES_MOCK_-2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
+              "size": 157467,
+              "contentType": "text/html; charset=utf-8",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553318547718152223",
+              "filename": "BUSINESS_STUDIES_MOCK_-3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
+              "size": 153594,
+              "contentType": "text/html; charset=utf-8",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553318547999166464",
+              "filename": "BUSINESS_STUDIES_MOCK_-4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
+              "size": 155419,
+              "contentType": "text/html; charset=utf-8",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553318548292509756",
+              "filename": "BUSINESS_STUDIES_MOCK_-5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
+              "size": 160955,
+              "contentType": "text/html; charset=utf-8",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631881558233200",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:58:25.648000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631881558233200",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Business Studies by Kendriya Vidyalaya! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631957831647302",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:58:43.833000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631957831647302",
+          "blocks": [
+            {
+              "type": "attachment",
+              "attId": "1553631957525729290",
+              "filename": "XII_B.ST_Study_Material_2025-26_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
+              "size": 18098097,
+              "contentType": "application/pdf",
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-1.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-2.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-3.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-4.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-5.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
+          "domain": "cdn.discordapp.com",
+          "title": "XII_B.ST_Study_Material_2025-26_1.pdf",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553331839173922867",
+      "name": "Psychology",
+      "emoji": "🧠",
+      "slug": "psychology",
+      "messageCount": 7,
+      "totalMessages": 8,
+      "tags": [
+        "psychology"
+      ],
+      "url": "https://discord.com/channels/1540430445483917342/1553331839173922867",
+      "messages": [
+        {
+          "id": "1553331839173922867",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:09.969000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331839173922867",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Psychology content here."
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553331877492817920",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:19.105000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331877492817920",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://kavy-codes.github.io/psych-rev/",
+              "domain": "kavy-codes.github.io",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553331925823791165",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:30.628000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331925823791165",
+          "blocks": [],
+          "tags": [
+            "psychology"
+          ]
+        },
+        {
+          "id": "1553332021173030974",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:53.361000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553332021173030974",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Hope this helps, Made by me"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607542800916490",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:21:42.836000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607542800916490",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "MCQs:"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
+              "domain": "drive.google.com",
+              "context": "MCQs:"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607555924627480",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:21:45.965000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607555924627480",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Mindmaps:"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://share.google/JslkBusIFkHdDczWI",
+              "domain": "share.google",
+              "context": "Mindmaps:",
+              "embedTitle": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
+              "embedDesc": "TO GET E-CONTENT FOR PSYCHOLOGY ( XI - XII ) JOIN WHATS APP GROUP CLICK HERE WITH THE LINK , YOU CAN DOWNLOAD THE MIND MAPS FOR CLASS XII ..."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607641568247840",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:22:06.384000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607641568247840",
+          "blocks": [
+            {
+              "type": "attachment",
+              "attId": "1553607639529684992",
+              "filename": "Revision_Notes_Psychology.._1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6aba861d&is=6ab9349d&hm=4ae8d922753d3971b8d34f64aed9fe723a3582958110db8fe9863b13cd67e2af&",
+              "size": 9956642,
+              "contentType": "application/pdf",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553607640293056572",
+              "filename": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6aba861e&is=6ab9349e&hm=ffd1b433eadd2b88611b1922551042d1649d5244df9bf2b27f339fb1f92c16f2&",
+              "size": 6674911,
+              "contentType": "application/pdf",
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "attId": "1553607641249484810",
+              "filename": "12th_Psychology_Material.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6aba861e&is=6ab9349e&hm=059f505dfa2b586d5689409efcb80aac7d2fa94c982d4b0c385cea4f446cf7ce&",
+              "size": 4116554,
+              "contentType": "application/pdf",
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://kavy-codes.github.io/psych-rev/",
+          "domain": "kavy-codes.github.io",
+          "title": "kavy-codes.github.io",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
+          "domain": "drive.google.com",
+          "title": "MCQs:",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://share.google/JslkBusIFkHdDczWI",
+          "domain": "share.google",
+          "title": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6aba861d&is=6ab9349d&hm=4ae8d922753d3971b8d34f64aed9fe723a3582958110db8fe9863b13cd67e2af&",
+          "domain": "cdn.discordapp.com",
+          "title": "Revision_Notes_Psychology.._1.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6aba861e&is=6ab9349e&hm=ffd1b433eadd2b88611b1922551042d1649d5244df9bf2b27f339fb1f92c16f2&",
+          "domain": "cdn.discordapp.com",
+          "title": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6aba861e&is=6ab9349e&hm=059f505dfa2b586d5689409efcb80aac7d2fa94c982d4b0c385cea4f446cf7ce&",
+          "domain": "cdn.discordapp.com",
+          "title": "12th_Psychology_Material.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
         }
       ]
     },
@@ -3261,9 +3470,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553631364144693328",
               "filename": "CLASS_12_-_MATHEMATICS2025-26.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631364144693328/CLASS_12_-_MATHEMATICS2025-26.pdf?ex=6ab9f376&is=6ab8a1f6&hm=5090c190139c3cadfc141632fec757285cd668bb7c56365c27bd98bb8ffbd92c&",
               "size": 5625531,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -3278,9 +3489,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553631387758628984",
               "filename": "CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631387758628984/CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf?ex=6ab9f37b&is=6ab8a1fb&hm=cb958775ec0f5df92e103b1290cc4506234cbf2bdff5687a55e48ffd810821d4&",
               "size": 8119663,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -3522,23 +3735,29 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553608557570556045",
               "filename": "Physical_Education_1.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6ab9de38&is=6ab88cb8&hm=6be8fa7f7ea0a312acf3b561cc5c3de5b2a7a773c609bf7a823406313f5c9e50&",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6aba86f8&is=6ab93578&hm=f36655f96e58ac8108abbd398bb9dc946d3afc781414a1aa84216bb7fbb5d496&",
               "size": 11367935,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553608559067930655",
               "filename": "PE_Cheat_Notes_2.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=09c90dcc70b52d735f0b337953507ef630e46422f7d19464400a55ab013a0686&",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6aba86f9&is=6ab93579&hm=dd7e91b1d3f8c8ed0bfde15db3d84ac8c0e5ae9b1999b6795401ffcbd9d2a1fc&",
               "size": 16471708,
+              "contentType": "application/pdf",
               "context": ""
             },
             {
               "type": "attachment",
+              "attId": "1553608560879997058",
               "filename": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
-              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=1535f518ce6e53f13c5358fa44a2d159b90ebda7b5db73e7c5639f39a9a893f1&",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6aba86f9&is=6ab93579&hm=3cc8380521dece18f038f2349c973d2e063bf3a6e4a94c68c4669fec907e06cc&",
               "size": 31320763,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -3579,9 +3798,11 @@
           "blocks": [
             {
               "type": "attachment",
+              "attId": "1553631717275869215",
               "filename": "PHE_Class_XII_SSM_2025-26.pdf",
               "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553631717275869215/PHE_Class_XII_SSM_2025-26.pdf?ex=6ab9f3ca&is=6ab8a24a&hm=7465f0bc5e7a34709dd2e3e3f98d2822a013661c4231af59cf57117913696ca0&",
               "size": 10048356,
+              "contentType": "application/pdf",
               "context": ""
             }
           ],
@@ -3590,7 +3811,7 @@
       ],
       "links": [
         {
-          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6ab9de38&is=6ab88cb8&hm=6be8fa7f7ea0a312acf3b561cc5c3de5b2a7a773c609bf7a823406313f5c9e50&",
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6aba86f8&is=6ab93578&hm=f36655f96e58ac8108abbd398bb9dc946d3afc781414a1aa84216bb7fbb5d496&",
           "domain": "cdn.discordapp.com",
           "title": "Physical_Education_1.pdf",
           "topic": "Physical Education",
@@ -3598,7 +3819,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=09c90dcc70b52d735f0b337953507ef630e46422f7d19464400a55ab013a0686&",
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6aba86f9&is=6ab93579&hm=dd7e91b1d3f8c8ed0bfde15db3d84ac8c0e5ae9b1999b6795401ffcbd9d2a1fc&",
           "domain": "cdn.discordapp.com",
           "title": "PE_Cheat_Notes_2.pdf",
           "topic": "Physical Education",
@@ -3606,7 +3827,7 @@
           "source": "attachment"
         },
         {
-          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=1535f518ce6e53f13c5358fa44a2d159b90ebda7b5db73e7c5639f39a9a893f1&",
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6aba86f9&is=6ab93579&hm=3cc8380521dece18f038f2349c973d2e063bf3a6e4a94c68c4669fec907e06cc&",
           "domain": "cdn.discordapp.com",
           "title": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
           "topic": "Physical Education",
@@ -3773,73 +3994,6 @@
           "topic": "Academic & Research Papers",
           "slug": "academic-research-papers",
           "source": "message"
-        }
-      ]
-    },
-    {
-      "id": "1553298404686430240",
-      "name": "How to attempt the Mocks ( HTML )",
-      "emoji": "❓",
-      "slug": "how-to-attempt-the-mocks-html",
-      "messageCount": 2,
-      "totalMessages": 3,
-      "tags": [],
-      "url": "https://discord.com/channels/1540430445483917342/1553298404686430240",
-      "messages": [
-        {
-          "id": "1553298493496623126",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T06:53:39.740000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553298404686430240/1553298493496623126",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "Chrome Se direct"
-                }
-              ]
-            },
-            {
-              "type": "attachment",
-              "filename": "screen-20260918-011920.mp4",
-              "url": "https://cdn.discordapp.com/attachments/1553298404686430240/1553298493412745357/screen-20260918-011920.mp4?ex=6aba0ef3&is=6ab8bd73&hm=97a24b96e07be6ee1e325febe218f522eb13e10d1ba41d1d7a3eb793547ce332&",
-              "size": 555178,
-              "context": ""
-            }
-          ],
-          "tags": []
-        },
-        {
-          "id": "1553299048671354901",
-          "author": "krush91",
-          "isOP": true,
-          "timestamp": "2026-09-26T06:55:52.104000+00:00",
-          "messageUrl": "https://discord.com/channels/1540430445483917342/1553298404686430240/1553299048671354901",
-          "blocks": [
-            {
-              "type": "flow",
-              "items": [
-                {
-                  "kind": "text",
-                  "text": "❓How to attempt the Mocks ( HTML )"
-                }
-              ]
-            }
-          ],
-          "tags": []
-        }
-      ],
-      "links": [
-        {
-          "url": "https://cdn.discordapp.com/attachments/1553298404686430240/1553298493412745357/screen-20260918-011920.mp4?ex=6aba0ef3&is=6ab8bd73&hm=97a24b96e07be6ee1e325febe218f522eb13e10d1ba41d1d7a3eb793547ce332&",
-          "domain": "cdn.discordapp.com",
-          "title": "screen-20260918-011920.mp4",
-          "topic": "How to attempt the Mocks ( HTML )",
-          "slug": "how-to-attempt-the-mocks-html",
-          "source": "attachment"
         }
       ]
     },

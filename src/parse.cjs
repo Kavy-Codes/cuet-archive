@@ -171,9 +171,11 @@ function parseMessage(rawMsg, ctx) {
   for (const att of msg.attachments || []) {
     blocks.push({
       type: 'attachment',
+      attId: att.id,
       filename: att.filename,
       url: att.url,
       size: att.size || 0,
+      contentType: att.content_type || '',
       context: '',
     });
   }

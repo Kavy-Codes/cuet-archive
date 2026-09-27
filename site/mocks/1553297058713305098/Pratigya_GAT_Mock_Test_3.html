@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/Crackcuetug" target="_blank" rel="noopener noreferrer" title="Open Telegram">@Crackcuetug</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Pratigya GAT Mock Test 3", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Who is the 52nd Chief Justice of India (CJI)? \u003cbr>", "options": [{"text": "D.Y. Chandrachud \u003cbr>", "is_correct": false}, {"text": "Sanjiv Khanna \u003cbr>", "is_correct": false}, {"text": "U.U. Lalit Justice Bhushan Ramkrishna Gavai \u003cbr>", "is_correct": false}, {"text": "Justice Bhushan Ramkrishna Gavai \u003cbr>", "is_correct": true}], "solution": "Justice Bhushan Ramkrishna Gavai was sworn in as the 52nd Chief Justice of India on May 14, 2025 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The Household Consumption Expenditure Survey (HCES) is released by: \u003cbr>", "options": [{"text": "Ministry of Finance \u003cbr>", "is_correct": false}, {"text": "NITI Aayog \u003cbr>", "is_correct": false}, {"text": "Ministry of Statistics and Programme Implementation (MoSPI) \u003cbr>", "is_correct": true}, {"text": "Reserve Bank of India \u003cbr>", "is_correct": false}], "solution": "The Ministry of Statistics and Programme Implementation (MoSPI) releases the Household Consumption Expenditure Survey (HCES). \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Match the following deserts with their respective locations: \u003cbr> \u003cbr>Choose the correct option: \u003cbr>", "options": [{"text": "A-3, B-1, C-2, D-4 \u003cbr>", "is_correct": false}, {"text": "A-1, B-3, C-4, D-2 \u003cbr>", "is_correct": false}, {"text": "A-3, B-4, C-1, D-2 \u003cbr>", "is_correct": true}, {"text": "A-2, B-4, C-3, D-1 \u003cbr>", "is_correct": false}], "solution": "The correct matching is: \u003cbr>Atacama - South America (3) \u003cbr>Great Victoria - Australia (4) \u003cbr>Kalahari - Africa (1) \u003cbr>Takla Makan - China (2) \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434715048image1.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Match List - I with List - II: \u003cbr> \u003cbr>Choose the correct answer from the options given below: \u003cbr>", "options": [{"text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV) \u003cbr>", "is_correct": false}, {"text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I) \u003cbr>", "is_correct": false}, {"text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III) \u003cbr>", "is_correct": false}, {"text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "is_correct": true}], "solution": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II) \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434715049image2.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Consider the following statements regarding the Union Executive: \u003cbr>1. The Union Executive includes the President, Vice-President, Council of Ministers, and Attorney General of India. \u003cbr>2. The Vice-President of India serves as the ex-officio Chairman of the Rajya Sabha. \u003cbr>3. The Attorney General of India is the chief legal advisor to the Parliament of India. \u003cbr>Which of the above statements is/are correct? \u003cbr>", "options": [{"text": "Only 1 and 2 \u003cbr>", "is_correct": true}, {"text": "Only 1 and 3 \u003cbr>", "is_correct": false}, {"text": "Only 2 and 3 \u003cbr>", "is_correct": false}, {"text": "All of the above \u003cbr>", "is_correct": false}], "solution": "The Attorney General of India is the chief legal advisor to the Government of India, not the Parliament. Hence, statement 3 is incorrect. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "With which company has NASA collaborated to develop the X-59 supersonic jet? \u003cbr>", "options": [{"text": "Boeing \u003cbr>", "is_correct": false}, {"text": "Airbus \u003cbr>", "is_correct": false}, {"text": "Lockheed Martin \u003cbr>", "is_correct": true}, {"text": "SpaceX \u003cbr>", "is_correct": false}], "solution": "NASA collaborated with Lockheed Martin to develop the X-59 supersonic jet. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Who, amongst the following, founded the Vijayanagara Empire? \u003cbr>", "options": [{"text": "Krishnadeva Raya \u003cbr>", "is_correct": false}, {"text": "Harihara and Bukka \u003cbr>", "is_correct": true}, {"text": "Raja Raya \u003cbr>", "is_correct": false}, {"text": "Rajendra II \u003cbr>", "is_correct": false}], "solution": "The Vijayanagara Empire was founded by brothers Harihara and Bukka Raya in 1336 AD. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The famous painting \"The Last Supper\" was created by _________. \u003cbr>", "options": [{"text": "Vincent van Gogh \u003cbr>", "is_correct": false}, {"text": "Pablo Picasso \u003cbr>", "is_correct": false}, {"text": "Leonardo da Vinci \u003cbr>", "is_correct": true}, {"text": "Michelangelo \u003cbr>", "is_correct": false}], "solution": "Leonardo da Vinci painted \"The Last Supper\" in the late 15th century, depicting Jesus Christ and his disciples during the final meal before his crucifixion. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The International Labour Organization (ILO) launched the \"Worst Forms of Child Labour Convention\" in which year? \u003cbr>", "options": [{"text": "1986 \u003cbr>", "is_correct": false}, {"text": "1999 \u003cbr>", "is_correct": true}, {"text": "2005 \u003cbr>", "is_correct": false}, {"text": "2012 \u003cbr>", "is_correct": false}], "solution": "The ILO adopted the \"Worst Forms of Child Labour Convention\" in 1999 to eliminate child labor globally. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The branch of science concerned with the study of fungi is called: \u003cbr>", "options": [{"text": "Microbiology \u003cbr>", "is_correct": false}, {"text": "Phycology \u003cbr>", "is_correct": false}, {"text": "Entomology \u003cbr>", "is_correct": false}, {"text": "Mycology \u003cbr>", "is_correct": true}], "solution": "Mycology is the study of fungi. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Arrange the following U.S. Presidents in chronological order: \u003cbr>", "options": [{"text": "Abraham Lincoln, George Washington, Thomas Jefferson \u003cbr>", "is_correct": false}, {"text": "George Washington, Thomas Jefferson, Abraham Lincoln \u003cbr>", "is_correct": true}, {"text": "Thomas Jefferson, George Washington, Abraham Lincoln \u003cbr>", "is_correct": false}, {"text": "George Washington, Abraham Lincoln, Thomas Jefferson \u003cbr>", "is_correct": false}], "solution": "The correct chronological order is: George Washington (1st President), Thomas Jefferson (3rd President), Abraham Lincoln (16th President). \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which Indian state is the first to implement a Co-District administrative structure? \u003cbr>", "options": [{"text": "Maharashtra \u003cbr>", "is_correct": false}, {"text": "Gujarat \u003cbr>", "is_correct": false}, {"text": "Tamil Nadu \u003cbr>", "is_correct": false}, {"text": "Assam \u003cbr>", "is_correct": true}], "solution": "Assam is the first state in India to implement the Co-District administrative structure. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Arrange the following Indian empires in chronological order: \u003cbr>", "options": [{"text": "Gupta, Mughal, Maurya \u003cbr>", "is_correct": false}, {"text": "Maurya, Gupta, Mughal \u003cbr>", "is_correct": true}, {"text": "Mughal, Gupta, Maurya \u003cbr>", "is_correct": false}, {"text": "Gupta, Maurya, Mughal \u003cbr>", "is_correct": false}], "solution": "The correct order is: Maurya Empire (321-185 BCE) → Gupta Empire (c. 319-550 CE) → Mughal Empire (1526-1857 CE). \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The theme of the Aadi Parab Festival 2026 is: \u003cbr>", "options": [{"text": "Unity in Diversity \u003cbr>", "is_correct": false}, {"text": "Tribal Heritage for the Future \u003cbr>", "is_correct": false}, {"text": "From Tradition to Identity \u003cbr>", "is_correct": true}, {"text": "Celebrating Indigenous Wisdom \u003cbr>", "is_correct": false}], "solution": "The theme of Aadi Parab Festival 2026 is “From Tradition to Identity.” \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Asia’s largest tulip garden is located in which of the following cities? \u003cbr>", "options": [{"text": "Dehradun \u003cbr>", "is_correct": false}, {"text": "Shimla \u003cbr>", "is_correct": false}, {"text": "Srinagar \u003cbr>", "is_correct": true}, {"text": "Chandigarh \u003cbr>", "is_correct": false}], "solution": "Asia’s largest tulip garden is located in Srinagar. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "What is an ecological footprint? \u003cbr>", "options": [{"text": "The number of trees a person plants \u003cbr>", "is_correct": false}, {"text": "The impact of human activities on Earth's ecosystems \u003cbr>", "is_correct": true}, {"text": "The area required to grow food for a nation \u003cbr>", "is_correct": false}, {"text": "A measure of biodiversity loss \u003cbr>", "is_correct": false}], "solution": "An ecological footprint measures how much land and resources an individual or society consumes compared to Earth's capacity to regenerate them. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which of the following is an example of a renewable resource? \u003cbr>", "options": [{"text": "Coal \u003cbr>", "is_correct": false}, {"text": "Natural gas \u003cbr>", "is_correct": false}, {"text": "Solar energy \u003cbr>", "is_correct": true}, {"text": "Plastic \u003cbr>", "is_correct": false}], "solution": "Solar energy is a renewable resource as it is naturally replenished and does not deplete over time. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Anuj started walking positioning his back towards the sun. After some time, he turned left, then turned right and then towards the left again. In which direction is he going now? \u003cbr>", "options": [{"text": "North or South \u003cbr>", "is_correct": true}, {"text": "East or West \u003cbr>", "is_correct": false}, {"text": "North or West \u003cbr>", "is_correct": false}, {"text": "South or West \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Clearly, there are two possible movements of Anuj as shown: \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714906image19.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cb>Statements:\u003c/b> All men are vertebrates. \u003cbr>Some mammals are vertebrates. \u003cbr>\u003cb>Conclusions: \u003c/b> \u003cbr>I. All men are mammals \u003cbr>II. All mammals are men \u003cbr>III. Some vertebrates are mammals \u003cbr>IV. All vertebrates are men \u003cbr>", "options": [{"text": "Only IV \u003cbr>", "is_correct": false}, {"text": "Only II \u003cbr>", "is_correct": false}, {"text": "Only III \u003cbr>", "is_correct": true}, {"text": "Only I \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714906image20.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cb>Statement:\u003c/b> \u003cbr>Values of life for educated are different from those who are uneducated. \u003cbr>\u003cb>Assumptions:\u003c/b> \u003cbr>I. Education has an impact on the values of life of a person. \u003cbr>II. An uneducated person is worthless. \u003cbr>", "options": [{"text": "I and II both are implicit \u003cbr>", "is_correct": false}, {"text": "Only I is implicit \u003cbr>", "is_correct": true}, {"text": "Only II is implicit \u003cbr>", "is_correct": false}, {"text": "Neither I nor II is implicit \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Only I is implicit, as the value of life is different for educated and uneducated persons. So it is obvious that education has its impact on the values of life of a person. Assumption II is not connected with the given statement. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In a certain code, PRODUCTIONS is written as QQPCVEUHPMT. How is ORIENTATION written \u003cbr>in that code? \u003cbr>", "options": [{"text": "PQJDOVBSJNO \u003cbr>", "is_correct": true}, {"text": "PQJDOUBUJPO \u003cbr>", "is_correct": false}, {"text": "PSJFOVBSJNO \u003cbr>", "is_correct": false}, {"text": "NSHFMVBSJN \u003cbr>", "is_correct": false}], "solution": "\u003cbr>The first, third, fifth, seventh, ninth and eleventh letters in the word are each moved one step forward; the second, fourth, eighth and tenth letters are each moved one step backward, while the middle (i.e. sixth) letter is moved two steps forward to obtain the corresponding letters of the code \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Rahim was born on 8th April, 1985. It was Saturday. On which day will he be 15 years, 6 months and 10 days? \u003cbr>", "options": [{"text": "Sunday \u003cbr>", "is_correct": false}, {"text": "Saturday \u003cbr>", "is_correct": false}, {"text": "Monday \u003cbr>", "is_correct": true}, {"text": "Tuesday \u003cbr>", "is_correct": false}], "solution": "\u003cbr>8th April 1985+(diff. between years + no. of leap year + no. of odd days from Jan. 1 to October 18) \u003cbr>= Saturday +(15 + 3 + 3 + 1 + 3 + 2 + 3 + 2 + 3 + 3 + 2 + 18) ÷ 7 \u003cbr>= Saturday + 58 ÷ 7 \u003cbr>= Saturday + 2 days = Monday \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find out the angle between hour hand and minute hand at 6 : 49. \u003cbr>", "options": [{"text": "89.5° \u003cbr>", "is_correct": true}, {"text": "90° \u003cbr>", "is_correct": false}, {"text": "82° \u003cbr>", "is_correct": false}, {"text": "110° \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714962image21.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find the missing number in the given figure. \u003cbr> \u003cbr>", "options": [{"text": "31 \u003cbr>", "is_correct": true}, {"text": "40 \u003cbr>", "is_correct": false}, {"text": "7 \u003cbr>", "is_correct": false}, {"text": "36 \u003cbr>", "is_correct": false}], "solution": "(17 + 18) + (9 - 6) = 35 + 3 = 38 \u003cbr>(11 + 11) + (19 - 9) = 22+ 10 = 32 \u003cbr>(15 + 6) + (26 - 3) = 21 + 23 = 44 \u003cbr>(12 + 8) + (9 - 20) = 20 + 11 = \u003cb>31\u003c/b> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434715054image3.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In a zoo, there are rabbits and pigeons. Their heads are counted, there are 200 and if legs are counted, there are 580. How many pigeons are there? \u003cbr>", "options": [{"text": "90 \u003cbr>", "is_correct": false}, {"text": "100 \u003cbr>", "is_correct": false}, {"text": "110 \u003cbr>", "is_correct": true}, {"text": "120 \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Suppose the number of rabbits = x \u003cbr>Number of pigeons = y. \u003cbr>According to question, \u003cbr>x + y = 200 ... (i) \u003cbr>and 4x + 2y = 580 ... (ii) \u003cbr>From equation (i) and (ii) \u003cbr>x = 90 \u003cbr>y = 200 - 90 = 110 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Select the correct combination of mathematical signs to replace * signs and to balance the following equation: \u003cbr>(8 * 5 * 6) * 10 * 24 \u003cbr>", "options": [{"text": "+ - = × \u003cbr>", "is_correct": false}, {"text": "× - ÷ = \u003cbr>", "is_correct": false}, {"text": "- + ÷ = \u003cbr>", "is_correct": false}, {"text": "× × ÷ = \u003cbr>", "is_correct": true}], "solution": "\u003cbr>(8 × 5 × 6) ÷ 10 = 24 \u003cbr>240 ÷ 10 = 24, 24 = 24 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which Venn diagram represents the interrelationship among Spices, Cumin and Cloves? \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr>Cumin and cloves both are related to spices category. But Cumin cannot be cloves. Hence option (b). \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1774434715056image4.png", "https://ts-cdn.adda247.com/1774434715058image5.png", "https://ts-cdn.adda247.com/1774434714898image6.png", "https://ts-cdn.adda247.com/1774434714898image7.png"]}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In a straight line, some boys are standing facing north. A is third from the right end. B is second from the left end. C is fourth to the left of A. B is sixth to the left of C. Then how many boys are there in the line? \u003cbr>", "options": [{"text": "13 \u003cbr>", "is_correct": false}, {"text": "14 \u003cbr>", "is_correct": true}, {"text": "15 \u003cbr>", "is_correct": false}, {"text": "16 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>So, total number of boys are = 1 + 6 + 4 + 3 = 14 \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714962image22.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find the number of triangles in the given figure. \u003cbr> \u003cbr>", "options": [{"text": "12 \u003cbr>", "is_correct": false}, {"text": "18 \u003cbr>", "is_correct": true}, {"text": "22 \u003cbr>", "is_correct": false}, {"text": "26 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714898image8.png", "so_img": "https://ts-cdn.adda247.com/1774434714964image23.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Pointing to a photograph, a woman says, “This man’s son’s sister is my mother-in-law.” How is the \u003cbr>woman’s husband related to the man in the photograph? \u003cbr>", "options": [{"text": "Grandson \u003cbr>", "is_correct": true}, {"text": "Son \u003cbr>", "is_correct": false}, {"text": "Son-in-law \u003cbr>", "is_correct": false}, {"text": "Nephew \u003cbr>", "is_correct": false}], "solution": "\u003cbr>Man’s son’s sister-Man’s daughter. So, the man’s daughter is the mother of the woman’s husband. The, the woman’s husband is the grandson of the man in the photograph. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "In the given question, there is a certain relationship between two given numbers one side of :: and one number is given on another side of:: while another number is to be found from the given alternatives, having the same relationship with this number as the numbers or words of the given pair bear. Choose the best alternative. \u003cbr>49 : 81 : : 100 : ? \u003cbr>", "options": [{"text": "64 \u003cbr>", "is_correct": false}, {"text": "144 \u003cbr>", "is_correct": true}, {"text": "169 \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714965image24.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The problem given below consists of a question and two statements numbered I and II. You have to decide whether the data provided in the statements are sufficient to answer the question. \u003cbr>How is J related to P? \u003cbr>I. M is brother of P and T is sister of P. \u003cbr>II. P’s mother is married to J. \u003cbr>", "options": [{"text": "if the data in statement I alone are sufficient to answer the question, while the data in statement II alone are not sufficient to answer the question. \u003cbr>", "is_correct": false}, {"text": "if the data in statement II alone are sufficient to answer the question, while the data in statement I alone are not sufficient to answer the question. \u003cbr>", "is_correct": true}, {"text": "if the data either in statement I alone or in statement II alone are sufficient to answer the question. \u003cbr>", "is_correct": false}, {"text": "if the data given in both statements I and II together are not sufficient to answer the question. \u003cbr>", "is_correct": false}], "solution": "\u003cbr>From II, we know that P’s mother is married to J, which means that J is P’s father. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find the missing terms in the given series. \u003cbr>2, 15, 4, 12, 6, 7, ?, ? \u003cbr>", "options": [{"text": "8, 8 \u003cbr>", "is_correct": false}, {"text": "8, 0 \u003cbr>", "is_correct": true}, {"text": "3, 8 \u003cbr>", "is_correct": false}, {"text": "None of these \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714970image25.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find out which of the figures (1), (2), (3) and (4) can be formed from the pieces given in figure (X). \u003cbr> \u003cbr>", "options": [{"text": "1 \u003cbr>", "is_correct": false}, {"text": "2 \u003cbr>", "is_correct": true}, {"text": "3 \u003cbr>", "is_correct": false}, {"text": "4 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714898image9.png", "so_img": "https://ts-cdn.adda247.com/1774434714971image26.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Which of the following fractions is greater than 3/4 and less than 5/6? \u003cbr>", "options": [{"text": "1/2 \u003cbr>", "is_correct": false}, {"text": "2/3 \u003cbr>", "is_correct": false}, {"text": "4/5 \u003cbr>", "is_correct": true}, {"text": "9/10 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434714974image27.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Find the 20th term for the given AP: 3, 5, 7, 9, … \u003cbr>", "options": [{"text": "41 \u003cbr>", "is_correct": true}, {"text": "40 \u003cbr>", "is_correct": false}, {"text": "39 \u003cbr>", "is_correct": false}, {"text": "38 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715017image28.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Average of nine numbers is 44 and the total sum of first four number is 159. If the average of last four numbers is 46. Then, the fifth number is \u003cbr>", "options": [{"text": "53 \u003cbr>", "is_correct": true}, {"text": "35 \u003cbr>", "is_correct": false}, {"text": "56 \u003cbr>", "is_correct": false}, {"text": "64 \u003cbr>", "is_correct": false}], "solution": "Given: ​ \u003cbr>Average of nine number is 44. \u003cbr>Sum of first 4 number is 159 \u003cbr>Average of the last four number is 46. \u003cbr>As per the question; \u003cbr>Total of nine numbers = 9 x 44 = 396 \u003cbr>Total sum of last four numbers = 46 x 4 = 184 \u003cbr>Fifth number= 396 - 159 - 184 = 53 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Toffees are bought at the rate of 8 for a rupee. To gain 60% they must be sold at- \u003cbr>", "options": [{"text": "6 for a rupee \u003cbr>", "is_correct": false}, {"text": "5 for a rupee \u003cbr>", "is_correct": true}, {"text": "9 for Rs. 2 \u003cbr>", "is_correct": false}, {"text": "24 for Rs. 5 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715017image29.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Two cubes have their volume in the ratio 1 : 27, find the ratio of their surface area? \u003cbr>", "options": [{"text": "2 : 7 \u003cbr>", "is_correct": false}, {"text": "1 : 9 \u003cbr>", "is_correct": true}, {"text": "3 : 7 \u003cbr>", "is_correct": false}, {"text": "7 : 3 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715018image30.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If the simple interest is 10.5% annual and compound interest is 10% annual, find the difference between the interests after 3 years on sum of Rs. 1000. \u003cbr>", "options": [{"text": "Rs.15 \u003cbr>", "is_correct": false}, {"text": "Rs.12 \u003cbr>", "is_correct": false}, {"text": "Rs.16 \u003cbr>", "is_correct": true}, {"text": "Rs.11 \u003cbr>", "is_correct": false}], "solution": "At 10% compound interest the interest in 3 years would be 33.1% = Rs. 331 \u003cbr>At 10.5% simple interest the interest in 3 years would be 31.5% = Rs. 315 \u003cbr>Difference = Rs. 16 \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "Twenty workers can finish a piece of work in 30 days. After how many days should 5 workers leave the job so that the work is completed in 35 days? \u003cbr>", "options": [{"text": "5 days \u003cbr>", "is_correct": false}, {"text": "10 days \u003cbr>", "is_correct": false}, {"text": "15 days \u003cbr>", "is_correct": true}, {"text": "20 days \u003cbr>", "is_correct": false}], "solution": "Total man days required = 600 man days. If 5 workers leave the job after ‘n’ days, the total work would be done in 35 days. We have to find the value of ‘n’ to satisfy: \u003cbr>20 × n + (35 - n) × 15 = 600 \u003cbr>Solving for n, we get \u003cbr>20n - 15n + 35 × 15 = 600 \u003cbr>5n= 75 \u003cbr>n = 15. \u003cbr>"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "A sum of money becomes 7/4 of itself in 6 years at a certain rate of simple interest. Find the rate of interest. \u003cbr>", "options": [{"text": "12% \u003cbr>", "is_correct": false}, {"text": "12.5% \u003cbr>", "is_correct": true}, {"text": "8% \u003cbr>", "is_correct": false}, {"text": "14% \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715018image31.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cbr>", "options": [{"text": "16 \u003cbr>", "is_correct": false}, {"text": "17 \u003cbr>", "is_correct": false}, {"text": "18 \u003cbr>", "is_correct": false}, {"text": "0 \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714898image10.png", "so_img": "https://ts-cdn.adda247.com/1774434715018image32.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cbr>", "options": [{"text": "3 \u003cbr>", "is_correct": false}, {"text": "½ (x+x ⁻¹) \u003cbr>", "is_correct": false}, {"text": "x+x ⁻¹ \u003cbr>", "is_correct": true}, {"text": "2(x+x ⁻¹) \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714899image11.png", "so_img": ["https://ts-cdn.adda247.com/1774434715019image33.png", "https://ts-cdn.adda247.com/1774434715019image34.png"]}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If A and B are events with \u003cbr>", "options": [{"text": "3/8 \u003cbr>", "is_correct": false}, {"text": "1/4 \u003cbr>", "is_correct": false}, {"text": "1/8 \u003cbr>", "is_correct": true}, {"text": "1/2 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714902image12.png", "so_img": "https://ts-cdn.adda247.com/1774434715022image35.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The combined total of the LCM and HCF of two numbers is 931. If the LCM is 48 times the HCF and one of the numbers is 76, determine the second number. \u003cbr>", "options": [{"text": "238 \u003cbr>", "is_correct": false}, {"text": "244 \u003cbr>", "is_correct": false}, {"text": "228 \u003cbr>", "is_correct": true}, {"text": "256 \u003cbr>", "is_correct": false}], "solution": "Let the HCF of the two numbers be H. \u003cbr>The LCM is 48 times the HCF, i.e., LCM = 48H. \u003cbr>The sum of the LCM and HCF is 931, i.e., \u003cbr>H+48H=931⇒49H=931 \u003cbr>H=19 \u003cbr>So, LCM =48×19=912 \u003cbr>Now, \u003cbr>HCF×LCM=Product of numbers \u003cbr>Given one number is 76. Let another number be 'a'. Then, \u003cbr>19×912=76×a \u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715032image36.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "The ratio between the length and breadth of a rectangle is 5:3. If the area of the rectangle is 240\u003cb> \u003c/b>cm², find the length of the rectangle. \u003cbr>", "options": [{"text": "10 cm \u003cbr>", "is_correct": false}, {"text": "15 cm \u003cbr>", "is_correct": false}, {"text": "20 cm \u003cbr>", "is_correct": true}, {"text": "25 cm \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715033image37.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "How many words can be formed using all the letters of the word ‘NATION’ so that all the three vowels should never come together? \u003cbr>", "options": [{"text": "188 \u003cbr>", "is_correct": false}, {"text": "218 \u003cbr>", "is_correct": false}, {"text": "288 \u003cbr>", "is_correct": true}, {"text": "398 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1774434715034image38.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "If the median of (where x &gt; 0) is 8, then the value of x will be \u003cbr>", "options": [{"text": "24 \u003cbr>", "is_correct": true}, {"text": "32 \u003cbr>", "is_correct": false}, {"text": "8 \u003cbr>", "is_correct": false}, {"text": "16 \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714902image13.png", "so_img": "https://ts-cdn.adda247.com/1774434715038image39.png"}, {"subject": "GENERAL APTITUDE TEST (GAT)_0", "question": "\u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1774434714901image14.png", "opt_img": ["https://ts-cdn.adda247.com/1774434714902image15.png", "https://ts-cdn.adda247.com/1774434714902image16.png", "https://ts-cdn.adda247.com/1774434714903image17.png", "https://ts-cdn.adda247.com/1774434714903image18.png"], "so_img": "https://ts-cdn.adda247.com/1774434715046image40.png"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>

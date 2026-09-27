@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Adda247 — CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"/>
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161b27;
+  --bg3: #1e2433;
+  --bg4: #242a3a;
+  --border: #2a3048;
+  --text: #e8eaf0;
+  --text2: #9aa3b8;
+  --text3: #636d85;
+  --accent: #4f8ef7;
+  --accent-hover: #3a7af0;
+  --green: #22c55e;
+  --green-bg: #142b1e;
+  --red: #ef4444;
+  --red-bg: #2b1414;
+  --purple: #a855f7;
+  --purple-bg: #21143a;
+  --amber: #f59e0b;
+  --amber-bg: #2b2008;
+  --gray-bg: #1a1e2b;
+  --radius: 8px;
+  --font: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --footer-h: 64px;
+  --scroll-pad-bottom: 32px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+body {
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ── Layout ── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 0 16px 0 20px; height: 56px; flex-shrink: 0; gap: 12px;
+  z-index: 40;
+}
+.header-left {
+  display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;
+}
+#exam-title {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: min(340px, 50vw);
+}
+.ogbot-link {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 600; color: #5b9cf8;
+  text-decoration: none;
+  padding: 5px 10px; border-radius: 6px;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  background: rgba(79, 142, 247, 0.1);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ogbot-link:hover { background: rgba(79, 142, 247, 0.2); border-color: var(--accent); color: #93c5fd; }
+#timer-wrap { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; }
+#timer-icon { color: var(--amber); font-size: 18px; }
+#timer { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--amber); letter-spacing: 2px; min-width: 68px; }
+#timer.danger { color: var(--red); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+.hdr-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Main body ── */
+#body {
+  display: flex; flex: 1; overflow: hidden;
+  min-height: 0; /* flex: allow child to shrink so footer stays in view */
+}
+
+/* ── Question area ── */
+#question-area {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  min-height: 0;
+  background: var(--bg);
+  position: relative;
+}
+#q-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+#q-num-badge {
+  background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+  border-radius: 5px; padding: 3px 10px; white-space: nowrap;
+}
+#q-subject-badge {
+  background: var(--bg4); color: var(--text2); font-size: 12px; font-weight: 500;
+  border-radius: 5px; padding: 3px 10px; border: 1px solid var(--border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px;
+}
+#q-marks { margin-left: auto; font-size: 12px; color: var(--text3); white-space: nowrap; }
+#q-marks span { color: var(--green); font-weight: 600; }
+
+.btn-palette {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 12px; border-radius: var(--radius);
+  border: 1.5px solid var(--accent); background: rgba(79, 142, 247, 0.15);
+  color: #93c5fd; font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: background .15s, transform .1s;
+}
+.btn-palette:hover { background: rgba(79, 142, 247, 0.28); }
+.btn-palette:active { transform: scale(0.97); }
+.btn-palette svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+#q-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Leave room for fixed footer + safe area so last option isn’t hidden */
+  padding: 20px 28px calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+}
+#q-scroll::-webkit-scrollbar { width: 6px; }
+#q-scroll::-webkit-scrollbar-track { background: transparent; }
+#q-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+#question-text {
+  font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 20px;
+}
+#question-text img { max-width: 100%; border-radius: 6px; margin: 10px 0; border: 1px solid var(--border); }
+#q-img-wrap { margin-bottom: 18px; }
+#q-img-wrap img { max-width: 100%; border-radius: 6px; border: 1px solid var(--border); display: block; }
+
+#options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 13px 16px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-item:hover { border-color: var(--accent); background: var(--bg3); }
+.option-item.selected { border-color: var(--accent); background: #0d2245; }
+.option-item.correct-show { border-color: var(--green); background: var(--green-bg); }
+.option-item.wrong-show { border-color: var(--red); background: var(--red-bg); }
+
+.opt-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text2); flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.option-item.selected .opt-letter { background: var(--accent); border-color: var(--accent); color: #fff; }
+.option-item.correct-show .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+.option-item.wrong-show .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+
+.opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text); padding-top: 3px; }
+.opt-text img { max-width: 100%; border-radius: 5px; margin-top: 6px; border: 1px solid var(--border); }
+
+/* Solution box */
+#solution-box {
+  margin-top: 22px; border-radius: var(--radius); border: 1px solid #1e3a2a;
+  background: #0d2218; padding: 16px 18px; display: none;
+}
+#solution-box.show { display: block; }
+.sol-label { font-size: 12px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+#solution-text { font-size: 14px; line-height: 1.7; color: #9de4b8; }
+#solution-text img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+
+/* ── Bottom bar — fixed to viewport, icon-only actions ── */
+#q-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  min-height: calc(var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  padding: 6px 16px max(6px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(22, 27, 39, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+  /* Let row wrap grow height; scroll area uses matching --footer-h */
+}
+#q-footer .footer-cluster {
+  display: flex; align-items: center; gap: 8px;
+}
+#q-footer .footer-cluster.mid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer; border: 1.5px solid transparent;
+  transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn.btn-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0;
+  border-radius: 12px;
+}
+.btn.btn-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+.btn.btn-icon:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-submit.btn-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #166534, #22c55e);
+  border-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+}
+.btn-submit.btn-icon:hover { filter: brightness(1.08); }
+.btn-submit.btn-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; color: var(--text2); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--text2); color: var(--text); background: var(--bg3); }
+.btn-mark { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.btn-mark:hover { background: #2d1a4a; }
+.btn-mark.active-mark { background: var(--purple); color: #fff; }
+.btn-submit { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.btn-submit:hover { background: #1a3d28; }
+.btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; }
+
+/* ── Question palette drawer ── */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+}
+.palette-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.palette-panel {
+  width: min(380px, 100vw);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palette-overlay.open .palette-panel {
+  transform: translateX(0);
+}
+.palette-panel-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.palette-panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.palette-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg4);
+  color: var(--text2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, color .15s;
+}
+.palette-close:hover { background: var(--border); color: var(--text); }
+.palette-panel #legend,
+.palette-panel #subject-tabs,
+.palette-panel #palette-stats { flex-shrink: 0; }
+.palette-panel #palette-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+/* Legend (drawer) — blue = attempted */
+#legend {
+  padding: 12px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px;
+}
+.leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.leg-dot {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+}
+.leg-dot.leg-attempted { background: rgba(79, 142, 247, 0.4); border: 1.5px solid var(--accent); color: #dbeafe; }
+.leg-dot.leg-not-att { background: var(--gray-bg); border: 1px solid var(--border); color: var(--text3); }
+.leg-dot.leg-marked { background: var(--purple-bg); border: 1.5px solid var(--purple); color: var(--purple); }
+.leg-dot.leg-current { box-shadow: 0 0 0 2px var(--amber); }
+
+/* Subject filter tabs */
+#subject-tabs {
+  display: flex; overflow-x: auto; gap: 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+#subject-tabs::-webkit-scrollbar { height: 3px; }
+#subject-tabs::-webkit-scrollbar-thumb { background: var(--bg4); }
+.sub-tab {
+  padding: 7px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s; flex-shrink: 0; background: transparent; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.sub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.sub-tab:hover:not(.active) { color: var(--text2); }
+
+/* Palette stats */
+#palette-stats {
+  padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; gap: 14px;
+}
+.stat-pill { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text3); }
+.stat-pill b { color: var(--text); font-size: 12.5px; }
+
+/* Palette grid */
+#palette-scroll::-webkit-scrollbar { width: 5px; }
+#palette-scroll::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+#palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+
+.pal-btn {
+  aspect-ratio: 1; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1.5px solid var(--border); background: var(--gray-bg);
+  color: var(--text3); transition: all .12s; display: flex; align-items: center; justify-content: center;
+  position: relative; font-family: var(--mono);
+}
+.pal-btn.current { box-shadow: 0 0 0 2px var(--amber); z-index: 1; }
+/* Not attempted (non-blue) */
+.pal-btn.not-visited { background: #151923; border-color: #2f3548; color: var(--text3); }
+.pal-btn.not-answered { background: rgba(255, 255, 255, 0.04); border-color: #3d4558; color: var(--text2); }
+/* Attempted = blue */
+.pal-btn.answered { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.marked { background: var(--purple-bg); border-color: var(--purple); color: #d8b4fe; }
+.pal-btn.ans-marked { background: rgba(79, 142, 247, 0.38); border-color: var(--accent); color: #e8f0fe; }
+.pal-btn.ans-marked::after {
+  content: '';
+  position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  border: 1.5px solid rgba(79, 142, 247, 0.9);
+}
+.pal-btn.hidden-sub { display: none; }
+
+/* ── Modal ── */
+#modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+#modal-overlay.open { display: flex; }
+#modal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+#modal h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+#modal p { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+.modal-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; }
+.mstat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.mstat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.mstat-val { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.mstat-val.green { color: var(--green); }
+.mstat-val.red { color: var(--red); }
+.mstat-val.purple { color: var(--purple); }
+.mstat-val.amber { color: var(--amber); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Result screen ── */
+#result-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 990;
+  display: none; flex-direction: column; overflow: hidden;
+}
+#result-screen.open { display: flex; }
+#result-header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+}
+#result-header h2 { font-size: 16px; font-weight: 600; }
+#result-body { flex: 1; overflow-y: auto; padding: 24px; }
+#score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+}
+.score-big { text-align: center; flex: 1; min-width: 160px; }
+.score-big .num { font-size: 52px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
+.score-big .denom { font-size: 22px; color: var(--text3); }
+.score-big .label { font-size: 12px; color: var(--text3); margin-top: 6px; letter-spacing: .5px; }
+.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 2; min-width: 240px; }
+.scard { background: var(--bg3); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); }
+.scard-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+.scard-val { font-size: 22px; font-weight: 600; font-family: var(--mono); }
+
+#review-list { display: flex; flex-direction: column; gap: 14px; }
+.review-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.review-card-header {
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  background: var(--bg3); user-select: none;
+}
+.rc-num { font-size: 12px; font-weight: 600; color: var(--text3); font-family: var(--mono); min-width: 24px; }
+.rc-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rc-status.correct { background: var(--green); }
+.rc-status.wrong { background: var(--red); }
+.rc-status.skipped { background: var(--text3); }
+.rc-text { font-size: 13.5px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rc-arrow { color: var(--text3); font-size: 16px; transition: transform .2s; }
+.review-card.expanded .rc-arrow { transform: rotate(180deg); }
+.review-card-body { padding: 16px; display: none; }
+.review-card.expanded .review-card-body { display: block; }
+.rc-q { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+.rc-q img { max-width: 100%; border-radius: 5px; margin: 8px 0; }
+.rc-opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.rc-opt { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 13.5px; }
+.rc-opt.correct { border-color: var(--green); background: var(--green-bg); color: #9de4b8; }
+.rc-opt.selected-wrong { border-color: var(--red); background: var(--red-bg); color: #f9a8a8; }
+.rc-opt-letter { font-weight: 600; min-width: 18px; }
+.rc-sol { background: #0d2218; border: 1px solid #1e3a2a; border-radius: 6px; padding: 12px 14px; }
+.rc-sol-label { font-size: 11px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+.rc-sol-text { font-size: 13.5px; color: #9de4b8; line-height: 1.65; }
+.rc-sol-text img { max-width: 100%; border-radius: 5px; margin: 6px 0; }
+
+/* Section divider in result */
+.section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .7px; margin: 20px 0 12px; }
+
+/* Progress bar */
+.progress-bar-wrap { background: var(--bg3); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 8px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .5s ease; }
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  /* Two-row footer: submit row + nav row — reserve enough scroll padding */
+  :root {
+    --footer-h: 152px;
+    --scroll-pad-bottom: 40px;
+  }
+  .palette-panel { width: 100vw; border-left: none; }
+  #exam-title { max-width: 36vw; }
+  .ogbot-link { font-size: 11px; padding: 4px 8px; }
+  #q-header {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  #q-subject-badge { max-width: 140px; }
+  #q-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: calc(var(--scroll-pad-bottom) + var(--footer-h) + env(safe-area-inset-bottom, 0px));
+  }
+  #q-footer .footer-cluster.mid { position: static; transform: none; }
+  #q-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    gap: 10px 12px;
+  }
+  #q-footer .footer-cluster { flex: 1 1 auto; justify-content: center; min-width: 0; }
+  #q-footer .footer-cluster.mid { order: -1; flex: 1 1 100%; }
+  .btn.btn-icon { width: 44px; height: 44px; min-width: 44px; }
+  .btn-submit.btn-icon { width: 48px; height: 48px; min-width: 48px; }
+}
+
+/* KaTeX — match dark UI, allow wide displays to scroll */
+.katex { color: inherit !important; font-size: 1.06em; }
+.katex-display { margin: 0.85em 0; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+.katex-display > .katex { white-space: nowrap; }
+#question-text .katex, .opt-text .katex, .rc-q .katex, .rc-opt .katex, .rc-sol-text .katex, #solution-text .katex { color: inherit; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Header -->
+  <div id="header">
+    <div class="header-left">
+      <span id="exam-title">Loading…</span>
+      <a class="ogbot-link" href="https://t.me/Crackcuetug" target="_blank" rel="noopener noreferrer" title="Open Telegram">@CrackcuetUG</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <div id="timer-wrap">
+        <svg id="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span id="timer">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div id="body">
+    <!-- Question Area -->
+    <div id="question-area">
+      <div id="q-header">
+        <button type="button" id="btn-open-palette" class="btn-palette" onclick="openPaletteMenu()" title="Question palette — jump to any question">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Qs
+        </button>
+        <span id="q-num-badge">Q 1</span>
+        <span id="q-subject-badge">Subject</span>
+        <span id="q-marks">+<span id="mark-pos">1</span> / -<span id="mark-neg">0.25</span></span>
+      </div>
+      <div id="q-scroll">
+        <div id="q-img-wrap" style="display:none;"></div>
+        <div id="question-text"></div>
+        <div id="options-list"></div>
+        <div id="solution-box">
+          <div class="sol-label">✓ Solution</div>
+          <div id="solution-text"></div>
+        </div>
+      </div>
+      <div id="q-footer" role="toolbar" aria-label="Exam actions">
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-outline btn-icon" id="btn-prev" onclick="navigate(-1)" title="Previous" aria-label="Previous question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="btn btn-mark btn-icon" id="btn-mark" onclick="toggleMark()" title="Mark for review" aria-label="Mark for review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster mid">
+          <button type="button" class="btn btn-submit btn-icon" id="btn-submit-footer" onclick="openSubmitModal()" title="Submit test" aria-label="Submit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div class="footer-cluster">
+          <button type="button" class="btn btn-primary btn-icon" id="btn-next" onclick="navigate(1)" title="Next" aria-label="Next question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question palette (slide-in) -->
+<div id="palette-overlay" class="palette-overlay" onclick="if (event.target === this) closePaletteMenu();" aria-hidden="true">
+  <aside class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title" onclick="event.stopPropagation();">
+    <div class="palette-panel-head">
+      <h3 id="palette-title">Question palette</h3>
+      <button type="button" class="palette-close" onclick="closePaletteMenu()" title="Close" aria-label="Close palette">×</button>
+    </div>
+    <div id="legend">
+      <div class="leg"><div class="leg-dot leg-attempted">✓</div> Blue — Attempted</div>
+      <div class="leg"><div class="leg-dot leg-not-att">—</div> Not attempted</div>
+      <div class="leg"><div class="leg-dot leg-marked">★</div> Marked</div>
+      <div class="leg"><div class="leg-dot leg-current">●</div> Current Q</div>
+    </div>
+    <div id="subject-tabs"></div>
+    <div id="palette-stats">
+      <div class="stat-pill">Total: <b id="stat-total">0</b></div>
+      <div class="stat-pill" style="color:#93c5fd">Done: <b id="stat-ans">0</b></div>
+      <div class="stat-pill" style="color:var(--text2)">Pending: <b id="stat-skip">0</b></div>
+      <div class="stat-pill" style="color:var(--purple)">Mark: <b id="stat-mark">0</b></div>
+    </div>
+    <div id="palette-scroll">
+      <div id="palette-grid"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Submit Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2>Submit Test?</h2>
+    <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+    <div class="modal-stats">
+      <div class="mstat"><div class="mstat-label">Answered</div><div class="mstat-val green" id="ms-ans">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Answered</div><div class="mstat-val red" id="ms-skip">0</div></div>
+      <div class="mstat"><div class="mstat-label">Marked for Review</div><div class="mstat-val purple" id="ms-mark">0</div></div>
+      <div class="mstat"><div class="mstat-label">Not Visited</div><div class="mstat-val amber" id="ms-nv">0</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="submitTest()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Result Screen -->
+<div id="result-screen">
+  <div id="result-header">
+    <h2>📊 Test Result</h2>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+      <span id="result-title" style="font-size:13px;color:var(--text3);"></span>
+      <button class="btn btn-outline btn-sm" onclick="location.reload()">↺ Retake</button>
+    </div>
+  </div>
+  <div id="result-body">
+    <div id="score-card"></div>
+    <div class="section-title">Question-wise Review</div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+// ── Data injection point ──────────────────────────────────────────────────────
+const QUIZ_PAYLOAD = {"title": "Pratigya Physics Mock Test  8", "timeLimitSec": 3600, "lang": "ENGLISH", "questions": [{"subject": "PHYSICS_0", "question": "A ray of light is incident on the surface of separation of a medium from air at an angle 45° is refracted in the medium at an angle 30°. What will be the velocity of light in the medium? \u003cbr>", "options": [{"text": "1.96×10⁸ m/s \u003cbr>", "is_correct": false}, {"text": "2.12×10⁸ m/s \u003cbr>", "is_correct": true}, {"text": "265×10⁸ m/s \u003cbr>", "is_correct": false}, {"text": "1.24×10⁸ m/s. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329855image66.png"}, {"subject": "PHYSICS_0", "question": "The refractive index of a prism for a monochromatic wave is and its refracting angle is 60°. For minimum deviation, the angle of incidence will be. \u003cbr>", "options": [{"text": "30° \u003cbr>", "is_correct": false}, {"text": "45° \u003cbr>", "is_correct": true}, {"text": "37° \u003cbr>", "is_correct": false}, {"text": "75° \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329737image1.png", "so_img": "https://ts-cdn.adda247.com/1776336329919image67.png"}, {"subject": "PHYSICS_0", "question": "In a compound microscope, the intermediate image, in normal use is. \u003cbr>", "options": [{"text": "Virtual, erect and magnified \u003cbr>", "is_correct": false}, {"text": "Real, erect and magnified \u003cbr>", "is_correct": false}, {"text": "Real, inverted and magnified \u003cbr>", "is_correct": true}, {"text": "Virtual inverted and magnified. \u003cbr>", "is_correct": false}], "solution": "A compound microscope uses two lenses: the objective lens creates a real, inverted, and magnified intermediate image, which is then further magnified by the eyepiece to produce a highly enlarged virtual image. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The focal length of convex lens is 2.5 cm. Its magnifying power for minimum distance of distinct vision will be. \u003cbr>", "options": [{"text": "25 \u003cbr>", "is_correct": false}, {"text": "52 \u003cbr>", "is_correct": false}, {"text": "11 \u003cbr>", "is_correct": true}, {"text": "1.1 \u003cbr>", "is_correct": false}], "solution": "\u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329919image68.png"}, {"subject": "PHYSICS_0", "question": "Maximum distance of distinct vision for a person is 200 cm. Power of lens advisable to him, is. \u003cbr>", "options": [{"text": "+2 D \u003cbr>", "is_correct": false}, {"text": "+0.5 D \u003cbr>", "is_correct": false}, {"text": "-2 D \u003cbr>", "is_correct": false}, {"text": "-0.5 D. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329919image69.png"}, {"subject": "PHYSICS_0", "question": "A convex lens of refractive index 3/2 has power of 2.5 D. If it is placed in a liquid of refractive index 2. The new power of lens is. \u003cbr>", "options": [{"text": "2.5 D \u003cbr>", "is_correct": false}, {"text": "-2.5 D \u003cbr>", "is_correct": false}, {"text": "1.25 D \u003cbr>", "is_correct": false}, {"text": "-1.25 D. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329920image70.png"}, {"subject": "PHYSICS_0", "question": "An incident plane wavefront makes angle 53° with surface of medium in air. The refracted wavefront makes angle 37° with the surface. Refractive index of medium is. \u003cbr>", "options": [{"text": "3/2 \u003cbr>", "is_correct": false}, {"text": "4/3 \u003cbr>", "is_correct": true}, {"text": "3/4 \u003cbr>", "is_correct": false}, {"text": "2/3. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329921image71.png"}, {"subject": "PHYSICS_0", "question": "When two waves interfering with each other have amplitude and the phase difference of π/2. The resultant amplitude is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329819image2.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329835image3.png", "https://ts-cdn.adda247.com/1776336329919image4.png", "https://ts-cdn.adda247.com/1776336329934image5.png", "https://ts-cdn.adda247.com/1776336329940image6.png"], "so_img": "https://ts-cdn.adda247.com/1776336329921image72.png"}, {"subject": "PHYSICS_0", "question": "Young’s Double Slit experiment is first performed in air then in a medium other than air. It is found that 10\u003csup>th\u003c/sup> bright fringe in medium lies where 8\u003csup>th\u003c/sup> dark fringe lies in air. The refractive index of medium is nearly. \u003cbr>", "options": [{"text": "1.59 \u003cbr>", "is_correct": false}, {"text": "1.78 \u003cbr>", "is_correct": false}, {"text": "1.69 \u003cbr>", "is_correct": false}, {"text": "1.33. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329932image73.png"}, {"subject": "PHYSICS_0", "question": "An air bubble contained inside water. It behaves as a. \u003cbr> \u003cbr>", "options": [{"text": "Concave lens \u003cbr>", "is_correct": true}, {"text": "Convex lens \u003cbr>", "is_correct": false}, {"text": "Neither convex nor concave \u003cbr>", "is_correct": false}, {"text": "Can not say. \u003cbr>", "is_correct": false}], "solution": "Medium (i.e. water) surrounding air bubble has more refractive index than air. So, its behavior is divergent, So concave lens. \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329672image7.png"}, {"subject": "PHYSICS_0", "question": "A completely transparent material will be invisible in vacuum if its refractive index is. \u003cbr>", "options": [{"text": "Unity \u003cbr>", "is_correct": true}, {"text": "More than unity \u003cbr>", "is_correct": false}, {"text": "Less than unity \u003cbr>", "is_correct": false}, {"text": "Equal to 1.33. \u003cbr>", "is_correct": false}], "solution": "Transparent material will be invisible in vacuum if speed of light in medium equal to speed of light in vacuum for which \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329933image74.png"}, {"subject": "PHYSICS_0", "question": "The de-Broglie wavelength of a neutron at 27°C is λ. What will be its wavelength at 927°C. \u003cbr>", "options": [{"text": "λ/2 \u003cbr>", "is_correct": true}, {"text": "λ/3 \u003cbr>", "is_correct": false}, {"text": "λ/4 \u003cbr>", "is_correct": false}, {"text": "λ/9. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329934image75.png"}, {"subject": "PHYSICS_0", "question": "As the mass number increases, binding energy per nucleon. \u003cbr>", "options": [{"text": "Increases \u003cbr>", "is_correct": false}, {"text": "Decreases \u003cbr>", "is_correct": false}, {"text": "Remains same \u003cbr>", "is_correct": false}, {"text": "May increase or may decrease. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>According to graph between binding energy per nucleon and mass number, with increase in mass number binding energy per nucleon first increases, become maximum and then decreases. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329934image76.png"}, {"subject": "PHYSICS_0", "question": "The nuclear radius of a nucleon number 16 is metre. Then the nuclear radius of a nucleus with nucleon number 128 is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329673image8.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329673image9.png", "https://ts-cdn.adda247.com/1776336329673image10.png", "https://ts-cdn.adda247.com/1776336329674image11.png", "https://ts-cdn.adda247.com/1776336329674image12.png"], "so_img": "https://ts-cdn.adda247.com/1776336329934image77.png"}, {"subject": "PHYSICS_0", "question": "Stopping potential for photoelectrons. \u003cbr>", "options": [{"text": "Does not depend on the frequency of incident light. \u003cbr>", "is_correct": false}, {"text": "Does not depend on the nature of cathode material. \u003cbr>", "is_correct": false}, {"text": "Depends on both the frequency of incident light and nature of cathode material. \u003cbr>", "is_correct": true}, {"text": "Depends on intensity of incident light. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329935image78.png"}, {"subject": "PHYSICS_0", "question": "Which of the following impurity decreases the number of negatively charge carries on mixing in intrinsic semiconductor? \u003cbr>", "options": [{"text": "Sb \u003cbr>", "is_correct": false}, {"text": "In \u003cbr>", "is_correct": true}, {"text": "Si \u003cbr>", "is_correct": false}, {"text": "Ag. \u003cbr>", "is_correct": false}], "solution": "Number of negatively charge carriers decreases in intrinsic semiconductor if impurity added produce extra holes for which trivalent impurity are required. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Width of depletion layer in a diode depends only on. \u003cbr>", "options": [{"text": "Biasing of diode \u003cbr>", "is_correct": true}, {"text": "Type on minority charge carrier \u003cbr>", "is_correct": false}, {"text": "Type of majority charge carrier \u003cbr>", "is_correct": false}, {"text": "All of these. \u003cbr>", "is_correct": false}], "solution": "(Depletion layer) depends only of type of biasing. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The forward biased diode connection is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776336329675image13.png", "https://ts-cdn.adda247.com/1776336329678image14.png", "https://ts-cdn.adda247.com/1776336329678image15.png", "https://ts-cdn.adda247.com/1776336329678image16.png"], "so_img": "https://ts-cdn.adda247.com/1776336329935image79.png"}, {"subject": "PHYSICS_0", "question": "Find current through Zener diode. \u003cbr> \u003cbr>", "options": [{"text": "5 mA \u003cbr>", "is_correct": true}, {"text": "7.5 mA \u003cbr>", "is_correct": false}, {"text": "2.5 mA \u003cbr>", "is_correct": false}, {"text": "12.5 mA. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329679image17.png", "so_img": "https://ts-cdn.adda247.com/1776336329936image80.png"}, {"subject": "PHYSICS_0", "question": "Truth table for system of gates as shown in figure is. \u003cbr> \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329685image18.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329685image19.png", "https://ts-cdn.adda247.com/1776336329685image20.png", "https://ts-cdn.adda247.com/1776336329685image21.png", "https://ts-cdn.adda247.com/1776336329686image22.png"], "so_img": "https://ts-cdn.adda247.com/1776336329936image81.png"}, {"subject": "PHYSICS_0", "question": "Which of the following statement is true? \u003cbr>", "options": [{"text": "Doping of pure Ge with a trivalent impurity given n-type semiconductor. \u003cbr>", "is_correct": false}, {"text": "Resistivity of pure Ge increases with temperature. \u003cbr>", "is_correct": false}, {"text": "Majority carries in p type semiconductor are holes. \u003cbr>", "is_correct": true}, {"text": "Doping of pure Ge with a pentavalent impurity increases its resistivity. \u003cbr>", "is_correct": false}], "solution": "In P-type semiconductor majority charge carries are holes. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Thick lenses shows chromatic aberration due to. \u003cbr>", "options": [{"text": "Refraction \u003cbr>", "is_correct": false}, {"text": "Total internal reflection \u003cbr>", "is_correct": false}, {"text": "Dispersion \u003cbr>", "is_correct": true}, {"text": "Scattering. \u003cbr>", "is_correct": false}], "solution": "When white light passes through thick lenses, red and blue colour are focused at different points which is called chromatic aberration. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "A double convex lens, made of a material of refractive index is placed inside two liquids of refractive indices . A wide, parallel beam of light is incident on the lens from the left. The lens will give rise to. \u003cbr> \u003cbr>", "options": [{"text": "A single convergent beam \u003cbr>", "is_correct": false}, {"text": "Two different convergent beams \u003cbr>", "is_correct": false}, {"text": "Two different divergent beams \u003cbr>", "is_correct": false}, {"text": "A convergent and a divergent beam. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776336329719image23.png", "https://ts-cdn.adda247.com/1776336329720image24.png", "https://ts-cdn.adda247.com/1776336329721image25.png"], "so_img": "https://ts-cdn.adda247.com/1776336329936image82.png"}, {"subject": "PHYSICS_0", "question": "Double convex lenses are to be manufactured from a glass of refractive index 1.55, with both faces of same radius of curvature. What is the radius of curvature required if the focal length is to be 20 cm? \u003cbr>", "options": [{"text": "11 cm \u003cbr>", "is_correct": false}, {"text": "22 cm \u003cbr>", "is_correct": true}, {"text": "7 cm \u003cbr>", "is_correct": false}, {"text": "6 cm. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329936image83.png"}, {"subject": "PHYSICS_0", "question": "An eye specialist prescribes spectacles having a combination of a convex lens of focal length 40 cm in contact with a concave lens of focal length 25 cm. The power of this lens combination is. \u003cbr>", "options": [{"text": "+1.5 D \u003cbr>", "is_correct": false}, {"text": "-1.5 D \u003cbr>", "is_correct": true}, {"text": "+6.67 D \u003cbr>", "is_correct": false}, {"text": "-6.67 D. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336329936image84.png"}, {"subject": "PHYSICS_0", "question": "For a glass prism the angle of minimum deviation is equal to the angle of the prism. The angle of the prism is. \u003cbr>", "options": [{"text": "45° \u003cbr>", "is_correct": false}, {"text": "30° \u003cbr>", "is_correct": false}, {"text": "90° \u003cbr>", "is_correct": false}, {"text": "60°. \u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329730image26.png", "so_img": "https://ts-cdn.adda247.com/1776336329939image85.png"}, {"subject": "PHYSICS_0", "question": "Two transparent media A and B are separated by a plane boundary. The speed of height in medium A is and in medium B is . The critical angle for which a ray of light going from A to B is totally internally reflected is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": ["https://ts-cdn.adda247.com/1776336329730image27.png", "https://ts-cdn.adda247.com/1776336329730image28.png"], "opt_img": ["https://ts-cdn.adda247.com/1776336329731image29.png", "https://ts-cdn.adda247.com/1776336329732image30.png", "https://ts-cdn.adda247.com/1776336329732image31.png", "https://ts-cdn.adda247.com/1776336329733image32.png"], "so_img": "https://ts-cdn.adda247.com/1776336329940image86.png"}, {"subject": "PHYSICS_0", "question": "Light of wavelength 6000 Å is incident on a slit of width 0.30 mm. The screen is place 2 m from slit. Find position of the first minima. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776336329734image33.png", "https://ts-cdn.adda247.com/1776336329734image34.png", "https://ts-cdn.adda247.com/1776336329735image35.png", "https://ts-cdn.adda247.com/1776336329736image36.png"], "so_img": "https://ts-cdn.adda247.com/1776336329946image87.png"}, {"subject": "PHYSICS_0", "question": "When the angle of incidence on a material is 60°, the reflected light is completely polarised. The velocity of the refracted ray inside the material is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329757image37.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329759image38.png", "https://ts-cdn.adda247.com/1776336329759image39.png", "https://ts-cdn.adda247.com/1776336329759image40.png", "https://ts-cdn.adda247.com/1776336329819image41.png"], "so_img": "https://ts-cdn.adda247.com/1776336329950image88.png"}, {"subject": "PHYSICS_0", "question": "A photon of wavelength 4400 Å is passing through vacuum. The effective mass and momentum of the photon are respectively. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776336329819image42.png", "https://ts-cdn.adda247.com/1776336329819image43.png", "https://ts-cdn.adda247.com/1776336329819image44.png", "https://ts-cdn.adda247.com/1776336329819image45.png"], "so_img": "https://ts-cdn.adda247.com/1776336330019image89.png"}, {"subject": "PHYSICS_0", "question": "In a laboratory experiment on emission from atomic hydrogen in a discharge tube, only a small number of lines are observed whereas a large number of lines are present in the hydrogen spectrum of a star. This is because in a laboratory \u003cbr>", "options": [{"text": "The amount of hydrogen taken is much smaller than that present in the star. \u003cbr>", "is_correct": false}, {"text": "The temperature of hydrogen is much smaller than that of the star. \u003cbr>", "is_correct": true}, {"text": "The pressure of hydrogen is much smaller than that of the star. \u003cbr>", "is_correct": false}, {"text": "The gravitational pull is much smaller than that in the star. \u003cbr>", "is_correct": false}], "solution": "Number of lines on hydrogen spectrum is proportional to temperature of star. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "The maximum kinetic energy of photoelectrons emitted from a surface when photons of energy 6 eV fall on it is 4eV. The stopping potential is Volts is: \u003cbr>", "options": [{"text": "2 \u003cbr>", "is_correct": false}, {"text": "4 \u003cbr>", "is_correct": true}, {"text": "6 \u003cbr>", "is_correct": false}, {"text": "10 \u003cbr>", "is_correct": false}], "solution": "Max KE = 4 eV \u003cbr>Then stopping Potential is 4V. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "A convex lens of crown glass (n=1.525) will behave as a divergent lens if immersed in. \u003cbr>", "options": [{"text": "Water (n=1.33) \u003cbr>", "is_correct": false}, {"text": "In a medium of n=1.525 \u003cbr>", "is_correct": false}, {"text": "Carbon disulphide n=1.66 \u003cbr>", "is_correct": true}, {"text": "It cannot act as a divergent lens. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336330019image90.png"}, {"subject": "PHYSICS_0", "question": "Which of the following statement is correct? \u003cbr>", "options": [{"text": "At sunset or sunrise, the sun’s rays have to pass through a small distance in the atmosphere. \u003cbr>", "is_correct": false}, {"text": "At sunset or sunrise, the sun’s rays have to pass through a larger distance in the atmosphere. \u003cbr>", "is_correct": true}, {"text": "Rayleigh scattering which is proportional to . \u003cbr>", "is_correct": false}, {"text": "Most of the blue and other shorter wavelength are not removed by scattering. \u003cbr>", "is_correct": false}], "solution": "At sunset of sunrise the sun’s rays have to pass through a larger distance in the atmosphere and most of the blue and other shorter wavelength are removed by scattering. \u003cbr>", "opt_img": "https://ts-cdn.adda247.com/1776336329819image46.png"}, {"subject": "PHYSICS_0", "question": "Different object at different distances are seen with the eye. The parameter that remains constant is. \u003cbr>", "options": [{"text": "The focal length of the eye lens \u003cbr>", "is_correct": false}, {"text": "The object distance from the eye lens \u003cbr>", "is_correct": false}, {"text": "The radii of curvature of the eye lens \u003cbr>", "is_correct": false}, {"text": "The image distance from the eye lens. \u003cbr>", "is_correct": true}], "solution": "The image formed by the eye lens is always on the retina and the image distance is fixed. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "A reflecting telescope has a large mirror for its objective with radius of curvature equal to 80 cm. The magnifying power of this telescope if eye piece used has a focal length of 1.6 cm is. \u003cbr>", "options": [{"text": "100 \u003cbr>", "is_correct": false}, {"text": "50 \u003cbr>", "is_correct": false}, {"text": "25 \u003cbr>", "is_correct": true}, {"text": "5. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336330019image91.png"}, {"subject": "PHYSICS_0", "question": "In Young’s double slit interference pattern the fringe width \u003cbr>", "options": [{"text": "Can be changed only by changing the wavelength of incident light \u003cbr>", "is_correct": false}, {"text": "Can be changed only by changing the separation between between the two slits \u003cbr>", "is_correct": false}, {"text": "Can be changed either by changing the wavelength or by changing the separation between the two slits \u003cbr>", "is_correct": true}, {"text": "Is a universal constant, hence cannot be changed \u003cbr>", "is_correct": false}], "solution": "\u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336330019image92.png"}, {"subject": "PHYSICS_0", "question": "Which of the following statements is correct regarding photons. \u003cbr>", "options": [{"text": "Photons do not carry momentum \u003cbr>", "is_correct": false}, {"text": "Photon is a material particle \u003cbr>", "is_correct": false}, {"text": "Photon energy depends on intensity of given light \u003cbr>", "is_correct": false}, {"text": "In interaction of radiation with matter radiations behaves like photons. \u003cbr>", "is_correct": true}], "solution": "Photons have momentum given by \u003cbr>It is not material particle and it is packet of energy. Photon energy depends on frequency of light. \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336330020image93.png"}, {"subject": "PHYSICS_0", "question": "Which phenomenon best supports the theory that matter has a wave nature? \u003cbr>", "options": [{"text": "Electron momentum \u003cbr>", "is_correct": false}, {"text": "Electron diffraction \u003cbr>", "is_correct": true}, {"text": "Photon momentum \u003cbr>", "is_correct": false}, {"text": "Photon. \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "PHYSICS_0", "question": "Which of the following semiconductor is electrically positive? \u003cbr>", "options": [{"text": "Intrinsic semiconductor \u003cbr>", "is_correct": false}, {"text": "P-type semiconductor \u003cbr>", "is_correct": false}, {"text": "N-type semiconductor \u003cbr>", "is_correct": false}, {"text": "None of these. \u003cbr>", "is_correct": true}], "solution": "Semiconductors are electrically neutral. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Which of the given statement is/are correct for phenomenon of diffraction? \u003cbr>(i) For diffraction through a single-slit the wavelength of wave must be comparable to the size of the slit. \u003cbr>(ii) The diffraction is very common in sound wave but not so common in light waves. \u003cbr>(iii) Diffraction is only observed in electro- magnetic waves. \u003cbr>", "options": [{"text": "Only i \u003cbr>", "is_correct": false}, {"text": "ii and iii \u003cbr>", "is_correct": false}, {"text": "i and ii \u003cbr>", "is_correct": true}, {"text": "i,ii and iii. \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "PHYSICS_0", "question": "A ray of light strikes a glass plate at an angle of 60°. If the reflected and refracted rays are perpendicular to each other, the index of refraction of glass is \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cbr> \u003cbr>", "opt_img": ["https://ts-cdn.adda247.com/1776336329819image47.png", "https://ts-cdn.adda247.com/1776336329820image48.png", "https://ts-cdn.adda247.com/1776336329831image49.png", "https://ts-cdn.adda247.com/1776336329832image50.png"], "so_img": "https://ts-cdn.adda247.com/1776336330020image94.png"}, {"subject": "PHYSICS_0", "question": "An unpolarized beam of intensity is incident on a pair of Nicols making an angle of 60° with each other. The intensity of light emerging from the pair is. \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": true}], "solution": "\u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329834image51.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329834image51.png", "https://ts-cdn.adda247.com/1776336329834image52.png", "https://ts-cdn.adda247.com/1776336329834image53.png", "https://ts-cdn.adda247.com/1776336329835image54.png"], "so_img": "https://ts-cdn.adda247.com/1776336330022image95.png"}, {"subject": "PHYSICS_0", "question": "\u003cb>Statement-1: \u003c/b>The number of free electrons in n-type semiconductor is higher than the number of free electrons in a pure silicon semiconductor. \u003cbr>\u003cb>Statement-2: \u003c/b>The law of mass action is applicable to n-type semiconductors. \u003cbr>", "options": [{"text": "Statement-1 is True, Statement-2 is True; Statement-2 is a correct explanation for Statement-1. \u003cbr>", "is_correct": false}, {"text": "Statement-1 is True, Statement-2 is True; Statement-2 is a not a correct explanation for Statement-1 \u003cbr>", "is_correct": true}, {"text": "Statement-1 is True, Statement-2 is False. \u003cbr>", "is_correct": false}, {"text": "Statement-1 is False, Statement-2 is True. \u003cbr>", "is_correct": false}], "solution": ""}, {"subject": "PHYSICS_0", "question": "Potential drop across a forward biased p-n junction diode is 0.7 V. If a battery of 4 V is applied, calculate the minimum resistance to be put in series, for the maximum current of 5 mA in the circuit. \u003cbr>", "options": [{"text": "660 Ω \u003cbr>", "is_correct": true}, {"text": "350 Ω \u003cbr>", "is_correct": false}, {"text": "475 Ω \u003cbr>", "is_correct": false}, {"text": "500 Ω. \u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "so_img": "https://ts-cdn.adda247.com/1776336330033image96.png"}, {"subject": "PHYSICS_0", "question": "A plane electromagnetic wave of frequency 25 MHz travels in a free space along the x – direction. At the particular point in space and time, . What is the magnetic field at that point? \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329835image55.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329835image56.png", "https://ts-cdn.adda247.com/1776336329835image57.png", "https://ts-cdn.adda247.com/1776336329836image58.png", "https://ts-cdn.adda247.com/1776336329836image59.png"], "so_img": "https://ts-cdn.adda247.com/1776336329673image97.png"}, {"subject": "PHYSICS_0", "question": "The given figure shows the wave forms two inputs A and B and that for the output Y of a logic circuit. The logic circuit is. \u003cbr> \u003cbr>", "options": [{"text": "An AND gate \u003cbr>", "is_correct": true}, {"text": "An OR gate \u003cbr>", "is_correct": false}, {"text": "A NAND gate \u003cbr>", "is_correct": false}, {"text": "An NOT gate. \u003cbr>", "is_correct": false}], "solution": "", "qs_img": "https://ts-cdn.adda247.com/1776336329836image60.png"}, {"subject": "PHYSICS_0", "question": "According to Maxwell light waves are associated with. \u003cbr>", "options": [{"text": "An electric field of constant magnitude \u003cbr>", "is_correct": false}, {"text": "A magnetic field of constant magnitude \u003cbr>", "is_correct": false}, {"text": "Changing electric and magnetic fields \u003cbr>", "is_correct": true}, {"text": "Electric and magnetic fields of constant magnitude. \u003cbr>", "is_correct": false}], "solution": "Light waves consists of electric and magnetic field which are time and space varying field. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "Two sources are said to be coherent when. \u003cbr>", "options": [{"text": "Phase difference between waves produced by them is a function of time \u003cbr>", "is_correct": false}, {"text": "Phase difference between waves produced by them is π/2 \u003cbr>", "is_correct": false}, {"text": "Phase difference between waves produced by them is 0. \u003cbr>", "is_correct": false}, {"text": "Phase difference between them remains constant with time. \u003cbr>", "is_correct": true}], "solution": "Two sources are coherent then the phase difference ϕ at any point will not change with time and we will have a stable interference pattern. \u003cbr>"}, {"subject": "PHYSICS_0", "question": "In a thin prim of glass (refractive index 1.5), which of the following relations between the angle of minimum deviations and angle of first refraction of light (r) through prism will be correct? \u003cbr>", "options": [{"text": "\u003cbr>", "is_correct": true}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}, {"text": "\u003cbr>", "is_correct": false}], "solution": "\u003cbr> \u003cbr>", "qs_img": "https://ts-cdn.adda247.com/1776336329836image61.png", "opt_img": ["https://ts-cdn.adda247.com/1776336329837image62.png", "https://ts-cdn.adda247.com/1776336329837image63.png", "https://ts-cdn.adda247.com/1776336329837image64.png", "https://ts-cdn.adda247.com/1776336329851image65.png"], "so_img": "https://ts-cdn.adda247.com/1776336329673image98.png"}]};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const questions   = QUIZ_PAYLOAD.questions || [];
+const TITLE       = QUIZ_PAYLOAD.title || "Adda247 Quiz";
+const TIME_LIMIT  = QUIZ_PAYLOAD.timeLimitSec || 3600;
+const TOTAL       = questions.length;
+
+// Per-question state
+const state = questions.map(() => ({
+  visited: false,
+  answered: false,      // has an answer selected
+  selected: null,       // index of selected option (null = none)
+  marked: false,        // marked for review
+}));
+
+let current = 0;
+let timerSecs = TIME_LIMIT;
+let timerInterval = null;
+let submitted = false;
+
+// ── KaTeX (math formulas: $$..$$, $..$, \\(..\\), \\[..\\]) ────────────────────
+const KATEX_OPTS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "\\[", right: "\\]", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+  ],
+  throwOnError: false,
+  strict: "ignore",
+  trust: true,
+};
+
+function typesetMath(root) {
+  if (!root || typeof renderMathInElement === "undefined") return;
+  try {
+    renderMathInElement(root, KATEX_OPTS);
+  } catch (e) {
+    console.warn("KaTeX render:", e);
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSubjects() {
+  const s = new Set(["All"]);
+  questions.forEach(q => s.add(q.subject || "UNKNOWN"));
+  return [...s];
+}
+
+function getStatus(i) {
+  const s = state[i];
+  if (!s.visited && !s.answered && !s.marked) return "not-visited";
+  if (s.answered && s.marked) return "ans-marked";
+  if (s.answered) return "answered";
+  if (s.marked) return "marked";
+  return "not-answered"; // visited but not answered
+}
+
+function setPalBtn(i) {
+  const btn = document.querySelector(`.pal-btn[data-idx="${i}"]`);
+  if (!btn) return;
+  btn.className = "pal-btn " + getStatus(i) + (i === current ? " current" : "");
+  // subject filter
+  const subj = questions[i].subject || "UNKNOWN";
+  if (activeSubject !== "All" && subj !== activeSubject) btn.classList.add("hidden-sub");
+}
+
+function updateStats() {
+  let ans = 0, mark = 0, skip = 0, nv = 0;
+  state.forEach((s, i) => {
+    const st = getStatus(i);
+    if (st === "answered" || st === "ans-marked") ans++;
+    if (st === "marked" || st === "ans-marked") mark++;
+    if (st === "not-answered") skip++;
+    if (st === "not-visited") nv++;
+  });
+  document.getElementById("stat-total").textContent = TOTAL;
+  document.getElementById("stat-ans").textContent = ans;
+  document.getElementById("stat-skip").textContent = skip;
+  document.getElementById("stat-mark").textContent = mark;
+  document.getElementById("ms-ans").textContent = ans;
+  document.getElementById("ms-skip").textContent = skip;
+  document.getElementById("ms-mark").textContent = mark;
+  document.getElementById("ms-nv").textContent = nv;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSecs--;
+    updateTimerDisplay();
+    if (timerSecs <= 0) { clearInterval(timerInterval); submitTest(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(timerSecs / 3600);
+  const m = Math.floor((timerSecs % 3600) / 60);
+  const s = timerSecs % 60;
+  const str = [h, m, s].map(n => String(n).padStart(2, "0")).join(":");
+  const el = document.getElementById("timer");
+  el.textContent = str;
+  if (timerSecs <= 300) el.classList.add("danger");
+  else el.classList.remove("danger");
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  const q   = questions[idx];
+  const st  = state[idx];
+  st.visited = true;
+
+  // Header
+  document.getElementById("q-num-badge").textContent = `Q ${idx + 1} / ${TOTAL}`;
+  document.getElementById("q-subject-badge").textContent = q.subject || "General";
+
+  // Question image
+  const qImgWrap = document.getElementById("q-img-wrap");
+  if (q.qs_img) {
+    const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+    qImgWrap.innerHTML = imgs.map(u => `<img src="${u}" alt="question image" loading="lazy"/>`).join("");
+    qImgWrap.style.display = "block";
+  } else {
+    qImgWrap.innerHTML = "";
+    qImgWrap.style.display = "none";
+  }
+
+  // Question text
+  document.getElementById("question-text").innerHTML = q.question || "";
+
+  // Options
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const ol = document.getElementById("options-list");
+  ol.innerHTML = "";
+  (q.options || []).forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option-item" + (st.selected === i ? " selected" : "");
+    div.setAttribute("data-oi", i);
+    div.onclick = () => selectOption(i);
+    const letterSpan = `<span class="opt-letter">${letters[i]}</span>`;
+    let optContent = opt.text || "";
+    if (q.opt_img) {
+      const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+      if (imgs[i]) optContent += `<br/><img src="${imgs[i]}" loading="lazy" alt="option image"/>`;
+    }
+    div.innerHTML = letterSpan + `<span class="opt-text">${optContent}</span>`;
+    ol.appendChild(div);
+  });
+
+  // Solution (hidden during exam)
+  document.getElementById("solution-box").classList.remove("show");
+  document.getElementById("solution-text").innerHTML = "";
+
+  // Mark btn
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+
+  const bp = document.getElementById("btn-prev");
+  const bn = document.getElementById("btn-next");
+  if (bp) {
+    bp.disabled = idx === 0;
+    bp.title = idx === 0 ? "First question" : "Previous question";
+  }
+  if (bn) {
+    bn.disabled = idx >= TOTAL - 1;
+    bn.title = idx >= TOTAL - 1 ? "Last question" : "Next question";
+  }
+
+  // Palette highlight
+  document.querySelectorAll(".pal-btn").forEach(b => b.classList.remove("current"));
+  setPalBtn(idx);
+  // scroll palette btn into view
+  const curBtn = document.querySelector(`.pal-btn[data-idx="${idx}"]`);
+  if (curBtn) curBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+
+  // Solution box during review only
+  if (submitted) renderReviewMode(idx);
+
+  updateStats();
+  typesetMath(document.getElementById("q-scroll"));
+}
+
+function selectOption(optIdx) {
+  if (submitted) return;
+  const st = state[current];
+  if (st.selected === optIdx) return; // already selected
+  st.selected = optIdx;
+  st.answered = true;
+
+  // Update option visuals
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.toggle("selected", i === optIdx);
+  });
+  setPalBtn(current);
+  updateStats();
+}
+
+function toggleMark() {
+  if (submitted) return;
+  const st = state[current];
+  st.marked = !st.marked;
+  document.getElementById("btn-mark").classList.toggle("active-mark", st.marked);
+  setPalBtn(current);
+  updateStats();
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= TOTAL) return;
+  setPalBtn(current);
+  current = next;
+  renderQuestion(current);
+}
+
+function goTo(idx) {
+  setPalBtn(current);
+  current = idx;
+  closePaletteMenu();
+  renderQuestion(current);
+}
+
+function openPaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.add("open");
+  ov.setAttribute("aria-hidden", "false");
+}
+
+function closePaletteMenu() {
+  const ov = document.getElementById("palette-overlay");
+  if (!ov) return;
+  ov.classList.remove("open");
+  ov.setAttribute("aria-hidden", "true");
+}
+
+// ── Subject filter ────────────────────────────────────────────────────────────
+let activeSubject = "All";
+
+function setSubject(sub) {
+  activeSubject = sub;
+  document.querySelectorAll(".sub-tab").forEach(t => {
+    t.classList.toggle("active", t.getAttribute("data-sub") === sub);
+  });
+  document.querySelectorAll(".pal-btn").forEach(btn => {
+    const i = parseInt(btn.getAttribute("data-idx"));
+    const subj = questions[i].subject || "UNKNOWN";
+    btn.classList.toggle("hidden-sub", sub !== "All" && subj !== sub);
+  });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+function openSubmitModal() {
+  updateStats();
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeSubmitModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function submitTest() {
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  submitted = true;
+  showResult();
+}
+
+// ── Result screen ─────────────────────────────────────────────────────────────
+function showResult() {
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  closePaletteMenu();
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    if (sel === null) { skipped++; return; }
+    if (q.options[sel]?.is_correct) correct++; else wrong++;
+  });
+
+  const score = correct - (wrong * 0.25);
+  const maxScore = TOTAL;
+  const pct = Math.round((Math.max(0, score) / maxScore) * 100);
+
+  // Score card
+  document.getElementById("result-title").textContent = TITLE;
+  document.getElementById("score-card").innerHTML = `
+    <div class="score-big">
+      <div><span class="num">${score.toFixed(2)}</span><span class="denom"> / ${maxScore}</span></div>
+      <div class="label">SCORE</div>
+      <div class="progress-bar-wrap" style="margin-top:12px;width:140px;margin-left:auto;margin-right:auto;">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px;">${pct}% accuracy</div>
+    </div>
+    <div class="score-grid">
+      <div class="scard"><div class="scard-label">Correct</div><div class="scard-val" style="color:var(--green)">${correct}</div></div>
+      <div class="scard"><div class="scard-label">Wrong</div><div class="scard-val" style="color:var(--red)">${wrong}</div></div>
+      <div class="scard"><div class="scard-label">Skipped</div><div class="scard-val" style="color:var(--text3)">${skipped}</div></div>
+      <div class="scard"><div class="scard-label">Total Qs</div><div class="scard-val" style="color:var(--accent)">${TOTAL}</div></div>
+    </div>
+  `;
+
+  // Review list
+  const rl = document.getElementById("review-list");
+  rl.innerHTML = "";
+  questions.forEach((q, i) => {
+    const sel = state[i].selected;
+    let statusClass = "skipped", statusLabel = "Skipped";
+    if (sel !== null) {
+      if (q.options[sel]?.is_correct) { statusClass = "correct"; statusLabel = "Correct"; }
+      else { statusClass = "wrong"; statusLabel = "Wrong"; }
+    }
+
+    const card = document.createElement("div");
+    card.className = "review-card";
+    const qText = (q.question || "").replace(/<[^>]+>/g, "").slice(0, 90);
+
+    let optsHtml = (q.options || []).map((opt, oi) => {
+      let cls = "";
+      if (opt.is_correct) cls = "correct";
+      else if (oi === sel) cls = "selected-wrong";
+      let optContent = opt.text || "";
+      if (q.opt_img) {
+        const imgs = Array.isArray(q.opt_img) ? q.opt_img : [q.opt_img];
+        if (imgs[oi]) optContent += `<br/><img src="${imgs[oi]}" style="max-width:100%;margin-top:4px;" loading="lazy"/>`;
+      }
+      return `<div class="rc-opt ${cls}"><span class="rc-opt-letter">${letters[oi]}.</span><span>${optContent}</span></div>`;
+    }).join("");
+
+    let solHtml = "";
+    if (q.solution) {
+      let solContent = q.solution;
+      if (q.so_img) {
+        const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+        solContent += imgs.map(u => `<br/><img src="${u}" loading="lazy"/>`).join("");
+      }
+      solHtml = `<div class="rc-sol"><div class="rc-sol-label">Solution</div><div class="rc-sol-text">${solContent}</div></div>`;
+    }
+
+    let qContent = q.question || "";
+    if (q.qs_img) {
+      const imgs = Array.isArray(q.qs_img) ? q.qs_img : [q.qs_img];
+      qContent = imgs.map(u => `<img src="${u}" loading="lazy" style="max-width:100%;margin-bottom:8px;border-radius:5px;"/>`).join("") + qContent;
+    }
+
+    card.innerHTML = `
+      <div class="review-card-header" onclick="toggleReviewCard(this)">
+        <span class="rc-num">${i + 1}.</span>
+        <span class="rc-status ${statusClass}" title="${statusLabel}"></span>
+        <span class="rc-text">${qText}${qText.length >= 90 ? "…" : ""}</span>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rc-q">${qContent}</div>
+        <div class="rc-opts">${optsHtml}</div>
+        ${solHtml}
+      </div>
+    `;
+    rl.appendChild(card);
+  });
+
+  document.getElementById("result-screen").classList.add("open");
+  typesetMath(document.getElementById("review-list"));
+}
+
+function toggleReviewCard(header) {
+  header.closest(".review-card").classList.toggle("expanded");
+}
+
+function renderReviewMode(idx) {
+  const q = questions[idx];
+  const sel = state[idx].selected;
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  document.querySelectorAll(".option-item").forEach((el, i) => {
+    el.classList.remove("selected", "correct-show", "wrong-show");
+    if (q.options[i]?.is_correct) el.classList.add("correct-show");
+    else if (i === sel) el.classList.add("wrong-show");
+  });
+
+  if (q.solution) {
+    let sc = q.solution;
+    if (q.so_img) {
+      const imgs = Array.isArray(q.so_img) ? q.so_img : [q.so_img];
+      sc += imgs.map(u => `<img src="${u}" loading="lazy"/>`).join("");
+    }
+    document.getElementById("solution-text").innerHTML = sc;
+    document.getElementById("solution-box").classList.add("show");
+    typesetMath(document.getElementById("solution-box"));
+  }
+}
+
+// ── Build palette ─────────────────────────────────────────────────────────────
+function buildPalette() {
+  const subjects = getSubjects();
+
+  // Subject tabs
+  const tabsEl = document.getElementById("subject-tabs");
+  subjects.forEach(sub => {
+    const btn = document.createElement("button");
+    btn.className = "sub-tab" + (sub === "All" ? " active" : "");
+    btn.setAttribute("data-sub", sub);
+    btn.textContent = sub;
+    btn.onclick = () => setSubject(sub);
+    tabsEl.appendChild(btn);
+  });
+
+  // Grid
+  const grid = document.getElementById("palette-grid");
+  questions.forEach((q, i) => {
+    const btn = document.createElement("button");
+    btn.className = "pal-btn not-visited";
+    btn.setAttribute("data-idx", i);
+    btn.textContent = i + 1;
+    btn.onclick = () => goTo(i);
+    grid.appendChild(btn);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById("exam-title").textContent = TITLE;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") closePaletteMenu();
+});
+
+if (TOTAL === 0) {
+  document.getElementById("question-text").textContent = "No questions found in this test.";
+  const foot = document.getElementById("q-footer");
+  if (foot) foot.style.display = "none";
+  const palBtn = document.getElementById("btn-open-palette");
+  if (palBtn) palBtn.style.display = "none";
+} else {
+  buildPalette();
+  startTimer();
+  renderQuestion(0);
+}
+</script>
+</body>
+</html>
