@@ -1,0 +1,4001 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-27T15:10:46.136Z",
+  "source": {
+    "guildId": "1540430445483917342",
+    "guildName": "CUET 2027",
+    "forumId": "1553291830198538340",
+    "forumName": "📚︱resources",
+    "forumUrl": "https://discord.com/channels/1540430445483917342/1553291830198538340"
+  },
+  "stats": {
+    "topics": 18,
+    "messages": 112,
+    "messagesSeen": 140,
+    "links": 141
+  },
+  "topics": [
+    {
+      "id": "1553296899027771494",
+      "name": "GAT",
+      "emoji": "🧠",
+      "slug": "gat",
+      "messageCount": 6,
+      "totalMessages": 8,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553296899027771494",
+      "messages": [
+        {
+          "id": "1553296993260937226",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:47:42.056000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553296993260937226",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990497021982/GAT_MOCK_-1.html?ex=6aba0d8d&is=6ab8bc0d&hm=624f6ddb35d4588f5dbb46c255668b9972e44049fd17f5fc59a223f9830127e1&",
+              "size": 113589,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990807269376/GAT_MOCK_-2.html?ex=6aba0d8d&is=6ab8bc0d&hm=9c1589a6437a26324501d3864dc41ae7d80a3499dfedcd7421aaa2d99c0daf7b&",
+              "size": 139020,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991100862464/GAT_MOCK_-3.html?ex=6aba0d8d&is=6ab8bc0d&hm=05be81d3f48b844abf8095b59a7392a849746c0da8d9127ba0d11e4b92a6e8cf&",
+              "size": 142208,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991432347658/GAT_MOCK_-4.html?ex=6aba0d8d&is=6ab8bc0d&hm=e098a4c316669f0eb6bc380ff48880751870589b5c71ead0886837e2832f1a09&",
+              "size": 133910,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991683874836/GAT_MOCK_-5.html?ex=6aba0d8d&is=6ab8bc0d&hm=339804bba5447cd0e755f9b05553e0aa25689cd65e27a12bd27506d996f47eed&",
+              "size": 197237,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-6.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991939731527/GAT_MOCK_-6.html?ex=6aba0d8d&is=6ab8bc0d&hm=5ca6feabaa08014101e86cef068ce5584e0c757c296523a51db9216403a35fdb&",
+              "size": 241432,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-7.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992187187220/GAT_MOCK_-7.html?ex=6aba0d8d&is=6ab8bc0d&hm=e5194031968d5cfba21ade45ff7ff269180d5d8c6207acb27b418ff89190521a&",
+              "size": 136421,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-8.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992489312306/GAT_MOCK_-8.html?ex=6aba0d8d&is=6ab8bc0d&hm=8e1f76dd06d81b8a79cb910c63855681ef301d54a95cbbf41f4574663379e055&",
+              "size": 135830,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-9.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992757743697/GAT_MOCK_-9.html?ex=6aba0d8d&is=6ab8bc0d&hm=259873e12a202c7e122fab1fe3d09c48878b5301d9ba5913a7de59d2e5dcacdf&",
+              "size": 126144,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "GAT_MOCK_-10.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296993009410058/GAT_MOCK_-10.html?ex=6aba0d8d&is=6ab8bc0d&hm=c0b163c60f37f15cdf93b471a787ab023d2116048aa1c6e039ca68a422de69b6&",
+              "size": 135659,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553297060844015666",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:47:58.169000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553297060844015666",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058159665152/Pratigya_GAT_Mock_Test_1.html?ex=6aba0d9d&is=6ab8bc1d&hm=4b56a380531ff1fd669c1e5389522ec9cda04bf02d0229cfa0c0aef0bbe760b5&",
+              "size": 75252,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058419708044/Pratigya_GAT_Mock_Test_2.html?ex=6aba0d9d&is=6ab8bc1d&hm=c91ff6c7ab9b6c3f6732fc5b4dc6767de733a9689654755a2b8fe5b4d433097e&",
+              "size": 74977,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058713305098/Pratigya_GAT_Mock_Test_3.html?ex=6aba0d9d&is=6ab8bc1d&hm=424dd8a0c32d15ea8144e9eb217717b4baec1dc239790061aefd1eeb53a32ff3&",
+              "size": 75177,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058926960691/Pratigya_GAT_Mock_Test_4.html?ex=6aba0d9d&is=6ab8bc1d&hm=fe436114315fe1161cd4d7adfc5e476b1ff7ca7315e6f3513ee5f4fd90a5309a&",
+              "size": 76002,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059166298202/Pratigya_GAT_Mock_Test_5.html?ex=6aba0d9d&is=6ab8bc1d&hm=bd2fd109c8d1319f365218df0824bd61fdaef12e721cd4a6419e35911ed10faa&",
+              "size": 74448,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_6.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059434729513/Pratigya_GAT_Mock_Test_6.html?ex=6aba0d9d&is=6ab8bc1d&hm=071c8505329827961d944070c1c8f40dc4cba1e8f0db5a35ca3de18fdca5e825&",
+              "size": 77269,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_7.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059698966599/Pratigya_GAT_Mock_Test_7.html?ex=6aba0d9d&is=6ab8bc1d&hm=3719c4c906b4a557e48fa67624d0b88e2691f5bfd1798253bb26b19e55e575aa&",
+              "size": 74905,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_8.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059971334165/Pratigya_GAT_Mock_Test_8.html?ex=6aba0d9d&is=6ab8bc1d&hm=2ec107418ad6c55f099e9e9368769d1160a682a53bebdeee4303e5612a896f57&",
+              "size": 73765,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_11.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060277522462/Pratigya_GAT_Mock_Test_11.html?ex=6aba0d9e&is=6ab8bc1e&hm=3a75866c1ac839fb33051b76638c83e36f0c2a5ee67e4bb0b410ce8e2aa3ac8a&",
+              "size": 73904,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_9.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060546224148/Pratigya_GAT_Mock_Test_9.html?ex=6aba0d9e&is=6ab8bc1e&hm=7e43c346237414febc9d0ae13406495507063ec79538b94c4b1276d6cbcea0a4&",
+              "size": 75935,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553297193950126160",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:48:29.904000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553297193950126160",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_12.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192330985552/Pratigya_GAT_Mock_Test_12.html?ex=6aba0dbd&is=6ab8bc3d&hm=717fa6daeb0c49ce6e54c672b43316efb7a3ac6314bd0baff7f6473506a79cfd&",
+              "size": 76001,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_15.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192649891871/Pratigya_GAT_Mock_Test_15.html?ex=6aba0dbd&is=6ab8bc3d&hm=c9526233d2821ff33de829d938188d827f83b1be5c8657104283abb4b1ea259d&",
+              "size": 72322,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_14.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192947814450/Pratigya_GAT_Mock_Test_14.html?ex=6aba0dbd&is=6ab8bc3d&hm=fb503d27b004cbec333143b83ead484a53f9aaa5c070e0431ea1faa323e16aa1&",
+              "size": 76035,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_13.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193279033404/Pratigya_GAT_Mock_Test_13.html?ex=6aba0dbd&is=6ab8bc3d&hm=e3169112bf20209d0572d9599b5dce08417a00b9c8ef04782f1743b4a500372a&",
+              "size": 73060,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_GAT_Mock_Test_10.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193660579840/Pratigya_GAT_Mock_Test_10.html?ex=6aba0dbd&is=6ab8bc3d&hm=a430f3c34f0b7824e997ef969bc26500a39ca5577a3b0d7a465d8bd42e77db92&",
+              "size": 74189,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553319402865430599",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:16:44.922000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553319402865430599",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Reasoning_Part_01_80037362_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402097737759/Reasoning_Part_01_80037362_1.pdf?ex=6aba226c&is=6ab8d0ec&hm=55f7c372384849993ed3b4f493046f4ee0f3df0602ac7c866096bc7b6f97ca62&",
+              "size": 4779650,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Reasoning_Part_02_80688768.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402454130708/Reasoning_Part_02_80688768.pdf?ex=6aba226c&is=6ab8d0ec&hm=f9ffafd2ff2333558cd7a0996181760239d8a97a14b70c1a42f9b8cb38ecf323&",
+              "size": 6850741,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553681956384931872",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T08:17:24.417000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553681956384931872",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553681955764043866/CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf?ex=6aba2294&is=6ab8d114&hm=b0fa58cda94d9199561e6e38c26d21cd1faec61ea01251ca6186d63cf9f29262&",
+              "size": 1256457,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553681962026401844",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T08:17:25.762000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296899027771494/1553681962026401844",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "FOR REVISION AND ALL THE FORMULAS ( Can be used as a Formula sheet/Cheat sheet )"
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990497021982/GAT_MOCK_-1.html?ex=6aba0d8d&is=6ab8bc0d&hm=624f6ddb35d4588f5dbb46c255668b9972e44049fd17f5fc59a223f9830127e1&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-1.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296990807269376/GAT_MOCK_-2.html?ex=6aba0d8d&is=6ab8bc0d&hm=9c1589a6437a26324501d3864dc41ae7d80a3499dfedcd7421aaa2d99c0daf7b&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-2.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991100862464/GAT_MOCK_-3.html?ex=6aba0d8d&is=6ab8bc0d&hm=05be81d3f48b844abf8095b59a7392a849746c0da8d9127ba0d11e4b92a6e8cf&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-3.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991432347658/GAT_MOCK_-4.html?ex=6aba0d8d&is=6ab8bc0d&hm=e098a4c316669f0eb6bc380ff48880751870589b5c71ead0886837e2832f1a09&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-4.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991683874836/GAT_MOCK_-5.html?ex=6aba0d8d&is=6ab8bc0d&hm=339804bba5447cd0e755f9b05553e0aa25689cd65e27a12bd27506d996f47eed&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-5.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296991939731527/GAT_MOCK_-6.html?ex=6aba0d8d&is=6ab8bc0d&hm=5ca6feabaa08014101e86cef068ce5584e0c757c296523a51db9216403a35fdb&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-6.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992187187220/GAT_MOCK_-7.html?ex=6aba0d8d&is=6ab8bc0d&hm=e5194031968d5cfba21ade45ff7ff269180d5d8c6207acb27b418ff89190521a&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-7.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992489312306/GAT_MOCK_-8.html?ex=6aba0d8d&is=6ab8bc0d&hm=8e1f76dd06d81b8a79cb910c63855681ef301d54a95cbbf41f4574663379e055&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-8.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296992757743697/GAT_MOCK_-9.html?ex=6aba0d8d&is=6ab8bc0d&hm=259873e12a202c7e122fab1fe3d09c48878b5301d9ba5913a7de59d2e5dcacdf&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-9.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553296993009410058/GAT_MOCK_-10.html?ex=6aba0d8d&is=6ab8bc0d&hm=c0b163c60f37f15cdf93b471a787ab023d2116048aa1c6e039ca68a422de69b6&",
+          "domain": "cdn.discordapp.com",
+          "title": "GAT_MOCK_-10.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058159665152/Pratigya_GAT_Mock_Test_1.html?ex=6aba0d9d&is=6ab8bc1d&hm=4b56a380531ff1fd669c1e5389522ec9cda04bf02d0229cfa0c0aef0bbe760b5&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_1.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058419708044/Pratigya_GAT_Mock_Test_2.html?ex=6aba0d9d&is=6ab8bc1d&hm=c91ff6c7ab9b6c3f6732fc5b4dc6767de733a9689654755a2b8fe5b4d433097e&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_2.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058713305098/Pratigya_GAT_Mock_Test_3.html?ex=6aba0d9d&is=6ab8bc1d&hm=424dd8a0c32d15ea8144e9eb217717b4baec1dc239790061aefd1eeb53a32ff3&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_3.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297058926960691/Pratigya_GAT_Mock_Test_4.html?ex=6aba0d9d&is=6ab8bc1d&hm=fe436114315fe1161cd4d7adfc5e476b1ff7ca7315e6f3513ee5f4fd90a5309a&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_4.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059166298202/Pratigya_GAT_Mock_Test_5.html?ex=6aba0d9d&is=6ab8bc1d&hm=bd2fd109c8d1319f365218df0824bd61fdaef12e721cd4a6419e35911ed10faa&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_5.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059434729513/Pratigya_GAT_Mock_Test_6.html?ex=6aba0d9d&is=6ab8bc1d&hm=071c8505329827961d944070c1c8f40dc4cba1e8f0db5a35ca3de18fdca5e825&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_6.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059698966599/Pratigya_GAT_Mock_Test_7.html?ex=6aba0d9d&is=6ab8bc1d&hm=3719c4c906b4a557e48fa67624d0b88e2691f5bfd1798253bb26b19e55e575aa&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_7.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297059971334165/Pratigya_GAT_Mock_Test_8.html?ex=6aba0d9d&is=6ab8bc1d&hm=2ec107418ad6c55f099e9e9368769d1160a682a53bebdeee4303e5612a896f57&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_8.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060277522462/Pratigya_GAT_Mock_Test_11.html?ex=6aba0d9e&is=6ab8bc1e&hm=3a75866c1ac839fb33051b76638c83e36f0c2a5ee67e4bb0b410ce8e2aa3ac8a&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_11.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297060546224148/Pratigya_GAT_Mock_Test_9.html?ex=6aba0d9e&is=6ab8bc1e&hm=7e43c346237414febc9d0ae13406495507063ec79538b94c4b1276d6cbcea0a4&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_9.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192330985552/Pratigya_GAT_Mock_Test_12.html?ex=6aba0dbd&is=6ab8bc3d&hm=717fa6daeb0c49ce6e54c672b43316efb7a3ac6314bd0baff7f6473506a79cfd&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_12.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192649891871/Pratigya_GAT_Mock_Test_15.html?ex=6aba0dbd&is=6ab8bc3d&hm=c9526233d2821ff33de829d938188d827f83b1be5c8657104283abb4b1ea259d&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_15.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297192947814450/Pratigya_GAT_Mock_Test_14.html?ex=6aba0dbd&is=6ab8bc3d&hm=fb503d27b004cbec333143b83ead484a53f9aaa5c070e0431ea1faa323e16aa1&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_14.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193279033404/Pratigya_GAT_Mock_Test_13.html?ex=6aba0dbd&is=6ab8bc3d&hm=e3169112bf20209d0572d9599b5dce08417a00b9c8ef04782f1743b4a500372a&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_13.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553297193660579840/Pratigya_GAT_Mock_Test_10.html?ex=6aba0dbd&is=6ab8bc3d&hm=a430f3c34f0b7824e997ef969bc26500a39ca5577a3b0d7a465d8bd42e77db92&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_GAT_Mock_Test_10.html",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402097737759/Reasoning_Part_01_80037362_1.pdf?ex=6aba226c&is=6ab8d0ec&hm=55f7c372384849993ed3b4f493046f4ee0f3df0602ac7c866096bc7b6f97ca62&",
+          "domain": "cdn.discordapp.com",
+          "title": "Reasoning_Part_01_80037362_1.pdf",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553319402454130708/Reasoning_Part_02_80688768.pdf?ex=6aba226c&is=6ab8d0ec&hm=f9ffafd2ff2333558cd7a0996181760239d8a97a14b70c1a42f9b8cb38ecf323&",
+          "domain": "cdn.discordapp.com",
+          "title": "Reasoning_Part_02_80688768.pdf",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296899027771494/1553681955764043866/CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf?ex=6aba2294&is=6ab8d114&hm=b0fa58cda94d9199561e6e38c26d21cd1faec61ea01251ca6186d63cf9f29262&",
+          "domain": "cdn.discordapp.com",
+          "title": "CUET_GAT_Quants_Master_Formula_Blueprint__Study_Guide.pdf",
+          "topic": "GAT",
+          "slug": "gat",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553296559351791637",
+      "name": "Chemistry",
+      "emoji": "🧪",
+      "slug": "chemistry",
+      "messageCount": 6,
+      "totalMessages": 8,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553296559351791637",
+      "messages": [
+        {
+          "id": "1553296559351791637",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:45:58.604000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553296559351791637",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Chemistry Related material here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553296672950329364",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:46:25.688000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553296672950329364",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671402893332/Pratigya_Chemistry_Mock_Test_1.html?ex=6aba0d41&is=6ab8bbc1&hm=4fecb9257261f354d28cea9b7e1f666a16e04b80dbfec39f22dbf9b409ed25b9&",
+              "size": 73354,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671696359495/Pratigya_Chemistry_Mock_Test_2.html?ex=6aba0d41&is=6ab8bbc1&hm=83c556423db19ebde1401e374ead6f038a8224d7c2e1c2a94df2e0539b509af2&",
+              "size": 74314,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671960604683/Pratigya_Chemistry_Mock_Test_3.html?ex=6aba0d41&is=6ab8bbc1&hm=5ffe0f00eb771ac209d70da0eb83981ff5154ae6a90782fc8e51368bee8b44ba&",
+              "size": 73470,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672266780702/Pratigya_Chemistry_Mock_Test_4.html?ex=6aba0d41&is=6ab8bbc1&hm=6840fe4afd18b1c7b5765ed1695a1175faa2449346f169d4cf948f5d95d1fc13&",
+              "size": 72216,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672648331274/Pratigya_Chemistry_Mock_Test_5.html?ex=6aba0d41&is=6ab8bbc1&hm=920c6a2222a70c6cb55f3857ec15d4bd5ff4869d700755f4a104e0b40e1ab4db&",
+              "size": 72317,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553296787283116032",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:46:52.947000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553296787283116032",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_6.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296782828507237/Pratigya_Chemistry_Mock_Test_6.html?ex=6aba0d5b&is=6ab8bbdb&hm=9b82ca5fa1908b22716c8fce6c9802e109c6361d280416c9da696eeaf08bbd01&",
+              "size": 73429,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_7.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783575097354/Pratigya_Chemistry_Mock_Test_7.html?ex=6aba0d5c&is=6ab8bbdc&hm=63d58767a8b5d5da54cf1b908e02358fc22a26364ddc9d687a8fcba346234246&",
+              "size": 77037,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_8.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783885598781/Pratigya_Chemistry_Mock_Test_8.html?ex=6aba0d5c&is=6ab8bbdc&hm=b424bdfa9008226833c1631ebbf83911c5aeed46b458460ac3c9cb0d35201164&",
+              "size": 77470,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_9.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784632189018/Pratigya_Chemistry_Mock_Test_9.html?ex=6aba0d5c&is=6ab8bbdc&hm=b0b52c8720c9ec1c5b11406ae41650fb507f49b1dcda53e3938af99fd745e79c&",
+              "size": 77198,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_10.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784917274674/Pratigya_Chemistry_Mock_Test_10.html?ex=6aba0d5c&is=6ab8bbdc&hm=7c3df6c5162fc978de9886ef81bfb5024ab56be012756b4dfe0c0f74f7b8c00c&",
+              "size": 77509,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_11.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785361993799/Pratigya_Chemistry_Mock_Test_11.html?ex=6aba0d5c&is=6ab8bbdc&hm=7629b547bbff5f81c3fdd8c5fa8afdff8455c2f29aa40af8104ee31660ae834e&",
+              "size": 77289,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_12.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785785626676/Pratigya_Chemistry_Mock_Test_12.html?ex=6aba0d5c&is=6ab8bbdc&hm=157d9d99b336ce8c60745a1d8eee846d15dda063edee502f6c76189aedddf7a7&",
+              "size": 81867,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_13.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786095870083/Pratigya_Chemistry_Mock_Test_13.html?ex=6aba0d5c&is=6ab8bbdc&hm=de337f8455bcaab6097570c473313fcd59ef337bd8fa34102829c637c725518e&",
+              "size": 77413,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_14.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786418958346/Pratigya_Chemistry_Mock_Test_14.html?ex=6aba0d5c&is=6ab8bbdc&hm=bc6248cf716e2219b675b85ce22b80e341523ef0e71f138d5837e016690b29e7&",
+              "size": 76552,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Chemistry_Mock_Test_15.html",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786788065330/Pratigya_Chemistry_Mock_Test_15.html?ex=6aba0d5c&is=6ab8bbdc&hm=630444adbb4217dfb91cd511a81b0cc44f81642ddc869115a6a59721ee89ec1a&",
+              "size": 77519,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553318698222092381",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:13:56.922000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553318698222092381",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://drive.google.com/file/d/1Y2967wwRs9_Xwbo6tNNd9hwpgWaePGtg/view?usp=drivesdk",
+              "domain": "drive.google.com",
+              "context": "",
+              "embedTitle": "CUET UG Chemistry 20 Sets Book 2025.pdf"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633175014473869",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:03:34.032000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553633175014473869",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Chemistry by Kendriya Vidyalaya! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633240403804162",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:03:49.622000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553296559351791637/1553633240403804162",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "SSM-CHEMISTRY-_XII.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553633240328175656/SSM-CHEMISTRY-_XII.pdf?ex=6ab9f535&is=6ab8a3b5&hm=063fe0ac16cb37dcc327b9f1a21faca76b8c77172346bba0858a3e2d965b5bd2&",
+              "size": 12927031,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671402893332/Pratigya_Chemistry_Mock_Test_1.html?ex=6aba0d41&is=6ab8bbc1&hm=4fecb9257261f354d28cea9b7e1f666a16e04b80dbfec39f22dbf9b409ed25b9&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_1.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671696359495/Pratigya_Chemistry_Mock_Test_2.html?ex=6aba0d41&is=6ab8bbc1&hm=83c556423db19ebde1401e374ead6f038a8224d7c2e1c2a94df2e0539b509af2&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_2.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296671960604683/Pratigya_Chemistry_Mock_Test_3.html?ex=6aba0d41&is=6ab8bbc1&hm=5ffe0f00eb771ac209d70da0eb83981ff5154ae6a90782fc8e51368bee8b44ba&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_3.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672266780702/Pratigya_Chemistry_Mock_Test_4.html?ex=6aba0d41&is=6ab8bbc1&hm=6840fe4afd18b1c7b5765ed1695a1175faa2449346f169d4cf948f5d95d1fc13&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_4.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296672648331274/Pratigya_Chemistry_Mock_Test_5.html?ex=6aba0d41&is=6ab8bbc1&hm=920c6a2222a70c6cb55f3857ec15d4bd5ff4869d700755f4a104e0b40e1ab4db&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_5.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296782828507237/Pratigya_Chemistry_Mock_Test_6.html?ex=6aba0d5b&is=6ab8bbdb&hm=9b82ca5fa1908b22716c8fce6c9802e109c6361d280416c9da696eeaf08bbd01&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_6.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783575097354/Pratigya_Chemistry_Mock_Test_7.html?ex=6aba0d5c&is=6ab8bbdc&hm=63d58767a8b5d5da54cf1b908e02358fc22a26364ddc9d687a8fcba346234246&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_7.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296783885598781/Pratigya_Chemistry_Mock_Test_8.html?ex=6aba0d5c&is=6ab8bbdc&hm=b424bdfa9008226833c1631ebbf83911c5aeed46b458460ac3c9cb0d35201164&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_8.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784632189018/Pratigya_Chemistry_Mock_Test_9.html?ex=6aba0d5c&is=6ab8bbdc&hm=b0b52c8720c9ec1c5b11406ae41650fb507f49b1dcda53e3938af99fd745e79c&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_9.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296784917274674/Pratigya_Chemistry_Mock_Test_10.html?ex=6aba0d5c&is=6ab8bbdc&hm=7c3df6c5162fc978de9886ef81bfb5024ab56be012756b4dfe0c0f74f7b8c00c&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_10.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785361993799/Pratigya_Chemistry_Mock_Test_11.html?ex=6aba0d5c&is=6ab8bbdc&hm=7629b547bbff5f81c3fdd8c5fa8afdff8455c2f29aa40af8104ee31660ae834e&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_11.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296785785626676/Pratigya_Chemistry_Mock_Test_12.html?ex=6aba0d5c&is=6ab8bbdc&hm=157d9d99b336ce8c60745a1d8eee846d15dda063edee502f6c76189aedddf7a7&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_12.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786095870083/Pratigya_Chemistry_Mock_Test_13.html?ex=6aba0d5c&is=6ab8bbdc&hm=de337f8455bcaab6097570c473313fcd59ef337bd8fa34102829c637c725518e&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_13.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786418958346/Pratigya_Chemistry_Mock_Test_14.html?ex=6aba0d5c&is=6ab8bbdc&hm=bc6248cf716e2219b675b85ce22b80e341523ef0e71f138d5837e016690b29e7&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_14.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553296786788065330/Pratigya_Chemistry_Mock_Test_15.html?ex=6aba0d5c&is=6ab8bbdc&hm=630444adbb4217dfb91cd511a81b0cc44f81642ddc869115a6a59721ee89ec1a&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Chemistry_Mock_Test_15.html",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        },
+        {
+          "url": "https://drive.google.com/file/d/1Y2967wwRs9_Xwbo6tNNd9hwpgWaePGtg/view?usp=drivesdk",
+          "domain": "drive.google.com",
+          "title": "CUET UG Chemistry 20 Sets Book 2025.pdf",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553296559351791637/1553633240328175656/SSM-CHEMISTRY-_XII.pdf?ex=6ab9f535&is=6ab8a3b5&hm=063fe0ac16cb37dcc327b9f1a21faca76b8c77172346bba0858a3e2d965b5bd2&",
+          "domain": "cdn.discordapp.com",
+          "title": "SSM-CHEMISTRY-_XII.pdf",
+          "topic": "Chemistry",
+          "slug": "chemistry",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553297869639786578",
+      "name": "Physics",
+      "emoji": "⚛️",
+      "slug": "physics",
+      "messageCount": 4,
+      "totalMessages": 6,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553297869639786578",
+      "messages": [
+        {
+          "id": "1553297953014288437",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:51:30.879000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553297869639786578/1553297953014288437",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950095179847/Pratigya_Physics_Mock_Test_1.html?ex=6aba0e72&is=6ab8bcf2&hm=d7e2b8401d1488a144cbda4adc746922db98384279d7d78ce04116ca965f3de0&",
+              "size": 79870,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950476730409/Pratigya_Physics_Mock_Test_2.html?ex=6aba0e72&is=6ab8bcf2&hm=3476dce18facdb0258eecfc3a41fa1a1c0e0bea3e61d399f40d6a67c2b80c731&",
+              "size": 77106,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950845698079/Pratigya_Physics_Mock_Test_3.html?ex=6aba0e72&is=6ab8bcf2&hm=42a4003f5062a2647822b97735b2babc04e0d67282d717b2c3c6af364dacd49d&",
+              "size": 79526,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951172984832/Pratigya_Physics_Mock_Test_4.html?ex=6aba0e72&is=6ab8bcf2&hm=fc1ceb60fae3bac3c879686da3cf09b29cc29d602b23cde3d7884e4ea75a21bd&",
+              "size": 77869,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951462264864/Pratigya_Physics_Mock_Test_5.html?ex=6aba0e72&is=6ab8bcf2&hm=5afb1f456a41aa750b31d23460d472383f365f129f999d6e692ca944fbe998c7&",
+              "size": 78501,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_6.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951777103883/Pratigya_Physics_Mock_Test_6.html?ex=6aba0e72&is=6ab8bcf2&hm=ab100e7556dbf2304fe4453cf701eb95f0f9e6fbbd967a140a24e7cb89c87a14&",
+              "size": 81785,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_7.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952137678919/Pratigya_Physics_Mock_Test_7.html?ex=6aba0e72&is=6ab8bcf2&hm=79950453fa3b5e8e55ab9aeded48bb168f4684e5ff8b70ad91a0efb1e96d45d1&",
+              "size": 80888,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_8.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952410177566/Pratigya_Physics_Mock_Test_8.html?ex=6aba0e72&is=6ab8bcf2&hm=f37762c4ef0aff38e4bf242fad36e3f6e63ffdf44598d708014b8f6e61260d30&",
+              "size": 76480,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_13.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952699719730/Pratigya_Physics_Mock_Test_13.html?ex=6aba0e72&is=6ab8bcf2&hm=6e5ab00159a57f81307d05fbe3433524a8d6783c67aa3369f16ae4d3dda99e60&",
+              "size": 78211,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_9.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952955441212/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e72&is=6ab8bcf2&hm=aac36ee50741d187e15a40ee646353cdb52ffd3de3a70e8d1070f98363f90029&",
+              "size": 76935,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553298054843596870",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:51:55.157000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553297869639786578/1553298054843596870",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_15.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052603969648/Pratigya_Physics_Mock_Test_15.html?ex=6aba0e8a&is=6ab8bd0a&hm=81f0ca9907bf24dd8534c1ed5f6ed523e97cadb264ecd2eac3345c400e6a8f1c&",
+              "size": 79693,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_14.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052876345394/Pratigya_Physics_Mock_Test_14.html?ex=6aba0e8a&is=6ab8bd0a&hm=c37ddef097e56343a7fcf8a5cf7c632b90db6c8d078edf814cedc97f8c5e2183&",
+              "size": 78790,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_10.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053123932220/Pratigya_Physics_Mock_Test_10.html?ex=6aba0e8a&is=6ab8bd0a&hm=18ce61f71615c64d234fda9ed8544018c18965b7b9efc081458b904e7d70a7a8&",
+              "size": 79376,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_12.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053534978068/Pratigya_Physics_Mock_Test_12.html?ex=6aba0e8a&is=6ab8bd0a&hm=f7ed109da180c99f352460ccf90a0d8b78068984e5dfd37f82f05fa9cabbb410&",
+              "size": 78238,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_11.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053820059719/Pratigya_Physics_Mock_Test_11.html?ex=6aba0e8a&is=6ab8bd0a&hm=ced5522d97fcd5954bec854e6f6d546d86f89581352e87a888ea4343e5a75f8a&",
+              "size": 80303,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Pratigya_Physics_Mock_Test_9.html",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298054277234698/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e8b&is=6ab8bd0b&hm=60ea6f24b7d7635fead9a1160a482be71e90e5f1e9a92fdf1fd6f12ba09834ff&",
+              "size": 76935,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633288831242351",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:04:01.168000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553297869639786578/1553633288831242351",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Physics by Kendriya Vidyalaya! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633347295780874",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:04:15.107000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553297869639786578/1553633347295780874",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "PHYSICS_XII_SSM_2025-26.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553633346981072936/PHYSICS_XII_SSM_2025-26.pdf?ex=6ab9f54f&is=6ab8a3cf&hm=857712ae9a7d126ec205e64a2725011828b034fc4d13cbc4487a151556d451cb&",
+              "size": 9170844,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950095179847/Pratigya_Physics_Mock_Test_1.html?ex=6aba0e72&is=6ab8bcf2&hm=d7e2b8401d1488a144cbda4adc746922db98384279d7d78ce04116ca965f3de0&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_1.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950476730409/Pratigya_Physics_Mock_Test_2.html?ex=6aba0e72&is=6ab8bcf2&hm=3476dce18facdb0258eecfc3a41fa1a1c0e0bea3e61d399f40d6a67c2b80c731&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_2.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297950845698079/Pratigya_Physics_Mock_Test_3.html?ex=6aba0e72&is=6ab8bcf2&hm=42a4003f5062a2647822b97735b2babc04e0d67282d717b2c3c6af364dacd49d&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_3.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951172984832/Pratigya_Physics_Mock_Test_4.html?ex=6aba0e72&is=6ab8bcf2&hm=fc1ceb60fae3bac3c879686da3cf09b29cc29d602b23cde3d7884e4ea75a21bd&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_4.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951462264864/Pratigya_Physics_Mock_Test_5.html?ex=6aba0e72&is=6ab8bcf2&hm=5afb1f456a41aa750b31d23460d472383f365f129f999d6e692ca944fbe998c7&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_5.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297951777103883/Pratigya_Physics_Mock_Test_6.html?ex=6aba0e72&is=6ab8bcf2&hm=ab100e7556dbf2304fe4453cf701eb95f0f9e6fbbd967a140a24e7cb89c87a14&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_6.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952137678919/Pratigya_Physics_Mock_Test_7.html?ex=6aba0e72&is=6ab8bcf2&hm=79950453fa3b5e8e55ab9aeded48bb168f4684e5ff8b70ad91a0efb1e96d45d1&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_7.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952410177566/Pratigya_Physics_Mock_Test_8.html?ex=6aba0e72&is=6ab8bcf2&hm=f37762c4ef0aff38e4bf242fad36e3f6e63ffdf44598d708014b8f6e61260d30&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_8.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952699719730/Pratigya_Physics_Mock_Test_13.html?ex=6aba0e72&is=6ab8bcf2&hm=6e5ab00159a57f81307d05fbe3433524a8d6783c67aa3369f16ae4d3dda99e60&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_13.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553297952955441212/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e72&is=6ab8bcf2&hm=aac36ee50741d187e15a40ee646353cdb52ffd3de3a70e8d1070f98363f90029&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_9.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052603969648/Pratigya_Physics_Mock_Test_15.html?ex=6aba0e8a&is=6ab8bd0a&hm=81f0ca9907bf24dd8534c1ed5f6ed523e97cadb264ecd2eac3345c400e6a8f1c&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_15.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298052876345394/Pratigya_Physics_Mock_Test_14.html?ex=6aba0e8a&is=6ab8bd0a&hm=c37ddef097e56343a7fcf8a5cf7c632b90db6c8d078edf814cedc97f8c5e2183&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_14.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053123932220/Pratigya_Physics_Mock_Test_10.html?ex=6aba0e8a&is=6ab8bd0a&hm=18ce61f71615c64d234fda9ed8544018c18965b7b9efc081458b904e7d70a7a8&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_10.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053534978068/Pratigya_Physics_Mock_Test_12.html?ex=6aba0e8a&is=6ab8bd0a&hm=f7ed109da180c99f352460ccf90a0d8b78068984e5dfd37f82f05fa9cabbb410&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_12.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298053820059719/Pratigya_Physics_Mock_Test_11.html?ex=6aba0e8a&is=6ab8bd0a&hm=ced5522d97fcd5954bec854e6f6d546d86f89581352e87a888ea4343e5a75f8a&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_11.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553298054277234698/Pratigya_Physics_Mock_Test_9.html?ex=6aba0e8b&is=6ab8bd0b&hm=60ea6f24b7d7635fead9a1160a482be71e90e5f1e9a92fdf1fd6f12ba09834ff&",
+          "domain": "cdn.discordapp.com",
+          "title": "Pratigya_Physics_Mock_Test_9.html",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553297869639786578/1553633346981072936/PHYSICS_XII_SSM_2025-26.pdf?ex=6ab9f54f&is=6ab8a3cf&hm=857712ae9a7d126ec205e64a2725011828b034fc4d13cbc4487a151556d451cb&",
+          "domain": "cdn.discordapp.com",
+          "title": "PHYSICS_XII_SSM_2025-26.pdf",
+          "topic": "Physics",
+          "slug": "physics",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553318127977373817",
+      "name": "Economics",
+      "emoji": "💵",
+      "slug": "economics",
+      "messageCount": 8,
+      "totalMessages": 9,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553318127977373817",
+      "messages": [
+        {
+          "id": "1553318127977373817",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:11:40.965000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553318127977373817",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Economics content here ofc"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553318219278975092",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:12:02.733000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553318219278975092",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Economics_Part_Test_-_01_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217571766292/Economics_Part_Test_-_01_2.html?ex=6aba2152&is=6ab8cfd2&hm=1ed630f233728a3a7e39b832bb965394d65422d339445fe7204238733226f227&",
+              "size": 83629,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_Part_Test_-_02_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217970221097/Economics_Part_Test_-_02_2.html?ex=6aba2152&is=6ab8cfd2&hm=87b85205f40283b52bc4426c7e74382c56e339ceb8fa9e76ab1a606cf5dbfa74&",
+              "size": 78783,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_Part_Test_-_03_2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218293186631/Economics_Part_Test_-_03_2.html?ex=6aba2152&is=6ab8cfd2&hm=2d00566408f883d7ce7f601451ca5429c03452baa54815427305e573372ec54d&",
+              "size": 86743,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_Part_Test_-_04.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218712481873/Economics_Part_Test_-_04.html?ex=6aba2152&is=6ab8cfd2&hm=ec70dbd1c16e0885755a68b8c9e01e18ec1187e813ac92584c657deb7c16a562&",
+              "size": 81308,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_Part_Test_-_05.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318219161280532/Economics_Part_Test_-_05.html?ex=6aba2152&is=6ab8cfd2&hm=1865c32790b1a5132963ee95a0bddb9ba5b4860e3895227c4fc3b3e9cd42e627&",
+              "size": 81429,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607989171326978",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:23:29.259000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553607989171326978",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Eco_Revised_SSM_Cl.XII.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9ddb0&is=6ab88c30&hm=3a8b13d6584219e12ffea7c9a20e3a600e2cc5e793aa39b9acc8f59c3f4b71d8&",
+              "size": 4942610,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Subhash_Deys_Economics_XII_NOTES.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6ab9ddb0&is=6ab88c30&hm=130ae6edc63bd258adaeba42bfe13ba232971fa09d407234ecaac650751d8368&",
+              "size": 864671,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "MindMap-IED.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6ab9ddb0&is=6ab88c30&hm=8ff790af77afb1f225e62fdb3dce09a0b5bfa0dcf9746a0480d5d2752ab233fa&",
+              "size": 5729491,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553608041809711165",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:23:41.809000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553608041809711165",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Economics practice papers from Kendriya Vidyalayas across India"
+                }
+              ]
+            },
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Click [here]("
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1YFSHe9gsLSKcd9ubv-XjmEAQEJNnUUZQ",
+              "domain": "drive.google.com",
+              "context": "Click [here]("
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553608095266242590",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:23:54.554000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553608095266242590",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Additional papers"
+                }
+              ]
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_30_Sets_2025-26_Sample_Paper.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6ab9ddca&is=6ab88c4a&hm=a635111bf3f3f9caa46c3e1d8ffa540a4731920b8f67618512aa9881bc6dbc1e&",
+              "size": 4446928,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553608146835214336",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:24:06.849000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553608146835214336",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6ab9ddd6&is=6ab88c56&hm=5ac4eb22c90a217da353640c079ee9d00455e463d7661a5b53a134aeb7bc6fb0&",
+              "size": 27846445,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Economics_Revision_Notes.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6ab9ddd6&is=6ab88c56&hm=cfc493ae97f20344c2e7b76e0ec8f1897e7d47c149014bc494d6c8952ce513d2&",
+              "size": 7892790,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "XamIdea_Economics_Class_12.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6ab9ddd6&is=6ab88c56&hm=38725e0c96575f85f584a0a84b6bf87a0f9c739acb83d5e954e3abd99890b99a&",
+              "size": 30419924,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633041824481302",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:03:02.277000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553633041824481302",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Official Material for Eco by Kendriya Vidyalaya!:"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553633088360284172",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T05:03:13.372000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318127977373817/1553633088360284172",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Eco_Revised_SSM_Cl.XII.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553633088003645532/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9f511&is=6ab8a391&hm=bf673c54a22e6c7f3e21696493b6e32e82ec0086b72549351329463d1654f9ef&",
+              "size": 4942610,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217571766292/Economics_Part_Test_-_01_2.html?ex=6aba2152&is=6ab8cfd2&hm=1ed630f233728a3a7e39b832bb965394d65422d339445fe7204238733226f227&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Part_Test_-_01_2.html",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318217970221097/Economics_Part_Test_-_02_2.html?ex=6aba2152&is=6ab8cfd2&hm=87b85205f40283b52bc4426c7e74382c56e339ceb8fa9e76ab1a606cf5dbfa74&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Part_Test_-_02_2.html",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218293186631/Economics_Part_Test_-_03_2.html?ex=6aba2152&is=6ab8cfd2&hm=2d00566408f883d7ce7f601451ca5429c03452baa54815427305e573372ec54d&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Part_Test_-_03_2.html",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318218712481873/Economics_Part_Test_-_04.html?ex=6aba2152&is=6ab8cfd2&hm=ec70dbd1c16e0885755a68b8c9e01e18ec1187e813ac92584c657deb7c16a562&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Part_Test_-_04.html",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553318219161280532/Economics_Part_Test_-_05.html?ex=6aba2152&is=6ab8cfd2&hm=1865c32790b1a5132963ee95a0bddb9ba5b4860e3895227c4fc3b3e9cd42e627&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Part_Test_-_05.html",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607986503622667/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9ddb0&is=6ab88c30&hm=3a8b13d6584219e12ffea7c9a20e3a600e2cc5e793aa39b9acc8f59c3f4b71d8&",
+          "domain": "cdn.discordapp.com",
+          "title": "Eco_Revised_SSM_Cl.XII.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607987195805736/Subhash_Deys_Economics_XII_NOTES.pdf?ex=6ab9ddb0&is=6ab88c30&hm=130ae6edc63bd258adaeba42bfe13ba232971fa09d407234ecaac650751d8368&",
+          "domain": "cdn.discordapp.com",
+          "title": "Subhash_Deys_Economics_XII_NOTES.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553607988013432873/MindMap-IED.pdf?ex=6ab9ddb0&is=6ab88c30&hm=8ff790af77afb1f225e62fdb3dce09a0b5bfa0dcf9746a0480d5d2752ab233fa&",
+          "domain": "cdn.discordapp.com",
+          "title": "MindMap-IED.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://drive.google.com/drive/folders/1YFSHe9gsLSKcd9ubv-XjmEAQEJNnUUZQ",
+          "domain": "drive.google.com",
+          "title": "Click [here](",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608095010263120/Economics_30_Sets_2025-26_Sample_Paper.pdf?ex=6ab9ddca&is=6ab88c4a&hm=a635111bf3f3f9caa46c3e1d8ffa540a4731920b8f67618512aa9881bc6dbc1e&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_30_Sets_2025-26_Sample_Paper.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6ab9ddd6&is=6ab88c56&hm=5ac4eb22c90a217da353640c079ee9d00455e463d7661a5b53a134aeb7bc6fb0&",
+          "domain": "cdn.discordapp.com",
+          "title": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6ab9ddd6&is=6ab88c56&hm=cfc493ae97f20344c2e7b76e0ec8f1897e7d47c149014bc494d6c8952ce513d2&",
+          "domain": "cdn.discordapp.com",
+          "title": "Economics_Revision_Notes.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6ab9ddd6&is=6ab88c56&hm=38725e0c96575f85f584a0a84b6bf87a0f9c739acb83d5e954e3abd99890b99a&",
+          "domain": "cdn.discordapp.com",
+          "title": "XamIdea_Economics_Class_12.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553633088003645532/Eco_Revised_SSM_Cl.XII.pdf?ex=6ab9f511&is=6ab8a391&hm=bf673c54a22e6c7f3e21696493b6e32e82ec0086b72549351329463d1654f9ef&",
+          "domain": "cdn.discordapp.com",
+          "title": "Eco_Revised_SSM_Cl.XII.pdf",
+          "topic": "Economics",
+          "slug": "economics",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553292539358879864",
+      "name": "Websites",
+      "emoji": "🌐",
+      "slug": "websites",
+      "messageCount": 14,
+      "totalMessages": 15,
+      "tags": [
+        "maths"
+      ],
+      "url": "https://discord.com/channels/1540430445483917342/1553292539358879864",
+      "messages": [
+        {
+          "id": "1553292539358879864",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:30:00.163000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553292539358879864",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "All website links will be dropped here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553292850484084738",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:31:14.341000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553292850484084738",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "For Study material in general"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://www.selfstudys.com/",
+              "domain": "selfstudys.com",
+              "context": "For Study material in general",
+              "embedTitle": "SelfStudys – Free NCERT Solutions, CBSE, NEET, JEE, CUET, CAT, ND...",
+              "embedDesc": "Get free NCERT Solutions, CBSE , NEET, JEE, CUET, CAT, NDA, CLAT & 20+ state board study materials, sample papers, Notes, PYQs, MCQs and exam prep resources at SelfStudys."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553295410615947265",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:41:24.724000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553295410615947265",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://cuethub.vercel.app/",
+              "domain": "cuethub.vercel.app",
+              "context": "",
+              "embedTitle": "CUET hub — Free CUET PYQs, Mock Tests & Flashcards",
+              "embedDesc": "A brutalist and distraction-free website for your CUET preparation, practice chapterwise PYQs with honest analytics, no bloat."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553299630970634260",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:58:10.935000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553299630970634260",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Free Online Blackbook access without Downloading"
+            },
+            {
+              "type": "link",
+              "url": "https://kavy-personal.github.io/blackbook/",
+              "domain": "kavy-personal.github.io",
+              "context": "Free Online Blackbook access without Downloading",
+              "embedTitle": "Black Book of English Vocabulary — Reader",
+              "embedDesc": "Clean, high-performance dark-mode reader for the Black Book of English Vocabulary."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553304113817714798",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:15:59.729000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553304113817714798",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://annas-archive.gl/",
+              "domain": "annas-archive.gl",
+              "context": "",
+              "embedTitle": "Anna’s Archive: LibGen (Library Genesis), Sci-Hub, Z-Library in o...",
+              "embedDesc": "The world’s largest open-source open-data library. Mirrors Sci-Hub, Library Genesis, Z-Library, and more."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553344611248775178",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:56:55.069000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553344611248775178",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://kavy-codes.github.io/psych-rev/",
+              "domain": "kavy-codes.github.io",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553519636958412942",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:32:24.450000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553519636958412942",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://mocktest.aglasem.com/",
+              "domain": "mocktest.aglasem.com",
+              "context": "",
+              "embedTitle": "AglaSem Mock Test - Free Online Mock Tests & Test Series",
+              "embedDesc": "Take free online mock tests and full-length test series for school (Class 1-12), entrance exams like JEE, NEET & CUET, and competitive/recruitment exams (SSC, Banking, Railway). Practice anytime with instant results and solutions on AglaSem"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553519698984046766",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:32:39.238000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553519698984046766",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "role",
+                  "name": "maths"
+                },
+                {
+                  "kind": "text",
+                  "text": " Another good site"
+                }
+              ]
+            }
+          ],
+          "tags": [
+            "maths"
+          ]
+        },
+        {
+          "id": "1553520740366557244",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:36:47.523000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553520740366557244",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://cuetadmit.com/",
+              "domain": "cuetadmit.com",
+              "context": "",
+              "embedTitle": "Free CUET 2026 Preparation CUETAdmit",
+              "embedDesc": "Free question bank, mock tests, university rankings & more. Join 50,000+ students preparing for CUET UG 2026."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553521832190148633",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:41:07.834000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553521832190148633",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "@everyone Official Site Backed by IITs and the government for CUET!! :"
+            },
+            {
+              "type": "link",
+              "url": "https://sathee.iitk.ac.in/",
+              "domain": "sathee.iitk.ac.in",
+              "context": "@everyone Official Site Backed by IITs and the government for CUET!! :",
+              "pendingContext": false
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553527495800918106",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T22:03:38.144000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553527495800918106",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Might be helpful ( Require login ) : "
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://thunderstudy.indevs.in/",
+              "domain": "thunderstudy.indevs.in",
+              "context": "Might be helpful ( Require login ) :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553671725248421949",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T07:36:45.124000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553671725248421949",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Download SelfStudys PDFs Easily! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553671731296870443",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T07:36:46.566000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553671731296870443",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://kavy-codes.github.io/studyfetch/",
+              "domain": "kavy-codes.github.io",
+              "context": "",
+              "embedTitle": "StudyFetch — SelfStudys link → PDF",
+              "embedDesc": "Paste the notes page link. Get the PDF. Free, no sign-up."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553671929682985061",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T07:37:33.865000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553292539358879864/1553671929682985061",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "@everyone Drop your requests for any type of downloaders/tools you need in the "
+                },
+                {
+                  "kind": "channel",
+                  "name": "🔁︱request-resources"
+                },
+                {
+                  "kind": "text",
+                  "text": " section"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.selfstudys.com/",
+          "domain": "selfstudys.com",
+          "title": "SelfStudys – Free NCERT Solutions, CBSE, NEET, JEE, CUET, CAT, ND...",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://cuethub.vercel.app/",
+          "domain": "cuethub.vercel.app",
+          "title": "CUET hub — Free CUET PYQs, Mock Tests & Flashcards",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://kavy-personal.github.io/blackbook/",
+          "domain": "kavy-personal.github.io",
+          "title": "Black Book of English Vocabulary — Reader",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://annas-archive.gl/",
+          "domain": "annas-archive.gl",
+          "title": "Anna’s Archive: LibGen (Library Genesis), Sci-Hub, Z-Library in o...",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://kavy-codes.github.io/psych-rev/",
+          "domain": "kavy-codes.github.io",
+          "title": "kavy-codes.github.io",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://mocktest.aglasem.com/",
+          "domain": "mocktest.aglasem.com",
+          "title": "AglaSem Mock Test - Free Online Mock Tests & Test Series",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://cuetadmit.com/",
+          "domain": "cuetadmit.com",
+          "title": "Free CUET 2026 Preparation CUETAdmit",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://sathee.iitk.ac.in/",
+          "domain": "sathee.iitk.ac.in",
+          "title": "@everyone Official Site Backed by IITs and the government for CUET!! :",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://thunderstudy.indevs.in/",
+          "domain": "thunderstudy.indevs.in",
+          "title": "Might be helpful ( Require login ) :",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        },
+        {
+          "url": "https://kavy-codes.github.io/studyfetch/",
+          "domain": "kavy-codes.github.io",
+          "title": "StudyFetch — SelfStudys link → PDF",
+          "topic": "Websites",
+          "slug": "websites",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553293081283924088",
+      "name": "English",
+      "emoji": "🇺🇸",
+      "slug": "english",
+      "messageCount": 9,
+      "totalMessages": 13,
+      "tags": [
+        "english"
+      ],
+      "url": "https://discord.com/channels/1540430445483917342/1553293081283924088",
+      "messages": [
+        {
+          "id": "1553293081283924088",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:32:09.368000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553293081283924088",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Everything related to English here pls"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553293817593987103",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:35:04.918000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553293817593987103",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Vocabular_asked_11_to_15th_may.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293815140458587/Vocabular_asked_11_to_15th_may.pdf?ex=6aba0a98&is=6ab8b918&hm=669805ca7fd48df3739c2dd58811b1a6f3489608dd6cb1c0ae8c9cb44471f1d2&",
+              "size": 51590,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "vocab_18_to_22_and_english_paper_trend_analysis.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293816050487376/vocab_18_to_22_and_english_paper_trend_analysis.pdf?ex=6aba0a98&is=6ab8b918&hm=7d160f9e6ec4f7dae03a1b86cebe636c2505bfb87b4eed102ec7d12342097ba0&",
+              "size": 105237,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553295163609186444",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:40:25.833000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553295163609186444",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Vocab_A_to_Z_compressed.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295162942169109/Vocab_A_to_Z_compressed.pdf?ex=6aba0bd9&is=6ab8ba59&hm=a9e6324b5f3e580458695d1418b0778e70ce492473ed8d8458e3987d77b8a5df&",
+              "size": 7614929,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "Word_Power.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295163273515058/Word_Power.pdf?ex=6aba0bd9&is=6ab8ba59&hm=dd775b11137c91fe1b1ae5698cc9cef8fb5057c6d38aa34ca8774655a955961c&",
+              "size": 20946600,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553298228986773665",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:52:36.676000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553298228986773665",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Free Online Blackbook access without Downloading"
+            },
+            {
+              "type": "link",
+              "url": "https://kavy-personal.github.io/blackbook/",
+              "domain": "kavy-personal.github.io",
+              "context": "Free Online Blackbook access without Downloading",
+              "embedTitle": "Black Book of English Vocabulary — Reader",
+              "embedDesc": "Clean, high-performance dark-mode reader for the Black Book of English Vocabulary."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553299878480715808",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:59:09.946000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553299878480715808",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Grammar_2.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299876576624640/Grammar_2.pdf?ex=6aba103d&is=6ab8bebd&hm=1e6d567bc5da29a403c3cce9ad28915f119e1153f4a9538f310949b53aa581af&",
+              "size": 1093435,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "ReadingComprehension_2.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877234999367/ReadingComprehension_2.pdf?ex=6aba103d&is=6ab8bebd&hm=4caf05e5cceee2011eb47b0790f849adf64db5b174219f251c09dcac59fe6489&",
+              "size": 767307,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "VerbalLogic_2.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877939908628/VerbalLogic_2.pdf?ex=6aba103d&is=6ab8bebd&hm=3be9521c9ef1e6c21d4137f50240f532d6ffc7d08f039a30f67c81e058101fba&",
+              "size": 512236,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553611114934435862",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:35:54.499000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553611114934435862",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "All_rounder_for_English.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6ab9e09a&is=6ab88f1a&hm=2aeaa5089439e93044de9b27a85dea64373fb926d1e3d7770af13029324248ac&",
+              "size": 4726393,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553611393998004275",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:37:01.033000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553611393998004275",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Good if you wanna quickly revise formats and summaries of the chapters , very good for chapters cuz it has comic style summaries with images ( AI generated though good )"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553756829463609444",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T13:14:55.550000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553756829463609444",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "CUET_Vocab_BEST.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553756829123874887/CUET_Vocab_BEST.pdf?ex=6aba684f&is=6ab916cf&hm=8dfa0d26cca9689733c09cd438e16f7d24ec7dde378f1d5e75ef26e8b31c0aad&",
+              "size": 752679,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553756924774981633",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T13:15:18.274000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293081283924088/1553756924774981633",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Btw here is a PDF for CUET Vocab "
+                },
+                {
+                  "kind": "role",
+                  "name": "english"
+                },
+                {
+                  "kind": "text",
+                  "text": "  , With alot of words"
+                }
+              ]
+            }
+          ],
+          "tags": [
+            "english"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293815140458587/Vocabular_asked_11_to_15th_may.pdf?ex=6aba0a98&is=6ab8b918&hm=669805ca7fd48df3739c2dd58811b1a6f3489608dd6cb1c0ae8c9cb44471f1d2&",
+          "domain": "cdn.discordapp.com",
+          "title": "Vocabular_asked_11_to_15th_may.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553293816050487376/vocab_18_to_22_and_english_paper_trend_analysis.pdf?ex=6aba0a98&is=6ab8b918&hm=7d160f9e6ec4f7dae03a1b86cebe636c2505bfb87b4eed102ec7d12342097ba0&",
+          "domain": "cdn.discordapp.com",
+          "title": "vocab_18_to_22_and_english_paper_trend_analysis.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295162942169109/Vocab_A_to_Z_compressed.pdf?ex=6aba0bd9&is=6ab8ba59&hm=a9e6324b5f3e580458695d1418b0778e70ce492473ed8d8458e3987d77b8a5df&",
+          "domain": "cdn.discordapp.com",
+          "title": "Vocab_A_to_Z_compressed.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553295163273515058/Word_Power.pdf?ex=6aba0bd9&is=6ab8ba59&hm=dd775b11137c91fe1b1ae5698cc9cef8fb5057c6d38aa34ca8774655a955961c&",
+          "domain": "cdn.discordapp.com",
+          "title": "Word_Power.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://kavy-personal.github.io/blackbook/",
+          "domain": "kavy-personal.github.io",
+          "title": "Black Book of English Vocabulary — Reader",
+          "topic": "English",
+          "slug": "english",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299876576624640/Grammar_2.pdf?ex=6aba103d&is=6ab8bebd&hm=1e6d567bc5da29a403c3cce9ad28915f119e1153f4a9538f310949b53aa581af&",
+          "domain": "cdn.discordapp.com",
+          "title": "Grammar_2.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877234999367/ReadingComprehension_2.pdf?ex=6aba103d&is=6ab8bebd&hm=4caf05e5cceee2011eb47b0790f849adf64db5b174219f251c09dcac59fe6489&",
+          "domain": "cdn.discordapp.com",
+          "title": "ReadingComprehension_2.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553299877939908628/VerbalLogic_2.pdf?ex=6aba103d&is=6ab8bebd&hm=3be9521c9ef1e6c21d4137f50240f532d6ffc7d08f039a30f67c81e058101fba&",
+          "domain": "cdn.discordapp.com",
+          "title": "VerbalLogic_2.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553611114703626331/All_rounder_for_English.pdf?ex=6ab9e09a&is=6ab88f1a&hm=2aeaa5089439e93044de9b27a85dea64373fb926d1e3d7770af13029324248ac&",
+          "domain": "cdn.discordapp.com",
+          "title": "All_rounder_for_English.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553293081283924088/1553756829123874887/CUET_Vocab_BEST.pdf?ex=6aba684f&is=6ab916cf&hm=8dfa0d26cca9689733c09cd438e16f7d24ec7dde378f1d5e75ef26e8b31c0aad&",
+          "domain": "cdn.discordapp.com",
+          "title": "CUET_Vocab_BEST.pdf",
+          "topic": "English",
+          "slug": "english",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553302418035581040",
+      "name": "Library - FREE BOOKS",
+      "emoji": "📚",
+      "slug": "library-free-books",
+      "messageCount": 14,
+      "totalMessages": 21,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553302418035581040",
+      "messages": [
+        {
+          "id": "1553302418035581040",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:09:15.423000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553302418035581040",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "FREE BOOKS, NOVELS, ARTICLES HERE"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553302467851194411",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:09:27.300000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553302467851194411",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "FREE BOOKS HERE:"
+            },
+            {
+              "type": "link",
+              "url": "https://annas-archive.gl/",
+              "domain": "annas-archive.gl",
+              "context": "FREE BOOKS HERE:",
+              "embedTitle": "Anna’s Archive: LibGen (Library Genesis), Sci-Hub, Z-Library in o...",
+              "embedDesc": "The world’s largest open-source open-data library. Mirrors Sci-Hub, Library Genesis, Z-Library, and more."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553302645555462228",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:10:09.668000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553302645555462228",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "This Archive is one of the biggest Archives of Free books , 90% chances the book you are looking for , will be available for free here ( Search if you dont found anything in Z lib )"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553302714409156642",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:10:26.084000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553302714409156642",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Free Online Blackbook access without Downloading"
+            },
+            {
+              "type": "link",
+              "url": "https://kavy-personal.github.io/blackbook/",
+              "domain": "kavy-personal.github.io",
+              "context": "Free Online Blackbook access without Downloading",
+              "embedTitle": "Black Book of English Vocabulary — Reader",
+              "embedDesc": "Clean, high-performance dark-mode reader for the Black Book of English Vocabulary."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553310728704884816",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:42:16.841000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553310728704884816",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://kavy-personal.github.io/word-power-made-easy/",
+              "domain": "kavy-personal.github.io",
+              "context": "",
+              "embedTitle": "Word Power Made Easy — Digital Reader",
+              "embedDesc": "Continuous vertical scroll reader with edge-to-edge mobile fitting, bookmarks, and isolated night inversion."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553310799517319170",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:42:33.724000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553310799517319170",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Another Good read famous for helping people in terms of Vocab"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553327123874447412",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:47:25.754000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553327123874447412",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "FOR PDFs :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553327132136968192",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:47:27.724000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553327132136968192",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://oceanofpdf.com/",
+              "domain": "oceanofpdf.com",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553327230841520169",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:47:51.257000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553327230841520169",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Very good free book library with Good UI with Books, Novels, Manga's etc (Choose this over Anna's Archive) :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553327246561771600",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:47:55.005000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553327246561771600",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://z-lib.gd/",
+              "domain": "z-lib.gd",
+              "context": "",
+              "embedTitle": "Z-Library – the world’s largest e-book library. Your gateway to...",
+              "embedDesc": "Z-Library is an online library dedicated to enhancing global education through easy access to books. Recognizing books as a valuable source of knowledge throughout history, we aim to provide free literature access to those in need."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553489774365638738",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:33:44.653000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553489774365638738",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "For Articles :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553489790328905751",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:33:48.459000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553489790328905751",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://www.thefreelibrary.com/",
+              "domain": "thefreelibrary.com",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553529275867729940",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T22:10:42.545000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553529275867729940",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Google but for Free Books :"
+            },
+            {
+              "type": "link",
+              "url": "https://ravebooksearch.com/",
+              "domain": "ravebooksearch.com",
+              "context": "Google but for Free Books :",
+              "pendingContext": false,
+              "embedTitle": "Rave Book Search: Free eBook & Audiobook Finder",
+              "embedDesc": "Search Shadow Libraries, Public Domain Libraries and dozens more FREE sources in one place. Direct downloads, cover art, format filters."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553531665362591870",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T22:20:12.245000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553302418035581040/1553531665362591870",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Reader for EPUB, PDFs, EBooks and other formats :"
+            },
+            {
+              "type": "link",
+              "url": "https://readest.com/",
+              "domain": "readest.com",
+              "context": "Reader for EPUB, PDFs, EBooks and other formats :",
+              "pendingContext": false,
+              "embedTitle": "Readest — Free Open-Source EPUB & PDF Reader for All Platforms",
+              "embedDesc": "Readest is a free, open-source ebook reader for EPUB and PDF. Read across macOS, Windows, Linux, Android, iOS, and Web with highlights, notes, split-screen reading, TTS, and cloud sync."
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://annas-archive.gl/",
+          "domain": "annas-archive.gl",
+          "title": "Anna’s Archive: LibGen (Library Genesis), Sci-Hub, Z-Library in o...",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://kavy-personal.github.io/blackbook/",
+          "domain": "kavy-personal.github.io",
+          "title": "Black Book of English Vocabulary — Reader",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://kavy-personal.github.io/word-power-made-easy/",
+          "domain": "kavy-personal.github.io",
+          "title": "Word Power Made Easy — Digital Reader",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://oceanofpdf.com/",
+          "domain": "oceanofpdf.com",
+          "title": "oceanofpdf.com",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://z-lib.gd/",
+          "domain": "z-lib.gd",
+          "title": "Z-Library – the world’s largest e-book library. Your gateway to...",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://www.thefreelibrary.com/",
+          "domain": "thefreelibrary.com",
+          "title": "thefreelibrary.com",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://ravebooksearch.com/",
+          "domain": "ravebooksearch.com",
+          "title": "Rave Book Search: Free eBook & Audiobook Finder",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        },
+        {
+          "url": "https://readest.com/",
+          "domain": "readest.com",
+          "title": "Readest — Free Open-Source EPUB & PDF Reader for All Platforms",
+          "topic": "Library - FREE BOOKS",
+          "slug": "library-free-books",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553318470957924352",
+      "name": "Business Studies",
+      "emoji": "🤝",
+      "slug": "business-studies",
+      "messageCount": 4,
+      "totalMessages": 4,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553318470957924352",
+      "messages": [
+        {
+          "id": "1553318470957924352",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:13:02.738000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318470957924352",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Business Studies material here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553318548573523978",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:13:21.243000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553318548573523978",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "BUSINESS_STUDIES_MOCK_-1.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
+              "size": 164089,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "BUSINESS_STUDIES_MOCK_-2.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
+              "size": 157467,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "BUSINESS_STUDIES_MOCK_-3.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
+              "size": 153594,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "BUSINESS_STUDIES_MOCK_-4.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
+              "size": 155419,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "BUSINESS_STUDIES_MOCK_-5.html",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
+              "size": 160955,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631881558233200",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:58:25.648000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631881558233200",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Business Studies by Kendriya Vidyalaya! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631957831647302",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:58:43.833000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553318470957924352/1553631957831647302",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "XII_B.ST_Study_Material_2025-26_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
+              "size": 18098097,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547185344582/BUSINESS_STUDIES_MOCK_-1.html?ex=6aba21a0&is=6ab8d020&hm=c655409795aba8db6a4870e9a935ea8c2a45e9f2fd77bd1b64176ae19ea12c48&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-1.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547462164500/BUSINESS_STUDIES_MOCK_-2.html?ex=6aba21a0&is=6ab8d020&hm=0cde87c68061b400ee899a8140cf2f446de048441e72f3cac4d0e6bbe0674348&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-2.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547718152223/BUSINESS_STUDIES_MOCK_-3.html?ex=6aba21a1&is=6ab8d021&hm=82ce0f61ca866a72d3ae7690ea1f9933d278c66918bbe019e3551441b1ea31a0&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-3.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318547999166464/BUSINESS_STUDIES_MOCK_-4.html?ex=6aba21a1&is=6ab8d021&hm=4da5ef94d0f15bad1d9275748dcfd5a9de6dc871c7919dd4744e6461a3855c52&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-4.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553318548292509756/BUSINESS_STUDIES_MOCK_-5.html?ex=6aba21a1&is=6ab8d021&hm=3cddcd1020cb7e3936aba75d4d13ec2bcbedebafc7176278c977504b977a234b&",
+          "domain": "cdn.discordapp.com",
+          "title": "BUSINESS_STUDIES_MOCK_-5.html",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553318470957924352/1553631957525729290/XII_B.ST_Study_Material_2025-26_1.pdf?ex=6ab9f403&is=6ab8a283&hm=b93ed15ad67b486222e90e934d6719201ce190f5a40877bc997331f94c7eb12b&",
+          "domain": "cdn.discordapp.com",
+          "title": "XII_B.ST_Study_Material_2025-26_1.pdf",
+          "topic": "Business Studies",
+          "slug": "business-studies",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553331839173922867",
+      "name": "Psychology",
+      "emoji": "🧠",
+      "slug": "psychology",
+      "messageCount": 7,
+      "totalMessages": 8,
+      "tags": [
+        "psychology"
+      ],
+      "url": "https://discord.com/channels/1540430445483917342/1553331839173922867",
+      "messages": [
+        {
+          "id": "1553331839173922867",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:09.969000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331839173922867",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Psychology content here."
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553331877492817920",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:19.105000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331877492817920",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://kavy-codes.github.io/psych-rev/",
+              "domain": "kavy-codes.github.io",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553331925823791165",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:30.628000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553331925823791165",
+          "blocks": [],
+          "tags": [
+            "psychology"
+          ]
+        },
+        {
+          "id": "1553332021173030974",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T09:06:53.361000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553332021173030974",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Hope this helps, Made by me"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607542800916490",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:21:42.836000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607542800916490",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "MCQs:"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
+              "domain": "drive.google.com",
+              "context": "MCQs:"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607555924627480",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:21:45.965000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607555924627480",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Mindmaps:"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://share.google/JslkBusIFkHdDczWI",
+              "domain": "share.google",
+              "context": "Mindmaps:",
+              "embedTitle": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
+              "embedDesc": "TO GET E-CONTENT FOR PSYCHOLOGY ( XI - XII ) JOIN WHATS APP GROUP CLICK HERE WITH THE LINK , YOU CAN DOWNLOAD THE MIND MAPS FOR CLASS XII ..."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553607641568247840",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:22:06.384000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553331839173922867/1553607641568247840",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Revision_Notes_Psychology.._1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6ab9dd5d&is=6ab88bdd&hm=8431dabfd4667efe0f73fbc7d03a1c7d9729b8a01b282cdb6e078c5cf2036887&",
+              "size": 9956642,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6ab9dd5e&is=6ab88bde&hm=103ec2f5591b1d599428d9cb77875489b851256cd3dff7de3a95385620997615&",
+              "size": 6674911,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "12th_Psychology_Material.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6ab9dd5e&is=6ab88bde&hm=cd6fb9968d969a629f67688e830ce27c0fd9656b66af4c984ad5cf6850c19708&",
+              "size": 4116554,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://kavy-codes.github.io/psych-rev/",
+          "domain": "kavy-codes.github.io",
+          "title": "kavy-codes.github.io",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://drive.google.com/drive/folders/1rolYOmHmWQxf7-N5OhXKP5h5txkWqc-W",
+          "domain": "drive.google.com",
+          "title": "MCQs:",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://share.google/JslkBusIFkHdDczWI",
+          "domain": "share.google",
+          "title": "MIND MAPS - PSYCHOLOGY ( CLASS XII )",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607639529684992/Revision_Notes_Psychology.._1.pdf?ex=6ab9dd5d&is=6ab88bdd&hm=8431dabfd4667efe0f73fbc7d03a1c7d9729b8a01b282cdb6e078c5cf2036887&",
+          "domain": "cdn.discordapp.com",
+          "title": "Revision_Notes_Psychology.._1.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607640293056572/CBSE-SQP-Mind_Maps-12-Psychology_1.pdf?ex=6ab9dd5e&is=6ab88bde&hm=103ec2f5591b1d599428d9cb77875489b851256cd3dff7de3a95385620997615&",
+          "domain": "cdn.discordapp.com",
+          "title": "CBSE-SQP-Mind_Maps-12-Psychology_1.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553331839173922867/1553607641249484810/12th_Psychology_Material.pdf?ex=6ab9dd5e&is=6ab88bde&hm=cd6fb9968d969a629f67688e830ce27c0fd9656b66af4c984ad5cf6850c19708&",
+          "domain": "cdn.discordapp.com",
+          "title": "12th_Psychology_Material.pdf",
+          "topic": "Psychology",
+          "slug": "psychology",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553312643715174421",
+      "name": "Miscellaneous",
+      "emoji": "🌟",
+      "slug": "miscellaneous",
+      "messageCount": 11,
+      "totalMessages": 13,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553312643715174421",
+      "messages": [
+        {
+          "id": "1553312643715174421",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:49:53.415000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553312643715174421",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Great apps for Free Music, Movies etc , Helping Students in their life other than studies"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553312976985919529",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:51:12.873000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553312976985919529",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "FREE MOVIES , TV SHOWS AND ANIME :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553312995495649360",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:51:17.286000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553312995495649360",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://cinejoy.pk/",
+              "domain": "cinejoy.pk",
+              "context": "",
+              "embedTitle": "Cinejoy",
+              "embedDesc": "Watch Free Movies & TV Shows Online, for free."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553313052407898184",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:51:30.855000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553313052407898184",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://meowtv.ru/",
+              "domain": "meowtv.ru",
+              "context": "",
+              "embedTitle": "MeowTV — Stream movies, TV shows & anime",
+              "embedDesc": "Discover trending movies, TV shows, anime and live sports. Build your watchlist, track progress, and watch with friends."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553313116983398472",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:51:46.251000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553313116983398472",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "( Meow tv for those hose Cinejoy is stuck on loading , Make sure to disable ADS in MeowTV's settings)"
+                }
+              ]
+            },
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "AND"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://www.movy.sx/",
+              "domain": "movy.sx",
+              "context": "AND",
+              "embedTitle": "Movy - Watch Free Movies & TV Shows Online",
+              "embedDesc": "Watch free movies and TV shows online in HD on Movy. Stream the latest films, series and anime for free on Movy, no signup required."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553313232880533566",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:52:13.883000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553313232880533566",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "ALL MOVIES AND TV SHOWS AVAILABLE FOR FREE HERE."
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553313556165038081",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:53:30.960000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553313556165038081",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Tag Me ( "
+                },
+                {
+                  "kind": "text",
+                  "text": " @user "
+                },
+                {
+                  "kind": "text",
+                  "text": "  ) If None of the links are working."
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553314029034930187",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:55:23.701000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553314029034930187",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "BEST FREE MUSIC APP FOR ANDROID ( Better than Spotify etc ) :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553314915505143819",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:58:55.052000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553314915505143819",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://archivetune.koiiverse.cloud/",
+              "domain": "archivetune.koiiverse.cloud",
+              "context": "",
+              "embedTitle": "ArchiveTune – Enhanced Music Streaming Client for Android",
+              "embedDesc": "Enhanced Music Streaming Client for Android with background playback, offline downloads, live synchronized lyrics, and beautiful Material 3 theming. Free and open-source."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553314994853253231",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T07:59:13.970000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553314994853253231",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://echomusic.fun/",
+              "domain": "echomusic.fun",
+              "context": "",
+              "embedTitle": "Echo Music - Free Music Streaming App for Android",
+              "embedDesc": "Download Echo Music, the best free music streaming app for Android. Enjoy ad-free listening, offline playback, synced lyrics, and Material You design. No subscription required."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553328662252752987",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:53:32.532000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553312643715174421/1553328662252752987",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Note : These sites also have most of the anime's , that's why I didnt include any anime sites , just use these , they are all in one."
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cinejoy.pk/",
+          "domain": "cinejoy.pk",
+          "title": "Cinejoy",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        },
+        {
+          "url": "https://meowtv.ru/",
+          "domain": "meowtv.ru",
+          "title": "MeowTV — Stream movies, TV shows & anime",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        },
+        {
+          "url": "https://www.movy.sx/",
+          "domain": "movy.sx",
+          "title": "Movy - Watch Free Movies & TV Shows Online",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        },
+        {
+          "url": "https://archivetune.koiiverse.cloud/",
+          "domain": "archivetune.koiiverse.cloud",
+          "title": "ArchiveTune – Enhanced Music Streaming Client for Android",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        },
+        {
+          "url": "https://echomusic.fun/",
+          "domain": "echomusic.fun",
+          "title": "Echo Music - Free Music Streaming App for Android",
+          "topic": "Miscellaneous",
+          "slug": "miscellaneous",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553332363872698469",
+      "name": "Maths",
+      "emoji": "♾️",
+      "slug": "maths",
+      "messageCount": 6,
+      "totalMessages": 8,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553332363872698469",
+      "messages": [
+        {
+          "id": "1553512690691866726",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:04:48.331000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553512690691866726",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://cuethub.vercel.app/",
+              "domain": "cuethub.vercel.app",
+              "context": "",
+              "embedTitle": "CUET hub — Free CUET PYQs, Mock Tests & Flashcards",
+              "embedDesc": "A brutalist and distraction-free website for your CUET preparation, practice chapterwise PYQs with honest analytics, no bloat."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553512769708490813",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:05:07.170000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553512769708490813",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "For Study material in general"
+                }
+              ]
+            },
+            {
+              "type": "link",
+              "url": "https://www.selfstudys.com/",
+              "domain": "selfstudys.com",
+              "context": "For Study material in general",
+              "embedTitle": "SelfStudys – Free NCERT Solutions, CBSE, NEET, JEE, CUET, CAT, ND...",
+              "embedDesc": "Get free NCERT Solutions, CBSE , NEET, JEE, CUET, CAT, NDA, CLAT & 20+ state board study materials, sample papers, Notes, PYQs, MCQs and exam prep resources at SelfStudys."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553519725365952613",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T21:32:45.528000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553519725365952613",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://mocktest.aglasem.com/",
+              "domain": "mocktest.aglasem.com",
+              "context": "",
+              "embedTitle": "AglaSem Mock Test - Free Online Mock Tests & Test Series",
+              "embedDesc": "Take free online mock tests and full-length test series for school (Class 1-12), entrance exams like JEE, NEET & CUET, and competitive/recruitment exams (SSC, Banking, Railway). Practice anytime with instant results and solutions on AglaSem"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631364211806271",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:56:22.303000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553631364211806271",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "CLASS_12_-_MATHEMATICS2025-26.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631364144693328/CLASS_12_-_MATHEMATICS2025-26.pdf?ex=6ab9f376&is=6ab8a1f6&hm=5090c190139c3cadfc141632fec757285cd668bb7c56365c27bd98bb8ffbd92c&",
+              "size": 5625531,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631388043972680",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:56:27.985000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553631388043972680",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631387758628984/CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf?ex=6ab9f37b&is=6ab8a1fb&hm=cb958775ec0f5df92e103b1290cc4506234cbf2bdff5687a55e48ffd810821d4&",
+              "size": 8119663,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631518360866838",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:56:59.055000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553332363872698469/1553631518360866838",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Maths by Kendriya Vidyalaya!"
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cuethub.vercel.app/",
+          "domain": "cuethub.vercel.app",
+          "title": "CUET hub — Free CUET PYQs, Mock Tests & Flashcards",
+          "topic": "Maths",
+          "slug": "maths",
+          "source": "message"
+        },
+        {
+          "url": "https://www.selfstudys.com/",
+          "domain": "selfstudys.com",
+          "title": "SelfStudys – Free NCERT Solutions, CBSE, NEET, JEE, CUET, CAT, ND...",
+          "topic": "Maths",
+          "slug": "maths",
+          "source": "message"
+        },
+        {
+          "url": "https://mocktest.aglasem.com/",
+          "domain": "mocktest.aglasem.com",
+          "title": "AglaSem Mock Test - Free Online Mock Tests & Test Series",
+          "topic": "Maths",
+          "slug": "maths",
+          "source": "message"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631364144693328/CLASS_12_-_MATHEMATICS2025-26.pdf?ex=6ab9f376&is=6ab8a1f6&hm=5090c190139c3cadfc141632fec757285cd668bb7c56365c27bd98bb8ffbd92c&",
+          "domain": "cdn.discordapp.com",
+          "title": "CLASS_12_-_MATHEMATICS2025-26.pdf",
+          "topic": "Maths",
+          "slug": "maths",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553332363872698469/1553631387758628984/CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf?ex=6ab9f37b&is=6ab8a1fb&hm=cb958775ec0f5df92e103b1290cc4506234cbf2bdff5687a55e48ffd810821d4&",
+          "domain": "cdn.discordapp.com",
+          "title": "CLASS_12_-_APPLIED_MATHEMATICS2025-26.pdf",
+          "topic": "Maths",
+          "slug": "maths",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553293305809346620",
+      "name": "Youtube",
+      "emoji": "🎥",
+      "slug": "youtube",
+      "messageCount": 5,
+      "totalMessages": 6,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553293305809346620",
+      "messages": [
+        {
+          "id": "1553293305809346620",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:33:02.899000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293305809346620/1553293305809346620",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "General Youtube videos and links here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553293575972716595",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:34:07.311000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293305809346620/1553293575972716595",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://www.youtube.com/live/uS4rGlX1XZk?si=f313htyX94q4RdAa",
+              "domain": "youtube.com",
+              "context": "",
+              "embedTitle": "CUET GAT 2027 9 Months Current Affairs (Jan–Sep) in ONE Video ...",
+              "embedDesc": "To access the video and other study materials on Adda247 app, click..."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553295849222836247",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:43:09.296000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293305809346620/1553295849222836247",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://youtube.com/playlist?list=PLv9P5G8zaeaPnAzNphXBUG4kLegoFiHxQ&si=jO0_Vq-CcEM5O5a-",
+              "domain": "youtube.com",
+              "context": "",
+              "embedTitle": "CUET GAT 2026 Static GK Manzil 5.0",
+              "embedDesc": "CUET GAT 2026 Static GK Manzil 5.0"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553296094061002793",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:44:07.670000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293305809346620/1553296094061002793",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://www.youtube.com/live/nRc51I4_9uE?si=FvO2EenabnoX70ve",
+              "domain": "youtube.com",
+              "context": "",
+              "embedTitle": "August 2026 Monthly Current Affairs and Static for CUET UG 2027",
+              "embedDesc": "To access the video and other study materials on Adda247 app, click..."
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553298164323188757",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:52:21.259000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553293305809346620/1553298164323188757",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://www.youtube.com/live/uS4rGlX1XZk?si=f313htyX94q4RdAa",
+              "domain": "youtube.com",
+              "context": "",
+              "embedTitle": "CUET GAT 2027 9 Months Current Affairs (Jan–Sep) in ONE Video ...",
+              "embedDesc": "To access the video and other study materials on Adda247 app, click..."
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.youtube.com/live/uS4rGlX1XZk?si=f313htyX94q4RdAa",
+          "domain": "youtube.com",
+          "title": "CUET GAT 2027 9 Months Current Affairs (Jan–Sep) in ONE Video ...",
+          "topic": "Youtube",
+          "slug": "youtube",
+          "source": "message"
+        },
+        {
+          "url": "https://youtube.com/playlist?list=PLv9P5G8zaeaPnAzNphXBUG4kLegoFiHxQ&si=jO0_Vq-CcEM5O5a-",
+          "domain": "youtube.com",
+          "title": "CUET GAT 2026 Static GK Manzil 5.0",
+          "topic": "Youtube",
+          "slug": "youtube",
+          "source": "message"
+        },
+        {
+          "url": "https://www.youtube.com/live/nRc51I4_9uE?si=FvO2EenabnoX70ve",
+          "domain": "youtube.com",
+          "title": "August 2026 Monthly Current Affairs and Static for CUET UG 2027",
+          "topic": "Youtube",
+          "slug": "youtube",
+          "source": "message"
+        },
+        {
+          "url": "https://www.youtube.com/live/uS4rGlX1XZk?si=f313htyX94q4RdAa",
+          "domain": "youtube.com",
+          "title": "CUET GAT 2027 9 Months Current Affairs (Jan–Sep) in ONE Video ...",
+          "topic": "Youtube",
+          "slug": "youtube",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553608473902719158",
+      "name": "Physical Education",
+      "emoji": "💪",
+      "slug": "physical-education",
+      "messageCount": 5,
+      "totalMessages": 5,
+      "tags": [
+        "physical education"
+      ],
+      "url": "https://discord.com/channels/1540430445483917342/1553608473902719158",
+      "messages": [
+        {
+          "id": "1553608473902719158",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:25:24.828000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553608473902719158/1553608473902719158",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Physical Education content here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553608566001107096",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:25:46.786000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553608473902719158/1553608566001107096",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "Physical_Education_1.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6ab9de38&is=6ab88cb8&hm=6be8fa7f7ea0a312acf3b561cc5c3de5b2a7a773c609bf7a823406313f5c9e50&",
+              "size": 11367935,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "PE_Cheat_Notes_2.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=09c90dcc70b52d735f0b337953507ef630e46422f7d19464400a55ab013a0686&",
+              "size": 16471708,
+              "context": ""
+            },
+            {
+              "type": "attachment",
+              "filename": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=1535f518ce6e53f13c5358fa44a2d159b90ebda7b5db73e7c5639f39a9a893f1&",
+              "size": 31320763,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553608590294654986",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T03:25:52.578000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553608473902719158/1553608590294654986",
+          "blocks": [],
+          "tags": [
+            "physical education"
+          ]
+        },
+        {
+          "id": "1553631667984269444",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:57:34.728000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553608473902719158/1553631667984269444",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Official Material for Phy Edu by Kendriya Vidyalaya! :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553631717565272116",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-27T04:57:46.549000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553608473902719158/1553631717565272116",
+          "blocks": [
+            {
+              "type": "attachment",
+              "filename": "PHE_Class_XII_SSM_2025-26.pdf",
+              "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553631717275869215/PHE_Class_XII_SSM_2025-26.pdf?ex=6ab9f3ca&is=6ab8a24a&hm=7465f0bc5e7a34709dd2e3e3f98d2822a013661c4231af59cf57117913696ca0&",
+              "size": 10048356,
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6ab9de38&is=6ab88cb8&hm=6be8fa7f7ea0a312acf3b561cc5c3de5b2a7a773c609bf7a823406313f5c9e50&",
+          "domain": "cdn.discordapp.com",
+          "title": "Physical_Education_1.pdf",
+          "topic": "Physical Education",
+          "slug": "physical-education",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=09c90dcc70b52d735f0b337953507ef630e46422f7d19464400a55ab013a0686&",
+          "domain": "cdn.discordapp.com",
+          "title": "PE_Cheat_Notes_2.pdf",
+          "topic": "Physical Education",
+          "slug": "physical-education",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6ab9de39&is=6ab88cb9&hm=1535f518ce6e53f13c5358fa44a2d159b90ebda7b5db73e7c5639f39a9a893f1&",
+          "domain": "cdn.discordapp.com",
+          "title": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
+          "topic": "Physical Education",
+          "slug": "physical-education",
+          "source": "attachment"
+        },
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553631717275869215/PHE_Class_XII_SSM_2025-26.pdf?ex=6ab9f3ca&is=6ab8a24a&hm=7465f0bc5e7a34709dd2e3e3f98d2822a013661c4231af59cf57117913696ca0&",
+          "domain": "cdn.discordapp.com",
+          "title": "PHE_Class_XII_SSM_2025-26.pdf",
+          "topic": "Physical Education",
+          "slug": "physical-education",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553483993943507124",
+      "name": "Academic & Research Papers",
+      "emoji": "📰",
+      "slug": "academic-research-papers",
+      "messageCount": 6,
+      "totalMessages": 7,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553483993943507124",
+      "messages": [
+        {
+          "id": "1553483993943507124",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:10:46.493000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553483993943507124",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Research papers etc here"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553484478775562401",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:12:42.086000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553484478775562401",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://sci-hub.ru/",
+              "domain": "sci-hub.ru",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553486950466453606",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:22:31.383000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553486950466453606",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Academic & Research Papers"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553490482925928519",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:36:33.587000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553490482925928519",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Science/tech papers here:"
+            },
+            {
+              "type": "link",
+              "url": "https://arxiv.org/search/",
+              "domain": "arxiv.org",
+              "context": "Science/tech papers here:"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553490589817774150",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:36:59.072000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553490589817774150",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Most of the Research papers here :"
+            },
+            {
+              "type": "link",
+              "url": "https://www.refseek.com/",
+              "domain": "refseek.com",
+              "context": "Most of the Research papers here :"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553491250424844441",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T19:39:36.573000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553483993943507124/1553491250424844441",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "📰 Academic & Research Papers"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://sci-hub.ru/",
+          "domain": "sci-hub.ru",
+          "title": "sci-hub.ru",
+          "topic": "Academic & Research Papers",
+          "slug": "academic-research-papers",
+          "source": "message"
+        },
+        {
+          "url": "https://arxiv.org/search/",
+          "domain": "arxiv.org",
+          "title": "Science/tech papers here:",
+          "topic": "Academic & Research Papers",
+          "slug": "academic-research-papers",
+          "source": "message"
+        },
+        {
+          "url": "https://www.refseek.com/",
+          "domain": "refseek.com",
+          "title": "Most of the Research papers here :",
+          "topic": "Academic & Research Papers",
+          "slug": "academic-research-papers",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553298404686430240",
+      "name": "How to attempt the Mocks ( HTML )",
+      "emoji": "❓",
+      "slug": "how-to-attempt-the-mocks-html",
+      "messageCount": 2,
+      "totalMessages": 3,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553298404686430240",
+      "messages": [
+        {
+          "id": "1553298493496623126",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:53:39.740000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553298404686430240/1553298493496623126",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "Chrome Se direct"
+                }
+              ]
+            },
+            {
+              "type": "attachment",
+              "filename": "screen-20260918-011920.mp4",
+              "url": "https://cdn.discordapp.com/attachments/1553298404686430240/1553298493412745357/screen-20260918-011920.mp4?ex=6aba0ef3&is=6ab8bd73&hm=97a24b96e07be6ee1e325febe218f522eb13e10d1ba41d1d7a3eb793547ce332&",
+              "size": 555178,
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553299048671354901",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T06:55:52.104000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553298404686430240/1553299048671354901",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "❓How to attempt the Mocks ( HTML )"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://cdn.discordapp.com/attachments/1553298404686430240/1553298493412745357/screen-20260918-011920.mp4?ex=6aba0ef3&is=6ab8bd73&hm=97a24b96e07be6ee1e325febe218f522eb13e10d1ba41d1d7a3eb793547ce332&",
+          "domain": "cdn.discordapp.com",
+          "title": "screen-20260918-011920.mp4",
+          "topic": "How to attempt the Mocks ( HTML )",
+          "slug": "how-to-attempt-the-mocks-html",
+          "source": "attachment"
+        }
+      ]
+    },
+    {
+      "id": "1553319116339679383",
+      "name": "CUET Question Papers - Google Drive",
+      "emoji": "📎",
+      "slug": "cuet-question-papers-google-drive",
+      "messageCount": 2,
+      "totalMessages": 2,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553319116339679383",
+      "messages": [
+        {
+          "id": "1553319116339679383",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:15:36.609000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553319116339679383/1553319116339679383",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1fVi1KMzcfBAWNIpDb8h99pgjkU1A32Hd",
+              "domain": "drive.google.com",
+              "context": "",
+              "embedTitle": "CUET Question Papers - Google Drive",
+              "embedDesc": "CUET UG all question papers. Also NCET question papers included"
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553319238549377107",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:16:05.746000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553319116339679383/1553319238549377107",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "📎 CUET Question Papers - Google Drive"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://drive.google.com/drive/folders/1fVi1KMzcfBAWNIpDb8h99pgjkU1A32Hd",
+          "domain": "drive.google.com",
+          "title": "CUET Question Papers - Google Drive",
+          "topic": "CUET Question Papers - Google Drive",
+          "slug": "cuet-question-papers-google-drive",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553319684202299463",
+      "name": "FREE MOCK TEST PAPER",
+      "emoji": "❗",
+      "slug": "free-mock-test-paper",
+      "messageCount": 1,
+      "totalMessages": 2,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553319684202299463",
+      "messages": [
+        {
+          "id": "1553319684202299463",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:17:51.998000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553319684202299463/1553319684202299463",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1e95Z7SRpnipjAVuvz2jy47XhvsVkCOe2",
+              "domain": "drive.google.com",
+              "context": ""
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://drive.google.com/drive/folders/1e95Z7SRpnipjAVuvz2jy47XhvsVkCOe2",
+          "domain": "drive.google.com",
+          "title": "drive.google.com",
+          "topic": "FREE MOCK TEST PAPER",
+          "slug": "free-mock-test-paper",
+          "source": "message"
+        }
+      ]
+    },
+    {
+      "id": "1553320334105640990",
+      "name": "CUET ENGLISH ARCHIVE ( ALOT OF MATERIAL )",
+      "emoji": "❗",
+      "slug": "cuet-english-archive-alot-of-material",
+      "messageCount": 2,
+      "totalMessages": 2,
+      "tags": [],
+      "url": "https://discord.com/channels/1540430445483917342/1553320334105640990",
+      "messages": [
+        {
+          "id": "1553320334105640990",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:20:26.947000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553320334105640990/1553320334105640990",
+          "blocks": [
+            {
+              "type": "link",
+              "url": "https://drive.google.com/drive/folders/1dfpD_ApjvXeW232caCzducyV_wHtUkw3",
+              "domain": "drive.google.com",
+              "context": ""
+            }
+          ],
+          "tags": []
+        },
+        {
+          "id": "1553320398127632415",
+          "author": "krush91",
+          "isOP": true,
+          "timestamp": "2026-09-26T08:20:42.211000+00:00",
+          "messageUrl": "https://discord.com/channels/1540430445483917342/1553320334105640990/1553320398127632415",
+          "blocks": [
+            {
+              "type": "flow",
+              "items": [
+                {
+                  "kind": "text",
+                  "text": "❗CUET ENGLISH ARCHIVE ( ALOT OF MATERIAL )"
+                }
+              ]
+            }
+          ],
+          "tags": []
+        }
+      ],
+      "links": [
+        {
+          "url": "https://drive.google.com/drive/folders/1dfpD_ApjvXeW232caCzducyV_wHtUkw3",
+          "domain": "drive.google.com",
+          "title": "drive.google.com",
+          "topic": "CUET ENGLISH ARCHIVE ( ALOT OF MATERIAL )",
+          "slug": "cuet-english-archive-alot-of-material",
+          "source": "message"
+        }
+      ]
+    }
+  ]
+}

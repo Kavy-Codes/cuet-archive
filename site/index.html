@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The CUET Archive — Free CUET resources, mirrored from Discord</title>
+<meta name="description" content="A searchable archive of every free resource shared in the CUET 2027 Discord: books, mock tests, PDFs, websites and videos.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="logo">🏛️</span><span>The CUET Archive</span></a>
+    <div class="searchwrap">
+      <input class="search-input" type="search" placeholder="Search resources…" autocomplete="off" aria-label="Search resources">
+      <div class="results" hidden></div>
+    </div>
+    <button id="theme-toggle" class="iconbtn" type="button">☀️</button>
+  </div>
+</header>
+<main class="wrap">
+
+<section class="hero">
+  <h1>The <span class="hl">CUET</span> Archive</h1>
+  <p>Every free resource from the CUET 2027 Discord — books, mocks, PDFs, websites and videos — in one place, easy to search, no clutter.</p>
+  <div class="hero-search">
+    <input class="search-input" type="search" placeholder="Search for books, mocks, websites…" autocomplete="off" aria-label="Search resources">
+    <div class="results" hidden></div>
+  </div>
+  <div class="stats">
+    <span class="stat"><b>18</b> topics</span>
+    <span class="stat"><b>140</b> links &amp; files</span>
+    <span class="stat">synced <b id="synced-time-hero" data-iso="2026-09-27T15:10:46.136Z"></b></span>
+  </div>
+</section>
+<div class="section-title">
+  <h2>Browse by topic</h2>
+  <span class="hint">Tap a card to open its page</span>
+</div>
+<div class="grid"><a class="topic-card" href="topics/academic-research-papers.html"><span class="tc-emoji">📰</span><span class="tc-name">Academic &amp; Research Papers</span><span class="tc-count">3 resources</span></a><a class="topic-card" href="topics/business-studies.html"><span class="tc-emoji">🤝</span><span class="tc-name">Business Studies</span><span class="tc-count">6 resources</span></a><a class="topic-card" href="topics/chemistry.html"><span class="tc-emoji">🧪</span><span class="tc-name">Chemistry</span><span class="tc-count">17 resources</span></a><a class="topic-card" href="topics/cuet-english-archive-alot-of-material.html"><span class="tc-emoji">❗</span><span class="tc-name">CUET ENGLISH ARCHIVE ( ALOT OF MATERIAL )</span><span class="tc-count">1 resource</span></a><a class="topic-card" href="topics/cuet-question-papers-google-drive.html"><span class="tc-emoji">📎</span><span class="tc-name">CUET Question Papers - Google Drive</span><span class="tc-count">1 resource</span></a><a class="topic-card" href="topics/economics.html"><span class="tc-emoji">💵</span><span class="tc-name">Economics</span><span class="tc-count">14 resources</span></a><a class="topic-card" href="topics/english.html"><span class="tc-emoji">🇺🇸</span><span class="tc-name">English</span><span class="tc-tags"><span class="chip">english</span></span><span class="tc-count">10 resources</span></a><a class="topic-card" href="topics/free-mock-test-paper.html"><span class="tc-emoji">❗</span><span class="tc-name">FREE MOCK TEST PAPER</span><span class="tc-count">1 resource</span></a><a class="topic-card" href="topics/gat.html"><span class="tc-emoji">🧠</span><span class="tc-name">GAT</span><span class="tc-count">28 resources</span></a><a class="topic-card" href="topics/how-to-attempt-the-mocks-html.html"><span class="tc-emoji">❓</span><span class="tc-name">How to attempt the Mocks ( HTML )</span><span class="tc-count">1 resource</span></a><a class="topic-card" href="topics/library-free-books.html"><span class="tc-emoji">📚</span><span class="tc-name">Library - FREE BOOKS</span><span class="tc-count">8 resources</span></a><a class="topic-card" href="topics/maths.html"><span class="tc-emoji">♾️</span><span class="tc-name">Maths</span><span class="tc-count">5 resources</span></a><a class="topic-card" href="topics/miscellaneous.html"><span class="tc-emoji">🌟</span><span class="tc-name">Miscellaneous</span><span class="tc-count">5 resources</span></a><a class="topic-card" href="topics/physical-education.html"><span class="tc-emoji">💪</span><span class="tc-name">Physical Education</span><span class="tc-tags"><span class="chip">physical education</span></span><span class="tc-count">4 resources</span></a><a class="topic-card" href="topics/physics.html"><span class="tc-emoji">⚛️</span><span class="tc-name">Physics</span><span class="tc-count">17 resources</span></a><a class="topic-card" href="topics/psychology.html"><span class="tc-emoji">🧠</span><span class="tc-name">Psychology</span><span class="tc-tags"><span class="chip">psychology</span></span><span class="tc-count">6 resources</span></a><a class="topic-card" href="topics/websites.html"><span class="tc-emoji">🌐</span><span class="tc-name">Websites</span><span class="tc-tags"><span class="chip">maths</span></span><span class="tc-count">10 resources</span></a><a class="topic-card" href="topics/youtube.html"><span class="tc-emoji">🎥</span><span class="tc-name">Youtube</span><span class="tc-count">3 resources</span></a></div>
+</main>
+<footer>
+  <div class="wrap footer-inner">
+    <div>Mirrored from the <strong>CUET 2027</strong> Discord · <span id="synced-time" data-iso="2026-09-27T15:10:46.136Z"></span></div>
+    <div class="foot-links">
+      <a href="https://discord.com/channels/1540430445483917342/1553291830198538340" target="_blank" rel="noopener">Source forum</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+</footer>
+<script>window.__BASE__="";</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "cuet-archive",
+  "version": "1.0.0",
+  "description": "The CUET Archive — free-media style wiki mirroring the CUET 2027 Discord resources forum",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "extract": "node src/extract.cjs",
+    "generate": "node src/generate.cjs",
+    "sync": "node src/sync.cjs",
+    "serve": "node src/serve.cjs"
+  }
+}
