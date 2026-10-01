@@ -46,7 +46,8 @@ async function api(endpoint, opts = {}) {
       err.status = res.status;
       throw err;
     }
-    return res.json();
+    const text = await res.text().catch(() => '');
+    return text ? JSON.parse(text) : {};
   }
   throw new Error('Discord API rate limited too many times on ' + endpoint);
 }

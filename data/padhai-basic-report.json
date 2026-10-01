@@ -1,0 +1,189 @@
+{
+  "when": "2026-10-01T13:26:07.440Z",
+  "actions": [
+    "channel exists: │-✦-📜-rules",
+    "channel exists: │-✦-📢-announcements",
+    "channel exists: │-✦-🎭-roles",
+    "position ok: start-here=0",
+    "position ok: rules=1",
+    "position ok: roles=2",
+    "position ok: info=3",
+    "position ok: introductions=4",
+    "position ok: general=3",
+    "position ok: announcements=4",
+    "position ok: media=5",
+    "position ok: security-alerts=6",
+    "guild settings already correct",
+    "message exists: rules (1555208299266179144)",
+    "message exists: start-here (1555208311052435517)",
+    "message exists: roles-intro (1555208316878331998)",
+    "message exists: course (1555208339867303977)",
+    "message exists: subjects (1555208348092203119)",
+    "message exists: pronouns (1555208380396601407)",
+    "message exists: dropper (1555208384599433217)",
+    "message exists: pings (1555208388277837928)",
+    "message exists: announcements (1555208392765735023)",
+    "message exists: intros (1555208397257965679)",
+    "already pinned: rules",
+    "already pinned: announcements"
+  ],
+  "failures": [],
+  "checks": [
+    {
+      "name": "rules-overwrites",
+      "ok": true,
+      "detail": "everyone a=66560 d=2048"
+    },
+    {
+      "name": "announcements-overwrites",
+      "ok": true,
+      "detail": "everyone a=66560 d=2048"
+    },
+    {
+      "name": "roles-overwrites",
+      "ok": true,
+      "detail": "everyone a=66624 d=2048"
+    },
+    {
+      "name": "welcome-order",
+      "ok": true,
+      "detail": "╭──-✦-start-here > │-✦-📜-rules > │-✦-🎭-roles > │-✦-info > ╰──-✦-introductions"
+    },
+    {
+      "name": "community-order",
+      "ok": true,
+      "detail": "╭──-✦-💬-general > │-✦-📢-announcements > │-✦-📸-media > ╰──-✦-🔒-security-alerts"
+    },
+    {
+      "name": "announcements-in-community",
+      "ok": true,
+      "detail": "type 0"
+    },
+    {
+      "name": "rules-channel-set",
+      "ok": true,
+      "detail": "1555207771421413426"
+    },
+    {
+      "name": "description-set",
+      "ok": true,
+      "detail": "\"Class 12 & university aspirants — notes, mocks, resources & study partners 📚\""
+    },
+    {
+      "name": "notifications-all",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "all-messages-posted",
+      "ok": true,
+      "detail": "10 msgs"
+    },
+    {
+      "name": "pins",
+      "ok": true,
+      "detail": "rules + announcements pinned"
+    }
+  ],
+  "ids": {
+    "rules": "1555207771421413426",
+    "roles": "1555208263979507743",
+    "announcements": "1555208259789529169",
+    "reports": "1551614253490905237",
+    "introductions": "1551614251951587417",
+    "general": "1554614423555940483",
+    "studyHelp": "1551614252987457570"
+  },
+  "posted": {
+    "rules": "1555208299266179144",
+    "start-here": "1555208311052435517",
+    "roles-intro": "1555208316878331998",
+    "course": "1555208339867303977",
+    "subjects": "1555208348092203119",
+    "pronouns": "1555208380396601407",
+    "dropper": "1555208384599433217",
+    "pings": "1555208388277837928",
+    "announcements": "1555208392765735023",
+    "intros": "1555208397257965679"
+  },
+  "cheat": [
+    {
+      "key": "course",
+      "channel": "#│-✦-🎭-roles",
+      "channelId": "1555208263979507743",
+      "messageId": "1555208339867303977",
+      "unique": false,
+      "commands": [
+        "!rr add 1555208339867303977 🎯 @class 12",
+        "!rr add 1555208339867303977 📔 @bcom",
+        "!rr add 1555208339867303977 💼 @bba/bms",
+        "!rr add 1555208339867303977 🔬 @bsc",
+        "!rr add 1555208339867303977 📗 @eco hons",
+        "!rr add 1555208339867303977 📘 @english hons",
+        "!rr add 1555208339867303977 📙 @other ba"
+      ]
+    },
+    {
+      "key": "subjects",
+      "channel": "#│-✦-🎭-roles",
+      "channelId": "1555208263979507743",
+      "messageId": "1555208348092203119",
+      "unique": false,
+      "commands": [
+        "!rr add 1555208348092203119 📖 @english",
+        "!rr add 1555208348092203119 ⚛️ @physics",
+        "!rr add 1555208348092203119 🧪 @chemistry",
+        "!rr add 1555208348092203119 🧬 @biology",
+        "!rr add 1555208348092203119 📊 @accountancy",
+        "!rr add 1555208348092203119 📈 @bst",
+        "!rr add 1555208348092203119 💰 @economics",
+        "!rr add 1555208348092203119 ➕ @maths",
+        "!rr add 1555208348092203119 🏛️ @history",
+        "!rr add 1555208348092203119 🌍 @geography",
+        "!rr add 1555208348092203119 🗳️ @political science",
+        "!rr add 1555208348092203119 🧠 @psychology",
+        "!rr add 1555208348092203119 👥 @sociology",
+        "!rr add 1555208348092203119 ⚖️ @legal studies",
+        "!rr add 1555208348092203119 💻 @ip/cs",
+        "!rr add 1555208348092203119 🏃 @physical education",
+        "!rr add 1555208348092203119 🎯 @gat"
+      ]
+    },
+    {
+      "key": "pronouns",
+      "channel": "#│-✦-🎭-roles",
+      "channelId": "1555208263979507743",
+      "messageId": "1555208380396601407",
+      "unique": true,
+      "commands": [
+        "!rr unique 1555208380396601407",
+        "!rr add 1555208380396601407 ♂️ @he",
+        "!rr add 1555208380396601407 ♀️ @she",
+        "!rr add 1555208380396601407 ⚧️ @they"
+      ]
+    },
+    {
+      "key": "dropper",
+      "channel": "#│-✦-🎭-roles",
+      "channelId": "1555208263979507743",
+      "messageId": "1555208384599433217",
+      "unique": true,
+      "commands": [
+        "!rr unique 1555208384599433217",
+        "!rr add 1555208384599433217 🔴 @full dropper",
+        "!rr add 1555208384599433217 🟡 @partial dropper"
+      ]
+    },
+    {
+      "key": "pings",
+      "channel": "#│-✦-🎭-roles",
+      "channelId": "1555208263979507743",
+      "messageId": "1555208388277837928",
+      "unique": false,
+      "commands": [
+        "!rr add 1555208388277837928 🔊 @vc ping",
+        "!rr add 1555208388277837928 🎮 @game ping"
+      ]
+    }
+  ]
+}

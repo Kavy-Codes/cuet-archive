@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-29T20:56:28.029Z",
+  "threadsCreated": 18,
+  "messagesPosted": 100,
+  "attachmentsUploaded": 92,
+  "reactionsAdded": 9,
+  "failures": [
+    {
+      "where": "💵 Economics/1553608146835214336",
+      "error": "attachment over upload limit: Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf (26.6 MB), Economics_Revision_Notes.pdf (7.5 MB), XamIdea_Economics_Class_12.pdf (29.0 MB)",
+      "fallback": "link posted"
+    },
+    {
+      "where": "💪 Physical Education/1553608566001107096",
+      "error": "attachment over upload limit: Physical_Education_1.pdf (10.8 MB), PE_Cheat_Notes_2.pdf (15.7 MB), PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf (29.9 MB)",
+      "fallback": "link posted"
+    }
+  ],
+  "skipped": []
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "key": "course",
+    "channel": "#│-✦-🎭-roles",
+    "channelId": "1555208263979507743",
+    "messageId": "1555208339867303977",
+    "unique": false,
+    "commands": [
+      "!rr add 1555208339867303977 🎯 @class 12",
+      "!rr add 1555208339867303977 📔 @bcom",
+      "!rr add 1555208339867303977 💼 @bba/bms",
+      "!rr add 1555208339867303977 🔬 @bsc",
+      "!rr add 1555208339867303977 📗 @eco hons",
+      "!rr add 1555208339867303977 📘 @english hons",
+      "!rr add 1555208339867303977 📙 @other ba"
+    ]
+  },
+  {
+    "key": "subjects",
+    "channel": "#│-✦-🎭-roles",
+    "channelId": "1555208263979507743",
+    "messageId": "1555208348092203119",
+    "unique": false,
+    "commands": [
+      "!rr add 1555208348092203119 📖 @english",
+      "!rr add 1555208348092203119 ⚛️ @physics",
+      "!rr add 1555208348092203119 🧪 @chemistry",
+      "!rr add 1555208348092203119 🧬 @biology",
+      "!rr add 1555208348092203119 📊 @accountancy",
+      "!rr add 1555208348092203119 📈 @bst",
+      "!rr add 1555208348092203119 💰 @economics",
+      "!rr add 1555208348092203119 ➕ @maths",
+      "!rr add 1555208348092203119 🏛️ @history",
+      "!rr add 1555208348092203119 🌍 @geography",
+      "!rr add 1555208348092203119 🗳️ @political science",
+      "!rr add 1555208348092203119 🧠 @psychology",
+      "!rr add 1555208348092203119 👥 @sociology",
+      "!rr add 1555208348092203119 ⚖️ @legal studies",
+      "!rr add 1555208348092203119 💻 @ip/cs",
+      "!rr add 1555208348092203119 🏃 @physical education",
+      "!rr add 1555208348092203119 🎯 @gat"
+    ]
+  },
+  {
+    "key": "pronouns",
+    "channel": "#│-✦-🎭-roles",
+    "channelId": "1555208263979507743",
+    "messageId": "1555208380396601407",
+    "unique": true,
+    "commands": [
+      "!rr unique 1555208380396601407",
+      "!rr add 1555208380396601407 ♂️ @he",
+      "!rr add 1555208380396601407 ♀️ @she",
+      "!rr add 1555208380396601407 ⚧️ @they"
+    ]
+  },
+  {
+    "key": "dropper",
+    "channel": "#│-✦-🎭-roles",
+    "channelId": "1555208263979507743",
+    "messageId": "1555208384599433217",
+    "unique": true,
+    "commands": [
+      "!rr unique 1555208384599433217",
+      "!rr add 1555208384599433217 🔴 @full dropper",
+      "!rr add 1555208384599433217 🟡 @partial dropper"
+    ]
+  },
+  {
+    "key": "pings",
+    "channel": "#│-✦-🎭-roles",
+    "channelId": "1555208263979507743",
+    "messageId": "1555208388277837928",
+    "unique": false,
+    "commands": [
+      "!rr add 1555208388277837928 🔊 @vc ping",
+      "!rr add 1555208388277837928 🎮 @game ping"
+    ]
+  }
+]

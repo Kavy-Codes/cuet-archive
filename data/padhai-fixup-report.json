@@ -1,0 +1,258 @@
+{
+  "at": "2026-09-29T21:04:33.262Z",
+  "before": {
+    "threadsOk": 20,
+    "threadsMissing": [],
+    "messagesExpected": 134,
+    "messagesMapped": 134,
+    "messagesMissing": [],
+    "filesExpected": 100,
+    "filesInMirror": 94,
+    "filesMissing": [
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
+        "size": 27846445,
+        "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6abd2996&is=6abbd816&hm=49015aa3bb9813a5e8ef508ef46af29aa67ca8d5f178ed96a72de351b59d635c&"
+      },
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "Economics_Revision_Notes.pdf",
+        "size": 7892790,
+        "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146193481768/Economics_Revision_Notes.pdf?ex=6abd2996&is=6abbd816&hm=82c3bee669dc45fb129de1b7127c3d3a6070f962e37dd30d8f7dad3e0ba09db8&"
+      },
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "XamIdea_Economics_Class_12.pdf",
+        "size": 30419924,
+        "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6abd2996&is=6abbd816&hm=0a686ab4c6ac73acf64b3bb931c33bd8661eafbd8784f0ce5c14ba8b609f6aaf&"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "thread": "💪 Physical Education",
+        "msgId": "1553608566001107096",
+        "newId": "1554597622722076680",
+        "filename": "Physical_Education_1.pdf",
+        "size": 11367935,
+        "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608557570556045/Physical_Education_1.pdf?ex=6abd29f8&is=6abbd878&hm=d5d0e5fdbae9b5c0bd3026197ead635467f5df654f638125ffe639836c315038&"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "thread": "💪 Physical Education",
+        "msgId": "1553608566001107096",
+        "newId": "1554597622722076680",
+        "filename": "PE_Cheat_Notes_2.pdf",
+        "size": 16471708,
+        "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608559067930655/PE_Cheat_Notes_2.pdf?ex=6abd29f9&is=6abbd879&hm=c241a75c6961b41257bceea2b9c87d30a50b621de1fca0b9208cd1dfd313f92e&"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "thread": "💪 Physical Education",
+        "msgId": "1553608566001107096",
+        "newId": "1554597622722076680",
+        "filename": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
+        "size": 31320763,
+        "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6abd29f9&is=6abbd879&hm=7fa356b6933c11c7d89e1f1a97062e3b13fe53e208b2a81dae3a7b28eda568ef&"
+      }
+    ],
+    "reactionsMissing": [
+      {
+        "channelId": "1554594965437415555",
+        "msgId": "1554594965437415555",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595030981939331",
+        "msgId": "1554595030981939331",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595540715569223",
+        "msgId": "1554595540715569223",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595559497801820",
+        "msgId": "1554595559497801820",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595656855846922",
+        "msgId": "1554595656855846922",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595776531922977",
+        "msgId": "1554595776531922977",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595876263960637",
+        "msgId": "1554595876263960637",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595891099345030",
+        "msgId": "1554595891099345030",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554595965711679599",
+        "msgId": "1554595965711679599",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596011941433355",
+        "msgId": "1554596011941433355",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596709462712412",
+        "msgId": "1554596709462712412",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596877154918472",
+        "msgId": "1554596877154918472",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596881273724943",
+        "msgId": "1554596881273724943",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596884751065149",
+        "msgId": "1554596884751065149",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554596888018427976",
+        "msgId": "1554596888018427976",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554597131455701117",
+        "msgId": "1554597131455701117",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554597241073700966",
+        "msgId": "1554597241073700966",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "msgId": "1554597262313791609",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554597703294652509",
+        "msgId": "1554597703294652509",
+        "emoji": "💗"
+      },
+      {
+        "channelId": "1554597732558180483",
+        "msgId": "1554597732558180483",
+        "emoji": "💗"
+      }
+    ],
+    "contentIssues": []
+  },
+  "fixes": {
+    "reactionsAdded": 20,
+    "filesUploaded": [
+      {
+        "file": "Economics_Revision_Notes.pdf",
+        "msgId": "1553608146835214336"
+      },
+      {
+        "file": "Physical_Education_1.pdf",
+        "msgId": "1553608566001107096"
+      },
+      {
+        "file": "PE_Cheat_Notes_2.pdf",
+        "msgId": "1553608566001107096"
+      }
+    ],
+    "filesStillFailing": [
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
+        "size": 27846445,
+        "error": "HTTP 413: {\"message\": \"Request entity too large\", \"code\": 40005}"
+      },
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "XamIdea_Economics_Class_12.pdf",
+        "size": 30419924,
+        "error": "HTTP 413: {\"message\": \"Request entity too large\", \"code\": 40005}"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "thread": "💪 Physical Education",
+        "msgId": "1553608566001107096",
+        "newId": "1554597622722076680",
+        "filename": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
+        "size": 31320763,
+        "error": "HTTP 413: {\"message\": \"Request entity too large\", \"code\": 40005}"
+      }
+    ],
+    "fallbacksEdited": 2
+  },
+  "after": {
+    "threadsOk": 20,
+    "threadsMissing": [],
+    "messagesExpected": 134,
+    "messagesMapped": 134,
+    "messagesMissing": [],
+    "filesExpected": 100,
+    "filesInMirror": 97,
+    "filesMissing": [
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf",
+        "size": 27846445,
+        "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608143643090944/Class_12_Economics_Introductory_Macroeconomics_Question_Bank_Chapter.pdf?ex=6abd2996&is=6abbd816&hm=49015aa3bb9813a5e8ef508ef46af29aa67ca8d5f178ed96a72de351b59d635c&"
+      },
+      {
+        "channelId": "1554596011941433355",
+        "thread": "💵 Economics",
+        "msgId": "1553608146835214336",
+        "newId": "1554596650138476636",
+        "filename": "XamIdea_Economics_Class_12.pdf",
+        "size": 30419924,
+        "url": "https://cdn.discordapp.com/attachments/1553318127977373817/1553608146537422968/XamIdea_Economics_Class_12.pdf?ex=6abd2996&is=6abbd816&hm=0a686ab4c6ac73acf64b3bb931c33bd8661eafbd8784f0ce5c14ba8b609f6aaf&"
+      },
+      {
+        "channelId": "1554597262313791609",
+        "thread": "💪 Physical Education",
+        "msgId": "1553608566001107096",
+        "newId": "1554597622722076680",
+        "filename": "PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf",
+        "size": 31320763,
+        "url": "https://cdn.discordapp.com/attachments/1553608473902719158/1553608560879997058/PE_CLASS_12_PREMIUM_NOTES_BY_ZAKI_SAUDAGAR_PLATFORM_1_5_1_2.pdf?ex=6abd29f9&is=6abbd879&hm=7fa356b6933c11c7d89e1f1a97062e3b13fe53e208b2a81dae3a7b28eda568ef&"
+      }
+    ],
+    "reactionsMissing": [],
+    "contentIssues": []
+  }
+}

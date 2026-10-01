@@ -1,0 +1,1770 @@
+{
+  "when": "2026-10-01T07:43:37.882Z",
+  "dry": false,
+  "actions": [
+    {
+      "step": "role-positions",
+      "detail": "relative order already correct"
+    },
+    {
+      "step": "role-positions",
+      "detail": "already correct"
+    },
+    {
+      "step": "she-perms",
+      "detail": "already 0"
+    },
+    {
+      "step": "guild-settings",
+      "detail": "already correct"
+    },
+    {
+      "step": "automod",
+      "detail": "exists: Block Invite Links"
+    },
+    {
+      "step": "automod",
+      "detail": "exists: Mention Spam Limit"
+    },
+    {
+      "step": "automod",
+      "detail": "exists: Anti Spam"
+    },
+    {
+      "step": "automod",
+      "detail": "exists: Scam Phrases"
+    }
+  ],
+  "failures": [],
+  "checks": [
+    {
+      "name": "role-order-strictly-descending",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bot-above-admin",
+      "ok": true,
+      "detail": "cc=39 admin=38"
+    },
+    {
+      "name": "she-perms-zero",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "lock-╭──-✦-staff-chat",
+      "ok": true,
+      "detail": "a=0 d=3072"
+    },
+    {
+      "name": "access-╭──-✦-staff-chat-admin",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "access-╭──-✦-staff-chat-moderator",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "access-╭──-✦-staff-chat-developer",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "lock-│-✦-mod-logs",
+      "ok": true,
+      "detail": "a=0 d=3072"
+    },
+    {
+      "name": "access-│-✦-mod-logs-admin",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "access-│-✦-mod-logs-moderator",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "access-│-✦-mod-logs-developer",
+      "ok": true,
+      "detail": "a=117760"
+    },
+    {
+      "name": "reports-public",
+      "ok": true,
+      "detail": "a=117760 d=0"
+    },
+    {
+      "name": "security-alerts-readonly",
+      "ok": true,
+      "detail": "a=66560 d=2048"
+    },
+    {
+      "name": "category-community",
+      "ok": true,
+      "detail": "a=1024 d=0"
+    },
+    {
+      "name": "category-study",
+      "ok": true,
+      "detail": "a=1024 d=0"
+    },
+    {
+      "name": "category-interests",
+      "ok": true,
+      "detail": "a=1024 d=0"
+    },
+    {
+      "name": "category-welcome",
+      "ok": true,
+      "detail": "a=1024 d=0"
+    },
+    {
+      "name": "category-staff only",
+      "ok": true,
+      "detail": "a=0 d=1024"
+    },
+    {
+      "name": "verification-level-2",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "content-filter-1",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "rules-channel",
+      "ok": true,
+      "detail": "1551614251951587410"
+    },
+    {
+      "name": "system-channel",
+      "ok": true,
+      "detail": "1551614251951587417"
+    },
+    {
+      "name": "automod-4-rules",
+      "ok": true,
+      "detail": "Block Invite Links, Mention Spam Limit, Anti Spam, Scam Phrases"
+    }
+  ],
+  "before": {
+    "roles": [
+      {
+        "id": "1551614250508746814",
+        "name": "@everyone",
+        "position": 0,
+        "permissions": "2222085186637377",
+        "managed": false
+      },
+      {
+        "id": "1551614871341244439",
+        "name": "TempVoice",
+        "position": 7,
+        "permissions": "395962534937",
+        "managed": true
+      },
+      {
+        "id": "1551614958842810391",
+        "name": "Jockie Music",
+        "position": 5,
+        "permissions": "8",
+        "managed": true
+      },
+      {
+        "id": "1551616823995138201",
+        "name": "Pomo",
+        "position": 2,
+        "permissions": "274878286912",
+        "managed": true
+      },
+      {
+        "id": "1551621890689335499",
+        "name": "Chill Chillies Bot",
+        "position": 39,
+        "permissions": "8",
+        "managed": true
+      },
+      {
+        "id": "1554619373606666340",
+        "name": "admin",
+        "position": 38,
+        "permissions": "8864262743130111",
+        "managed": false
+      },
+      {
+        "id": "1554619377540792510",
+        "name": "moderator",
+        "position": 37,
+        "permissions": "3973625887059667",
+        "managed": false
+      },
+      {
+        "id": "1554619381575843942",
+        "name": "developer",
+        "position": 36,
+        "permissions": "4359537825935057",
+        "managed": false
+      },
+      {
+        "id": "1554619385279414364",
+        "name": "he",
+        "position": 33,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619389049966675",
+        "name": "she",
+        "position": 32,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619392950542386",
+        "name": "they",
+        "position": 31,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619396381614120",
+        "name": "class 12",
+        "position": 30,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619399888052264",
+        "name": "full dropper",
+        "position": 29,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619403436556368",
+        "name": "partial dropper",
+        "position": 28,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619406515052689",
+        "name": "bcom",
+        "position": 27,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619410071683166",
+        "name": "bba/bms",
+        "position": 26,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619413552955502",
+        "name": "bsc",
+        "position": 25,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619417059393637",
+        "name": "eco hons",
+        "position": 24,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619420423233616",
+        "name": "english hons",
+        "position": 23,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619423774613515",
+        "name": "other ba",
+        "position": 22,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619427620782221",
+        "name": "english",
+        "position": 21,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619431076888708",
+        "name": "physics",
+        "position": 20,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619434599972915",
+        "name": "chemistry",
+        "position": 19,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619437720674408",
+        "name": "biology",
+        "position": 18,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619441310859264",
+        "name": "accountancy",
+        "position": 17,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619444590805025",
+        "name": "bst",
+        "position": 16,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619448210493520",
+        "name": "economics",
+        "position": 15,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619451238912042",
+        "name": "maths",
+        "position": 14,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619454682308658",
+        "name": "history",
+        "position": 13,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619458117705738",
+        "name": "geography",
+        "position": 12,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619461107982358",
+        "name": "political science",
+        "position": 11,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619464631197819",
+        "name": "psychology",
+        "position": 10,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619468024381494",
+        "name": "sociology",
+        "position": 9,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619471916699688",
+        "name": "legal studies",
+        "position": 8,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619474924150896",
+        "name": "ip/cs",
+        "position": 6,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619478430715979",
+        "name": "physical education",
+        "position": 4,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619481873981540",
+        "name": "gat",
+        "position": 3,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619485212909608",
+        "name": "vc ping",
+        "position": 35,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619488287072359",
+        "name": "game ping",
+        "position": 34,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619492209008671",
+        "name": "bots",
+        "position": 1,
+        "permissions": "0",
+        "managed": false
+      }
+    ],
+    "channels": [
+      {
+        "id": "1551614251951587409",
+        "name": "✦ ── welcome ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587410",
+        "name": "╭──-✦-start-here",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587416",
+        "name": "│-✦-info",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587417",
+        "name": "╰──-✦-introductions",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587418",
+        "name": "✦ ── community ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252132073604",
+        "name": "│-✦-📸-media",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252132073611",
+        "name": "╰──-✦-🔒-security-alerts",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "66560",
+            "deny": "2048"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252878397444",
+        "name": "✦ ── study ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252878397445",
+        "name": "╭──-✦-🧑‍🎓-chat",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614252987457570",
+        "name": "│-✦-❓-study-help",
+        "type": 15,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944736",
+        "name": "│-✦-💯-mocks",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944737",
+        "name": "╰──-✦-💪-motivation",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944738",
+        "name": "✦ ── interests ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944739",
+        "name": "╭──-✦-📺-anime",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944740",
+        "name": "│-✦-💻-tech",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880589",
+        "name": "│-✦-⚽-sports",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880590",
+        "name": "│-✦-🎨-art",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880591",
+        "name": "│-✦-👗-fashion",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880592",
+        "name": "╰──-✦-🎬-movies",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905230",
+        "name": "🤖 ── bots ── 🤖",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": []
+      },
+      {
+        "id": "1551614253490905231",
+        "name": "╭──✦-info",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905232",
+        "name": "│-✦-🎮-bot-commands",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905233",
+        "name": "╰──-✦-🎵-music-commands",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905234",
+        "name": "🔒 ── staff only ── 🔒",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "1024"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905235",
+        "name": "╭──-✦-staff-chat",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "3072"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905236",
+        "name": "│-✦-mod-logs",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "3072"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905237",
+        "name": "╰──-✦-reports",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551618696806535169",
+        "name": "✦ ── voice ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "2048"
+          },
+          {
+            "id": "762217899355013120",
+            "type": 1,
+            "allow": "556813328",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551618700749185055",
+        "name": "╭──✦-interface",
+        "type": 0,
+        "parent_id": "1551618696806535169",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1554594963184943145",
+        "name": "│-✦-📚-resources",
+        "type": 15,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1554614423555940483",
+        "name": "╭──-✦-💬-general",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      }
+    ],
+    "guild": {
+      "verification_level": 2,
+      "explicit_content_filter": 1,
+      "rules_channel_id": "1551614251951587410",
+      "system_channel_id": "1551614251951587417",
+      "mfa_level": 0,
+      "afk_channel_id": null
+    },
+    "automod": [
+      {
+        "id": "1555122578912448573",
+        "name": "Block Invite Links",
+        "enabled": true,
+        "trigger_type": 1
+      },
+      {
+        "id": "1555122584532549702",
+        "name": "Mention Spam Limit",
+        "enabled": true,
+        "trigger_type": 5
+      },
+      {
+        "id": "1555122588684914799",
+        "name": "Anti Spam",
+        "enabled": true,
+        "trigger_type": 3
+      },
+      {
+        "id": "1555122591889367062",
+        "name": "Scam Phrases",
+        "enabled": true,
+        "trigger_type": 1
+      }
+    ]
+  },
+  "after": {
+    "roles": [
+      {
+        "id": "1551614250508746814",
+        "name": "@everyone",
+        "position": 0,
+        "permissions": "2222085186637377",
+        "managed": false
+      },
+      {
+        "id": "1551614871341244439",
+        "name": "TempVoice",
+        "position": 7,
+        "permissions": "395962534937",
+        "managed": true
+      },
+      {
+        "id": "1551614958842810391",
+        "name": "Jockie Music",
+        "position": 5,
+        "permissions": "8",
+        "managed": true
+      },
+      {
+        "id": "1551616823995138201",
+        "name": "Pomo",
+        "position": 2,
+        "permissions": "274878286912",
+        "managed": true
+      },
+      {
+        "id": "1551621890689335499",
+        "name": "Chill Chillies Bot",
+        "position": 39,
+        "permissions": "8",
+        "managed": true
+      },
+      {
+        "id": "1554619373606666340",
+        "name": "admin",
+        "position": 38,
+        "permissions": "8864262743130111",
+        "managed": false
+      },
+      {
+        "id": "1554619377540792510",
+        "name": "moderator",
+        "position": 37,
+        "permissions": "3973625887059667",
+        "managed": false
+      },
+      {
+        "id": "1554619381575843942",
+        "name": "developer",
+        "position": 36,
+        "permissions": "4359537825935057",
+        "managed": false
+      },
+      {
+        "id": "1554619385279414364",
+        "name": "he",
+        "position": 33,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619389049966675",
+        "name": "she",
+        "position": 32,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619392950542386",
+        "name": "they",
+        "position": 31,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619396381614120",
+        "name": "class 12",
+        "position": 30,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619399888052264",
+        "name": "full dropper",
+        "position": 29,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619403436556368",
+        "name": "partial dropper",
+        "position": 28,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619406515052689",
+        "name": "bcom",
+        "position": 27,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619410071683166",
+        "name": "bba/bms",
+        "position": 26,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619413552955502",
+        "name": "bsc",
+        "position": 25,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619417059393637",
+        "name": "eco hons",
+        "position": 24,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619420423233616",
+        "name": "english hons",
+        "position": 23,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619423774613515",
+        "name": "other ba",
+        "position": 22,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619427620782221",
+        "name": "english",
+        "position": 21,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619431076888708",
+        "name": "physics",
+        "position": 20,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619434599972915",
+        "name": "chemistry",
+        "position": 19,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619437720674408",
+        "name": "biology",
+        "position": 18,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619441310859264",
+        "name": "accountancy",
+        "position": 17,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619444590805025",
+        "name": "bst",
+        "position": 16,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619448210493520",
+        "name": "economics",
+        "position": 15,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619451238912042",
+        "name": "maths",
+        "position": 14,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619454682308658",
+        "name": "history",
+        "position": 13,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619458117705738",
+        "name": "geography",
+        "position": 12,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619461107982358",
+        "name": "political science",
+        "position": 11,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619464631197819",
+        "name": "psychology",
+        "position": 10,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619468024381494",
+        "name": "sociology",
+        "position": 9,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619471916699688",
+        "name": "legal studies",
+        "position": 8,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619474924150896",
+        "name": "ip/cs",
+        "position": 6,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619478430715979",
+        "name": "physical education",
+        "position": 4,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619481873981540",
+        "name": "gat",
+        "position": 3,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619485212909608",
+        "name": "vc ping",
+        "position": 35,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619488287072359",
+        "name": "game ping",
+        "position": 34,
+        "permissions": "0",
+        "managed": false
+      },
+      {
+        "id": "1554619492209008671",
+        "name": "bots",
+        "position": 1,
+        "permissions": "0",
+        "managed": false
+      }
+    ],
+    "channels": [
+      {
+        "id": "1551614251951587409",
+        "name": "✦ ── welcome ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587410",
+        "name": "╭──-✦-start-here",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587416",
+        "name": "│-✦-info",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587417",
+        "name": "╰──-✦-introductions",
+        "type": 0,
+        "parent_id": "1551614251951587409",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614251951587418",
+        "name": "✦ ── community ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252132073604",
+        "name": "│-✦-📸-media",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252132073611",
+        "name": "╰──-✦-🔒-security-alerts",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "66560",
+            "deny": "2048"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "51200",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252878397444",
+        "name": "✦ ── study ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614252878397445",
+        "name": "╭──-✦-🧑‍🎓-chat",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614252987457570",
+        "name": "│-✦-❓-study-help",
+        "type": 15,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944736",
+        "name": "│-✦-💯-mocks",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944737",
+        "name": "╰──-✦-💪-motivation",
+        "type": 0,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944738",
+        "name": "✦ ── interests ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944739",
+        "name": "╭──-✦-📺-anime",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253016944740",
+        "name": "│-✦-💻-tech",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880589",
+        "name": "│-✦-⚽-sports",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880590",
+        "name": "│-✦-🎨-art",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880591",
+        "name": "│-✦-👗-fashion",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253163880592",
+        "name": "╰──-✦-🎬-movies",
+        "type": 0,
+        "parent_id": "1551614253016944738",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905230",
+        "name": "🤖 ── bots ── 🤖",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": []
+      },
+      {
+        "id": "1551614253490905231",
+        "name": "╭──✦-info",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905232",
+        "name": "│-✦-🎮-bot-commands",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905233",
+        "name": "╰──-✦-🎵-music-commands",
+        "type": 0,
+        "parent_id": "1551614253490905230",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905234",
+        "name": "🔒 ── staff only ── 🔒",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "1024"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905235",
+        "name": "╭──-✦-staff-chat",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "3072"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905236",
+        "name": "│-✦-mod-logs",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1554619373606666340",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1554619377540792510",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          },
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "3072"
+          },
+          {
+            "id": "1554619381575843942",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551614253490905237",
+        "name": "╰──-✦-reports",
+        "type": 0,
+        "parent_id": "1551614253490905234",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "117760",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551618696806535169",
+        "name": "✦ ── voice ── ✦",
+        "type": 4,
+        "parent_id": null,
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "2048"
+          },
+          {
+            "id": "762217899355013120",
+            "type": 1,
+            "allow": "556813328",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1551618700749185055",
+        "name": "╭──✦-interface",
+        "type": 0,
+        "parent_id": "1551618696806535169",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "0",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1554594963184943145",
+        "name": "│-✦-📚-resources",
+        "type": 15,
+        "parent_id": "1551614252878397444",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ]
+      },
+      {
+        "id": "1554614423555940483",
+        "name": "╭──-✦-💬-general",
+        "type": 0,
+        "parent_id": "1551614251951587418",
+        "overwrites": [
+          {
+            "id": "1551614250508746814",
+            "type": 0,
+            "allow": "16384",
+            "deny": "32768"
+          }
+        ]
+      }
+    ],
+    "guild": {
+      "verification_level": 2,
+      "explicit_content_filter": 1,
+      "rules_channel_id": "1551614251951587410",
+      "system_channel_id": "1551614251951587417",
+      "mfa_level": 0,
+      "afk_channel_id": null
+    },
+    "automod": [
+      {
+        "id": "1555122578912448573",
+        "name": "Block Invite Links",
+        "enabled": true,
+        "trigger_type": 1
+      },
+      {
+        "id": "1555122584532549702",
+        "name": "Mention Spam Limit",
+        "enabled": true,
+        "trigger_type": 5
+      },
+      {
+        "id": "1555122588684914799",
+        "name": "Anti Spam",
+        "enabled": true,
+        "trigger_type": 3
+      },
+      {
+        "id": "1555122591889367062",
+        "name": "Scam Phrases",
+        "enabled": true,
+        "trigger_type": 1
+      }
+    ]
+  }
+}
