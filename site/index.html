@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The CUET Archive — Under Maintenance</title>
-<meta name="description" content="The CUET Archive is temporarily under maintenance. The full resource library will return soon.">
+<meta name="description" content="The CUET Archive is temporarily under maintenance. Join the CUET '27 Discord community in the meantime.">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛</text></svg>">
@@ -16,6 +16,7 @@
     --muted: rgba(242, 234, 214, 0.55);
     --line: rgba(242, 234, 214, 0.14);
     --amber: #e9a13b;
+    --amber-bright: #f5b455;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -23,18 +24,18 @@
     display: grid;
     place-items: center;
     background:
-      radial-gradient(1100px 600px at 50% -10%, rgba(233, 161, 59, 0.07), transparent 60%),
+      radial-gradient(1100px 600px at 50% -10%, rgba(233, 161, 59, 0.08), transparent 60%),
       var(--bg);
     color: var(--ink);
     font-family: ui-sans-serif, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
     padding: 32px;
   }
   main {
-    width: min(560px, 100%);
+    width: min(580px, 100%);
     background: var(--panel);
     border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: clamp(32px, 6vw, 56px);
+    border-radius: 18px;
+    padding: clamp(30px, 6vw, 52px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -46,63 +47,97 @@
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--amber), transparent);
   }
-  .mark {
-    font-size: 40px;
-    line-height: 1;
-    margin-bottom: 22px;
-    filter: grayscale(0.15);
-  }
+  .mark { font-size: 36px; line-height: 1; margin-bottom: 18px; }
   h1 {
-    font-size: clamp(26px, 5vw, 34px);
+    font-size: clamp(24px, 4.6vw, 31px);
     font-weight: 750;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   h1 span { color: var(--amber); }
   p {
     color: var(--muted);
-    font-size: 15.5px;
-    line-height: 1.65;
-    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 8px;
   }
   .status {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    margin-top: 22px;
-    padding: 9px 16px;
+    margin-top: 18px;
+    padding: 8px 15px;
     border: 1px solid var(--line);
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: var(--amber);
     animation: pulse 1.6s ease-in-out infinite;
   }
-  footer {
-    margin-top: 28px;
-    padding-top: 20px;
+
+  /* --- promotional CTA: the visual anchor of the page --- */
+  .cta {
+    margin-top: 34px;
+    padding-top: 30px;
     border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .cta-sub {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .join {
+    display: block;
+    width: 100%;
+    padding: 24px 20px;
+    background: linear-gradient(180deg, var(--amber-bright), var(--amber));
+    color: #171106;
+    font-size: clamp(19px, 3.6vw, 24px);
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 15px;
+    box-shadow: 0 14px 44px rgba(233, 161, 59, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  }
+  .join:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+    box-shadow: 0 22px 60px rgba(233, 161, 59, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  .join:active { transform: translateY(-1px); }
+  .join .arrow { display: inline-block; transition: transform 0.18s ease; }
+  .join:hover .arrow { transform: translateX(6px); }
+  .proof {
+    margin-top: 16px;
     font-size: 13.5px;
+    letter-spacing: 0.02em;
     color: var(--muted);
   }
-  footer a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(242, 234, 214, 0.35);
-    transition: border-color 0.2s, color 0.2s;
-  }
-  footer a:hover { color: var(--amber); border-color: var(--amber); }
+  .proof strong { color: var(--ink); font-weight: 700; }
+
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.45; transform: scale(0.8); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .join, .join .arrow { transition: none; }
+    .dot { animation: none; }
   }
 </style>
 </head>
@@ -111,12 +146,15 @@
     <div class="mark">🏛</div>
     <h1>Under <span>Maintenance</span></h1>
     <p>The CUET Archive is temporarily offline while we work on it.</p>
-    <p>The full library of 140+ resources will be back soon — thanks for your patience.</p>
+    <p>The full library will be back soon — thanks for your patience.</p>
     <div class="status"><span class="dot"></span> Back shortly</div>
-    <footer>
-      Need resources right now?<br>
-      <a href="https://discord.gg/ZM7XNMapD">Join the CUET 2027 Discord →</a>
-    </footer>
+
+    <div class="cta">
+      <div class="eyebrow">Meanwhile, the community is live</div>
+      <div class="cta-sub">Everything's happening in the Discord —</div>
+      <a class="join" href="https://discord.gg/ZM7XNMapD">Join CUET '27 <span class="arrow">→</span></a>
+      <div class="proof"><strong>140+ resources</strong> · mock tests · subject channels · <strong>free forever</strong></div>
+    </div>
   </main>
 </body>
 </html>
