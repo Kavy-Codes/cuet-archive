@@ -117,6 +117,8 @@
     box.hidden = false;
   }
   function bindSearch(input) {
+    if (input.dataset.bound) return;
+    input.dataset.bound = '1';
     const box = input.parentElement.querySelector('.results');
     if (!box) return;
     let timer = null;
@@ -513,18 +515,82 @@
     if (!barbaOK()) return;
     const mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
     const D = mobile ? 0.38 : 0.5;
+    let busy = false;
+    let watchdog = null;
+    /* promise that ALWAYS resolves — a stuck tween can never strand the veil */
+    const tweenTo = (targets, vars) =>
+      new Promise((resolve) => {
+        let done = false;
+        const finish = () => {
+          if (!done) {
+            done = true;
+            resolve();
+          }
+        };
+        const timer = setTimeout(finish, (vars.duration || 0.5) * 1000 + 1500);
+        try {
+          gsap.to(targets, {
+            ...vars,
+            onComplete: () => {
+              clearTimeout(timer);
+              finish();
+            },
+            onInterrupt: () => {
+              clearTimeout(timer);
+              finish();
+            },
+          });
+        } catch (e) {
+          clearTimeout(timer);
+          finish();
+        }
+      });
+    const hideVeilNow = () => {
+      const v = $('.page-veil');
+      if (!v) return;
+      try {
+        gsap.killTweensOf(v);
+        gsap.set(v, { yPercent: 101 });
+      } catch (e) {
+        v.style.transform = 'translateY(101%)';
+      }
+    };
+    const armWatchdog = () => {
+      clearTimeout(watchdog);
+      watchdog = setTimeout(() => {
+        // last-resort recovery: never leave the user staring at the curtain
+        hideVeilNow();
+        busy = false;
+        const c = document.querySelector('[data-barba="container"]');
+        if (c) {
+          try {
+            gsap.set(c, { opacity: 1, y: 0 });
+          } catch (e) {
+            c.style.opacity = '1';
+            c.style.transform = 'none';
+          }
+        }
+      }, 3500);
+    };
     try {
       window.barba.init({
         timeout: 4000,
-        prevent: ({ el }) => !internalLink(el),
+        prevent: ({ el }) => {
+          if (busy) return true; // ignore taps while a transition is in flight
+          return !internalLink(el);
+        },
         transitions: [
           {
             name: 'curtain',
             async leave() {
+              busy = true;
+              armWatchdog();
               teardownPage();
               const v = veil();
-              gsap.set(v, { yPercent: 101 });
-              await gsap.to(v, { yPercent: 0, duration: D, ease: 'power4.inOut' }).then();
+              try {
+                gsap.set(v, { yPercent: 101 });
+              } catch (e) {}
+              await tweenTo(v, { yPercent: 0, duration: D, ease: 'power4.inOut' });
             },
             async beforeEnter(data) {
               try {
@@ -535,24 +601,35 @@
                   document.title = ta.value;
                 }
               } catch (e) {}
-              bootPage(true);
+              try {
+                bootPage(true);
+              } catch (e) {}
             },
             async enter(data) {
-              const v = veil();
-              const hash = data.next.url && data.next.url.hash ? data.next.url.hash.slice(1) : '';
-              const container = data.next.container;
-              gsap.set(container, { opacity: 0, y: mobile ? 16 : 26 });
-              if (!hash) window.scrollTo(0, 0);
-              await Promise.all([
-                gsap.to(v, { yPercent: -101, duration: D + 0.1, ease: 'power4.inOut', delay: 0.05 }).then(),
-                gsap.to(container, { opacity: 1, y: 0, duration: D + 0.15, ease: 'power3.out', delay: 0.12 }).then(),
-              ]);
-              if (hash) {
-                const t = document.getElementById(hash);
-                if (t) t.scrollIntoView({ behavior: 'auto' });
+              try {
+                const v = veil();
+                const hash = data.next.url && data.next.url.hash ? data.next.url.hash.slice(1) : '';
+                const container = data.next.container;
+                try {
+                  gsap.set(container, { opacity: 0, y: mobile ? 16 : 26 });
+                } catch (e) {}
+                if (!hash) window.scrollTo(0, 0);
+                await Promise.all([
+                  tweenTo(v, { yPercent: -101, duration: D + 0.1, ease: 'power4.inOut', delay: 0.05 }),
+                  tweenTo(container, { opacity: 1, y: 0, duration: D + 0.15, ease: 'power3.out', delay: 0.12 }),
+                ]);
+                if (hash) {
+                  const t = document.getElementById(hash);
+                  if (t) t.scrollIntoView({ behavior: 'auto' });
+                }
+              } catch (e) {
+                hideVeilNow();
               }
             },
             after() {
+              clearTimeout(watchdog);
+              busy = false;
+              hideVeilNow();
               if (window.ScrollTrigger) {
                 try { window.ScrollTrigger.refresh(); } catch (e) {}
               }
