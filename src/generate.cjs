@@ -400,7 +400,7 @@ function layout(opts) {
     description: SITE_TAGLINE,
   })}</script>
 </head>
-<body data-nav="${nav}">
+<body data-nav="${nav}" data-barba="wrapper">
 <header class="topbar" id="top">
   <div class="topbar-inner">
     <a class="brand" href="${rel}index.html" aria-label="${esc(SITE_NAME)} home"><img src="${rel}assets/logo.svg" alt="CUET 27 logo" width="34" height="34"><span><span class="brand-name">CUET <em>'27</em> Archive</span><span class="brand-sub">Free · Community · Forever</span></span></a>
@@ -415,7 +415,7 @@ function layout(opts) {
     </div>
   </div>
 </header>
-<main class="wrap">
+<main class="wrap" data-barba="container" data-barba-namespace="${esc(opts.namespace || nav || 'page')}">
 ${opts.content}
 </main>
 <footer>
@@ -442,6 +442,7 @@ ${opts.content}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
 <script src="${rel}assets/app.js" defer></script>
 </body>
 </html>`;
@@ -885,6 +886,7 @@ ${pager}
   return layout({
     rel: '../',
     path: 'topics/' + topic.slug + '.html',
+    namespace: 'topic',
     title: topic.name + " — CUET '27 Archive",
     desc: 'Free ' + topic.name + ' study resources for CUET — books, mocks, notes and links from the CUET 27 community.',
     content,

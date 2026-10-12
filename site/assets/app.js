@@ -10,6 +10,20 @@
 
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+  /* per-page cleanups (observers etc.) — run on every Barba leave */
+  const cleanups = [];
+  const onTeardown = (fn) => cleanups.push(fn);
+  function teardownPage() {
+    cleanups.splice(0).forEach((fn) => {
+      try { fn(); } catch (e) {}
+    });
+    if (window.ScrollTrigger) {
+      try { window.ScrollTrigger.getAll().forEach((t) => t.kill()); } catch (e) {}
+    }
+    if (window.gsap) {
+      try { window.gsap.killTweensOf('*'); } catch (e) {}
+    }
+  }
   const esc = (s) =>
     String(s == null ? '' : s)
       .replace(/&/g, '&amp;')
@@ -84,12 +98,14 @@
           e.k === 'topic'
             ? '<span class="r-kind">Topic</span> &middot; ' + e.n + ' resources'
             : '<span class="r-kind">' + esc(e.dm || 'link') + '</span> &middot; ' + esc(e.tp);
-        const external = e.k !== 'topic' && !e.lu;
+        // mock papers are standalone apps — always open in a new tab, never Barba-swap
+        const newtab = e.k !== 'topic';
+        const external = newtab;
         return (
           '<a class="result" href="' +
           esc(entryUrl(e)) +
           '"' +
-          (external ? ' target="_blank" rel="noopener"' : '') +
+          (newtab ? ' target="_blank" rel="noopener"' : '') +
           '><div class="r-title">' +
           mark(e.t, q) +
           '</div><div class="r-sub">' +
@@ -243,6 +259,7 @@
       { threshold: 0.4 }
     );
     els.forEach((el) => io.observe(el));
+    onTeardown(() => io.disconnect());
   }
 
   /* ---------------- copy buttons ---------------- */
@@ -334,7 +351,7 @@
   }
 
   /* ---------------- motion: GSAP + Anime, guarded ---------------- */
-  function initMotion() {
+  function initMotion(simple) {
     const targets = $$('.reveal');
     targets.forEach((el) => el.classList.add('reveal'));
     if (reducedMotion) {
@@ -345,8 +362,8 @@
     const isMobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
     const rise = isMobile ? 16 : 30;
     const dur = isMobile ? 0.5 : 0.75;
-    // Path 1 — GSAP + ScrollTrigger
-    if (window.gsap && window.ScrollTrigger) {
+    // Path 1 — GSAP + ScrollTrigger (skipped for Barba enters: curtain owns the motion)
+    if (!simple && window.gsap && window.ScrollTrigger) {
       try {
         gsap.registerPlugin(ScrollTrigger);
         if (window.ScrollTrigger.config) ScrollTrigger.config({ ignoreMobileResize: true });
@@ -418,12 +435,136 @@
       { rootMargin: '0px 0px -6% 0px', threshold: 0.04 }
     );
     targets.forEach((el) => io.observe(el));
+    onTeardown(() => io.disconnect());
     setTimeout(() => targets.forEach((el) => el.classList.add('in')), 3000);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  /* ---------------- per-page boot (runs on load + every Barba enter) ---------------- */
+  function bootPage(simple) {
     $$('.search-input').forEach(bindSearch);
-    // global "/" shortcut jumps to search
+    initLab();
+    initCounters();
+    initGlow();
+    initDates();
+    initMotion(!!simple);
+    $$('img.favicon').forEach((img) => {
+      img.addEventListener('error', () => {
+        const span = document.createElement('span');
+        span.className = 'favicon';
+        span.textContent = '🔗';
+        if (img.parentNode) img.parentNode.replaceChild(span, img);
+      });
+    });
+  }
+
+  /* ---------------- Barba page transitions (progressive enhancement) ---------------- */
+  function barbaOK() {
+    return !!(window.barba && window.gsap) && !reducedMotion;
+  }
+  function internalLink(a) {
+    if (!a || a.target === '_blank') return false;
+    const href = a.getAttribute('href') || '';
+    if (!href || href.startsWith('#')) return false;
+    if (href.includes('/mocks/') || href.endsWith('.html') && href.includes('mocks/')) return false;
+    if (/^(mailto:|tel:|javascript:)/.test(href)) return false;
+    if (/^https?:/.test(href)) {
+      try {
+        if (new URL(href, location.href).origin !== location.origin) return false;
+      } catch (e) {
+        return false;
+      }
+    }
+    return true;
+  }
+  /* hover-prefetch: warm the HTTP cache so Barba swaps feel instant */
+  function initPrefetch() {
+    let last = 0;
+    const warm = (a) => {
+      if (!internalLink(a)) return;
+      const now = Date.now();
+      if (now - last < 150) return;
+      last = now;
+      try {
+        fetch(a.href, { mode: 'same-origin', credentials: 'same-origin' }).catch(() => {});
+      } catch (e) {}
+    };
+    document.addEventListener('mouseover', (ev) => {
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+      if (a) warm(a);
+    }, { passive: true });
+    document.addEventListener('focusin', (ev) => {
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+      if (a) warm(a);
+    }, { passive: true });
+  }
+  function veil() {
+    let v = $('.page-veil');
+    if (v) return v;
+    v = document.createElement('div');
+    v.className = 'page-veil';
+    v.setAttribute('aria-hidden', 'true');
+    const base = window.__BASE__ || '';
+    v.innerHTML =
+      '<div class="veil-inner"><img src="' + base + 'assets/logo.svg" alt=""><span>CUET <em>\'27</em></span></div>';
+    document.body.appendChild(v);
+    return v;
+  }
+  function initBarba() {
+    if (!barbaOK()) return;
+    const mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+    const D = mobile ? 0.38 : 0.5;
+    try {
+      window.barba.init({
+        timeout: 4000,
+        prevent: ({ el }) => !internalLink(el),
+        transitions: [
+          {
+            name: 'curtain',
+            async leave() {
+              teardownPage();
+              const v = veil();
+              gsap.set(v, { yPercent: 101 });
+              await gsap.to(v, { yPercent: 0, duration: D, ease: 'power4.inOut' }).then();
+            },
+            async beforeEnter(data) {
+              try {
+                const m = String(data.next.html || '').match(/<title>([\s\S]*?)<\/title>/i);
+                if (m) {
+                  const ta = document.createElement('textarea');
+                  ta.innerHTML = m[1];
+                  document.title = ta.value;
+                }
+              } catch (e) {}
+              bootPage(true);
+            },
+            async enter(data) {
+              const v = veil();
+              const hash = data.next.url && data.next.url.hash ? data.next.url.hash.slice(1) : '';
+              const container = data.next.container;
+              gsap.set(container, { opacity: 0, y: mobile ? 16 : 26 });
+              if (!hash) window.scrollTo(0, 0);
+              await Promise.all([
+                gsap.to(v, { yPercent: -101, duration: D + 0.1, ease: 'power4.inOut', delay: 0.05 }).then(),
+                gsap.to(container, { opacity: 1, y: 0, duration: D + 0.15, ease: 'power3.out', delay: 0.12 }).then(),
+              ]);
+              if (hash) {
+                const t = document.getElementById(hash);
+                if (t) t.scrollIntoView({ behavior: 'auto' });
+              }
+            },
+            after() {
+              if (window.ScrollTrigger) {
+                try { window.ScrollTrigger.refresh(); } catch (e) {}
+              }
+            },
+          },
+        ],
+      });
+    } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // global-once bindings (document-delegated — survive Barba swaps)
     document.addEventListener('keydown', (ev) => {
       if (ev.key !== '/' || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const tag = (document.activeElement && document.activeElement.tagName) || '';
@@ -435,21 +576,10 @@
         box.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
       }
     });
-    initLab();
-    initCounters();
     initCopy();
-    initGlow();
-    initDates();
     initToTop();
-    initMotion();
-    // image favicon fallback
-    $$('img.favicon').forEach((img) => {
-      img.addEventListener('error', () => {
-        const span = document.createElement('span');
-        span.className = 'favicon';
-        span.textContent = '🔗';
-        if (img.parentNode) img.parentNode.replaceChild(span, img);
-      });
-    });
+    bootPage(false);
+    initPrefetch();
+    initBarba();
   });
 })();

@@ -583,6 +583,32 @@ footer { border-top: 1px solid var(--line-soft); background: rgba(7, 9, 14, 0.85
 .foot-links a:hover { color: var(--amber); }
 .footer-note { width: 100%; color: var(--faint); font-size: 12.5px; }
 
+/* ================= barba page-transition veil ================= */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, #10182b 0%, #0b0e14 60%, #131a2b 100%);
+  transform: translateY(101%);
+  pointer-events: none;
+}
+.page-veil .veil-inner { display: flex; align-items: center; gap: 13px; opacity: 0.95; }
+.page-veil img { width: 44px; height: 44px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); }
+.page-veil span { color: var(--ink); font-weight: 850; letter-spacing: 0.02em; font-size: 17px; }
+.page-veil span em { font-style: normal; color: var(--amber); }
+.page-veil::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+
 /* ================= reveal / motion ================= */
 .reveal { opacity: 0; transform: translateY(26px); }
 .reveal.in { opacity: 1; transform: none; transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
