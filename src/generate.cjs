@@ -2,9 +2,41 @@ const fs = require('fs');
 const path = require('path');
 const cfg = require('./config.cjs');
 
-const SITE_NAME = 'The CUET Archive';
+const SITE_NAME = "CUET '27 Archive";
+const SITE_TAGLINE = 'Every free CUET resource from the community — books, 66 in-browser mocks, notes and more.';
+const SITE_URL = 'https://kavy-codes.github.io/cuet-archive/';
 const REWRITES_FILE = path.join(cfg.ROOT, 'data', 'rewrites.json');
 const MOCK_DIR = path.join(cfg.SITE_DIR, 'mocks');
+const INVITE_URL = 'https://discord.gg/XwVtsUUygy';
+const GUILD_ID = '1551614250508746814';
+const chan = (id) => `https://discord.com/channels/${GUILD_ID}/${id}`;
+const COMMUNITY = {
+  invite: INVITE_URL,
+  resources: chan('1554594963184943145'),
+  request: chan('1555643010098790541'),
+  mocks: chan('1551614253016944736'),
+  general: chan('1558895340999155782'),
+  welcome: chan('1551614251951587417'),
+};
+
+/* Subject presentation for the Mock Lab */
+const SUBJECT_STYLE = {
+  GAT: { color: '#a78bfa', icon: '🧠' },
+  Physics: { color: '#6cb2f5', icon: '⚛️' },
+  Chemistry: { color: '#7dd88a', icon: '⚗️' },
+  Economics: { color: '#4fd1a5', icon: '📈' },
+  'Business Studies': { color: '#4fd1a5', icon: '💼' },
+  English: { color: '#f58bb0', icon: '📚' },
+  Maths: { color: '#e9a13b', icon: '📐' },
+};
+const TOPIC_SUBJECT = {
+  gat: 'GAT',
+  'free-mock-test-paper': 'GAT',
+  physics: 'Physics',
+  chemistry: 'Chemistry',
+  economics: 'Economics',
+  'business-studies': 'Business Studies',
+};
 
 function normWs(s) {
   return String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
@@ -178,6 +210,9 @@ function buildModel(topic, rw) {
         const key = normUrl(b.url);
         if (seenUrls.has(key)) continue;
         seenUrls.add(key);
+        // permanently excluded: piracy-channel promos have no place in the archive
+        if (/pirat/i.test(b.embedTitle || '') || /pirat/i.test(b.context || '')) continue;
+        if (/^https:\/\/t\.me\/\+_9lS2ea_xUhlYWRl/.test(b.url)) continue;
         let title = linkTitle(b);
         let desc = linkDesc(b);
         const rwCtx = textRewrite(b.context || '');
@@ -260,6 +295,14 @@ function cardHtml(item, rel) {
       actions.push(
         '<a class="btn primary" href="' + esc(local) + '" target="_blank" rel="noopener">Attempt mock ↗</a>'
       );
+    } else if (item.messageUrl) {
+      // attachment lives only on Discord (signed CDN URLs expire) — Discord first
+      actions.push(
+        '<a class="btn primary" href="' + esc(item.messageUrl) + '" target="_blank" rel="noopener">Open in Discord ↗</a>'
+      );
+      actions.push(
+        '<a class="btn" href="' + esc(item.url) + '" target="_blank" rel="noopener">Try direct link</a>'
+      );
     } else {
       actions.push(
         '<a class="btn primary" href="' + esc(item.url) + '" target="_blank" rel="noopener">Open file ↗</a>'
@@ -322,27 +365,54 @@ function cardHtml(item, rel) {
 function layout(opts) {
   const rel = opts.rel || '';
   const title = opts.title;
-  const desc = opts.desc || 'Free CUET resources — books, mocks, notes and more — mirrored from the CUET 2027 Discord.';
+  const desc = opts.desc || SITE_TAGLINE;
+  const pageUrl = SITE_URL + (opts.path || '');
+  const nav = opts.nav || '';
+  const navLink = (href, label, key) =>
+    '<a href="' + rel + href + '"' + (nav === key ? ' class="current" aria-current="page"' : '') + '>' + label + '</a>';
   return `<!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="color-scheme" content="dark light">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0E14">
+<link rel="canonical" href="${esc(pageUrl)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${esc(SITE_NAME)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${esc(pageUrl)}">
+<meta property="og:image" content="${rel}assets/logo.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<link rel="icon" type="image/svg+xml" href="${rel}assets/logo.svg">
 <link rel="stylesheet" href="${rel}assets/style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_TAGLINE,
+  })}</script>
 </head>
-<body>
-<header class="topbar">
+<body data-nav="${nav}">
+<header class="topbar" id="top">
   <div class="topbar-inner">
-    <a class="brand" href="${rel}index.html"><span class="logo">🏛️</span><span>${SITE_NAME}</span></a>
+    <a class="brand" href="${rel}index.html" aria-label="${esc(SITE_NAME)} home"><img src="${rel}assets/logo.svg" alt="CUET 27 logo" width="34" height="34"><span><span class="brand-name">CUET <em>'27</em> Archive</span><span class="brand-sub">Free · Community · Forever</span></span></a>
+    <nav class="nav-links" aria-label="Primary">
+      ${navLink('index.html', 'Home', 'home')}
+      ${navLink('mocks.html', 'Mock Lab', 'mocks')}
+      ${navLink('library.html', 'Library', 'library')}
+    </nav>
     <div class="searchwrap">
-      <input class="search-input" type="search" placeholder="Search resources…" autocomplete="off" aria-label="Search resources">
+      <input class="search-input" type="search" placeholder="Search mocks, books, notes…" autocomplete="off" aria-label="Search resources">
       <div class="results" hidden></div>
     </div>
-    <button id="theme-toggle" class="iconbtn" type="button">☀️</button>
   </div>
 </header>
 <main class="wrap">
@@ -350,14 +420,28 @@ ${opts.content}
 </main>
 <footer>
   <div class="wrap footer-inner">
-    <div>Free resources from the <strong>CUET 2027</strong> Discord · Last synced <span id="synced-time" data-iso="${esc(opts.syncedAt || '')}"></span></div>
+    <div class="footer-brand"><img src="${rel}assets/logo.svg" alt="" width="26" height="26">CUET '27 Archive</div>
     <div class="foot-links">
-      <a href="${esc(opts.forumUrl || '#')}" target="_blank" rel="noopener">Original forum on Discord</a>
       <a href="${rel}index.html">Home</a>
+      <a href="${rel}mocks.html">Mock Lab</a>
+      <a href="${rel}library.html">Library</a>
+      <a href="${esc(COMMUNITY.invite)}" target="_blank" rel="noopener">Join the Discord ↗</a>
+      <a href="${esc(COMMUNITY.request)}" target="_blank" rel="noopener">Request a resource ↗</a>
+      <a href="#top">Back to top ↑</a>
     </div>
+    <div class="footer-note">Snapshot of community-shared free resources · Synced <span data-iso="${esc(opts.syncedAt || '')}"></span> · Mocks run fully in your browser — no login, no paywall. Question papers belong to their respective owners; shared here for practice only.</div>
   </div>
 </footer>
+<nav class="tabbar" aria-label="Mobile">
+  <a href="${rel}index.html"${nav === 'home' ? ' class="current" aria-current="page"' : ''}><span class="t-ico">🏠</span>Home</a>
+  <a href="${rel}mocks.html"${nav === 'mocks' ? ' class="current" aria-current="page"' : ''}><span class="t-ico">⚡</span>Mocks</a>
+  <a href="${rel}library.html"${nav === 'library' ? ' class="current" aria-current="page"' : ''}><span class="t-ico">📖</span>Library</a>
+  <a href="${esc(COMMUNITY.invite)}" target="_blank" rel="noopener"><span class="t-ico">💬</span>Discord</a>
+</nav>
 <script>window.__BASE__=${JSON.stringify(rel)};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
 <script src="${rel}assets/app.js" defer></script>
 </body>
 </html>`;
@@ -399,61 +483,355 @@ function renderToc(model) {
   );
 }
 
-function homePage(data, models) {
+/* ---------------- mock catalog ---------------- */
+function scanMockFile(abs) {
+  const s = fs.readFileSync(abs, 'utf8');
+  const isPayload = s.includes('QUIZ_PAYLOAD');
+  let title = null;
+  if (isPayload) {
+    const m = s.match(/"title":\s*"((?:[^"\\]|\\.)*)"/);
+    if (m) {
+      try {
+        title = JSON.parse('"' + m[1] + '"');
+      } catch {
+        title = m[1];
+      }
+    }
+  } else {
+    const m = s.match(/<title>([\s\S]*?)<\/title>/);
+    if (m) title = m[1].replace(/ — CUET Archive Mock$/, '').trim();
+  }
+  const qmarks = (s.match(/"question"\s*:/g) || []).length;
+  const tmatch = s.match(/"timeLimitSec":\s*(\d+)/);
+  return { title: title || 'Untitled mock', engine: isPayload ? 'CBT Pro' : 'Classic', questions: qmarks, minutes: tmatch ? Math.round(+tmatch[1] / 60) : 60 };
+}
+
+function sortKey(title) {
+  const m = String(title).match(/(\d+)\s*$/);
+  return (m ? String(+m[1]).padStart(4, '0') : title);
+}
+
+function buildMockCatalog(models) {
+  const attTopic = new Map();
+  for (const t of models.topics) {
+    const m = models.byId.get(t.id);
+    for (const sec of m.sections) {
+      for (const it of sec.items) {
+        if (it.type === 'file' && it.localPath) {
+          const mm = it.localPath.match(/^mocks\/([^/]+)\//);
+          if (mm) attTopic.set(mm[1], t.slug);
+        }
+      }
+    }
+  }
+  const seenTitles = new Map();
+  const catalog = [];
+  if (!fs.existsSync(MOCK_DIR)) return catalog;
+  for (const attId of fs.readdirSync(MOCK_DIR)) {
+    const dir = path.join(MOCK_DIR, attId);
+    if (!fs.statSync(dir).isDirectory()) continue;
+    for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.html'))) {
+      const meta = scanMockFile(path.join(dir, file));
+      const slug = attTopic.get(attId) || '';
+      const subject = TOPIC_SUBJECT[slug] || 'GAT';
+      let display = meta.title;
+      const dup = (seenTitles.get(display) || 0) + 1;
+      seenTitles.set(display, dup);
+      if (dup > 1) display = display + ' · Set ' + String.fromCharCode(64 + dup);
+      catalog.push({
+        id: attId,
+        path: 'mocks/' + attId + '/' + file,
+        title: meta.title,
+        display,
+        subject,
+        engine: meta.engine,
+        questions: meta.questions,
+        minutes: meta.minutes,
+        sort: subject + '|' + sortKey(meta.title),
+      });
+    }
+  }
+  catalog.sort((a, b) => (a.sort < b.sort ? -1 : a.sort > b.sort ? 1 : 0));
+  catalog.forEach((m, i) => (m.order = i));
+  return catalog;
+}
+
+function mockCardHtml(m, order) {
+  const st = SUBJECT_STYLE[m.subject] || SUBJECT_STYLE.GAT;
+  return (
+    '<a class="mock-card reveal" style="--mc:' + st.color + '" href="' + esc(m.path) + '" target="_blank" rel="noopener"' +
+    ' data-subject="' + esc(m.subject) + '" data-title="' + esc(m.display.toLowerCase()) + '" data-engine="' + esc(m.engine.toLowerCase()) + '" data-qs="' + (m.questions || 0) + '" data-order="' + (order != null ? order : m.order) + '">' +
+    '<span class="m-subject">' + st.icon + ' ' + esc(m.subject) + '</span>' +
+    '<h3 class="m-title">' + esc(m.display) + '</h3>' +
+    '<span class="m-meta"><span class="m-pill">' + (m.questions || '–') + ' Qs</span>' +
+    '<span class="m-pill">⏱ ' + (m.minutes || 60) + ' min</span>' +
+    '<span class="m-pill">' + esc(m.engine) + '</span></span>' +
+    '<span class="m-go"><span>Attempt now</span><span class="arrow">→</span></span></a>'
+  );
+}
+
+function mocksPage(data, catalog) {
+  const subjects = [...new Set(catalog.map((m) => m.subject))];
+  const chips = ['<button class="fchip on" data-f="all" type="button">All papers</button>']
+    .concat(subjects.map((s) => {
+      const st = SUBJECT_STYLE[s] || SUBJECT_STYLE.GAT;
+      return '<button class="fchip" data-f="' + esc(s) + '" type="button">' + st.icon + ' ' + esc(s) + '</button>';
+    }))
+    .join('');
+  const cards = catalog.map((m) => mockCardHtml(m)).join('');
+  const itemList = catalog.map((m, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: SITE_URL + m.path,
+    name: m.display,
+  }));
+  const content = `
+<nav class="crumbs"><a href="index.html">← Home</a><span class="sep">/</span><span>Mock Lab</span></nav>
+<section class="hero" style="padding-top:26px">
+  <span class="hero-kicker"><span class="dot"></span>${catalog.length} papers · hosted · free</span>
+  <h1>The Mock <span class="amber">Lab.</span></h1>
+  <p class="hero-lede">Full-length CUET papers that run <strong>entirely in your browser</strong> — timed, auto-checked, with solutions. Pick a paper, hit attempt, beat the clock.</p>
+</section>
+<div class="lab-controls">
+  <input id="lab-search" class="search-input" type="search" placeholder="Filter papers… (e.g. physics 9)" autocomplete="off" aria-label="Filter mock papers">
+  <div class="lab-chips">${chips}</div>
+  <div class="lab-row">
+    <select id="lab-sort" class="fchip" aria-label="Sort papers" style="appearance:auto">
+      <option value="feat">Sort: Featured</option>
+      <option value="az">Sort: A–Z</option>
+      <option value="qs">Sort: Most questions</option>
+    </select>
+    <button id="lab-random" class="fchip" type="button" title="Open a random paper">🎲 Surprise me</button>
+    <span id="lab-count" class="lab-count"></span>
+  </div>
+</div>
+<div id="mock-grid" class="mock-grid">${cards}</div>
+<div id="lab-empty" class="lab-empty" hidden><h3>No papers match that filter</h3><p>Try a different subject or clear the search.</p></div>
+<section class="discord-band reveal">
+  <div>
+    <h2>Attempted one? <em>Compare scores.</em></h2>
+    <p>Drop your score in the mocks channel, ask doubts, and find the next paper worth your time.</p>
+    <a class="btn primary" href="${esc(COMMUNITY.mocks)}" target="_blank" rel="noopener">Open #mocks on Discord ↗</a>
+  </div>
+  <ul class="channel-list">
+    <li><a href="${esc(COMMUNITY.request)}" target="_blank" rel="noopener"><span class="hash">#</span> request a paper you can't find</a></li>
+    <li><a href="${esc(COMMUNITY.resources)}" target="_blank" rel="noopener"><span class="hash">#</span> resources — where papers land first</a></li>
+  </ul>
+</section>
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'ItemList', name: 'CUET Mock Lab', itemListElement: itemList })}</script>`;
+
+  return layout({
+    rel: '',
+    nav: 'mocks',
+    path: 'mocks.html',
+    title: `Mock Lab — ${catalog.length} free CUET mock tests in your browser | CUET '27 Archive`,
+    desc: `Attempt ${catalog.length} free CUET mock tests online — GAT, Physics, Chemistry, Economics and Business Studies. Timed, auto-checked, no signup.`,
+    content,
+    syncedAt: data.generatedAt,
+  });
+}
+
+function libraryPage(data, models) {
+  const blocks = data.topics
+    .map((t) => {
+      const m = models.byId.get(t.id);
+      const cards = [];
+      for (const sec of m.sections) {
+        for (const it of sec.items) {
+          if (it.type === 'link' || it.type === 'file') cards.push(cardHtml(it, ''));
+        }
+      }
+      if (!cards.length) return '';
+      return (
+        '<section class="section" id="lib-' + t.slug + '"><h2 id="' + t.slug + '">' + esc(t.emoji ? t.emoji + ' ' : '') + esc(t.name) + ' <span class="hint">(' + cards.length + ')</span></h2>' +
+        '<div class="cards">' + cards.join('') + '</div></section>'
+      );
+    })
+    .join('');
+  const index = data.topics
+    .map((t) => '<a href="#lib-' + t.slug + '">' + (t.emoji ? esc(t.emoji) + ' ' : '') + esc(t.name) + '</a>')
+    .join('');
+  const content = `
+<nav class="crumbs"><a href="index.html">← Home</a><span class="sep">/</span><span>Library</span></nav>
+<section class="hero" style="padding-top:26px">
+  <span class="hero-kicker"><span class="dot"></span>Books · PDFs · Videos · Websites</span>
+  <h1>The <span class="amber">Library.</span></h1>
+  <p class="hero-lede">Everything that isn't a mock — every book, note, lecture and link ever shared in the resources forum, on one endless shelf.</p>
+  <div class="hero-search">
+    <input class="search-input" type="search" placeholder="Search the whole library…" autocomplete="off" aria-label="Search library">
+    <div class="results" hidden></div>
+  </div>
+</section>
+<div class="chips-row">${index}</div>
+${blocks}
+<p><a class="back-home" href="index.html">← Back home</a></p>`;
+
+  return layout({
+    rel: '',
+    nav: 'library',
+    path: 'library.html',
+    title: "Library — all CUET books, notes & links | CUET '27 Archive",
+    desc: 'The full CUET library: free books, PDFs, notes, video lectures and websites shared by the CUET 27 Discord community.',
+    content,
+    syncedAt: data.generatedAt,
+  });
+}
+
+function notFoundPage(data) {
+  const content = `
+<section class="hero" style="text-align:center;padding-bottom:10px">
+  <span class="hero-kicker" style="margin-left:auto;margin-right:auto"><span class="dot"></span>404 · off the shelf</span>
+  <h1>Lost in the <span class="amber">stacks?</span></h1>
+  <p class="hero-lede" style="margin-left:auto;margin-right:auto">That page isn't on this shelf. Try the search, or head somewhere useful:</p>
+  <div class="hero-search" style="margin-left:auto;margin-right:auto">
+    <input class="search-input" type="search" placeholder="Search the archive…" autocomplete="off" aria-label="Search resources">
+    <div class="results" hidden></div>
+  </div>
+  <div class="hero-actions" style="justify-content:center">
+    <a class="btn primary" href="index.html">🏠 Home</a>
+    <a class="btn ghost" href="mocks.html">⚡ Mock Lab</a>
+    <a class="btn ghost" href="library.html">📖 Library</a>
+  </div>
+</section>`;
+  return layout({
+    rel: '',
+    nav: '',
+    path: '404.html',
+    title: "Page not found | CUET '27 Archive",
+    desc: 'This archive page does not exist. Browse free CUET mocks, books and notes instead.',
+    content,
+    syncedAt: data.generatedAt,
+  });
+}
+
+function streamDefs(models, byTopic) {
+  const count = (slugs) => slugs.reduce((n, s) => n + (byTopic[s] || 0), 0);
+  return [
+    { icon: '🧠', name: 'GAT & Reasoning', desc: 'General aptitude papers plus free full-length mocks.', slugs: ['gat', 'free-mock-test-paper'], c1: '#2b2350', c2: '#a78bfa' },
+    { icon: '🔬', name: 'Science', desc: 'Physics and Chemistry — theory threads, notes and 31 mocks.', slugs: ['physics', 'chemistry'], c1: '#0f2f3a', c2: '#4fd1a5' },
+    { icon: '📐', name: 'Maths', desc: 'Formulas, shortcuts and problem collections.', slugs: ['maths'], c1: '#3a2c10', c2: '#e9a13b' },
+    { icon: '📚', name: 'English', desc: 'Reading material, vocab vaults and practice sets.', slugs: ['english', 'cuet-english-archive-alot-of-material'], c1: '#3d1f31', c2: '#f58bb0' },
+    { icon: '💵', name: 'Commerce', desc: 'Economics and Business Studies with 10 in-browser mocks.', slugs: ['economics', 'business-studies'], c1: '#123a2c', c2: '#7dd88a' },
+    { icon: '🎭', name: 'Humanities & Sports', desc: 'Psychology, physical education and past papers.', slugs: ['psychology', 'physical-education', 'cuet-question-papers-google-drive'], c1: '#3a2412', c2: '#f09a5c' },
+    { icon: '📖', name: 'Library & Media', desc: 'Free books, websites, lectures and research papers.', slugs: ['library-free-books', 'websites', 'youtube', 'academic-research-papers', 'miscellaneous'], c1: '#232a3a', c2: '#6cb2f5' },
+  ].map((s) => ({ ...s, n: count(s.slugs) }));
+}
+
+function homePage(data, models, catalog) {
   const topics = data.topics;
-  const totalResources = topics.reduce((sum, t) => sum + models.get(t.id).count, 0);
+  const byTopic = {};
+  for (const t of topics) byTopic[t.slug] = models.byId.get(t.id).count;
+  const totalResources = Object.values(byTopic).reduce((a, b) => a + b, 0);
+  const totalQuestions = catalog.reduce((n, m) => n + (m.questions || 0), 0);
+
+  const streams = streamDefs(models, byTopic)
+    .map(
+      (s) =>
+        '<a class="stream-card reveal" style="--sc1:' + s.c1 + ';--sc2:' + s.c2 + '" href="topics/' + s.slugs[0] + '.html">' +
+        '<span class="s-arrow">↗</span><span class="s-emoji">' + s.icon + '</span>' +
+        '<h3>' + esc(s.name) + '</h3><p>' + esc(s.desc) + '</p>' +
+        '<span class="s-meta">' + s.n + ' resources →</span></a>'
+    )
+    .join('');
+
+  const featured = catalog
+    .filter((m) => /Mock Test (1|2)$|MOCK -(1|2)$|Part Test - 0?1$/.test(m.title))
+    .slice(0, 6)
+    .map((m) => mockCardHtml(m))
+    .join('');
+
   const cards = topics
     .map((t) => {
-      const m = models.get(t.id);
-      const tags = t.tags.map((x) => '<span class="chip">' + esc(x) + '</span>').join('');
+      const n = byTopic[t.slug] || 0;
+      const tags = (t.tags || []).slice(0, 3).map((x) => '<span class="chip">' + esc(x) + '</span>').join('');
       return (
-        '<a class="topic-card" href="topics/' +
-        t.slug +
-        '.html">' +
-        '<span class="tc-emoji">' +
-        esc(t.emoji || '📦') +
-        '</span>' +
-        '<span class="tc-name">' +
-        esc(t.name) +
-        '</span>' +
+        '<a class="topic-card reveal" href="topics/' + t.slug + '.html">' +
+        '<span class="tc-top"><span class="tc-emoji">' + esc(t.emoji || '📦') + '</span>' +
+        '<span class="tc-count">' + n + ' resource' + (n === 1 ? '' : 's') + '</span></span>' +
+        '<span class="tc-name">' + esc(t.name) + '</span>' +
         (tags ? '<span class="tc-tags">' + tags + '</span>' : '') +
-        '<span class="tc-count">' +
-        m.count +
-        ' resource' +
-        (m.count === 1 ? '' : 's') +
-        '</span>' +
-        '</a>'
+        '<span class="tc-go">Open collection →</span></a>'
       );
     })
     .join('');
 
   const content = `
 <section class="hero">
-  <h1>The <span class="hl">CUET</span> Archive</h1>
-  <p>Every free resource shared in the CUET 2027 Discord — books, mock tests, PDFs, websites and video lectures — gathered in one clean, searchable place.</p>
+  <span class="hero-kicker"><span class="dot"></span><span class="k-full">CUET '27 · Community Archive · Free Forever</span><span class="k-short">CUET '27 · Free Forever</span></span>
+  <h1>Every resource.<br><span class="stroke">One</span> <span class="amber">archive.</span><br><span class="serif-it">Zero paywalls.</span></h1>
+  <p class="hero-lede">The complete collection of free CUET material shared by the <strong>CUET '27 Discord community</strong> — <strong>${catalog.length} mock tests</strong> you can attempt right in your browser, plus books, notes, lectures and past papers.</p>
   <div class="hero-search">
-    <input class="search-input" type="search" placeholder="Search books, mocks, notes, websites…" autocomplete="off" aria-label="Search resources">
+    <input class="search-input" type="search" placeholder="Try &quot;GAT mock&quot;, &quot;physics&quot;, &quot;books&quot;…" autocomplete="off" aria-label="Search resources">
     <div class="results" hidden></div>
   </div>
+  <p class="hero-hint">Press <kbd>/</kbd> anywhere to jump to search · <kbd>↑</kbd><kbd>↓</kbd> to navigate results</p>
+  <div class="hero-actions">
+    <a class="btn primary" href="mocks.html">⚡ Enter the Mock Lab</a>
+    <a class="btn ghost" href="${esc(COMMUNITY.invite)}" target="_blank" rel="noopener">Join the Discord ↗</a>
+  </div>
+  <nav class="page-map reveal" aria-label="On this page">
+    <a href="#streams"><b>01</b>Pick your stream</a>
+    <a href="#lab"><b>02</b>Mock Lab</a>
+    <a href="#collections"><b>03</b>Collections</a>
+    <a href="#alive"><b>04</b>How it stays alive</a>
+  </nav>
   <div class="stats">
-    <span class="stat"><b>${data.stats.topics}</b> topics</span>
-    <span class="stat"><b>${totalResources}</b> links &amp; files</span>
-    <span class="stat">synced <b id="synced-time-hero" data-iso="${esc(data.generatedAt)}"></b></span>
+    <div class="stat"><b><span data-countup="${catalog.length}">${catalog.length}</span></b><span>In-browser mocks</span></div>
+    <div class="stat"><b><span data-countup="${totalQuestions}">${totalQuestions.toLocaleString('en-IN')}</span><span class="suffix">+</span></b><span>Practice questions</span></div>
+    <div class="stat"><b><span data-countup="${totalResources}">${totalResources}</span></b><span>Links &amp; files</span></div>
+    <div class="stat"><b><span data-countup="${topics.length}">${topics.length}</span></b><span>Collections</span></div>
   </div>
 </section>
-<div class="section-title">
-  <h2>Browse by topic</h2>
-  <span class="hint">Select a topic to see everything inside</span>
+
+<div class="section-title reveal" id="streams"><h2><span class="n">01</span> Pick your stream</h2></div>
+<p class="section-sub reveal">Seven prep streams mapped to the server's subject channels. Start where you are weakest.</p>
+<div class="streams">${streams}</div>
+
+<div class="section-title reveal" id="lab"><h2><span class="n">02</span> Mock Lab — this week's papers</h2></div>
+<p class="section-sub reveal">Full-length, timed, auto-checked. No signup, no Telegram, no expiry.</p>
+<div class="mock-grid rail-m">${featured}</div>
+<p class="reveal" style="margin-top:18px"><a class="btn" href="mocks.html">Open all ${catalog.length} papers →</a></p>
+
+<div class="section-title reveal" id="collections"><h2><span class="n">03</span> All collections</h2></div>
+<p class="section-sub reveal">Books, PDFs, websites, lectures and papers — exactly as shared in the resources forum.</p>
+<div class="grid">${cards}</div>
+
+<div class="section-title reveal" id="alive"><h2><span class="n">04</span> How the archive stays alive</h2></div>
+<div class="split">
+  <div class="pipe reveal"><h3>🔄 The pipeline</h3><ol>
+    <li><strong>Shared in Discord</strong> — members drop books, mocks and links in the resources forum.</li>
+    <li><strong>Synced automatically</strong> — the archive bot mirrors new posts on every sync.</li>
+    <li><strong>Published here</strong> — this site rebuilds with fresh pages, search and mocks.</li>
+  </ol></div>
+  <div class="faq reveal"><h3 style="margin:0 0 14px;font-size:18px">❓ Quick answers</h3>
+    <details open><summary>Are the mocks really free?</summary><div class="faq-body">Yes. All ${catalog.length} papers are hosted here and run entirely in your browser. No account, no paywall, no expiring download links.</div></details>
+    <details><summary>Some file links ask me to join Discord?</summary><div class="faq-body">Original Discord attachment links expire. Every mock is hosted on this site; for other files use the “Open in Discord” button on its card.</div></details>
+    <details><summary>How do I request a missing resource?</summary><div class="faq-body">Drop it in the <a href="${esc(COMMUNITY.request)}" target="_blank" rel="noopener">request-resources forum</a> — it lands in the archive on the next sync.</div></details>
+  </div>
 </div>
-<div class="grid">${cards}</div>`;
+
+<section class="discord-band reveal">
+  <div>
+    <h2>Study alone, <em>never solo.</em></h2>
+    <p>40+ aspirants sharing doubts, daily targets, mocks and motivation in the CUET '27 server. The archive is the library — the server is the classroom.</p>
+    <a class="btn primary" href="${esc(COMMUNITY.invite)}" target="_blank" rel="noopener">Join CUET '27 on Discord ↗</a>
+  </div>
+  <ul class="channel-list">
+    <li><a href="${esc(COMMUNITY.resources)}" target="_blank" rel="noopener"><span class="hash">#</span> resources — the source of this archive</a></li>
+    <li><a href="${esc(COMMUNITY.mocks)}" target="_blank" rel="noopener"><span class="hash">#</span> mocks — discuss papers &amp; scores</a></li>
+    <li><a href="${esc(COMMUNITY.request)}" target="_blank" rel="noopener"><span class="hash">#</span> request-resources — ask for anything</a></li>
+    <li><a href="${esc(COMMUNITY.general)}" target="_blank" rel="noopener"><span class="hash">#</span> general — meet your prep crew</a></li>
+  </ul>
+</section>`;
 
   return layout({
     rel: '',
-    title: SITE_NAME + ' — Free CUET resources, mirrored from Discord',
-    desc: 'A searchable archive of every free resource shared in the CUET 2027 Discord: books, mock tests, PDFs, websites and video lectures.',
+    nav: 'home',
+    path: '',
+    title: "CUET '27 Archive — Free mocks, books & notes for CUET",
+    desc: `Attempt ${catalog.length} free CUET mock tests in your browser, plus ${totalResources} books, notes, lectures and papers from the CUET '27 Discord community.`,
     content,
     syncedAt: data.generatedAt,
-    forumUrl: data.source.forumUrl,
   });
 }
 
@@ -506,18 +884,20 @@ ${pager}
 
   return layout({
     rel: '../',
-    title: topic.name + ' — ' + SITE_NAME,
-    desc: 'Free ' + topic.name + ' study resources for CUET — mirrored from the CUET 2027 Discord.',
+    path: 'topics/' + topic.slug + '.html',
+    title: topic.name + " — CUET '27 Archive",
+    desc: 'Free ' + topic.name + ' study resources for CUET — books, mocks, notes and links from the CUET 27 community.',
     content,
     syncedAt: data.generatedAt,
-    forumUrl: data.source.forumUrl,
   });
 }
 
-function buildSearchIndex(data, models) {
+function buildSearchIndex(data, models, catalog) {
+  const mockTitle = new Map();
+  for (const m of catalog || []) mockTitle.set(m.path, m.display);
   const entries = [];
   for (const t of data.topics) {
-    const m = models.get(t.id);
+    const m = models.byId.get(t.id);
     entries.push({ k: 'topic', t: t.name, tp: t.name, ts: t.slug, n: m.count });
   }
   const seen = new Set();
@@ -528,13 +908,14 @@ function buildSearchIndex(data, models) {
         const key = t.slug + '|' + normUrl(item.url);
         if (seen.has(key)) continue;
         seen.add(key);
+        const pretty = item.localPath && mockTitle.get(item.localPath);
         entries.push({
           k: 'link',
-          t: item.title || item.filename || item.domain,
+          t: pretty || item.title || item.filename || item.domain,
           d: item.desc || '',
           u: item.url,
           lu: item.localPath || '',
-          dm: item.type === 'file' ? fileKind(item) + ' file' : item.domain,
+          dm: item.type === 'file' ? (item.localPath ? 'Mock test' : fileKind(item) + ' file') : item.domain,
           tp: t.name,
           ts: t.slug,
         });
@@ -545,7 +926,7 @@ function buildSearchIndex(data, models) {
 }
 
 function m_sections(t, models) {
-  return models.get(t.id).sections;
+  return models.byId.get(t.id).sections;
 }
 
 function generate() {
@@ -557,8 +938,9 @@ function generate() {
 
   data.topics.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
 
-  const models = new Map();
-  for (const t of data.topics) models.set(t.id, buildModel(t, rw));
+  const byId = new Map();
+  for (const t of data.topics) byId.set(t.id, buildModel(t, rw));
+  const models = { byId, topics: data.topics };
 
   const missed = [...rw.texts.keys()].filter((k) => !rw.usedTexts.has(k));
   if (missed.length) {
@@ -570,37 +952,65 @@ function generate() {
   fs.mkdirSync(path.join(site, 'topics'), { recursive: true });
   fs.mkdirSync(path.join(site, 'assets'), { recursive: true });
 
-  fs.writeFileSync(path.join(site, 'index.html'), homePage(data, models));
+  const catalog = buildMockCatalog(models);
+  console.log('  mock catalog: ' + catalog.length + ' papers');
+
+  fs.writeFileSync(path.join(site, 'index.html'), homePage(data, models, catalog));
   console.log('  index.html');
 
   let totalResources = 0;
+  const pages = ['index.html', 'mocks.html', 'library.html', '404.html'];
   for (const t of data.topics) {
-    const m = models.get(t.id);
+    const m = byId.get(t.id);
     totalResources += m.count;
     const pos = data.topics.indexOf(t);
     fs.writeFileSync(path.join(site, 'topics', t.slug + '.html'), topicPage(data, t, m, pos));
+    pages.push('topics/' + t.slug + '.html');
   }
   console.log('  topics: ' + data.topics.length + ' pages');
 
-  const index = buildSearchIndex(data, models);
+  fs.writeFileSync(path.join(site, 'mocks.html'), mocksPage(data, catalog));
+  console.log('  mocks.html');
+  fs.writeFileSync(path.join(site, 'library.html'), libraryPage(data, models));
+  console.log('  library.html');
+  fs.writeFileSync(path.join(site, '404.html'), notFoundPage(data));
+  console.log('  404.html');
+
+  const index = buildSearchIndex(data, models, catalog);
   fs.writeFileSync(path.join(site, 'search.json'), JSON.stringify(index));
   console.log('  search.json: ' + index.length + ' entries');
 
-  for (const f of ['style.css', 'app.js']) {
+  fs.writeFileSync(path.join(site, 'mocks.json'), JSON.stringify(catalog, null, 2));
+  console.log('  mocks.json');
+
+  for (const f of ['style.css', 'app.js', 'logo.svg']) {
     fs.copyFileSync(path.join(cfg.ASSETS_SRC, f), path.join(site, 'assets', f));
   }
   console.log('  assets copied');
+
+  const lastmod = String(data.generatedAt || '').slice(0, 10) || '2026-09-27';
+  const allUrls = pages.concat(catalog.map((m) => m.path));
+  const sitemap =
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    allUrls.map((p) => '  <url><loc>' + SITE_URL + p + '</loc><lastmod>' + lastmod + '</lastmod></url>').join('\n') +
+    '\n</urlset>\n';
+  fs.writeFileSync(path.join(site, 'sitemap.xml'), sitemap);
+  fs.writeFileSync(path.join(site, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: ' + SITE_URL + 'sitemap.xml\n');
+  fs.writeFileSync(path.join(site, '.nojekyll'), '');
+  console.log('  sitemap.xml, robots.txt, .nojekyll');
 
   const meta = {
     generatedAt: data.generatedAt,
     topics: data.topics.length,
     resources: totalResources,
+    mocks: catalog.length,
+    mockQuestions: catalog.reduce((n, m) => n + (m.questions || 0), 0),
     searchEntries: index.length,
   };
   fs.writeFileSync(path.join(site, 'meta.json'), JSON.stringify(meta, null, 2));
 
   console.log('\nSite generated: ' + path.relative(cfg.ROOT, site));
-  console.log('  topics: ' + meta.topics + ', resources: ' + meta.resources + ', search entries: ' + meta.searchEntries);
+  console.log('  topics: ' + meta.topics + ', resources: ' + meta.resources + ', mocks: ' + meta.mocks + ' (' + meta.mockQuestions + ' Qs), search entries: ' + meta.searchEntries);
   return meta;
 }
 

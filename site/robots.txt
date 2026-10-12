@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kavy-codes.github.io/cuet-archive/sitemap.xml

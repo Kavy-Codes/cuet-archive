@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#1A2130"/>
+      <stop offset="62%" stop-color="#11151E"/>
+      <stop offset="100%" stop-color="#0B0E14"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="128" height="128" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="128" height="128" fill="url(#bg)"/>
+    <g stroke="#F2EAD6" stroke-width="0.6" opacity="0.06">
+      <path d="M16 0V128M32 0V128M48 0V128M64 0V128M80 0V128M96 0V128M112 0V128"/>
+      <path d="M0 16H128M0 32H128M0 48H128M0 64H128M0 80H128M0 96H128M0 112H128"/>
+    </g>
+    <text x="64" y="46" text-anchor="middle" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="21" font-weight="bold" letter-spacing="3" fill="#F2EAD6" opacity="0.9">CUET</text>
+    <text x="64" y="92" text-anchor="middle" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="40" font-weight="bold" letter-spacing="1" fill="#F2EAD6">27</text>
+    <rect x="34" y="100" width="60" height="4" rx="2" fill="#E9A13B"/>
+  </g>
+</svg>
