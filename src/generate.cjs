@@ -565,7 +565,7 @@ function mockCardHtml(m, order) {
     '<span class="m-subject">' + st.icon + ' ' + esc(m.subject) + '</span>' +
     '<h3 class="m-title">' + esc(m.display) + '</h3>' +
     '<span class="m-meta"><span class="m-pill">' + (m.questions || '–') + ' Qs</span>' +
-    '<span class="m-pill">⏱ ' + (m.minutes || 60) + ' min</span>' +
+    '<span class="m-pill">' + (m.minutes || 60) + ' min</span>' +
     '<span class="m-pill">' + esc(m.engine) + '</span></span>' +
     '<span class="m-go"><span>Attempt now</span><span class="arrow">→</span></span></a>'
   );
@@ -573,10 +573,12 @@ function mockCardHtml(m, order) {
 
 function mocksPage(data, catalog) {
   const subjects = [...new Set(catalog.map((m) => m.subject))];
-  const chips = ['<button class="fchip on" data-f="all" type="button">All papers</button>']
+  const perSubject = {};
+  for (const m of catalog) perSubject[m.subject] = (perSubject[m.subject] || 0) + 1;
+  const chips = ['<button class="fchip on" data-f="all" type="button">All papers (' + catalog.length + ')</button>']
     .concat(subjects.map((s) => {
       const st = SUBJECT_STYLE[s] || SUBJECT_STYLE.GAT;
-      return '<button class="fchip" data-f="' + esc(s) + '" type="button">' + st.icon + ' ' + esc(s) + '</button>';
+      return '<button class="fchip" data-f="' + esc(s) + '" type="button">' + st.icon + ' ' + esc(s) + ' (' + (perSubject[s] || 0) + ')</button>';
     }))
     .join('');
   const cards = catalog.map((m) => mockCardHtml(m)).join('');

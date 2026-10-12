@@ -459,6 +459,21 @@
     });
   }
 
+  /* ---------------- nav highlight sync (tabbar + topbar live outside Barba) ---------------- */
+  function syncNav() {
+    const container = document.querySelector('[data-barba="container"]');
+    const ns = container ? container.getAttribute('data-barba-namespace') : document.body.getAttribute('data-nav');
+    const page = { home: 'index.html', mocks: 'mocks.html', library: 'library.html' }[ns] || '';
+    document.body.setAttribute('data-nav', ns || '');
+    $$('.tabbar a, .nav-links a').forEach((a) => {
+      const href = a.getAttribute('href') || '';
+      const on = !!page && href.endsWith(page);
+      a.classList.toggle('current', on);
+      if (on) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
   /* ---------------- Barba page transitions (progressive enhancement) ---------------- */
   function barbaOK() {
     return !!(window.barba && window.gsap) && !reducedMotion;
@@ -630,6 +645,7 @@
               clearTimeout(watchdog);
               busy = false;
               hideVeilNow();
+              try { syncNav(); } catch (e) {}
               if (window.ScrollTrigger) {
                 try { window.ScrollTrigger.refresh(); } catch (e) {}
               }
