@@ -1,6 +1,6 @@
 /* CUET '27 Archive — front-end engine.
  * Vanilla core (search, lab filters, counters, copy, reveals) always runs.
- * GSAP + ScrollTrigger + Anime.js are progressive enhancement only.
+ * GSAP + ScrollTrigger + Barba are progressive enhancement only.
  */
 (function () {
   'use strict';
@@ -215,14 +215,15 @@
     if (sort) sort.addEventListener('change', order);
     const dice = $('#lab-random');
     if (dice) {
+      const label = $('.lab-random-label', dice) || dice;
       dice.addEventListener('click', () => {
         const pool = cards.filter((c) => !c.hidden);
         if (!pool.length) return;
         const pick = pool[Math.floor(Math.random() * pool.length)];
-        dice.textContent = '🎲 ' + (pick.dataset.title || 'paper').split(' ').slice(0, 3).join(' ') + '…';
+        label.textContent = (pick.dataset.title || 'paper').split(' ').slice(0, 3).join(' ') + '…';
         setTimeout(() => {
           window.open(pick.getAttribute('href'), '_blank', 'noopener');
-          dice.textContent = '🎲 Surprise me';
+          label.textContent = 'Surprise me';
         }, 450);
       });
     }
@@ -327,13 +328,35 @@
     });
   }
 
+  /* ---------------- theme toggle (dark default, paper light) ---------------- */
+  const THEME_KEY = 'cuet27:theme';
+  function initTheme() {
+    const btn = $('[data-theme-toggle]');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const current = () =>
+      document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const apply = (mode) => {
+      if (mode === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      else document.documentElement.removeAttribute('data-theme');
+      if (meta) meta.setAttribute('content', mode === 'light' ? '#F8F3E7' : '#0B0E14');
+      if (btn) btn.setAttribute('aria-pressed', mode === 'light' ? 'true' : 'false');
+    };
+    apply(current());
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const next = current() === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+      apply(next);
+    });
+  }
+
   /* ---------------- back to top (all viewports — long library pages) ---------------- */
   function initToTop() {
     const btn = document.createElement('button');
     btn.className = 'to-top';
     btn.type = 'button';
     btn.setAttribute('aria-label', 'Back to top');
-    btn.textContent = '↑';
+    btn.innerHTML = '<svg class="ico" aria-hidden="true"><use href="' + (window.__BASE__ || '') + 'assets/icons.svg#i-arrow-up"></use></svg>';
     document.body.appendChild(btn);
     let ticking = false;
     const sync = () => {
@@ -370,9 +393,19 @@
         gsap.registerPlugin(ScrollTrigger);
         if (window.ScrollTrigger.config) ScrollTrigger.config({ ignoreMobileResize: true });
         gsap.fromTo(
-          '.hero > *',
+          '.hero-copy > *',
           { y: isMobile ? 18 : 34, opacity: 0 },
           { y: 0, opacity: 1, duration: isMobile ? 0.6 : 0.9, stagger: isMobile ? 0.05 : 0.09, ease: 'power3.out', delay: 0.05, overwrite: 'auto' }
+        );
+        gsap.fromTo(
+          '.hero-art',
+          { y: isMobile ? 16 : 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: isMobile ? 0.6 : 0.9, ease: 'power3.out', delay: 0.24, overwrite: 'auto' }
+        );
+        gsap.fromTo(
+          '.hero .stats',
+          { y: rise, opacity: 0 },
+          { y: 0, opacity: 1, duration: dur, ease: 'power3.out', delay: 0.34, overwrite: 'auto' }
         );
         $$('.reveal').forEach((el) => {
           if (el.closest('.hero')) {
@@ -399,26 +432,6 @@
     } else {
       fallbackReveal(targets);
     }
-    // Path 2 — Anime.js micro-interactions (hero kicker + stat pop)
-    if (window.anime && !reducedMotion) {
-      try {
-        anime({
-          targets: '.hero-kicker',
-          scale: [0.9, 1],
-          opacity: [0, 1],
-          duration: 700,
-          easing: 'easeOutBack(2.2)',
-        });
-        anime({
-          targets: '.stat',
-          translateY: [16, 0],
-          opacity: [0, 1],
-          delay: anime.stagger(90, { start: 350 }),
-          duration: 600,
-          easing: 'easeOutCubic',
-        });
-      } catch (e) {}
-    }
   }
   function fallbackReveal(targets) {
     if (!('IntersectionObserver' in window)) {
@@ -441,6 +454,353 @@
     setTimeout(() => targets.forEach((el) => el.classList.add('in')), 3000);
   }
 
+  /* ---------------- hero: Zdog paper stack (drag to spin, inertia) ---------------- */
+  function initPaperStack() {
+    const canvas = $('#paper-stack');
+    if (!canvas || !window.Zdog) return;
+    const Zdog = window.Zdog;
+    const fine = !!(window.matchMedia && window.matchMedia('(pointer: fine)').matches);
+    const draggable = fine && !reducedMotion;
+    const amber = getComputedStyle(document.documentElement).getPropertyValue('--amber').trim() || '#e9a13b';
+    const illo = new Zdog.Illustration({
+      element: canvas,
+      zoom: 2.3,
+      resize: true,
+      dragRotate: draggable,
+    });
+    /* Zdog 1.1.3 quirk: `fill` is a boolean — the shape fills with `color`.
+     * Layered shapes (fill + outline) fake a fill/stroke split. */
+    const PAGE_W = 76;
+    const PAGE_H = 100;
+    const edge = 'rgba(59, 44, 16, 0.5)';
+    const sway = [];
+    const swayBase = [];
+    for (let i = 0; i < 8; i++) {
+      const z = 22 - i * 3.2;
+      const x = ((i % 3) - 1) * 1.6;
+      const y = (i % 2 ? 1.4 : -1.4);
+      const rot = (i % 2 ? 1 : -1) * (0.012 + i * 0.006);
+      const fill = new Zdog.RoundedRect({
+        addTo: illo,
+        width: PAGE_W,
+        height: PAGE_H,
+        cornerRadius: 5,
+        fill: true,
+        color: i % 2 ? '#ece1c8' : '#f7f0df',
+        stroke: 0,
+        translate: { z, x, y },
+        rotate: { z: rot },
+      });
+      const outline = new Zdog.RoundedRect({
+        addTo: illo,
+        width: PAGE_W,
+        height: PAGE_H,
+        cornerRadius: 5,
+        fill: false,
+        stroke: 1.2,
+        color: edge,
+        translate: { z: z + 0.35, x, y },
+        rotate: { z: rot },
+      });
+      sway.push(fill, outline);
+      swayBase.push(rot, rot);
+    }
+    const ink = 'rgba(38, 28, 10, 0.6)';
+    [[-8, -34, 46], [-8, -26, 52], [-8, -18, 34], [-16, -10, 44]].forEach(([x, y, w]) => {
+      new Zdog.RoundedRect({
+        addTo: illo,
+        width: w,
+        height: 2.6,
+        cornerRadius: 1.3,
+        fill: true,
+        color: ink,
+        stroke: 0,
+        translate: { x, y, z: 22.9 },
+      });
+    });
+    new Zdog.Ellipse({ addTo: illo, diameter: 15, fill: true, color: amber, stroke: 0, translate: { x: 22, y: 32, z: 22.9 } });
+    new Zdog.Ellipse({ addTo: illo, diameter: 7, fill: true, color: ink, stroke: 0, translate: { x: 22, y: 32, z: 23.1 } });
+    new Zdog.RoundedRect({
+      addTo: illo,
+      width: 36,
+      height: 32,
+      cornerRadius: 3,
+      fill: true,
+      color: '#f0bd63',
+      stroke: 0,
+      translate: { x: -32, y: -40, z: 24.4 },
+      rotate: { z: -0.14 },
+    });
+    new Zdog.RoundedRect({
+      addTo: illo,
+      width: 36,
+      height: 32,
+      cornerRadius: 3,
+      fill: false,
+      stroke: 1,
+      color: 'rgba(70, 46, 4, 0.3)',
+      translate: { x: -32, y: -40, z: 24.8 },
+      rotate: { z: -0.14 },
+    });
+    new Zdog.RoundedRect({
+      addTo: illo,
+      width: 10,
+      height: 44,
+      cornerRadius: 3,
+      fill: true,
+      color: '#d96d97',
+      stroke: 0,
+      translate: { x: 24, y: -58, z: 20 },
+      rotate: { z: 0.08 },
+    });
+    illo.translate.y = -18;
+    illo.rotate.x = -0.3;
+    illo.rotate.y = 0.26;
+    if (reducedMotion) {
+      illo.updateRenderGraph();
+      return;
+    }
+    const stage = canvas.closest('.stack-stage') || canvas.parentElement;
+    const spin = 0.25;
+    let dragging = false;
+    let vel = 0;
+    let raf = 0;
+    let lastY = illo.rotate.y;
+    let lastT = 0;
+    const frame = (now) => {
+      const t = now / 1000;
+      const dt = Math.min(Math.max(t - lastT, 0.001), 0.05);
+      lastT = t;
+      const dY = illo.rotate.y - lastY;
+      lastY = illo.rotate.y;
+      if (dragging) {
+        vel = Math.max(-6, Math.min(6, dY / dt));
+      } else if (Math.abs(vel) > 0.04) {
+        illo.rotate.y += vel * dt;
+        vel *= Math.pow(0.12, dt);
+      } else {
+        vel = 0;
+        illo.rotate.y += spin * dt;
+      }
+      for (let i = 0; i < sway.length; i++) {
+        sway[i].rotate.z = swayBase[i] + Math.sin(t * 0.7 + (i >> 1) * 0.55) * 0.01;
+      }
+      illo.translate.y = -18 + Math.sin(t * 0.85) * 3;
+      illo.updateRenderGraph();
+      raf = requestAnimationFrame(frame);
+    };
+    const start = () => {
+      if (raf) return;
+      lastY = illo.rotate.y;
+      lastT = performance.now() / 1000;
+      raf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    const endDrag = () => { dragging = false; };
+    canvas.addEventListener('pointerdown', () => { dragging = true; vel = 0; });
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+    const onVis = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVis);
+    if ('IntersectionObserver' in window && stage) {
+      const io = new IntersectionObserver(([en]) => (en.isIntersecting ? start() : stop()), { threshold: 0.05 });
+      io.observe(stage);
+      onTeardown(() => io.disconnect());
+    } else {
+      start();
+    }
+    onTeardown(() => {
+      stop();
+      window.removeEventListener('pointerup', endDrag);
+      window.removeEventListener('pointercancel', endDrag);
+      document.removeEventListener('visibilitychange', onVis);
+    });
+  }
+
+  /* ---------------- hero: countdown to the exam date ---------------- */
+  function initCountdown() {
+    const box = $('[data-countdown]');
+    if (!box) return;
+    const target = new Date(box.getAttribute('data-countdown')).getTime();
+    const cells = {
+      d: $('[data-cd="d"]', box),
+      h: $('[data-cd="h"]', box),
+      m: $('[data-cd="m"]', box),
+      s: $('[data-cd="s"]', box),
+    };
+    if (!target || !cells.d) return;
+    const pad = (n) => String(n).padStart(2, '0');
+    let id = 0;
+    const tick = () => {
+      const t = target - Date.now();
+      if (t <= 0) {
+        box.classList.add('is-done');
+        clearInterval(id);
+        cells.d.textContent = '0';
+        cells.h.textContent = '00';
+        cells.m.textContent = '00';
+        cells.s.textContent = '00';
+        return;
+      }
+      cells.d.textContent = String(Math.floor(t / 86400000));
+      cells.h.textContent = pad(Math.floor((t % 86400000) / 3600000));
+      cells.m.textContent = pad(Math.floor((t % 3600000) / 60000));
+      cells.s.textContent = pad(Math.floor((t % 60000) / 1000));
+    };
+    tick();
+    id = setInterval(tick, 1000);
+    onTeardown(() => clearInterval(id));
+  }
+
+  /* ---------------- command palette (⌘K / Ctrl+K) ---------------- */
+  function initPalette() {
+    const svgIco = (name) =>
+      '<svg class="ico" aria-hidden="true"><use href="' + BASE + 'assets/icons.svg#i-' + name + '"></use></svg>';
+    let overlay = null;
+    let input = null;
+    let list = null;
+    let defs = [];
+    let active = 0;
+    const actions = [
+      { icon: 'home', title: 'Home', sub: 'Front page of the archive', href: BASE + 'index.html' },
+      { icon: 'bolt', title: 'Mock Lab', sub: 'Every in-browser paper, one page', href: BASE + 'mocks.html' },
+      { icon: 'archive', title: 'Library', sub: 'Books, notes, lectures and links', href: BASE + 'library.html' },
+      { icon: 'sun', title: 'Toggle light / dark', sub: 'Flip between ink and paper', run: () => { const b = $('[data-theme-toggle]'); if (b) b.click(); } },
+    ];
+    const invite = document.body.getAttribute('data-invite');
+    if (invite) actions.push({ icon: 'chat', title: 'Join the Discord', sub: 'The community behind the archive', href: invite, blank: true });
+    const markup = (o, i) => {
+      defs.push(o);
+      const inner =
+        '<span class="ci-ico">' + svgIco(o.icon || 'link') + '</span>' +
+        '<span class="ci-main"><span class="ci-title">' + o.titleHtml + '</span><span class="ci-sub">' + o.sub + '</span></span>' +
+        (o.kind ? '<span class="ci-kind">' + o.kind + '</span>' : '');
+      return o.href
+        ? '<a class="cmdk-item" data-idx="' + i + '" role="option" href="' + esc(o.href) + '"' + (o.blank ? ' target="_blank" rel="noopener"' : '') + '>' + inner + '</a>'
+        : '<button type="button" class="cmdk-item" data-idx="' + i + '" role="option">' + inner + '</button>';
+    };
+    const setActive = (i) => {
+      active = i;
+      defs.forEach((d, k) => {
+        if (!d.el) return;
+        d.el.classList.toggle('active', k === i);
+        if (k === i) d.el.setAttribute('aria-selected', 'true');
+        else d.el.removeAttribute('aria-selected');
+      });
+      if (defs[i] && defs[i].el) defs[i].el.scrollIntoView({ block: 'nearest' });
+    };
+    const render = () => {
+      const q = (input.value || '').trim();
+      const ql = q.toLowerCase();
+      const acts = actions.filter((a) => !ql || (a.title + ' ' + a.sub).toLowerCase().includes(ql));
+      const res = ql.length >= 2 ? doSearch(q, 6) : [];
+      defs = [];
+      let html = '';
+      if (acts.length) {
+        html += '<div class="cmdk-group">Actions</div>';
+        html += acts
+          .map((a) => {
+            const o = { icon: a.icon, titleHtml: esc(a.title), sub: esc(a.sub), href: a.href, blank: a.blank, run: a.run };
+            o.kind = a.href && a.run === undefined && !a.blank ? 'Go' : a.blank ? 'Discord' : 'Action';
+            return markup(o, defs.length);
+          })
+          .join('');
+      }
+      if (res.length) {
+        html += '<div class="cmdk-group">Results</div>';
+        html += res
+          .map((e) => {
+            const kind = e.k === 'topic' ? 'Topic' : e.lu ? 'Mock' : 'Link';
+            const sub = e.k === 'topic' ? e.n + ' resources · ' + e.tp : (e.dm || 'link') + ' · ' + e.tp;
+            return markup({ icon: e.k === 'topic' ? 'archive' : 'bolt', titleHtml: mark(e.t, q), sub: esc(sub), kind, href: entryUrl(e), blank: e.k !== 'topic' }, defs.length);
+          })
+          .join('');
+      }
+      if (!html) html = '<div class="cmdk-empty">No matches for &ldquo;' + esc(q) + '&rdquo; — try &ldquo;mock&rdquo;, &ldquo;GAT&rdquo; or &ldquo;books&rdquo;.</div>';
+      list.innerHTML = html;
+      $$('.cmdk-item', list).forEach((el) => {
+        const d = defs[+el.getAttribute('data-idx')];
+        if (d) d.el = el;
+      });
+      if (defs.length) setActive(0);
+    };
+    const open = () => {
+      if (!overlay) build();
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      input.value = '';
+      render();
+      loadIndex().then(() => {
+        if (!overlay.hidden && input.value.trim().length >= 2) render();
+      });
+      requestAnimationFrame(() => input.focus());
+    };
+    const close = () => {
+      if (!overlay || overlay.hidden) return;
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+    };
+    const build = () => {
+      overlay = document.createElement('div');
+      overlay.className = 'cmdk';
+      overlay.hidden = true;
+      overlay.innerHTML =
+        '<div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">' +
+        '<div class="cmdk-head">' + svgIco('command') +
+        '<input type="text" placeholder="Search resources or type a command…" aria-label="Command palette search" autocomplete="off" spellcheck="false">' +
+        '<kbd>esc</kbd></div>' +
+        '<div class="cmdk-list" role="listbox" aria-label="Commands and results"></div>' +
+        '<div class="cmdk-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span class="kb-hint cf-right">Type to search topics, mocks and links</span></div>' +
+        '</div>';
+      document.body.appendChild(overlay);
+      input = $('.cmdk-head input', overlay);
+      list = $('.cmdk-list', overlay);
+      overlay.addEventListener('pointerdown', (ev) => {
+        if (ev.target === overlay) close();
+      });
+      input.addEventListener('input', render);
+      input.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape') {
+          ev.preventDefault();
+          close();
+        } else if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+          ev.preventDefault();
+          if (defs.length) setActive((active + (ev.key === 'ArrowDown' ? 1 : -1) + defs.length) % defs.length);
+        } else if (ev.key === 'Enter') {
+          ev.preventDefault();
+          const el = defs[active] && defs[active].el;
+          if (el) el.click();
+        } else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          input.focus();
+        }
+      });
+      list.addEventListener('click', (ev) => {
+        const el = ev.target.closest('.cmdk-item');
+        if (!el) return;
+        if (el.tagName === 'BUTTON') {
+          ev.preventDefault();
+          const d = defs[+el.getAttribute('data-idx')];
+          if (d && d.run) d.run();
+          close();
+        } else {
+          close();
+        }
+      });
+    };
+    document.addEventListener('keydown', (ev) => {
+      if ((ev.metaKey || ev.ctrlKey) && (ev.key === 'k' || ev.key === 'K')) {
+        ev.preventDefault();
+        overlay && !overlay.hidden ? close() : open();
+      } else if (ev.key === 'Escape' && overlay && !overlay.hidden) {
+        close();
+      }
+    });
+  }
+
   /* ---------------- per-page boot (runs on load + every Barba enter) ---------------- */
   function bootPage(simple) {
     $$('.search-input').forEach(bindSearch);
@@ -448,12 +808,14 @@
     initCounters();
     initGlow();
     initDates();
+    initPaperStack();
+    initCountdown();
     initMotion(!!simple);
     $$('img.favicon').forEach((img) => {
       img.addEventListener('error', () => {
         const span = document.createElement('span');
         span.className = 'favicon';
-        span.textContent = '🔗';
+        span.innerHTML = '<svg class="ico ico-lg" aria-hidden="true"><use href="' + (window.__BASE__ || '') + 'assets/icons.svg#i-link"></use></svg>';
         if (img.parentNode) img.parentNode.replaceChild(span, img);
       });
     });
@@ -669,8 +1031,10 @@
         box.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
       }
     });
+    initTheme();
     initCopy();
     initToTop();
+    initPalette();
     bootPage(false);
     initPrefetch();
     initBarba();

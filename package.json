@@ -8,6 +8,7 @@
     "extract": "node src/extract.cjs",
     "generate": "node src/generate.cjs",
     "build": "node src/generate.cjs && node src/validate-site.cjs",
+    "og": "node src/og.cjs",
     "validate": "node src/validate-site.cjs",
     "mock-shell": "node src/mock-shell.cjs",
     "sync": "node src/sync.cjs",

@@ -1,6 +1,7 @@
 /* CUET Archive — site + mock validator.
  * Checks: internal links, asset refs, search targets, mock question
- * integrity (options/correct answers), leftover brand URLs, JS syntax.
+ * integrity (options/correct answers), leftover brand URLs, no external
+ * asset hotlinks, theme/font/icon wiring, byte budgets, JS syntax.
  * Exit 0 = pass (warnings allowed), exit 1 = failure.
  */
 const fs = require('fs');
@@ -197,12 +198,91 @@ for (const page of walk(SITE)) {
 console.log('brand sweep: done');
 
 /* ---- 5. required site files + lib tags ---- */
-for (const f of ['index.html', 'mocks.html', 'library.html', 'search.json', 'mocks.json', 'sitemap.xml', 'robots.txt', '.nojekyll', 'assets/style.css', 'assets/app.js', 'assets/logo.svg']) {
+for (const f of ['index.html', 'mocks.html', 'library.html', 'search.json', 'mocks.json', 'sitemap.xml', 'robots.txt', '.nojekyll', 'assets/style.css', 'assets/app.js', 'assets/logo.svg', 'assets/icons.svg', 'assets/fonts.css', 'assets/fonts/figtree-latin-n-300.woff2', 'assets/fonts/fraunces-latin-n-400.woff2', 'assets/vendor/gsap.min.js', 'assets/vendor/ScrollTrigger.min.js', 'assets/vendor/barba.umd.js', 'assets/vendor/zdog.min.js', 'assets/og/home.png', 'assets/og/mocks.png', 'assets/og/library.png']) {
   if (!fs.existsSync(path.join(SITE, f))) fail('missing site file: ' + f);
 }
 const home = fs.readFileSync(path.join(SITE, 'index.html'), 'utf8');
-for (const tag of ['gsap.min.js', 'ScrollTrigger.min.js', 'anime.min.js', 'application/ld+json', 'og:title', 'rel="canonical"']) {
+for (const tag of ['gsap.min.js', 'ScrollTrigger.min.js', 'barba.umd.js', 'assets/icons.svg', 'assets/fonts.css', 'data-theme-toggle', 'cuet27:theme', 'application/ld+json', 'og:title', 'rel="canonical"', 'color-scheme" content="dark light']) {
   if (!home.includes(tag)) fail('home missing: ' + tag);
+}
+/* home hero: countdown, paper stack, annotations, OG + palette wiring */
+for (const frag of ['hero-grid', 'hero-art', 'data-countdown', 'data-cd="d"', 'id="paper-stack"', 'annot-u', 'annot-c', 'assets/vendor/zdog.min.js', 'summary_large_image', 'assets/og/home.png']) {
+  if (!home.includes(frag)) fail('home missing: ' + frag);
+}
+if (/\banime\b|animejs/.test(fs.readFileSync(path.join(SITE, 'assets', 'app.js'), 'utf8'))) {
+  fail('app.js still references anime.js');
+}
+try {
+  const news = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'news.json'), 'utf8'));
+  if (!news.examDate || isNaN(new Date(news.examDate).getTime())) fail('data/news.json: examDate invalid');
+} catch (e) {
+  fail('data/news.json unreadable: ' + e.message);
+}
+const appSrc = fs.readFileSync(path.join(SITE, 'assets', 'app.js'), 'utf8');
+if (!appSrc.includes('initPaperStack') || !appSrc.includes('initCountdown') || !appSrc.includes('initPalette')) {
+  fail('app.js missing Phase 1 modules (paper stack / countdown / palette)');
+}
+if (!fs.readFileSync(path.join(SITE, 'assets', 'style.css'), 'utf8').includes('.cmdk')) {
+  fail('style.css missing command palette styles');
+}
+/* zdog only on home; every topic page has an existing og card */
+for (const p of ['mocks.html', 'library.html']) {
+  const html = fs.readFileSync(path.join(SITE, p), 'utf8');
+  if (html.includes('zdog.min.js')) fail(p + ' should not load zdog (home-only)');
+  if (!html.includes('summary_large_image')) fail(p + ' missing twitter:card summary_large_image');
+}
+for (const t of fs.readdirSync(path.join(SITE, 'topics'))) {
+  const html = fs.readFileSync(path.join(SITE, 'topics', t), 'utf8');
+  const og = html.match(/og:image" content="[^"]*?(assets\/og\/[^"]+)"/);
+  if (!og) {
+    fail('topics/' + t + ': no og:image');
+  } else if (!fs.existsSync(path.join(SITE, og[1]))) {
+    fail('topics/' + t + ': og:image file missing (' + og[1] + ') — run npm run og');
+  }
+}
+
+/* ---- 5b. shell pages must not hotlink third-party scripts/styles ---- */
+const SHELL = ['index.html', 'mocks.html', 'library.html', '404.html'];
+const extTagRe = /<(script|link)\b[^>]*\b(?:src|href)="(https?:\/\/[^"]+)"[^>]*>/g;
+for (const p of SHELL) {
+  const html = fs.readFileSync(path.join(SITE, p), 'utf8');
+  let m;
+  while ((m = extTagRe.exec(html))) {
+    if (m[0].includes('rel="canonical"')) continue;
+    fail(`external asset hotlink in ${p}: ${m[2]}`);
+  }
+}
+/* topic pages get the same treatment for script/link tags */
+for (const t of fs.readdirSync(path.join(SITE, 'topics'))) {
+  const html = fs.readFileSync(path.join(SITE, 'topics', t), 'utf8');
+  let m;
+  while ((m = extTagRe.exec(html))) {
+    if (m[0].includes('rel="canonical"')) continue;
+    fail(`external asset hotlink in topics/${t}: ${m[2]}`);
+  }
+}
+console.log('external asset sweep: done');
+
+/* ---- 5c. byte budgets ---- */
+const budget = (rel, maxKB) => {
+  const b = fs.statSync(path.join(SITE, rel)).size;
+  if (b > maxKB * 1024) warn(`budget: ${rel} is ${(b / 1024).toFixed(0)}KB (budget ${maxKB}KB)`);
+  return b;
+};
+budget('assets/style.css', 60);
+budget('assets/app.js', 40);
+budget('assets/fonts.css', 8);
+let fontBytes = 0;
+for (const f of fs.readdirSync(path.join(SITE, 'assets', 'fonts'))) fontBytes += fs.statSync(path.join(SITE, 'assets', 'fonts', f)).size;
+if (fontBytes > 700 * 1024) warn(`budget: fonts total ${(fontBytes / 1024).toFixed(0)}KB (budget 700KB)`);
+console.log(`budgets: css ${(fs.statSync(path.join(SITE, 'assets', 'style.css')).size / 1024).toFixed(0)}KB, app.js ${(fs.statSync(path.join(SITE, 'assets', 'app.js')).size / 1024).toFixed(0)}KB, fonts ${(fontBytes / 1024).toFixed(0)}KB`);
+/* barba shell: every page needs wrapper + namespaced container */
+for (const page of pages) {
+  const html = fs.readFileSync(page, 'utf8');
+  const rel = path.relative(SITE, page);
+  if (!html.includes('data-barba="wrapper"')) fail('no barba wrapper: ' + rel);
+  const ns = html.match(/data-barba="container" data-barba-namespace="([^"]+)"/);
+  if (!ns) fail('no namespaced barba container: ' + rel);
 }
 try {
   execSync('node --check ' + path.join(SITE, 'assets', 'app.js'), { stdio: 'pipe' });
